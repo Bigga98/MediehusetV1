@@ -1,0 +1,117 @@
+/* ─────────────────────────────────────────────
+   Mediegruppen — Design Tokens
+   Spacing system: 6pt base scale
+───────────────────────────────────────────── */
+
+:root {
+
+  /* SPACING
+     Base: 6pt. Alle verdier er multipler av 6.
+     ------------------------------------------ */
+  --space-xs:  6px;   /* Micro — ikon→tekst, indre badge-padding         */
+  --space-sm: 12px;   /* SM    — label→input, tittel→brødtekst i kort     */
+  --space-md: 18px;   /* MD    — kortinnhold padding, mellom komponenter   */
+  --space-lg: 24px;   /* LG    — gutter, seksjon-intern avstand            */
+  --space-xl: 48px;   /* XL    — mellom seksjoner, heading-blokk           */
+
+  /* KOMPONENT-INTERNT
+     ------------------------------------------ */
+  --btn-padding-y:  12px;   /* Knapp topp/bunn     */
+  --btn-padding-x:  24px;   /* Knapp venstre/høyre */
+  --card-padding:   24px;   /* Kortinnhold alle sider */
+  --icon-gap:        6px;   /* Ikon → tekst */
+
+  /* LAYOUT / GRID
+     ------------------------------------------ */
+  --grid-columns:     12;
+  --grid-margin:      160px;  /* Venstre + høyre sidemargin — innhold starter kol. 2 */
+  --grid-gutter:      24px;   /* Mellom kolonner */
+  --content-width: 1120px;    /* 1440 - 2×160 */
+
+  /* SEKSJON-NIVÅ
+     ------------------------------------------ */
+  --section-padding-y: 48px;   /* Topp/bunn i seksjon               */
+  --section-gap:       48px;   /* Mellom seksjoner                   */
+
+  /* KOMPONENT-HIERARKI — spacing mellom elementer i en seksjon
+     Prinsipp: jo tettere semantisk tilknytning, jo mindre gap.
+     ------------------------------------------ */
+  --gap-heading-body:  12px;   /* Heading → undertekst  (--space-sm) */
+  --gap-body-cta:      24px;   /* Undertekst → knapp    (--space-lg) */
+  --gap-cta-content:   48px;   /* Knapp → innhold/kort  (--space-xl) */
+
+  /* TYPOGRAFI — Font families
+     ------------------------------------------ */
+  --font-display: "Frank Ruhl Libre", Georgia, serif;       /* Kun hero heading */
+  --font-heading: "Cormorant Garamond", Georgia, serif;     /* Alle andre headings, 500 */
+  --font-body:    "Instrument Sans", Helvetica, sans-serif;
+  --font-ui:      "Instrument Sans", Helvetica, sans-serif;
+
+  /* TYPOGRAFI — Størrelsesskala
+     Ankerpunkt: --type-h2 = 48px (seksjon-heading)
+     Ratio oppover ~×1.33, nedover praktiske web-verdier
+     ------------------------------------------ */
+
+  /* Display — Frank Ruhl Libre, 400
+     Kun til store headings. Aldri til brødtekst. */
+  --type-display:    90px;   /* Hero-heading eneste                      */
+  --type-h1:         64px;   /* Stor seksjon-heading (campaign, splash)  */
+  --type-h2:         48px;   /* Standard seksjon-heading ← ankerpunkt    */
+
+  /* Body — Instrument Sans, 400
+     Brødtekst og intro-avsnitt. */
+  --type-lead:       20px;   /* Intro-avsnitt under heading               */
+  --type-body:       16px;   /* Standard brødtekst                        */
+
+  /* UI — Inter
+     Alt som er knapper, nav, labels, hints. */
+  --type-label:      14px;   /* Nav, knapp-tekst, kort-titler. w: 500    */
+  --type-caption:    12px;   /* Liten hjelpetekst, fotnoter. w: 400      */
+
+  /* TYPOGRAFI — Letter-spacing
+     ------------------------------------------ */
+  --ls-display:  -0.03em;
+  --ls-h1:       -0.025em;
+  --ls-h2:       -0.02em;
+  --ls-body:      0em;
+  --ls-caps:      0.05em;   /* Versaler / labels i caps */
+
+  /* TYPOGRAFI — Line-height
+     ------------------------------------------ */
+  --lh-display:   1.05;
+  --lh-heading:   1.1;
+  --lh-body:      1.65;
+  --lh-ui:        1.4;
+
+  /* FARGER
+     ------------------------------------------ */
+  --color-dark:        #222222;   /* Mørk kull — primær tekst + knapper  */
+  --color-mid:         #928e87;   /* Varm midtgrå — sekundær tekst        */
+  --color-white:       #ffffff;
+  --color-border:      #1a1816;
+
+  /* BAKGRUNNER — 4 lyse nivåer + 2 mørke
+     Lyse nivåer er varme nøytrale (beige/lin undertone fra #f5f4f1).
+     Bruk i rekkefølge for å skape rytme mellom seksjoner.
+     ------------------------------------------ */
+  --bg-0:       #f5f4f1;   /* Hero — varm lin-hvit                      */
+  --bg-1:       #eeece8;   /* Off-white varm — primærflate seksjoner     */
+  --bg-2:       #e4e1da;   /* Lys grå varm — sekundærflate/Demoer       */
+  --bg-3:       #eceae5;   /* Mellomlys varm — Bransjer                 */
+  --bg-dark:    #1e1b18;   /* Varm mørkbrun-svart — Prising             */
+  --bg-footer:  #2c2926;   /* Varm footer                               */
+
+  /* Surface-farger (kort/bokser oppå seksjoner)
+     Lyse seksjoner: --surface-light = varm hvit (løft fra varm bg)
+     Mørke seksjoner: --surface-dark / --surface-dark-hi = litt lysere enn bg
+     ------------------------------------------ */
+  --surface-light:    #faf9f6;   /* Kort på bg-1/bg-2/bg-3               */
+  --surface-dark:     #363028;   /* Kort på bg-dark                      */
+  --surface-dark-hi:  #403a32;   /* Fremhevet kort på bg-dark            */
+
+  /* Beholdt for bakoverkompatibilitet — peker på nytt system */
+  --color-bg-hero:     var(--bg-0);
+  --color-bg-section:  var(--bg-1);
+  --color-bg-dark:     var(--bg-2);
+
+}

@@ -1,0 +1,3236 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>Mediegruppen — Hero + Hva vi leverer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&family=Frank+Ruhl+Libre&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=Sorts+Mill+Goudy&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="brand/tokens.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-y: scroll; }
+    body { font-family: var(--font-ui); }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      background: #f5f4f1;
+      width: 1440px;
+      min-height: 1346px;
+      position: relative;
+    }
+
+
+    .hero .badge {
+      position: absolute;
+      top: 224px;
+      left: 700px;
+      width: 41px;
+      height: 40px;
+      background-color: var(--color-dark);
+      border-radius: 12px;
+      transform: rotate(5deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero .badge svg { transform: rotate(-5deg); }
+
+    /* Heading: var(--type-display) = 90px (var fra 88px) */
+    .hero .heading {
+      position: absolute;
+      top: 252px;
+      left: 324px;
+      width: 791px;
+      font-family: var(--font-display);
+      font-weight: 400;
+      color: var(--color-dark);
+      font-size: var(--type-display);
+      text-align: center;
+      letter-spacing: var(--ls-display);
+      line-height: var(--lh-display);
+    }
+
+    /* Undertekst: var(--type-lead) = 20px ✓ */
+    .hero .subtext {
+      position: absolute;
+      top: 474px;
+      left: 406px;
+      width: 628px;
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: #616160;
+      font-size: var(--type-lead);
+      text-align: center;
+      line-height: var(--lh-body);
+    }
+
+    .hero .cta-row {
+      position: absolute;
+      top: 614px;
+      left: 570px;
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    /* CTA-knapp: var(--type-label) = 14px ✓ */
+    .hero .cta-btn {
+      height: 42px;
+      padding: 0 26px;
+      gap: 7px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-dark);
+      border-radius: 0;
+      font-family: var(--font-ui);
+      font-weight: 500;
+      color: var(--color-white);
+      font-size: var(--type-label);
+      text-decoration: none;
+    }
+    @keyframes arrow-snap {
+      0%   { transform: translateX(0); }
+      30%  { transform: translateX(-3px); }
+      100% { transform: translateX(5px); }
+    }
+
+    .hero .cta-btn svg,
+    .hva-vi-leverer .section-btn svg,
+    .faq-cta svg,
+    .bransjelib__cta svg,
+    .bransjer-demo-btn svg,
+    .prising-kort__cta svg,
+    .inkludert__btn-primary svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+      stroke: none;
+      flex-shrink: 0;
+      transition: transform 0.18s;
+    }
+
+    /* Svarte knapper — snap-animasjon */
+    .hero .cta-btn:hover svg,
+    .hva-vi-leverer .section-btn:hover svg,
+    .inkludert__btn-primary:hover svg,
+    .prising-kort__cta:hover svg {
+      animation: arrow-snap 0.35s cubic-bezier(0.25, 0, 0, 1) forwards;
+    }
+
+    /* Borderknapper — enkel slide */
+    .faq-cta:hover svg,
+    .bransjelib__cta:hover svg,
+    .bransjer-demo-btn:hover svg {
+      transform: translateX(3px);
+    }
+    .faq-cta,
+    .bransjelib__cta,
+    .prising-kort__cta { gap: 7px; }
+    .bransjer-demo-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .hero .scroll-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 42px;
+      padding: 0 22px;
+      background: #e8e8e5;
+      border-radius: 0;
+      font-family: var(--font-ui);
+      font-weight: 400;
+      color: #222222;
+      font-size: var(--type-label);
+      letter-spacing: 0;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .hero .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(20,20,18,0.22);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero .hero-image {
+      position: absolute;
+      top: 713px;
+      left: 40px;
+      width: 860px;
+      height: 590px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .hero .hero-side-box {
+      position: absolute;
+      top: 713px;
+      left: 920px;
+      width: 480px;
+      height: 590px;
+      border-radius: 4px;
+      background-color: var(--bg-2);
+      background-image: url('images/hero-side-new.png');
+      background-size: cover;
+      background-position: 65% top;
+      overflow: hidden;
+    }
+
+    .hero-slider {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hero-slide {
+      width: 50%;
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      flex-shrink: 0;
+    }
+
+    .hero-slide--1 {
+      background-image: url('images/macbook-nordbygg.jpeg');
+      background-position: center center;
+    }
+
+    .hero-slide--2 {
+      background-image: url('images/hero-macbook.webp');
+      background-position: center 35%;
+    }
+
+    .hero-slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.14);
+      transition: background 0.15s, transform 0.15s;
+      z-index: 2;
+    }
+
+    .hero-slider-btn:hover {
+      background: #fff;
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .hero-slider-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--color-dark);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+
+
+    .hero-slider-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .hero-slider-dots .hero-slider-btn {
+      position: static;
+      transform: none;
+      width: 28px;
+      height: 28px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.18);
+    }
+
+    .hero-slider-dots .hero-slider-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .hero-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-dot.active {
+      background: #fff;
+      transform: scale(1.25);
+    }
+
+    /* ── SEKSJON SERVICE ─────────────────────── */
+    .seksjon-service {
+      width: 1440px;
+      background-color: var(--bg-1);
+      padding: var(--section-padding-y) var(--grid-margin);
+    }
+
+    .service-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+
+    .service-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      background: var(--color-dark);
+      color: #cfdeca;
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      font-weight: 400;
+      border-radius: 100px;
+    }
+
+    .service-heading {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: var(--type-h2);
+      color: #000;
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+      max-width: 800px;
+    }
+
+    .service-lead {
+      font-family: var(--font-body);
+      font-size: var(--type-lead);
+      color: #444;
+      line-height: var(--lh-body);
+      max-width: 520px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .service-phone {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .service-right {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .service-right-heading {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: var(--type-h2);
+      color: var(--color-dark);
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+    }
+
+    .service-info-boxes {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .service-info-box {
+      background: var(--surface-light);
+      border-radius: 0;
+      padding: var(--space-lg);
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      color: var(--color-dark);
+      line-height: var(--lh-body);
+    }
+
+    .phone-mockup {
+      width: 290px;
+      height: 600px;
+      background: var(--bg-2);
+      border-radius: 44px;
+      border: 2px solid #1a1a1a;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.18);
+      position: relative;
+      pointer-events: none;
+      user-select: none;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      font-family: -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif;
+    }
+
+    /* Dynamic island */
+    .phone-mockup::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 24px;
+      background: #1a1a1a;
+      border-radius: 20px;
+      z-index: 10;
+    }
+
+    /* WA-style header */
+    .wa-header {
+      background: #fff;
+      padding: 44px 14px 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #ebebeb;
+      flex-shrink: 0;
+    }
+
+    .wa-back {
+      font-size: 18px;
+      color: #30332f;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .wa-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #b4b8bd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .wa-info { flex: 1; }
+
+    .wa-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #111;
+      line-height: 1.2;
+    }
+
+    .wa-status {
+      font-size: 10px;
+      color: #25D366;
+      font-weight: 400;
+    }
+
+    /* Messages */
+    .wa-messages {
+      flex: 1;
+      overflow: hidden;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 4px;
+      background: #f5f5f5;
+    }
+
+    .wa-timestamp-center {
+      text-align: center;
+      font-size: 10px;
+      color: #8e8e93;
+      font-weight: 400;
+      margin: 2px 0 4px;
+    }
+
+    .wa-row { display: flex; flex-direction: column; }
+    .wa-row.sent { align-items: flex-end; }
+    .wa-row.received { align-items: flex-start; }
+
+    .wa-bubble {
+      max-width: 78%;
+      padding: 8px 11px;
+      border-radius: 16px;
+      font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.45;
+    }
+
+    .wa-row.sent .wa-bubble {
+      background: var(--color-dark);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .wa-row.received .wa-bubble {
+      background: #e8e8ea;
+      color: #111;
+      border-bottom-left-radius: 4px;
+    }
+
+    .wa-meta {
+      font-size: 9.5px;
+      color: #aaa;
+      margin-top: 2px;
+      padding: 0 2px;
+    }
+
+    /* File attachments */
+    .wa-attachment {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 8px 11px;
+      max-width: 78%;
+    }
+
+    .wa-attachment__icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .wa-attachment__icon.xls { background: #4A8FD4; }
+    .wa-attachment__icon.pdf { background: #e53935; }
+
+    .wa-attachment__name {
+      font-size: 11px;
+      font-weight: 500;
+      color: #111;
+      line-height: 1.2;
+    }
+
+    .wa-attachment__size {
+      font-size: 10px;
+      color: #999;
+      margin-top: 1px;
+    }
+
+    /* Input bar */
+    /* ── Chat-animasjon ── */
+    .wa-row,
+    .wa-timestamp-center {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transform: translateY(-4px);
+      transition: opacity 0.28s ease, transform 0.28s ease, max-height 0.28s ease;
+    }
+    .wa-row.visible,
+    .wa-timestamp-center.visible {
+      opacity: 1;
+      max-height: 200px;
+      transform: translateY(0);
+    }
+    .wa-typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 14px;
+      background: #e8e8ea;
+      border-radius: 18px 18px 18px 4px;
+      width: fit-content;
+      margin: 2px 0;
+    }
+    .wa-typing-indicator span {
+      width: 6px;
+      height: 6px;
+      background: #999;
+      border-radius: 50%;
+      animation: typing-dot 1.2s infinite ease-in-out;
+    }
+    .wa-typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .wa-typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing-dot {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    .wa-input-bar {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px 20px;
+      gap: 8px;
+      background: #fff;
+      border-top: 1px solid #ebebeb;
+      flex-shrink: 0;
+    }
+
+    .wa-input {
+      flex: 1;
+      height: 32px;
+      border-radius: 20px;
+      border: 1px solid #ddd;
+      font-size: 11.5px;
+      color: #aaa;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      background: #f9f9f9;
+    }
+
+    .wa-send-btn {
+      width: 32px;
+      height: 32px;
+      background: var(--color-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .wa-send-btn svg {
+      width: 13px;
+      height: 13px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .imsg-send-btn {
+      width: 27px;
+      height: 27px;
+      background: var(--color-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .imsg-send-btn svg {
+      width: 12px;
+      height: 12px;
+      fill: #fff;
+    }
+
+    .service-right-text {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: var(--type-h2);
+      color: #000;
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+      align-self: center;
+      justify-self: flex-start;
+    }
+
+    /* ── SEKSJON FAQ ─────────────────────────── */
+    .seksjon-faq {
+      width: 1440px;
+      background-color: var(--bg-2);
+      padding: var(--section-padding-y) var(--grid-margin);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .faq-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding-top: var(--space-sm);
+    }
+
+    .faq-heading {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: var(--type-h2);
+      color: var(--color-dark);
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+    }
+
+    .faq-subtext {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      color: var(--color-mid);
+      line-height: var(--lh-body);
+      max-width: 340px;
+      margin-top: var(--gap-heading-body);   /* 12px — heading→tekst */
+    }
+
+    .faq-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 22px;
+      border-radius: 4px;
+      border: 1px solid var(--color-dark);
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: var(--type-label);
+      color: var(--color-dark);
+      text-decoration: none;
+      margin-top: var(--gap-body-cta);
+      background-color: transparent;
+      background-image: linear-gradient(120deg, #222222 0%, #222222 55%, transparent 55%, transparent 100%);
+      background-size: 250% 100%;
+      background-position: right center;
+      transition: background-position 0.4s cubic-bezier(0.25, 0, 0, 1), color 0.3s cubic-bezier(0.25, 0, 0, 1);
+    }
+
+    .faq-cta:hover {
+      background-position: left center;
+      color: var(--color-white);
+      border-color: var(--color-dark);
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .faq-item {
+      background: var(--surface-light);
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-lg) var(--space-lg);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: var(--type-body);
+      color: var(--color-dark);
+      text-align: left;
+      line-height: var(--lh-ui);
+    }
+
+    .faq-icon {
+      font-family: var(--font-ui);
+      font-weight: 300;
+      font-size: 20px;
+      color: var(--color-mid);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+      margin-left: var(--space-lg);
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--color-mid);
+      line-height: var(--lh-body);
+      padding: 0 var(--space-lg);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+                  padding  0.42s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity  0.3s ease 0.05s;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding-bottom: var(--space-lg);
+      opacity: 1;
+    }
+
+    /* ── SEKSJON BRANSJER ────────────────────── */
+    .seksjon-bransjer {
+      width: 1440px;
+      background-color: var(--bg-3);
+      padding: var(--section-padding-y) var(--grid-margin);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .seksjon-bransjer__heading {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: var(--type-h2);
+      color: #080808;
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+      max-width: 633px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .seksjon-bransjer__tabs {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+
+    .bransjer-demo-btn {
+      margin-left: auto;
+      padding: 9px 20px;
+      border-radius: 4px;
+      border: 1px solid var(--color-dark);
+      background: transparent;
+      font-family: var(--font-ui);
+      font-weight: 400;
+      font-size: var(--type-label);
+      color: var(--color-dark);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+
+
+    .tab {
+      padding: 9px 20px;
+      border-radius: 4px;
+      border: none;
+      background: var(--bg-2);
+      font-family: var(--font-ui);
+      font-weight: 400;
+      font-size: var(--type-label);
+      color: var(--color-dark);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .tab:hover { background: var(--surface-light); }
+
+    .tab.active {
+      background: var(--color-dark);
+      color: var(--color-white);
+    }
+
+    .seksjon-bransjer__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    .col-left {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      will-change: transform, opacity;
+    }
+
+    .img-placeholder {
+      background: var(--surface-light);
+      border-radius: 4px;
+      height: 356px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .img-placeholder.tall {
+      height: 100%;
+      min-height: 733px;
+    }
+
+    .card-img {
+      background: var(--bg-3);
+      height: 180px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      margin: var(--space-lg) var(--space-lg) 0;
+    }
+
+    .card-img.tall-img {
+      height: 420px;
+    }
+
+    .img-placeholder.horizontal {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .card-img.horizontal-img {
+      width: 45%;
+      height: auto;
+      flex-shrink: 0;
+      margin: var(--space-lg) 0 var(--space-lg) var(--space-lg);
+      border-radius: 4px;
+    }
+
+    .card-content {
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .card-tag {
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+      color: #4e4e4e;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 24px;
+      color: var(--color-dark);
+      line-height: var(--lh-heading);
+    }
+
+    .card-desc {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      color: #666;
+      line-height: var(--lh-body);
+      margin-top: var(--space-xs);
+    }
+
+    /* ── HVA VI LEVERER ───────────────────────── */
+    .hva-vi-leverer {
+      width: 1440px;
+      background-color: var(--bg-1);
+      padding: 96px var(--grid-margin);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .hva-vi-leverer .section-heading {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      color: var(--color-dark);
+      font-size: var(--type-h2);
+      letter-spacing: var(--ls-h2);
+      line-height: var(--lh-heading);
+    }
+
+    .hva-vi-leverer .section-text {
+      width: 628px;
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: #555;
+      font-size: var(--type-body);
+      line-height: var(--lh-body);
+      margin-top: var(--space-sm);   /* 12px — tett på heading */
+    }
+
+    .hva-vi-leverer .section-btn {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background-color: var(--color-dark);
+      border-radius: 0;
+      font-family: var(--font-ui);
+      font-weight: 500;
+      color: var(--color-white);
+      font-size: var(--type-label);
+      text-decoration: none;
+      margin-top: var(--space-lg);   /* 24px — ny handling */
+    }
+
+    .hva-vi-leverer .cards {
+      display: flex;
+      gap: var(--grid-gutter);
+      margin-top: var(--space-xl);   /* 48px — nytt innholdsnivå */
+    }
+
+    .hva-vi-leverer .card {
+      flex: 1;
+      height: 320px;
+      background-color: var(--bg-2);
+      border-radius: 4px;
+      padding: var(--card-padding);
+    }
+
+    .hva-vi-leverer .card-icon {
+      width: 42px;
+      height: 44px;
+      background-color: var(--color-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hva-vi-leverer .card-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 1.5;
+    }
+
+    /* Kort-tittel: var(--type-body) = 16px, 600 ✓ */
+    .hva-vi-leverer .card-title {
+      font-family: var(--font-ui);
+      font-weight: 600;
+      color: var(--color-dark);
+      font-size: var(--type-body);
+      line-height: var(--lh-ui);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Kort-beskrivelse: var(--type-label) = 14px (var fra 14px ✓) */
+    .hva-vi-leverer .card-desc {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: #666;
+      font-size: var(--type-label);
+      line-height: var(--lh-body);
+    }
+
+    /* ── DEMOER ──────────────────────────────── */
+    .seksjon-demoer {
+      width: 1440px;
+      min-height: 435px;
+      background-color: var(--bg-2);
+      padding: var(--section-padding-y) var(--grid-margin);
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .demoer-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .demoer-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      background: var(--color-dark);
+      color: #cfdeca;
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      font-weight: 400;
+      border-radius: 100px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .demoer-heading {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: var(--type-h2);
+      color: var(--color-dark);
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+      margin-bottom: var(--space-sm);
+    }
+
+    .demoer-lead {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      color: #666;
+      line-height: var(--lh-body);
+      max-width: 340px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .demoer-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background-color: var(--color-dark);
+      border-radius: 100px;
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: var(--type-label);
+      color: var(--color-white);
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .demoer-cta:hover { opacity: 0.85; }
+
+    .demoer-cta svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+      stroke: none;
+      transition: transform 0.15s;
+    }
+
+    .demoer-cta:hover svg { transform: translateX(3px); }
+
+    .demoer-right {
+      display: flex;
+      gap: var(--space-lg);
+      align-items: stretch;
+    }
+
+    .demo-kort {
+      flex: 1;
+      background: var(--bg-3);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .demo-kort:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    }
+
+    .demo-kort__browser {
+      background: var(--bg-2);
+      padding: 7px 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      flex-shrink: 0;
+    }
+
+    .demo-kort__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--bg-3);
+    }
+
+    .demo-kort__url {
+      flex: 1;
+      height: 14px;
+      background: var(--bg-3);
+      border-radius: 4px;
+      margin-left: 6px;
+    }
+
+    .demo-kort__preview {
+      flex: 1;
+      min-height: 200px;
+      background: linear-gradient(160deg, var(--bg-3) 0%, #c4c1bb 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-kort__preview svg {
+      width: 28px;
+      height: 28px;
+      stroke: rgba(0,0,0,0.2);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .demo-kort__footer {
+      padding: var(--space-sm) var(--space-md);
+      background: var(--bg-2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .demo-kort__bransje {
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+      color: var(--color-mid);
+    }
+
+    .demo-kort__pil {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--color-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-kort__pil svg {
+      width: 10px;
+      height: 10px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── PRISING ─────────────────────────────── */
+    .seksjon-prising {
+      width: 1440px;
+      background-color: #222222;
+      padding: 96px var(--grid-margin);
+    }
+
+    .prising-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .prising-heading {
+      font-family: var(--font-ui);
+      font-weight: 300;
+      font-size: var(--type-h2);
+      color: #f0f1f2;
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .prising-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      width: 100%;
+    }
+
+    .prising-kort {
+      background-color: var(--surface-dark);
+      border-radius: 0px;
+      padding: var(--space-xl) var(--space-lg) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      position: relative;
+    }
+
+    .prising-kort--featured {
+      background-color: var(--surface-dark-hi);
+    }
+
+    .prising-kort__badge {
+      position: absolute;
+      top: var(--space-lg);
+      right: var(--space-lg);
+      padding: 4px 12px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 100px;
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      color: #b0bcc8;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+    }
+
+    .prising-kort__navn {
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      color: #868891;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+    }
+
+    .prising-kort__pris {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .prising-kort__belop {
+      font-family: var(--font-ui);
+      font-weight: 300;
+      font-size: 52px;
+      color: #f0f1f2;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .prising-kort__valuta {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      color: #6b6d72;
+    }
+
+    .prising-kort__desc {
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      color: #6b6d72;
+      line-height: var(--lh-body);
+      margin-top: calc(-1 * var(--space-sm));
+    }
+
+    .prising-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .prising-kort__features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      flex: 1;
+    }
+
+    .prising-kort__features li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      color: #bfc0c4;
+      line-height: var(--lh-ui);
+    }
+
+    .prising-kort__features li svg {
+      width: 14px;
+      height: 14px;
+      stroke: #7a9e74;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .prising-kort__cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 49px;
+      border-radius: 0px;
+      background: var(--bg-dark);
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: var(--type-label);
+      color: #f0f1f2;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .prising-kort__cta:hover {
+      background: #111317;
+    }
+
+    .prising-kort--featured .prising-kort__cta {
+      background: var(--bg-0);
+      color: var(--color-dark);
+    }
+
+    .prising-kort--featured .prising-kort__cta:hover {
+      background: #fff;
+    }
+
+    /* ── FOOTER ──────────────────────────────── */
+    .site-footer {
+      width: 1440px;
+      background-color: #222222;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .footer-cta {
+      padding: var(--section-padding-y) var(--grid-margin);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtilt atmosfære-glød bak CTA-overskriften */
+    .footer-cta::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: -60px;
+      width: 520px;
+      height: 420px;
+      background: none;
+      pointer-events: none;
+    }
+
+    .footer-cta__heading {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 58px;
+      color: #eef0f1;
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+      max-width: 660px;
+      position: relative;
+    }
+
+    .footer-cta__heading em {
+      font-style: italic;
+      color: #eef0f1;
+    }
+
+    .footer-cta__eyebrow {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6e7a6b;
+      margin-bottom: 20px;
+    }
+
+    .footer-cta__eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: #6e7a6b;
+      vertical-align: middle;
+      margin-right: 10px;
+      margin-bottom: 1px;
+    }
+
+    .footer-cta__action {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-sm);
+      flex-shrink: 0;
+    }
+
+    .footer-cta__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--icon-gap);
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background-color: #eef0f1;
+      border-radius: 100px;
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: var(--type-label);
+      color: var(--color-dark);
+      text-decoration: none;
+      transition: background 0.18s, transform 0.18s;
+      white-space: nowrap;
+    }
+
+    .footer-cta__btn:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .footer-cta__btn svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      transition: transform 0.18s;
+    }
+
+    .footer-cta__btn:hover svg {
+      transform: translate(2px, -2px);
+    }
+
+    .footer-cta__note {
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      color: #6e7270;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+    }
+
+    .footer-body {
+      padding: var(--section-padding-y) var(--grid-margin);
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--space-xl);
+    }
+
+    .footer-brand__wordmark {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 22px;
+      color: #d8dbd6;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+
+    .footer-brand__tagline {
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      color: #777b77;
+      line-height: var(--lh-body);
+      max-width: 260px;
+      margin-top: var(--space-sm);
+    }
+
+    .footer-brand__social {
+      display: flex;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+
+    .social-link {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+
+    .social-link:hover {
+      border-color: rgba(255,255,255,0.38);
+      background: rgba(255,255,255,0.07);
+      transform: translateY(-1px);
+    }
+
+    .social-link svg {
+      width: 13px;
+      height: 13px;
+      stroke: #909590;
+      fill: none;
+      stroke-width: 1.8;
+      transition: stroke 0.2s;
+    }
+
+    .social-link:hover svg {
+      stroke: #c0c5be;
+    }
+
+    .footer-col__label {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+      color: #7a7d76;
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-col__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .footer-col__list a {
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      color: #868891;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-col__list a:hover {
+      color: #d3d7d8;
+    }
+
+    .footer-bottom {
+      padding: var(--space-md) var(--grid-margin);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-bottom__copy {
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      color: #6a6d68;
+    }
+
+    .footer-bottom__links {
+      display: flex;
+      gap: var(--space-lg);
+    }
+
+    .footer-bottom__links a {
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      color: #6a6d68;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-bottom__links a:hover {
+      color: #a0a4a0;
+    }
+
+    /* ── KNAPPER — HOVER-GRADIENT ─────────────────────────────────────────
+       Fellesnevner via :is() — unngår hardkoding per knapp.
+       Teknikk: gradient med background-size 200% og background-position
+       som animerer fra venstre (flat) til høyre (gradient synlig).
+    ─────────────────────────────────────────────────────────────────────── */
+
+    /* — Primærknapper (mørk bakgrunn, hvit tekst) — */
+    :is(
+      .hero .cta-btn,
+      .hva-vi-leverer .section-btn,
+      .demoer-cta,
+      .prising-kort__cta
+    ) {
+      background-image: linear-gradient(
+        120deg,
+        #1a1c1e 0%,
+        #1a1c1e 45%,
+        #2e4030 75%,
+        #1e2e38 100%
+      );
+      background-size: 250% 100%;
+      background-position: left center;
+      transition: background-position 0.45s ease, transform 0.2s ease, opacity 0.2s;
+    }
+
+    :is(
+      .hero .cta-btn,
+      .hva-vi-leverer .section-btn,
+      .demoer-cta,
+      .prising-kort__cta
+    ):hover {
+      background-position: right center;
+      opacity: 1; /* overskriver .demoer-cta:hover { opacity: 0.85 } */
+    }
+
+    /* Featured pricing-kort har lys bakgrunn — egen gradient */
+    .prising-kort--featured .prising-kort__cta {
+      background-image: linear-gradient(
+        120deg,
+        var(--bg-1) 0%,
+        var(--bg-1) 45%,
+        #ffffff 75%,
+        #e8edf0 100%
+      );
+      background-size: 250% 100%;
+      background-position: left center;
+    }
+
+    .prising-kort--featured .prising-kort__cta:hover {
+      background-position: right center;
+    }
+
+    /* — Footer-knapp (lys bakgrunn på mørk seksjon) — */
+    .footer-cta__btn {
+      background-image: linear-gradient(
+        120deg,
+        #eef0f1 0%,
+        #eef0f1 45%,
+        #ffffff 75%,
+        #dde8e0 100%
+      );
+      background-size: 250% 100%;
+      background-position: left center;
+      transition: background-position 0.45s ease, transform 0.2s ease;
+    }
+
+    .footer-cta__btn:hover {
+      background-image: linear-gradient(
+        120deg,
+        #eef0f1 0%,
+        #eef0f1 45%,
+        #ffffff 75%,
+        #dde8e0 100%
+      );
+      background-size: 250% 100%;
+      background-position: right center;
+      transform: translateY(-1px);
+    }
+
+    /* — Sekundærknapper (outline / border) — */
+    .bransjer-demo-btn {
+      transition: background-position 0.4s cubic-bezier(0.25, 0, 0, 1), color 0.3s cubic-bezier(0.25, 0, 0, 1), border-color 0.4s cubic-bezier(0.25, 0, 0, 1);
+      background-image: linear-gradient(
+        120deg,
+        #222222 0%,
+        #222222 55%,
+        transparent 55%,
+        transparent 100%
+      );
+      background-size: 250% 100%;
+      background-position: right center;
+      background-color: transparent;
+    }
+
+    .bransjer-demo-btn:hover {
+      background-position: left center;
+      background-color: transparent;
+      color: #ffffff;
+      border-color: #222222;
+    }
+
+    /* ── KONTAKT POPUP ── */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .popup-overlay.open { opacity: 1; visibility: visible; }
+    .popup-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(20,22,20,0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .popup-card {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      max-width: 860px;
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.06);
+      transform: translateY(20px) scale(0.96);
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .popup-overlay.open .popup-card { transform: translateY(0) scale(1); }
+
+    /* Left panel */
+    .popup-left {
+      flex: 0 0 300px;
+      background: var(--color-dark);
+      padding: 52px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .popup-left::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .popup-left::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+    .popup-left-top { position: relative; z-index: 1; }
+    .popup-brand-dot {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      margin-bottom: 28px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .popup-left-heading {
+      font-family: var(--font-heading);
+      font-size: 30px; font-weight: 500;
+      line-height: 1.2; letter-spacing: -0.01em;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+    .popup-left-sub {
+      font-family: var(--font-ui);
+      font-size: 13px; line-height: 1.65;
+      color: rgba(255,255,255,0.5);
+    }
+    .popup-trust {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .popup-trust-item {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+    }
+    .popup-trust-item svg { flex-shrink: 0; opacity: 0.7; }
+
+    /* Right panel */
+    .popup-right {
+      flex: 1;
+      background: #ffffff;
+      padding: 48px 48px 44px;
+      position: relative;
+    }
+    .popup-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      width: 30px; height: 30px;
+      background: #f2f2f2;
+      border: none; border-radius: 50%;
+      cursor: pointer;
+      color: #777; font-size: 17px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, color 0.15s;
+    }
+    .popup-close:hover { background: #e6e6e6; color: #111; }
+    .popup-right-heading {
+      font-family: var(--font-heading);
+      font-size: 26px; font-weight: 600;
+      letter-spacing: -0.01em; color: #17181c;
+      margin-bottom: 4px;
+    }
+    .popup-right-sub {
+      font-family: var(--font-ui);
+      font-size: 13px; color: #999;
+      margin-bottom: 26px;
+    }
+    .popup-form { display: flex; flex-direction: column; gap: 11px; }
+    .popup-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+    .popup-input,
+    .popup-textarea {
+      width: 100%;
+      padding: 0 14px; height: 44px;
+      background: #f7f7f7;
+      border: 1.5px solid transparent;
+      border-radius: 10px;
+      font-family: var(--font-ui);
+      font-size: 14px; color: #17181c;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    }
+    .popup-textarea {
+      height: auto; padding: 12px 14px;
+      min-height: 110px; resize: none;
+    }
+    .popup-input::placeholder,
+    .popup-textarea::placeholder { color: #bbb; }
+    .popup-input:focus,
+    .popup-textarea:focus {
+      border-color: var(--color-dark);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(48,51,47,0.07);
+    }
+    .popup-submit {
+      width: 100%; height: 48px;
+      background: var(--color-dark);
+      border: none; border-radius: 12px;
+      font-family: var(--font-ui);
+      font-size: 14px; font-weight: 500;
+      color: #fff; letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+      margin-top: 2px;
+    }
+    .popup-submit:hover {
+      background: #1e2119;
+      box-shadow: 0 4px 16px rgba(48,51,47,0.2);
+    }
+    .popup-submit:active { transform: scale(0.98); }
+
+    /* Success */
+    .popup-success {
+      display: none; text-align: center;
+      padding: 48px 0 24px;
+    }
+    .popup-success-icon {
+      width: 56px; height: 56px;
+      background: #f0fdf4; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .popup-success h3 {
+      font-family: var(--font-heading);
+      font-size: 24px; font-weight: 600;
+      color: #17181c; margin-bottom: 8px;
+    }
+    .popup-success p {
+      font-family: var(--font-ui);
+      font-size: 14px; color: #999;
+    }
+
+    @media (max-width: 600px) {
+      .popup-left { display: none; }
+      .popup-right { padding: 36px 24px 32px; }
+    }
+
+    /* ── SEKSJON INKLUDERT I LEVERANSEN ──────── */
+    .seksjon-inkludert {
+      width: 1440px;
+      background-color: #faf9f7;
+      padding: 96px var(--grid-margin);
+      display: flex;
+      gap: 80px;
+      align-items: flex-start;
+      border-top: 1px solid #e8e5e0;
+    }
+
+    .inkludert__left {
+      flex: 0 0 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .inkludert__eyebrow {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 16px;
+    }
+
+    .inkludert__heading {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 52px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--color-dark);
+      margin-bottom: 48px;
+    }
+
+    .inkludert__items {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      margin-bottom: 48px;
+    }
+
+    .inkludert__item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .inkludert__item-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .inkludert__icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      color: #1a1c1e;
+      display: flex;
+      align-items: center;
+      margin-top: -6px;
+    }
+
+    .inkludert__icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .inkludert__item-title {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-dark);
+      line-height: 1;
+    }
+
+    .inkludert__item-desc {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.65;
+      color: #616160;
+    }
+
+    .inkludert__cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .inkludert__btn-primary {
+      height: 42px;
+      padding: 0 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background-color: var(--color-dark);
+      font-family: var(--font-ui);
+      font-size: var(--type-label);
+      font-weight: 500;
+      color: var(--color-white);
+      text-decoration: none;
+    }
+
+    .inkludert__btn-primary svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+      stroke: none;
+      transition: transform 0.2s ease;
+    }
+
+
+    .inkludert__btn-ghost {
+      height: 42px;
+      padding: 0 22px;
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-ui);
+      font-size: var(--type-label);
+      font-weight: 500;
+      color: var(--color-dark);
+      text-decoration: none;
+      border: 1px solid var(--color-dark);
+      background-color: transparent;
+      background-image: linear-gradient(120deg, #222222 0%, #222222 55%, transparent 55%, transparent 100%);
+      background-size: 250% 100%;
+      background-position: right center;
+      transition: background-position 0.4s cubic-bezier(0.25, 0, 0, 1), color 0.3s cubic-bezier(0.25, 0, 0, 1);
+    }
+
+    .inkludert__btn-ghost:hover {
+      background-position: left center;
+      color: var(--color-white);
+    }
+
+    .inkludert__right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      padding-top: 192px;
+    }
+
+    /* ── SEKSJON BRANSJEBIBLIOTEK ─────────────── */
+    .seksjon-bransjelib {
+      width: 1440px;
+      background-color: var(--bg-0);
+      padding: 96px var(--grid-margin);
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .bransjelib__left {
+      width: 280px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 8px;
+    }
+
+    .bransjelib__heading {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: var(--type-h2);
+      color: var(--color-dark);
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+      margin-bottom: var(--space-sm);
+    }
+
+    .bransjelib__heading em {
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .bransjelib__lead {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: var(--type-body);
+      color: #555;
+      line-height: var(--lh-body);
+      margin-bottom: var(--space-lg);
+    }
+
+    .bransjelib__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 42px;
+      padding: 0 26px;
+      background-color: var(--color-dark);
+      border-radius: 0;
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: var(--type-label);
+      color: #ffffff;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .bransjelib__cta:hover { opacity: 0.82; }
+
+    .bransjelib__cards {
+      flex: 1;
+      display: flex;
+      gap: var(--grid-gutter);
+    }
+
+    .bransjelib__col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .bransjelib__card {
+      flex: 1;
+      background-color: var(--bg-2);
+      border-radius: 4px;
+      min-height: 402px;
+    }
+
+    .bransjelib__card--tall {
+      flex: 1;
+      min-height: 829px;
+      flex-shrink: 0;
+      width: 390px;
+      border-radius: 4px;
+    }
+
+    /* ── BRANSJELIB KORTINNHOLD ─────────────── */
+    .bransjelib__card--bransje {
+      position: relative;
+      overflow: hidden;
+    }
+    .bransjelib__card--bransje::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(20,20,18,0.72) 0%, rgba(20,20,18,0.18) 55%, transparent 100%);
+      pointer-events: none;
+    }
+    .bransjelib__card-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 1;
+      padding: 22px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bransjelib__trades {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .bransjelib__trade-chip {
+      display: inline-flex;
+      align-items: center;
+      height: 27px;
+      padding: 0 13px;
+      background: rgba(255,255,255,0.13);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 100px;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: 0.025em;
+    }
+    .bransjelib__trade-more {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.52);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .bransjelib__card--mockup {
+      overflow: hidden;
+      position: relative;
+    }
+    .bransjelib__card--mockup::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(20,20,18,0.22);
+      pointer-events: none;
+    }
+
+    .bransjelib__card--tall {
+      position: relative;
+      overflow: hidden;
+    }
+    .bransjelib__card--tall::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      background: rgba(20,20,18,0.10);
+      pointer-events: none;
+    }
+
+    /* ── PIL-KNAPP ──────────────────────────── */
+    .bransjelib__card-link {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    .bransjelib__btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      background: #ffffff;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 3;
+      pointer-events: none;
+      flex-shrink: 0;
+    }
+
+    .bransjelib__btn svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    @keyframes arrow-fly {
+      0%   { transform: translate(0, 0);         opacity: 1; }
+      35%  { transform: translate(140%, -140%);  opacity: 0; }
+      36%  { transform: translate(-140%, 140%);  opacity: 0; }
+      100% { transform: translate(0, 0);         opacity: 1; }
+    }
+
+    .bransjelib__card--bransje:hover .bransjelib__btn svg,
+    .bransjelib__card--mockup:hover .bransjelib__btn svg,
+    .bransjelib__card--tall:hover .bransjelib__btn svg {
+      animation: arrow-fly 0.5s cubic-bezier(0.25, 0, 0, 1) forwards;
+    }
+
+    /* ── ZOOM ved hover ─────────────────────── */
+    .bransjelib__card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      transform: translateZ(0);
+      transition: transform 0.5s cubic-bezier(0.25, 0, 0, 1);
+      will-change: transform;
+    }
+
+    .bransjelib__card--bransje:hover .bransjelib__card-bg,
+    .bransjelib__card--mockup:hover .bransjelib__card-bg,
+    .bransjelib__card--tall:hover .bransjelib__card-bg {
+      transform: scale(1.06);
+    }
+
+    /* Eyebrow-merke over heading */
+    .bransjelib__eyebrow {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-mid);
+      margin-bottom: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <script src="components/navbar.js"></script>
+
+
+    <h1 class="heading" data-animate="fade-up" data-hero data-delay="0.1" data-duration="0.75">Nettsider for håndverk-bedrifter</h1>
+
+    <p class="subtext" data-animate="fade-up" data-hero data-delay="0.25">
+      Vi bygger nettsider som gjør mer enn å fylle en URL. De tiltrekker riktige kunder,
+      kommuniserer tydelig og konverterer besøk til henvendelser.
+    </p>
+
+    <div class="cta-row" data-animate="fade-up" data-hero data-delay="0.38">
+      <a href="#" class="cta-btn">Få et utkast <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+      <span class="scroll-hint">Se en demo <svg viewBox="0 0 341 312" width="13" height="12" fill="#222222"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></span>
+    </div>
+
+    <div class="hero-image" data-animate="fade-up" data-hero data-delay="0.5" data-duration="0.85" data-y="40">
+      <div class="hero-slider" id="heroSlider">
+        <div class="hero-slide hero-slide--1"></div>
+        <div class="hero-slide hero-slide--2"></div>
+      </div>
+      <div class="hero-slider-dots">
+        <button class="hero-slider-btn hero-slider-prev" onclick="heroSlide(-1)" aria-label="Forrige">
+          <svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg>
+        </button>
+        <span class="hero-dot active" onclick="heroGoTo(0)"></span>
+        <span class="hero-dot" onclick="heroGoTo(1)"></span>
+        <button class="hero-slider-btn hero-slider-next" onclick="heroSlide(1)" aria-label="Neste">
+          <svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-side-box" data-animate="fade-up" data-hero data-delay="0.62" data-duration="0.85" data-y="40"></div>
+
+  </section>
+
+  <!-- HVA VI LEVERER -->
+  <section class="hva-vi-leverer">
+    <h2 class="section-heading" data-animate="fade-up">Hva vi leverer</h2>
+
+    <p class="section-text" data-animate="fade-up" data-delay="0.1">
+      Enten du starter fra null eller vil ha et moderne design på det du allerede har,
+      prosessen er den samme: enkel, rask og uten krav til teknisk kunnskap fra din side.
+    </p>
+
+    <a href="#" class="section-btn" data-animate="fade-up" data-delay="0.2">Få et utkast <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+
+    <div class="cards" data-animate="stagger" data-stagger="0.13">
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+        </div>
+        <div class="card-title">Ny eller oppdatert nettside</div>
+        <div class="card-desc">Vi bygger en nettside fra bunnen av, eller gir den du allerede har et moderne design. Du bestemmer hva du vil ha – vi tar oss av resten.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="card-title">Fast pris, ingen overraskelser</div>
+        <div class="card-desc">Du vet hva du betaler før vi starter. Ingen timepris, ingen skjulte kostnader og ingen lange bindingstider.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="card-title">Inkl. service etter leveranse</div>
+        <div class="card-desc">Gjennomført et nytt prosjekt? Send oss bilder og tekst – så legger vi det ut for deg. Du trenger ikke gjøre noe teknisk selv.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKSJON BRANSJEBIBLIOTEK -->
+  <section class="seksjon-bransjelib">
+    <div class="bransjelib__left">
+      <p class="bransjelib__eyebrow">Bransjebibliotek</p>
+      <h2 class="bransjelib__heading">Nettsider for din <em>bransje</em></h2>
+      <p class="bransjelib__lead">Vi lager nettsider for rørleggere, snekkere, elektrikere m.m</p>
+      <a href="bibliotek.html" class="bransjelib__cta">Se bransjebiblioteket vårt <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+    </div>
+    <div class="bransjelib__cards">
+      <div class="bransjelib__col">
+
+        <!-- Kort 1: Bransjeoversikt -->
+        <div class="bransjelib__card bransjelib__card--bransje">
+          <div class="bransjelib__card-bg" style="background-image: url('images/macbook-nordbygg.jpeg'); background-position: center center;"></div>
+          <div class="bransjelib__card-bottom">
+            <div class="bransjelib__trades">
+              <span class="bransjelib__trade-chip">Rørlegger</span>
+              <span class="bransjelib__trade-chip">Snekker</span>
+              <span class="bransjelib__trade-chip">Elektriker</span>
+              <span class="bransjelib__trade-chip">Tømrer</span>
+              <span class="bransjelib__trade-chip">Maler</span>
+            </div>
+            <p class="bransjelib__trade-more">+ flere bransjer i biblioteket</p>
+          </div>
+          <a href="bibliotek.html" class="bransjelib__card-link" aria-label="Se bransjebiblioteket"></a>
+          <span class="bransjelib__btn">
+            <svg viewBox="0 0 20 20" fill="none" stroke="#1a1c1e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
+          </span>
+        </div>
+
+        <!-- Kort 2: Mockup-visning -->
+        <div class="bransjelib__card bransjelib__card--mockup">
+          <div class="bransjelib__card-bg" style="background-image: url('images/macbook-nordbygg-2.jpeg'); background-position: center center;"></div>
+          <a href="bibliotek.html" class="bransjelib__card-link" aria-label="Se bransjebiblioteket"></a>
+          <span class="bransjelib__btn">
+            <svg viewBox="0 0 20 20" fill="none" stroke="#1a1c1e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
+          </span>
+        </div>
+
+      </div>
+      <div class="bransjelib__card bransjelib__card--tall">
+        <div class="bransjelib__card-bg" style="background-image: url('images/gruppe-8.webp'); background-position: center top;"></div>
+        <a href="bibliotek.html" class="bransjelib__card-link" aria-label="Se bransjebiblioteket"></a>
+        <span class="bransjelib__btn">
+          <svg viewBox="0 0 20 20" fill="none" stroke="#1a1c1e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Delt SVG-gradient for inkludert-ikoner -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="grad-icon" x1="0%" y1="50%" x2="100%" y2="50%">
+        <stop offset="0%" stop-color="#3b82f6"/>
+        <stop offset="42%" stop-color="#3b82f6"/>
+        <stop offset="58%" stop-color="#22c55e"/>
+        <stop offset="100%" stop-color="#22c55e"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- SEKSJON INKLUDERT I LEVERANSEN -->
+  <section class="seksjon-inkludert">
+    <div class="inkludert__left">
+      <div style="display:flex; align-items:flex-end; gap:6px; margin-bottom:16px;">
+        <svg width="9" height="11" viewBox="105 21 117 147" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:3px;">
+          <path d="M150.09 167.261L105.212 167.261L129.302 132.857L183.792 55.0372L207.022 21.8616L222.223 64.2455L150.09 167.261Z" fill="#888"/>
+        </svg>
+        <p class="inkludert__eyebrow" style="margin-bottom:0;">Inkludert i leveransen</p>
+      </div>
+      <h2 class="inkludert__heading" data-animate="fade-up" data-delay="0.08">Alt du trenger<br>— på ett sted</h2>
+
+      <div class="inkludert__items" data-animate="stagger" data-stagger="0.1" data-delay="0.15">
+        <div class="inkludert__item">
+          <div class="inkludert__item-header">
+            <div class="inkludert__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="url(#grad-icon)" d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q146 0 255.5 91.5T872-559h-82q-19-73-68.5-130.5T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h80v120h-40L168-552q-3 18-5.5 36t-2.5 36q0 131 92 225t228 95v80Zm364-20L716-228q-21 12-45 20t-51 8q-75 0-127.5-52.5T440-380q0-75 52.5-127.5T620-560q75 0 127.5 52.5T800-380q0 27-8 51t-20 45l128 128-56 56ZM691-309q29-29 29-71t-29-71q-29-29-71-29t-71 29q-29 29-29 71t29 71q29 29 71 29t71-29Z"/></svg>
+            </div>
+            <h3 class="inkludert__item-title">SEO-optimalisering</h3>
+          </div>
+          <p class="inkludert__item-desc">Nettsiden din bygges for å rangere i Google — med riktig struktur, metadata og innhold fra dag én.</p>
+        </div>
+
+        <div class="inkludert__item">
+          <div class="inkludert__item-header">
+            <div class="inkludert__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="url(#grad-icon)" d="M480-316.5q38-.5 56-27.5l224-336-336 224q-27 18-28.5 55t22.5 61q24 24 62 23.5Zm0-483.5q59 0 113.5 16.5T696-734l-76 48q-33-17-68.5-25.5T480-720q-133 0-226.5 93.5T160-400q0 42 11.5 83t32.5 77h552q23-38 33.5-79t10.5-85q0-36-8.5-70T766-540l48-76q30 47 47.5 100T880-406q1 57-13 109t-41 99q-11 18-30 28t-40 10H204q-21 0-40-10t-30-28q-26-45-40-95.5T80-400q0-83 31.5-155.5t86-127Q252-737 325-768.5T480-800Zm7 313Z"/></svg>
+            </div>
+            <h3 class="inkludert__item-title">Google-hastighet</h3>
+          </div>
+          <p class="inkludert__item-desc">Vi optimaliserer for PageSpeed og Core Web Vitals — slik at Google rangerer deg høyere og besøkende ikke forlater siden.</p>
+        </div>
+      </div>
+
+      <div class="inkludert__cta-row" data-animate="fade-up" data-delay="0.3">
+        <a href="#" class="inkludert__btn-primary">Kontakt oss <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+        <a href="#" class="inkludert__btn-ghost">Se eksempler</a>
+      </div>
+    </div>
+
+    <div class="inkludert__right" data-animate="stagger" data-stagger="0.1" data-delay="0.2">
+      <div class="inkludert__item">
+        <div class="inkludert__item-header">
+          <div class="inkludert__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="url(#grad-icon)" d="m620-284 56-56q6-6 6-14t-6-14L540-505q4-11 6-22t2-25q0-57-40.5-97.5T410-690q-17 0-34 4.5T343-673l94 94-56 56-94-94q-8 16-12.5 33t-4.5 34q0 57 40.5 97.5T408-412q13 0 24.5-2t22.5-6l137 136q6 6 14 6t14-6ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+          </div>
+          <h3 class="inkludert__item-title">Drift og vedlikehold</h3>
+        </div>
+        <p class="inkludert__item-desc">Vi holder nettsiden oppdatert, sikker og i gang — uten at du trenger å løfte en finger. Alt fra oppdateringer til backup håndteres av oss.</p>
+      </div>
+
+      <div class="inkludert__item">
+        <div class="inkludert__item-header">
+          <div class="inkludert__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="url(#grad-icon)" d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440ZM331.5-411.5Q320-423 320-440t11.5-28.5Q343-480 360-480t28.5 11.5Q400-457 400-440t-11.5 28.5Q377-400 360-400t-28.5-11.5Zm240 0Q560-423 560-440t11.5-28.5Q583-480 600-480t28.5 11.5Q640-457 640-440t-11.5 28.5Q617-400 600-400t-28.5-11.5ZM241-462q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
+          </div>
+          <h3 class="inkludert__item-title">Personlig service</h3>
+        </div>
+        <p class="inkludert__item-desc">Du får en fast kontaktperson — ikke en ticketkø. Vi svarer raskt og hjelper deg med alt fra tekstendringer til større oppdateringer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKSJON BRANSJER -->
+  <section class="seksjon-bransjer">
+    <h2 class="seksjon-bransjer__heading" data-animate="fade-up">Hva innebærer en moderne nettside?</h2>
+
+    <div class="seksjon-bransjer__tabs" data-animate="fade-up" data-delay="0.12">
+      <button class="tab active">UI</button>
+      <button class="tab">Hastighet</button>
+      <button class="tab">Design</button>
+      <button class="tab">Teknisk kapasitet</button>
+      <a href="#" class="bransjer-demo-btn">Få en demo side <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+    </div>
+
+    <div class="seksjon-bransjer__grid">
+      <div class="col-left" data-animate="fade-up" data-trigger="top 85%" data-y="18">
+        <div class="img-placeholder horizontal">
+          <div class="card-content">
+            <div class="card-tag">Hastighet</div>
+            <div class="card-title">Lastetid under 1 sekund</div>
+            <p class="card-desc">En treg nettside mister kunder. Vi bygger for fart — optimalisert kode, lynrask hosting og ingen unødvendig tyngde.</p>
+          </div>
+          <div class="card-img horizontal-img" style="margin: var(--space-lg) var(--space-lg) var(--space-lg) 0;"></div>
+        </div>
+        <div class="img-placeholder horizontal">
+          <div class="card-img horizontal-img" style="background-image: url('images/mockup-mobil.webp'); background-size: 200%; background-repeat: no-repeat; background-position: 30% center;"></div>
+          <div class="card-content">
+            <div class="card-tag">Mobilvennlig</div>
+            <div class="card-title">Ser bra ut på alle skjermer</div>
+            <p class="card-desc">Over 70% av besøkende kommer fra mobil. Nettsiden din tilpasser seg automatisk — uten at du trenger å tenke på det.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-right" data-animate="fade-up" data-trigger="top 85%" data-delay="0.08" data-y="18" style="will-change: transform, opacity;">
+        <div class="img-placeholder tall">
+          <div class="card-img tall-img" style="background-image: url('images/mockup-design.webp'); background-size: cover; background-repeat: no-repeat; background-position: center top;"></div>
+          <div class="card-content">
+            <div class="card-tag">Design</div>
+            <div class="card-title">Designet for å skape tillit</div>
+            <p class="card-desc">Førsteinntrykket avgjør om en potensiell kunde blir eller forsvinner. Vi designer nettsider som kommuniserer profesjonalitet og troverdighet fra første sekund.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKSJON SERVICE -->
+  <section class="seksjon-service">
+
+    <div class="service-top" data-animate="stagger" data-stagger="0.1">
+      <span class="service-badge">Service</span>
+      <h2 class="service-heading">Behov for å oppdatere nettsiden senere?</h2>
+      <p class="service-lead">En nettside er aldri helt ferdig. Ting endrer seg, nye tjenester, oppdaterte priser, sesongkampanjer, eller bare en tekst som bør justeres.</p>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-phone">
+        <div class="phone-mockup">
+
+          <!-- Header -->
+          <div class="wa-header">
+            <span class="wa-back">←</span>
+            <div class="wa-avatar">MG</div>
+            <div class="wa-info">
+              <div class="wa-name">Mediegruppen</div>
+            </div>
+          </div>
+
+          <!-- Messages -->
+          <div class="wa-messages">
+            <div class="wa-timestamp-center">I dag, 14:23</div>
+
+            <div class="wa-row sent">
+              <div class="wa-bubble">Hei! Kan dere oppdatere prislisten på nettsiden? Vi har nye priser fra april. Legger ved oppdatert liste.</div>
+            </div>
+
+            <div class="wa-row sent">
+              <div class="wa-attachment">
+                <div class="wa-attachment__icon xls">XLS</div>
+                <div>
+                  <div class="wa-attachment__name">Prisliste-april-2026.xlsx</div>
+                  <div class="wa-attachment__size">24 KB</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wa-row sent">
+              <div class="wa-attachment">
+                <div class="wa-attachment__icon pdf">PDF</div>
+                <div>
+                  <div class="wa-attachment__name">Nytt-logo-oppdatert.pdf</div>
+                  <div class="wa-attachment__size">1.2 MB</div>
+                </div>
+              </div>
+              <div class="wa-meta">Lest 14:23</div>
+            </div>
+
+            <div class="wa-row received" id="wa-typing-1-placeholder">
+              <div class="wa-typing-indicator" id="wa-typing-1">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="wa-row received" id="wa-reply-1">
+              <div class="wa-bubble">Mottatt! Vi oppdaterer prislisten og bytter logoen i dag. Sender link når det er live.</div>
+              <div class="wa-meta">14:25 ✓✓</div>
+            </div>
+
+            <div class="wa-row received" id="wa-typing-2-placeholder">
+              <div class="wa-typing-indicator" id="wa-typing-2">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="wa-row received" id="wa-reply-2">
+              <div class="wa-bubble">Ferdig! Sjekk her: snekkerhalvorsen.no/prisliste</div>
+              <div class="wa-meta">14:47 ✓✓</div>
+            </div>
+
+            <div class="wa-row sent" id="wa-final">
+              <div class="wa-bubble">Perfekt, takk! 👍</div>
+            </div>
+          </div>
+
+          <!-- Input bar -->
+          <div class="wa-input-bar">
+            <div class="wa-input">Skriv en melding...</div>
+            <div class="wa-send-btn">
+              <svg viewBox="0 0 12 12"><path d="M6 10V2M2 6l4-4 4 4"/></svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="service-right" data-animate="fade-left" data-trigger="top 82%" data-delay="0.12">
+        <p class="service-right-heading">Har du et prosjekt, en referanse, en kampanje eller noe annet du vil oppdatere på nettsiden?</p>
+        <div class="service-info-boxes">
+          <div class="service-info-box">Du trenger kun å sende oss en melding eller ringe oss</div>
+          <div class="service-info-box">Det påløper ingen ekstra kostnader for oppdateringen.</div>
+          <div class="service-info-box">Tjenesten er allerede inkludert i domenehostingen.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SEKSJON FAQ -->
+  <section class="seksjon-faq">
+
+    <div class="faq-left" data-animate="stagger" data-stagger="0.1">
+      <h2 class="faq-heading">Spørsmålene dine, besvart</h2>
+      <p class="faq-subtext">Raske svar på det vi oftest blir spurt om.</p>
+      <a href="#kontakt" class="faq-cta">Kontakt oss <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+    </div>
+
+    <div class="faq-list" data-animate="stagger" data-stagger="0.09" data-delay="0.05">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Hva koster en nettside?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <p class="faq-answer">Vi har faste pakkepriser — du vet nøyaktig hva du betaler før vi starter. Ingen timepris, ingen skjulte kostnader.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Hvor lang tid tar det?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <p class="faq-answer">De fleste nettsider er klare innen 1–2 uker etter at vi har fått innhold og ønsker fra deg.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Trenger jeg gjøre noe selv?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <p class="faq-answer">Du sender oss tekst og bilder — vi tar oss av resten. Ingen teknisk kunnskap nødvendig.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Kan jeg oppdatere siden selv?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <p class="faq-answer">Ja. Vi setter opp nettsiden slik at du enkelt kan endre tekst og bilder uten å røre kode.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Hva skjer etter levering?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <p class="faq-answer">Vi følger deg opp, hjelper med oppdateringer og sørger for at siden fungerer som den skal.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SEKSJON PRISING -->
+  <section class="seksjon-prising">
+    <div class="prising-inner">
+
+      <h2 class="prising-heading" data-animate="fade-up">Et nytt oppdrag betaler for nettsiden din</h2>
+
+      <div class="prising-grid" data-animate="stagger" data-stagger="0.15" data-delay="0.1">
+
+        <!-- Standardpakke -->
+        <div class="prising-kort">
+          <div class="prising-kort__navn">Standardpakke</div>
+          <div class="prising-kort__pris">
+            <span class="prising-kort__belop">14 900</span>
+            <span class="prising-kort__valuta">kr eks. mva</span>
+          </div>
+          <p class="prising-kort__desc">En ferdig nettside på 2 uker. Fast pris, ingen overraskelser.</p>
+          <div class="prising-divider"></div>
+          <ul class="prising-kort__features">
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              Inntil 5 sider
+            </li>
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              Mobiloptimalisert design
+            </li>
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              Kontaktskjema og kart
+            </li>
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              Rask hosting inkludert (1 år)
+            </li>
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              Grunnleggende SEO-oppsett
+            </li>
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              2 runder med korrektur
+            </li>
+          </ul>
+          <a href="#" class="prising-kort__cta">Kom i gang <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+        </div>
+
+        <!-- Vekstpakke -->
+        <div class="prising-kort prising-kort--featured">
+          <div class="prising-kort__badge">Mest valgt</div>
+          <div class="prising-kort__navn">Vekstpakke</div>
+          <div class="prising-kort__pris">
+            <span class="prising-kort__belop">24 900</span>
+            <span class="prising-kort__valuta">kr eks. mva</span>
+          </div>
+          <p class="prising-kort__desc">Alt i Standard, pluss service-avtale og innholdsoppdateringer.</p>
+          <div class="prising-divider"></div>
+          <ul class="prising-kort__features">
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              Alt i Standardpakke
+            </li>
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              Inntil 10 sider
+            </li>
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              6 mnd service-avtale inkludert
+            </li>
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              Vi legger ut nye prosjekter for deg
+            </li>
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              Avansert SEO og Google-profil
+            </li>
+            <li>
+              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              Ubegrensede korrektur-runder
+            </li>
+          </ul>
+          <a href="#" class="prising-kort__cta">Kom i gang <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <!-- Pre-footer CTA -->
+    <div class="footer-cta">
+      <h2 class="footer-cta__heading" data-animate="fade-up">
+        <span class="footer-cta__eyebrow">La oss snakke</span>
+        Klar for en nettside som <em>faktisk</em><br>jobber for deg?
+      </h2>
+      <div class="footer-cta__action" data-animate="fade-up" data-delay="0.15">
+        <a href="#" class="footer-cta__btn">
+          Få et gratis utkast
+          <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg>
+        </a>
+        <span class="footer-cta__note">Ingen bindingstid · Svar innen 24t</span>
+      </div>
+    </div>
+
+    <!-- Footer kolonner -->
+    <div class="footer-body">
+
+      <div class="footer-brand">
+        <div class="footer-brand__wordmark">Mediegruppen</div>
+        <p class="footer-brand__tagline">Vi bygger nettsider for håndverksbedrifter som vil vokse. Fast pris, rask levering, ingen teknisk kunnskap nødvendig.</p>
+        <div class="footer-brand__social">
+          <!-- Instagram -->
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="#787c82" stroke="none"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__label">Tjenester</div>
+        <ul class="footer-col__list">
+          <li><a href="#">Ny nettside</a></li>
+          <li><a href="#">Redesign</a></li>
+          <li><a href="#">Service-avtale</a></li>
+          <li><a href="#">Innholdsoppdateringer</a></li>
+          <li><a href="#">SEO-optimalisering</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__label">Om oss</div>
+        <ul class="footer-col__list">
+          <li><a href="#">Hvem vi er</a></li>
+          <li><a href="#">Referanser</a></li>
+          <li><a href="#">Priser</a></li>
+          <li><a href="#">Blogg</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__label">Kontakt</div>
+        <ul class="footer-col__list">
+          <li><a href="mailto:hei@mediegruppen.no">hei@mediegruppen.no</a></li>
+          <li><a href="tel:+4712345678">+47 123 45 678</a></li>
+          <li><a href="#">Bestill en samtale</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bunnlinje -->
+    <div class="footer-bottom">
+      <span class="footer-bottom__copy">© 2025 Mediegruppen AS. Alle rettigheter forbeholdt.</span>
+      <div class="footer-bottom__links">
+        <a href="#">Personvern</a>
+        <a href="#">Cookies</a>
+        <a href="#">Vilkår</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+  <!-- ── MG ANIMATE ENGINE ──────────────────────────────────────────────────
+       Attributt-basert animasjonssystem. Legg data-animate på et element
+       for å animere det inn — ingen JS-endringer nødvendig.
+
+       Tilgjengelige typer (data-animate="..."):
+         fade-up    — fade inn + beveg opp      (standard)
+         fade-down  — fade inn + beveg ned
+         fade-left  — fade inn + fra venstre
+         fade-right — fade inn + fra høyre
+         fade-in    — kun opacity
+         scale-in   — zoom inn lett + fade
+         stagger    — animerer alle direkte barn med forsinkelse
+
+       Ekstra attributter:
+         data-hero        — last-animasjon (ingen ScrollTrigger)
+         data-delay="0.2" — forsinkelse i sekunder
+         data-duration="0.8" — varighet i sekunder
+         data-y="40"      — egendefinert y-offset (kun fade-up/-down)
+         data-trigger="top 80%" — ScrollTrigger start-punkt
+         data-stagger="0.12" — forsinkelse mellom barn (data-animate="stagger")
+  ──────────────────────────────────────────────────────────────────────── -->
+  <script>
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ── FROM-presets ── */
+    const FROM = {
+      'fade-up':    (el) => ({ opacity: 0, y:  parseFloat(el.dataset.y ?? 22) }),
+      'fade-down':  (el) => ({ opacity: 0, y: -parseFloat(el.dataset.y ?? 18) }),
+      'fade-left':  (el) => ({ opacity: 0, x: -parseFloat(el.dataset.x ?? 40) }),
+      'fade-right': (el) => ({ opacity: 0, x:  parseFloat(el.dataset.x ?? 40) }),
+      'fade-in':    ()   => ({ opacity: 0 }),
+      'scale-in':   ()   => ({ opacity: 0, scale: 0.96, y: 8 }),
+    };
+    const TO = { opacity: 1, x: 0, y: 0, scale: 1, clearProps: 'transform,opacity' };
+
+    /* ── Hero: load-timeline ── */
+    const heroEls = document.querySelectorAll('[data-animate][data-hero]');
+    if (heroEls.length) {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      heroEls.forEach(el => {
+        const type     = el.dataset.animate;
+        const delay    = parseFloat(el.dataset.delay    ?? 0);
+        const duration = parseFloat(el.dataset.duration ?? 0.7);
+        if (type === 'stagger') {
+          const kids    = Array.from(el.children);
+          const stagger = parseFloat(el.dataset.stagger ?? 0.12);
+          tl.fromTo(kids, { opacity: 0, y: 18 },
+            { opacity: 1, y: 0, duration, stagger, clearProps: 'transform,opacity' }, delay);
+        } else {
+          const from = (FROM[type] ?? FROM['fade-up'])(el);
+          tl.fromTo(el, from, { ...TO, duration }, delay);
+        }
+      });
+    }
+
+    /* ── Scroll-animerte elementer ──
+       gsap.fromTo() med scrollTrigger-property innebygd i tweenen.
+       Dette eliminerer render-frame-gapet som onEnter-tilnærmingen
+       hadde (set → gap → to), og gir umiddelbar animasjonsstart.
+    ── */
+    document.querySelectorAll('[data-animate]:not([data-hero])').forEach(el => {
+      const type     = el.dataset.animate;
+      const start    = el.dataset.trigger  ?? 'top 82%';
+      const delay    = parseFloat(el.dataset.delay    ?? 0);
+      const duration = parseFloat(el.dataset.duration ?? 0.7);
+      const ease     = 'power3.out';
+      const st       = { trigger: el, start, once: true };
+
+      if (type === 'stagger') {
+        const kids    = Array.from(el.children);
+        const stagger = parseFloat(el.dataset.stagger ?? 0.12);
+        gsap.fromTo(kids,
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration, ease, stagger, delay,
+            clearProps: 'transform,opacity', scrollTrigger: st }
+        );
+        return;
+      }
+
+      const from = (FROM[type] ?? FROM['fade-up'])(el);
+      gsap.fromTo(el, from, { ...TO, duration, ease, delay, scrollTrigger: st });
+    });
+  })();
+  </script>
+
+  <script>
+  /* ── Live chat-animasjon ── */
+  (function () {
+    const phone = document.querySelector('.service-phone');
+    if (!phone) return;
+
+    // Alle rader som skal animeres i sekvens
+    const staticRows = [
+      '.wa-timestamp-center',
+      '.wa-row:nth-child(2)',   // sent melding
+      '.wa-row:nth-child(3)',   // xls vedlegg
+      '.wa-row:nth-child(4)',   // pdf vedlegg
+    ];
+
+    const sequence = [
+      { sel: '.wa-timestamp-center', delay: 200 },
+      { sel: '#wa-step-1', delay: 500 },
+      { sel: '#wa-step-2', delay: 300 },
+      { sel: '#wa-step-3', delay: 300 },
+      // typing 1
+      { typing: 'wa-typing-1', show: 1400 },
+      { sel: '#wa-reply-1', delay: 0 },
+      // typing 2
+      { typing: 'wa-typing-2', show: 1600 },
+      { sel: '#wa-reply-2', delay: 0 },
+      { sel: '#wa-final', delay: 400 },
+    ];
+
+    // Merk sendte meldinger med id-er
+    const messages = phone.querySelectorAll('.wa-messages .wa-row');
+    const timestamp = phone.querySelector('.wa-timestamp-center');
+
+    // Gi sendte meldinger id-er dynamisk
+    let sentIdx = 1;
+    messages.forEach(row => {
+      if (row.classList.contains('sent') && !row.id) {
+        row.id = 'wa-step-' + sentIdx++;
+      }
+    });
+
+    let triggered = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !triggered) {
+          triggered = true;
+          observer.disconnect();
+          runSequence();
+        }
+      });
+    }, { threshold: 0.4 });
+
+    observer.observe(phone);
+
+    function show(el) {
+      if (!el) return;
+      el.classList.add('visible');
+    }
+
+    function runSequence() {
+      let t = 300;
+
+      // 1. Timestamp
+      setTimeout(() => show(timestamp), t); t += 500;
+
+      // 2. Første sendte melding
+      setTimeout(() => show(document.getElementById('wa-step-1')), t); t += 400;
+
+      // 3. XLS vedlegg
+      setTimeout(() => show(document.getElementById('wa-step-2')), t); t += 400;
+
+      // 4. PDF vedlegg
+      setTimeout(() => show(document.getElementById('wa-step-3')), t); t += 600;
+
+      // 5. Typing 1
+      const typing1Row = document.getElementById('wa-typing-1-placeholder');
+      setTimeout(() => show(typing1Row), t); t += 1300;
+
+      // 6. Skjul typing, vis svar 1
+      setTimeout(() => {
+        if (typing1Row) typing1Row.style.display = 'none';
+        show(document.getElementById('wa-reply-1'));
+      }, t); t += 800;
+
+      // 7. Typing 2
+      const typing2Row = document.getElementById('wa-typing-2-placeholder');
+      setTimeout(() => show(typing2Row), t); t += 1500;
+
+      // 8. Skjul typing, vis svar 2
+      setTimeout(() => {
+        if (typing2Row) typing2Row.style.display = 'none';
+        show(document.getElementById('wa-reply-2'));
+      }, t); t += 600;
+
+      // 9. Siste melding
+      setTimeout(() => show(document.getElementById('wa-final')), t);
+    }
+  })();
+  </script>
+
+  <!-- KONTAKT POPUP -->
+  <div class="popup-overlay" id="kontaktPopup">
+    <div class="popup-backdrop" onclick="closeContactPopup()"></div>
+    <div class="popup-card">
+
+      <!-- Venstre panel -->
+      <div class="popup-left">
+        <div class="popup-left-top">
+          <div class="popup-brand-dot">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9 2L16 6V12L9 16L2 12V6L9 2Z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <p class="popup-left-heading">La oss ta en prat om nettsiden din</p>
+          <p class="popup-left-sub">Vi hjelper deg med å få en nettside som faktisk gjør jobben — og som du er stolt av.</p>
+        </div>
+        <div class="popup-trust">
+          <div class="popup-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Svar innen én arbeidsdag
+          </div>
+          <div class="popup-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Ingen bindingstid
+          </div>
+          <div class="popup-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Fast pris — ingen overraskelser
+          </div>
+        </div>
+      </div>
+
+      <!-- Høyre panel -->
+      <div class="popup-right">
+        <button class="popup-close" onclick="closeContactPopup()">&times;</button>
+
+        <div id="popupFormView">
+          <h2 class="popup-right-heading">Send oss en melding</h2>
+          <p class="popup-right-sub">Vi tar kontakt innen én arbeidsdag.</p>
+          <form class="popup-form" id="popupForm" onsubmit="submitPopupForm(event)">
+            <div class="popup-form-row">
+              <input class="popup-input" type="text" name="name" placeholder="Navn" required />
+              <input class="popup-input" type="email" name="email" placeholder="E-post" required />
+            </div>
+            <input class="popup-input" type="text" name="company" placeholder="Bedrift / Nettside" />
+            <textarea class="popup-textarea" name="message" placeholder="Hva kan vi hjelpe med?"></textarea>
+            <button class="popup-submit" type="submit">Send melding</button>
+          </form>
+        </div>
+
+        <div class="popup-success" id="popupSuccess">
+          <div class="popup-success-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>Meldingen er sendt!</h3>
+          <p>Vi tar kontakt innen én arbeidsdag.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openContactPopup() {
+      document.getElementById('kontaktPopup').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeContactPopup() {
+      document.getElementById('kontaktPopup').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    /* ── Hero slider ── */
+    var _heroIdx = 0;
+    var _heroTotal = 2;
+
+    function heroUpdateUI() {
+      document.getElementById('heroSlider').style.transform = 'translateX(-' + (_heroIdx * 50) + '%)';
+      document.querySelectorAll('.hero-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === _heroIdx);
+      });
+    }
+
+    function heroSlide(dir) {
+      _heroIdx = (_heroIdx + dir + _heroTotal) % _heroTotal;
+      heroUpdateUI();
+    }
+
+    function heroGoTo(idx) {
+      _heroIdx = idx;
+      heroUpdateUI();
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeContactPopup();
+      }
+    });
+
+    var SUPABASE_URL = 'https://seevzkxodkvgiffanacg.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNlZXZ6a3hvZGt2Z2lmZmFuYWNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDUzODksImV4cCI6MjA4NTk4MTM4OX0.bGUpZQk1xDSVrinv9YzaeZHHHJyhKpf_54ywZyHWt6g';
+
+    function submitPopupForm(e) {
+      e.preventDefault();
+      var form = document.getElementById('popupForm');
+      var submitBtn = form.querySelector('.popup-submit');
+      var originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sender...';
+      submitBtn.disabled = true;
+
+      var name    = form.querySelector('[name="name"]').value || '';
+      var email   = form.querySelector('[name="email"]').value || '';
+      var company = form.querySelector('[name="company"]').value || '';
+      var message = form.querySelector('[name="message"]').value || '';
+
+      // Supabase
+      fetch(SUPABASE_URL + '/rest/v1/leads', {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ name: name, email: email, message: company + (message ? '\n' + message : ''), service_type: 'Kontakt', source: 'hero-preview' })
+      });
+
+      // FormSubmit e-post
+      var emailData = new FormData();
+      emailData.append('name', name);
+      emailData.append('email', email);
+      emailData.append('message', (company ? 'Bedrift: ' + company + '\n' : '') + message);
+      emailData.append('_subject', 'Ny kontaktforespørsel fra ' + name);
+      emailData.append('_captcha', 'false');
+
+      fetch('https://formsubmit.co/ajax/birbra.bb@gmail.com', { method: 'POST', body: emailData })
+        .then(function(r) {
+          if (r.ok) {
+            document.getElementById('popupFormView').style.display = 'none';
+            document.getElementById('popupSuccess').style.display = 'block';
+          } else {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            alert('Noe gikk galt. Prøv igjen.');
+          }
+        })
+        .catch(function() {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+          alert('Noe gikk galt. Prøv igjen.');
+        });
+    }
+
+    // Koble CTA-knapper til popup
+    document.querySelectorAll('.cta-btn, .section-btn, .bransjer-demo-btn, .prising-kort__cta, .footer-cta__btn, .faq-cta').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        openContactPopup();
+      });
+    });
+
+    document.addEventListener('mg-kontakt', openContactPopup);
+
+    document.querySelectorAll('.footer-col__list a').forEach(function(el) {
+      if (el.textContent.trim() === 'Bestill en samtale') {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          openContactPopup();
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mediegruppen — Brand Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Cormorant+Garamond:wght@600&family=Instrument+Sans&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-ui);
+      background: #f7f6f4;
+      color: var(--color-dark);
+      padding: 80px;
+      max-width: 1200px;
+    }
+
+    body { padding-top: calc(72px + 64px); }
+
+    /* ── LAYOUT ── */
+    .section {
+      margin-bottom: 96px;
+    }
+
+    .section-label {
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    /* ── TYPOGRAFI ── */
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 32px;
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .type-meta {
+      width: 200px;
+      flex-shrink: 0;
+    }
+
+    .type-meta .token {
+      font-size: 11px;
+      font-weight: 500;
+      color: #7c6fcd;
+      font-family: monospace;
+    }
+
+    .type-meta .size {
+      font-size: var(--type-caption);
+      color: #999;
+      margin-top: 2px;
+    }
+
+    .type-meta .use {
+      font-size: 11px;
+      color: #bbb;
+      margin-top: 4px;
+    }
+
+    .type-sample { flex: 1; }
+
+    /* ── SPACING ── */
+    .space-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .space-bar-wrap { width: 300px; }
+
+    .space-bar {
+      height: 20px;
+      background: var(--color-dark);
+      border-radius: 2px;
+      opacity: 0.8;
+    }
+
+    .space-meta { display: flex; gap: 16px; align-items: baseline; }
+
+    .space-val {
+      font-size: var(--type-label);
+      font-weight: 600;
+      width: 40px;
+    }
+
+    .space-token {
+      font-size: 11px;
+      font-family: monospace;
+      color: #7c6fcd;
+      width: 160px;
+    }
+
+    .space-use {
+      font-size: var(--type-caption);
+      color: #999;
+    }
+
+    /* ── HIERARKI ── */
+    .hierarchy {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 480px;
+    }
+
+    .h-item {
+      padding: 16px 20px;
+      background: #fff;
+      border: 1px solid #e8e6e2;
+      border-radius: 6px;
+      font-size: var(--type-caption);
+      color: var(--color-dark);
+    }
+
+    .h-item strong {
+      font-weight: 600;
+      font-size: var(--type-label);
+    }
+
+    .h-gap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 20px;
+      height: 48px;
+    }
+
+    .h-gap-line {
+      width: 2px;
+      background: #ddd;
+      flex-shrink: 0;
+      align-self: stretch;
+      margin-left: 11px;
+    }
+
+    .h-gap-label {
+      font-size: 11px;
+      font-family: monospace;
+      color: #7c6fcd;
+    }
+
+    .h-gap-val {
+      font-size: 11px;
+      color: #999;
+    }
+
+    /* ── FARGER ── */
+    .color-grid {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .color-swatch {
+      width: 160px;
+    }
+
+    .swatch-box {
+      height: 80px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.06);
+      margin-bottom: 8px;
+    }
+
+    .swatch-token {
+      font-size: 11px;
+      font-family: monospace;
+      color: #7c6fcd;
+    }
+
+    .swatch-val {
+      font-size: var(--type-caption);
+      color: #999;
+      margin-top: 2px;
+    }
+
+    /* ── SEKSJONSSYSTEM ── */
+    .section-bg-row {
+      display: flex;
+      gap: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #e0ddd9;
+      margin-bottom: 24px;
+    }
+
+    .section-bg-block {
+      flex: 1;
+      padding: 24px 20px;
+    }
+
+    .section-bg-label {
+      font-size: 11px;
+      font-family: monospace;
+      color: #7c6fcd;
+      margin-bottom: 4px;
+    }
+
+    .section-bg-hex {
+      font-size: var(--type-caption);
+      color: #999;
+      margin-bottom: 8px;
+    }
+
+    .section-bg-use {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    .section-bg-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 100px;
+      background: rgba(0,0,0,0.06);
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .section-bg-tag.dark {
+      background: rgba(255,255,255,0.12);
+      color: #ccc;
+    }
+
+    /* ── KNAPPER ── */
+    .btn-row {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 24px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .btn-preview {
+      width: 220px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-spec {
+      flex: 1;
+    }
+
+    .btn-spec-name {
+      font-size: var(--type-label);
+      font-weight: 600;
+      color: var(--color-dark);
+      margin-bottom: 4px;
+    }
+
+    .btn-spec-detail {
+      font-size: 11px;
+      color: #999;
+      line-height: 1.6;
+    }
+
+    .btn-spec-token {
+      font-size: 11px;
+      font-family: monospace;
+      color: #7c6fcd;
+    }
+
+    /* Faktiske knapper i brand */
+    .demo-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      padding: 0 24px;
+      background: #30332f;
+      color: #fff;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .demo-btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      padding: 0 24px;
+      background: transparent;
+      color: #30332f;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 100px;
+      border: 1.5px solid #30332f;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .demo-btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      color: #30332f;
+      font-family: "Inter", sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .demo-btn-primary-inv {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      padding: 0 24px;
+      background: #f0efec;
+      color: #30332f;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    /* ── KORT / BOKSER ── */
+    .card-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .card-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .card-demo-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .card-demo-label {
+      font-size: 11px;
+      font-family: monospace;
+      color: #7c6fcd;
+      margin: 12px 0 6px;
+    }
+
+    .card-demo-desc {
+      font-size: var(--type-caption);
+      color: #999;
+      margin-bottom: 20px;
+    }
+
+    /* Kort på lys bakgrunn (feature-kort) */
+    .demo-card-light {
+      background: #F0EFEC;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    /* Kort på grå bakgrunn (portføljevisning) */
+    .demo-card-on-gray {
+      background: #FAFAFA;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+    }
+
+    /* Kort på mørk bakgrunn */
+    .demo-card-dark {
+      background: #3a3d38;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    /* Featured-kort (prisingsfremhevet) */
+    .demo-card-featured {
+      background: #474b45;
+      border-radius: 12px;
+      padding: 24px;
+      outline: 1.5px solid rgba(255,255,255,0.12);
+    }
+
+    .demo-icon-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #30332f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .demo-icon-badge svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .demo-card-title {
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #30332f;
+      margin-bottom: 8px;
+    }
+
+    .demo-card-body {
+      font-family: "Instrument Sans", sans-serif;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .demo-card-title-inv {
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #f0efec;
+      margin-bottom: 8px;
+    }
+
+    .demo-card-body-inv {
+      font-family: "Instrument Sans", sans-serif;
+      font-size: 14px;
+      color: #9a9a96;
+      line-height: 1.6;
+    }
+
+    .demo-icon-badge-inv {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .demo-icon-badge-inv svg {
+      width: 20px;
+      height: 20px;
+      stroke: #f0efec;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── TAGS OG BADGES ── */
+    .badge-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .demo-tag-dark {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      background: #30332f;
+      color: #cfdeca;
+      font-family: "Inter", sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      border-radius: 100px;
+    }
+
+    .demo-tab-inactive {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 20px;
+      background: #d8d8d5;
+      color: #555;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .demo-tab-active {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 20px;
+      background: #30332f;
+      color: #fff;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .demo-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      background: #f0efec;
+      color: #30332f;
+      font-family: "Inter", sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: 100px;
+      border: 1px solid #e0ddd9;
+    }
+
+    /* ── BORDER-RADIUS OG SKYGGER ── */
+    .radius-row {
+      display: flex;
+      gap: 24px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      padding: 24px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .radius-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .radius-box {
+      width: 80px;
+      height: 80px;
+      background: #30332f;
+    }
+
+    .radius-label {
+      font-size: 11px;
+      text-align: center;
+      color: #999;
+    }
+
+    .radius-token {
+      font-size: 10px;
+      font-family: monospace;
+      color: #7c6fcd;
+      text-align: center;
+    }
+
+    .shadow-row {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding: 24px 0;
+    }
+
+    .shadow-item {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .shadow-box {
+      width: 100px;
+      height: 80px;
+      background: #fff;
+      border-radius: 10px;
+    }
+
+    .shadow-label {
+      font-size: 11px;
+      color: #999;
+      text-align: center;
+    }
+
+    .shadow-token {
+      font-size: 10px;
+      font-family: monospace;
+      color: #7c6fcd;
+      text-align: center;
+    }
+
+    /* ── GRID ── */
+    .grid-diagram {
+      width: 100%;
+      height: 56px;
+      position: relative;
+      background: #e8e6e2;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .grid-col {
+      position: absolute;
+      top: 0; bottom: 0;
+      background: rgba(220, 80, 80, 0.18);
+    }
+  </style>
+</head>
+<body>
+
+  <script src="../components/navbar.js" data-root="../"></script>
+
+  <!-- TYPOGRAFI -->
+  <section class="section">
+    <div class="section-label">01 — Typografi</div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="token">--type-display</div>
+        <div class="size">90px · Frank Ruhl Libre · 400</div>
+        <div class="use">lh 1.05 · ls −0.03em · Hero heading eneste</div>
+      </div>
+      <div class="type-sample">
+        <span style="font-family: var(--font-display); font-size: var(--type-display); line-height: var(--lh-display); letter-spacing: var(--ls-display); font-weight: 400;">Aa</span>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="token">--type-h1</div>
+        <div class="size">64px · Cormorant Garamond · 600</div>
+        <div class="use">lh 1.1 · ls −0.025em · Stor seksjon-heading</div>
+      </div>
+      <div class="type-sample">
+        <span style="font-family: var(--font-heading); font-size: var(--type-h1); line-height: var(--lh-heading); letter-spacing: var(--ls-h1); font-weight: 600;">Nettsider som selger</span>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="token">--type-h2</div>
+        <div class="size">48px · Cormorant Garamond · 600</div>
+        <div class="use">lh 1.1 · ls −0.02em · Standard seksjon-heading</div>
+      </div>
+      <div class="type-sample">
+        <span style="font-family: var(--font-heading); font-size: var(--type-h2); line-height: var(--lh-heading); letter-spacing: var(--ls-h2); font-weight: 600;">Hva vi leverer</span>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="token">--type-lead</div>
+        <div class="size">20px · Instrument Sans · 400</div>
+        <div class="use">lh 1.65 · Intro-avsnitt under heading</div>
+      </div>
+      <div class="type-sample">
+        <span style="font-family: var(--font-body); font-size: var(--type-lead); line-height: var(--lh-body);">Vi bygger nettsider som gjør mer enn å fylle en URL.</span>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="token">--type-body</div>
+        <div class="size">16px · Instrument Sans · 400</div>
+        <div class="use">lh 1.65 · Standard brødtekst</div>
+      </div>
+      <div class="type-sample">
+        <span style="font-family: var(--font-body); font-size: var(--type-body); line-height: var(--lh-body);">Enten du starter fra null eller vil ha et moderne design på det du allerede har, prosessen er den samme: enkel, rask og uten krav til teknisk kunnskap fra din side.</span>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="token">--type-label</div>
+        <div class="size">14px · Inter · 500</div>
+        <div class="use">lh 1.4 · Nav, knapper, kort-titler</div>
+      </div>
+      <div class="type-sample">
+        <span style="font-family: var(--font-ui); font-size: var(--type-label); font-weight: 500; line-height: var(--lh-ui);">Tjenester · Om oss · Kontakt oss · Ny eller oppdatert nettside</span>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="token">--type-caption</div>
+        <div class="size">12px · Inter · 400</div>
+        <div class="use">lh 1.4 · ls 0.05em · Hjelpetekst, hints</div>
+      </div>
+      <div class="type-sample">
+        <span style="font-family: var(--font-ui); font-size: var(--type-caption); letter-spacing: var(--ls-caps); line-height: var(--lh-ui);">SE HVA VI GJØR ↓ · Fotnoter · Liten hjelpetekst</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPACING -->
+  <section class="section">
+    <div class="section-label">02 — Spacing-skala (6pt)</div>
+
+    <div class="space-row">
+      <div class="space-bar-wrap"><div class="space-bar" style="width: 6px;"></div></div>
+      <div class="space-meta">
+        <span class="space-val">6px</span>
+        <span class="space-token">--space-xs</span>
+        <span class="space-use">Micro — ikon→tekst, badge-padding</span>
+      </div>
+    </div>
+    <div class="space-row">
+      <div class="space-bar-wrap"><div class="space-bar" style="width: 12px;"></div></div>
+      <div class="space-meta">
+        <span class="space-val">12px</span>
+        <span class="space-token">--space-sm</span>
+        <span class="space-use">Heading → undertekst</span>
+      </div>
+    </div>
+    <div class="space-row">
+      <div class="space-bar-wrap"><div class="space-bar" style="width: 18px;"></div></div>
+      <div class="space-meta">
+        <span class="space-val">18px</span>
+        <span class="space-token">--space-md</span>
+        <span class="space-use">Kortinnhold padding, mellom komponenter</span>
+      </div>
+    </div>
+    <div class="space-row">
+      <div class="space-bar-wrap"><div class="space-bar" style="width: 24px;"></div></div>
+      <div class="space-meta">
+        <span class="space-val">24px</span>
+        <span class="space-token">--space-lg</span>
+        <span class="space-use">Undertekst → knapp, gutter mellom kolonner</span>
+      </div>
+    </div>
+    <div class="space-row">
+      <div class="space-bar-wrap"><div class="space-bar" style="width: 48px;"></div></div>
+      <div class="space-meta">
+        <span class="space-val">48px</span>
+        <span class="space-token">--space-xl</span>
+        <span class="space-use">Knapp → innhold/kort, seksjon-padding</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- KOMPONENT-HIERARKI -->
+  <section class="section">
+    <div class="section-label">03 — Komponent-hierarki</div>
+
+    <div class="hierarchy">
+      <div class="h-item">
+        <strong>Seksjon-heading</strong>
+        <div style="color:#999; font-size:11px; margin-top:4px;">--type-h2 · 48px · Frank Ruhl Libre</div>
+      </div>
+      <div class="h-gap">
+        <div class="h-gap-line"></div>
+        <span class="h-gap-label">--space-sm</span>
+        <span class="h-gap-val">12px — tett, semantisk tilknyttet</span>
+      </div>
+      <div class="h-item">
+        <strong>Undertekst / lead</strong>
+        <div style="color:#999; font-size:11px; margin-top:4px;">--type-body · 16px · Instrument Sans</div>
+      </div>
+      <div class="h-gap">
+        <div class="h-gap-line"></div>
+        <span class="h-gap-label">--space-lg</span>
+        <span class="h-gap-val">24px — ny handling</span>
+      </div>
+      <div class="h-item">
+        <strong>CTA-knapp</strong>
+        <div style="color:#999; font-size:11px; margin-top:4px;">--type-label · 14px · Inter 500 · padding 12/24</div>
+      </div>
+      <div class="h-gap">
+        <div class="h-gap-line"></div>
+        <span class="h-gap-label">--space-xl</span>
+        <span class="h-gap-val">48px — nytt innholdsnivå</span>
+      </div>
+      <div class="h-item">
+        <strong>Innhold / kort-grid</strong>
+        <div style="color:#999; font-size:11px; margin-top:4px;">card-padding: 24px · gutter: 24px</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <section class="section">
+    <div class="section-label">04 — Grid-system</div>
+
+    <div class="grid-diagram" id="grid"></div>
+    <div style="display:flex; gap:24px; margin-top:16px; font-size:var(--type-caption); color:#999;">
+      <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;background:rgba(220,80,80,0.3);display:inline-block;border-radius:2px;"></span> Kolonne (~84px)</span>
+      <span>Margin: 80px · Gutter: 24px · 12 kolonner · 1440px</span>
+    </div>
+
+    <script>
+      const diagram = document.getElementById('grid');
+      const W = diagram.offsetWidth;
+      const scale = W / 1440;
+      const margin = Math.round(80 * scale);
+      const gutter = Math.round(24 * scale);
+      const inner = W - margin * 2;
+      const colW = Math.round((inner - gutter * 11) / 12);
+      for (let i = 0; i < 12; i++) {
+        const col = document.createElement('div');
+        col.className = 'grid-col';
+        col.style.left = (margin + i * (colW + gutter)) + 'px';
+        col.style.width = colW + 'px';
+        diagram.appendChild(col);
+      }
+    </script>
+  </section>
+
+  <!-- FARGER -->
+  <section class="section">
+    <div class="section-label">05 — Farger</div>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#30332f;"></div>
+        <div class="swatch-token">--color-dark</div>
+        <div class="swatch-val">#30332f · Primær tekst, knapper, mørk bakgrunn</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#3a3d38;"></div>
+        <div class="swatch-token">--color-dark-card</div>
+        <div class="swatch-val">#3a3d38 · Kort på mørk bakgrunn</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#474b45;"></div>
+        <div class="swatch-token">--color-dark-featured</div>
+        <div class="swatch-val">#474b45 · Featured-kort på mørk</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#767676;"></div>
+        <div class="swatch-token">--color-mid</div>
+        <div class="swatch-val">#767676 · Sekundær tekst (4.5:1 mot hvit)</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#FFFFFF; border:1px solid #ddd;"></div>
+        <div class="swatch-token">--color-bg-hero</div>
+        <div class="swatch-val">#FFFFFF · Hero-bakgrunn</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#F7F7F7; border:1px solid #ddd;"></div>
+        <div class="swatch-token">--color-bg-section</div>
+        <div class="swatch-val">#F7F7F7 · Standard seksjonsbakgrunn</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#F0EFEC; border:1px solid #ddd;"></div>
+        <div class="swatch-token">--color-bg-card</div>
+        <div class="swatch-val">#F0EFEC · Kortbakgrunn på lys seksjon</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#f0efec; border:1px solid #ddd;"></div>
+        <div class="swatch-token">--color-text-inv</div>
+        <div class="swatch-val">#f0efec · Tekst på mørk bakgrunn</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#cfdeca;"></div>
+        <div class="swatch-token">--color-accent-sage</div>
+        <div class="swatch-val">#cfdeca · Aksenttekst på mørk (service-badge)</div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#fff; border:1px solid #ddd;"></div>
+        <div class="swatch-token">--color-white</div>
+        <div class="swatch-val">#ffffff · Ikon-tekst, knapp-tekst</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKSJONSSYSTEM -->
+  <section class="section">
+    <div class="section-label">06 — Seksjonssystem</div>
+    <p style="font-size:var(--type-caption); color:#999; margin-bottom:24px; line-height:1.6;">
+      Siden veksler mellom lyse og mørke seksjoner. Bruk alltid disse bakgrunnene — aldri andre grå-nyanser ad hoc.
+    </p>
+
+    <!-- Lys sekvens -->
+    <div class="section-bg-row">
+      <div class="section-bg-block" style="background:#FFFFFF;">
+        <div class="section-bg-tag">Hero</div>
+        <div class="section-bg-label">--color-bg-hero</div>
+        <div class="section-bg-hex">#FFFFFF</div>
+        <div class="section-bg-use">Kun hero-seksjonen. Gradient ned mot #EFEFEF ved bunnen.</div>
+      </div>
+      <div class="section-bg-block" style="background:#F7F7F7; border-left:1px solid #e8e8e8;">
+        <div class="section-bg-tag">Lys seksjon</div>
+        <div class="section-bg-label">--color-bg-section</div>
+        <div class="section-bg-hex">#F7F7F7</div>
+        <div class="section-bg-use">Standard lyse seksjoner. Hva vi leverer, FAQ, service-intro.</div>
+      </div>
+      <div class="section-bg-block" style="background:#DEDEDE; border-left:1px solid #ccc;">
+        <div class="section-bg-tag">Galleri-seksjon</div>
+        <div class="section-bg-label">--color-bg-gallery</div>
+        <div class="section-bg-hex">#DEDEDE</div>
+        <div class="section-bg-use">Bransjer-seksjonen og portfolio-grid. Hvite kort legges oppå.</div>
+      </div>
+    </div>
+
+    <!-- Mørk sekvens -->
+    <div class="section-bg-row">
+      <div class="section-bg-block" style="background:#30332f;">
+        <div class="section-bg-tag dark">Mørk seksjon</div>
+        <div class="section-bg-label" style="color:#a89fcd;">--color-dark</div>
+        <div class="section-bg-hex" style="color:#9a9a96;">#30332f</div>
+        <div class="section-bg-use" style="color:#7a7a76;">Footer, CTA-seksjoner, prising-boks. Tekst: #f0efec.</div>
+      </div>
+      <div class="section-bg-block" style="background:#3a3d38; border-left:1px solid #444;">
+        <div class="section-bg-tag dark">Kort på mørk</div>
+        <div class="section-bg-label" style="color:#a89fcd;">--color-dark-card</div>
+        <div class="section-bg-hex" style="color:#9a9a96;">#3a3d38</div>
+        <div class="section-bg-use" style="color:#7a7a76;">Standard kort plassert på mørk seksjonsbakgrunn.</div>
+      </div>
+      <div class="section-bg-block" style="background:#474b45; border-left:1px solid #555;">
+        <div class="section-bg-tag dark">Featured-kort</div>
+        <div class="section-bg-label" style="color:#a89fcd;">--color-dark-featured</div>
+        <div class="section-bg-hex" style="color:#9a9a96;">#474b45</div>
+        <div class="section-bg-use" style="color:#7a7a76;">Fremhevet pris-kort eller highlighted innhold på mørk.</div>
+      </div>
+    </div>
+
+    <!-- Bruksregel-tabell -->
+    <table style="width:100%; border-collapse:collapse; font-size:var(--type-caption); margin-top:8px;">
+      <thead>
+        <tr style="border-bottom:1px solid #ddd;">
+          <th style="text-align:left; padding:8px 0; color:#999; font-weight:500;">Seksjon</th>
+          <th style="text-align:left; padding:8px 0; color:#999; font-weight:500;">Bakgrunn</th>
+          <th style="text-align:left; padding:8px 0; color:#999; font-weight:500;">Kortfarge</th>
+          <th style="text-align:left; padding:8px 0; color:#999; font-weight:500;">Tekstfarge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #eee;">
+          <td style="padding:10px 0; font-weight:500;">Hero</td>
+          <td style="padding:10px 0; color:#767676;">#FFFFFF → #EFEFEF (gradient)</td>
+          <td style="padding:10px 0; color:#767676;">Ingen kort</td>
+          <td style="padding:10px 0; color:#767676;">#30332f</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+          <td style="padding:10px 0; font-weight:500;">Hva vi leverer</td>
+          <td style="padding:10px 0; color:#767676;">#F7F7F7</td>
+          <td style="padding:10px 0; color:#767676;">#F0EFEC (feature-kort)</td>
+          <td style="padding:10px 0; color:#767676;">#30332f / #555</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+          <td style="padding:10px 0; font-weight:500;">Bransjer / Portfolio</td>
+          <td style="padding:10px 0; color:#767676;">#DEDEDE</td>
+          <td style="padding:10px 0; color:#767676;">#FAFAFA (hvit-ish)</td>
+          <td style="padding:10px 0; color:#767676;">#30332f</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+          <td style="padding:10px 0; font-weight:500;">Service / CTA</td>
+          <td style="padding:10px 0; color:#767676;">#F7F7F7</td>
+          <td style="padding:10px 0; color:#767676;">Ingen kort</td>
+          <td style="padding:10px 0; color:#767676;">#000 / #444</td>
+        </tr>
+        <tr style="border-bottom:1px solid #eee;">
+          <td style="padding:10px 0; font-weight:500;">Prising</td>
+          <td style="padding:10px 0; color:#767676;">#F7F7F7</td>
+          <td style="padding:10px 0; color:#767676;">#30332f (dark boks)</td>
+          <td style="padding:10px 0; color:#767676;">#f0efec</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 0; font-weight:500;">Footer</td>
+          <td style="padding:10px 0; color:#767676;">#30332f</td>
+          <td style="padding:10px 0; color:#767676;">Ingen kort</td>
+          <td style="padding:10px 0; color:#767676;">#f0efec / #9a9a96</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- KNAPPER -->
+  <section class="section">
+    <div class="section-label">07 — Knapper</div>
+
+    <div class="btn-row">
+      <div class="btn-preview">
+        <a class="demo-btn-primary" href="#">Få et utkast</a>
+      </div>
+      <div class="btn-spec">
+        <div class="btn-spec-name">Primær</div>
+        <div class="btn-spec-detail">Én per seksjon. Brukes på viktigste handling.<br>
+          Hover: opacity 0.85 eller lysere mørk (#444).
+        </div>
+        <div class="btn-spec-token" style="margin-top:6px;">bg: #30332f · tekst: #fff · border-radius: 100px · h: 36px · padding: 0 24px · Inter 500 14px</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <div class="btn-preview">
+        <a class="demo-btn-outline" href="#">Kontakt oss</a>
+      </div>
+      <div class="btn-spec">
+        <div class="btn-spec-name">Sekundær / Outline</div>
+        <div class="btn-spec-detail">Brukes ved siden av primær, eller som eneste CTA i FAQ-seksjon.<br>
+          Hover: bg fyller til #30332f, tekst til #fff.
+        </div>
+        <div class="btn-spec-token" style="margin-top:6px;">bg: transparent · border: 1.5px solid #30332f · tekst: #30332f · border-radius: 100px · h: 36px</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <div class="btn-preview">
+        <span class="demo-btn-ghost">SE HVA VI GJØR ↓</span>
+      </div>
+      <div class="btn-spec">
+        <div class="btn-spec-name">Ghost / Tekstlenke</div>
+        <div class="btn-spec-detail">Scroll-hint eller sekundær lenke. Brukes alltid til høyre for en primærknapp, aldri alene som CTA.</div>
+        <div class="btn-spec-token" style="margin-top:6px;">Inter 400 · 12px · letter-spacing: 0.05em · uppercase · tekst: #767676</div>
+      </div>
+    </div>
+
+    <div class="btn-row" style="background:#30332f; margin: 0 -24px; padding: 24px 24px; border-bottom:none; border-radius:8px;">
+      <div class="btn-preview">
+        <a class="demo-btn-primary-inv" href="#">Få et utkast</a>
+      </div>
+      <div class="btn-spec">
+        <div class="btn-spec-name" style="color:#f0efec;">Primær på mørk bakgrunn</div>
+        <div class="btn-spec-detail" style="color:#9a9a96;">Brukes i footer CTA-seksjon. Lys knapp på mørk bakgrunn — invertert primær.</div>
+        <div class="btn-spec-token" style="margin-top:6px; color:#a89fcd;">bg: #f0efec · tekst: #30332f · border-radius: 100px · h: 36px</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KORT OG BOKSER -->
+  <section class="section">
+    <div class="section-label">08 — Kort og bokser</div>
+
+    <!-- Feature-kort (lys) -->
+    <div class="card-demo-label">Feature-kort — på lys seksjon (#F7F7F7)</div>
+    <div class="card-demo-desc">Brukes i "Hva vi leverer". Kortbakgrunn: #F0EFEC. Ingen skygge — kontrast fra fargeforskjell alene.</div>
+    <div class="card-row" style="background:#F7F7F7; padding:24px; border-radius:10px; margin-bottom:8px;">
+      <div class="demo-card-light">
+        <div class="demo-icon-badge">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="demo-card-title">Ny eller oppdatert nettside</div>
+        <div class="demo-card-body">Vi bygger en nettside fra bunnen av, eller gir den du allerede har et moderne design.</div>
+      </div>
+      <div class="demo-card-light" style="background:#F7F7F7;">
+        <div class="demo-icon-badge">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="demo-card-title">Fast pris, ingen overraskelser</div>
+        <div class="demo-card-body">Du vet hva du betaler før vi starter. Ingen timepris, ingen skjulte kostnader.</div>
+      </div>
+      <div class="demo-card-light" style="background:#F7F7F7;">
+        <div class="demo-icon-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="demo-card-title">Inkl. service etter leveranse</div>
+        <div class="demo-card-body">Send oss bilder og tekst — så legger vi det ut for deg. Du trenger ikke gjøre noe teknisk selv.</div>
+      </div>
+    </div>
+    <div style="font-size:11px; color:#999; margin-bottom:32px;">
+      Første kort: <span style="font-family:monospace; color:#7c6fcd;">#F0EFEC</span> (fremhevet) &nbsp;·&nbsp;
+      Øvrige: <span style="font-family:monospace; color:#7c6fcd;">#F7F7F7</span> (flate, bakgrunnsnivå) &nbsp;·&nbsp;
+      border-radius: 12px &nbsp;·&nbsp; padding: 24px
+    </div>
+
+    <!-- Portfolio-kort (grå seksjon) -->
+    <div class="card-demo-label">Portfolio-kort — på galleri-seksjon (#DEDEDE)</div>
+    <div class="card-demo-desc">Brukes i bransjer-seksjonen. Hvit-ish kortbakgrunn med subtil skygge og border.</div>
+    <div class="card-row-2" style="background:#DEDEDE; padding:24px; border-radius:10px; margin-bottom:8px;">
+      <div class="demo-card-on-gray" style="height:180px; display:flex; align-items:flex-end;">
+        <div style="width:100%;">
+          <div style="font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Snekker</div>
+          <div class="demo-card-title" style="margin-bottom:0;">Håndverksfirma AS</div>
+        </div>
+      </div>
+      <div class="demo-card-on-gray" style="height:180px; display:flex; align-items:flex-end;">
+        <div style="width:100%;">
+          <div style="font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">Rørlegger</div>
+          <div class="demo-card-title" style="margin-bottom:0;">VVS Sørensen</div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:11px; color:#999; margin-bottom:32px;">
+      Kortbakgrunn: <span style="font-family:monospace; color:#7c6fcd;">#FAFAFA</span> &nbsp;·&nbsp;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 0 0 1px rgba(0,0,0,.04) &nbsp;·&nbsp;
+      border-radius: 12px
+    </div>
+
+    <!-- Mørke kort -->
+    <div class="card-demo-label">Mørke kort — på mørk seksjon (#30332f)</div>
+    <div class="card-demo-desc">Brukes i CTA-seksjon og footer. Standard kort: #3a3d38 · Featured/fremhevet: #474b45 med outline.</div>
+    <div class="card-row-2" style="background:#30332f; padding:24px; border-radius:10px; margin-bottom:8px;">
+      <div class="demo-card-dark">
+        <div class="demo-icon-badge-inv">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="demo-card-title-inv">Standard kort</div>
+        <div class="demo-card-body-inv">Bakgrunn #3a3d38 — diskret løft fra mørk seksjon.</div>
+      </div>
+      <div class="demo-card-featured">
+        <div style="display:inline-flex; align-items:center; padding:3px 10px; background:rgba(255,255,255,0.1); border-radius:100px; font-size:11px; color:#b8c4b0; margin-bottom:12px; font-family:Inter,sans-serif;">Mest valgt</div>
+        <div class="demo-card-title-inv">Featured kort</div>
+        <div class="demo-card-body-inv">Bakgrunn #474b45 + outline: 1.5px solid rgba(255,255,255,0.12).</div>
+      </div>
+    </div>
+    <div style="font-size:11px; color:#999; margin-bottom:32px;">
+      Standard: <span style="font-family:monospace; color:#7c6fcd;">#3a3d38</span> &nbsp;·&nbsp;
+      Featured: <span style="font-family:monospace; color:#7c6fcd;">#474b45</span> + outline &nbsp;·&nbsp;
+      border-radius: 12px &nbsp;·&nbsp; padding: 24px
+    </div>
+  </section>
+
+  <!-- TAGS, BADGES OG TABS -->
+  <section class="section">
+    <div class="section-label">09 — Tags, badges og tabs</div>
+
+    <div class="badge-row">
+      <div>
+        <div class="demo-icon-badge" style="margin-bottom:0; width:44px; height:44px;">
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:var(--type-label); font-weight:600; margin-bottom:4px;">Ikon-badge (sirkel)</div>
+        <div style="font-size:11px; color:#999;">44–48px · bg: #30332f · border-radius: 50% · hvit SVG-ikon, stroke 1.8px</div>
+        <div style="font-size:11px; font-family:monospace; color:#7c6fcd; margin-top:2px;">På mørk: bg rgba(255,255,255,0.10)</div>
+      </div>
+    </div>
+
+    <div class="badge-row">
+      <span class="demo-tag-dark">Inkludert i hosting</span>
+      <div style="flex:1;">
+        <div style="font-size:var(--type-label); font-weight:600; margin-bottom:4px;">Service-badge (pill, mørk)</div>
+        <div style="font-size:11px; color:#999;">bg: #30332f · tekst: #cfdeca (sage) · border-radius: 100px · padding: 5px 14px · Inter 400 12px</div>
+      </div>
+    </div>
+
+    <div class="badge-row">
+      <span class="demo-badge-pill">Mest valgt</span>
+      <div style="flex:1;">
+        <div style="font-size:var(--type-label); font-weight:600; margin-bottom:4px;">Status-badge (pill, lys)</div>
+        <div style="font-size:11px; color:#999;">bg: #f0efec · tekst: #30332f · border: 1px solid #e0ddd9 · border-radius: 100px · Inter 500 11px</div>
+      </div>
+    </div>
+
+    <div class="badge-row">
+      <span class="demo-tab-active">Alle</span>
+      <span class="demo-tab-inactive">Snekker</span>
+      <span class="demo-tab-inactive">Rørlegger</span>
+      <div style="flex:1;">
+        <div style="font-size:var(--type-label); font-weight:600; margin-bottom:4px;">Tab-navigasjon</div>
+        <div style="font-size:11px; color:#999;">Aktiv: bg #30332f · tekst #fff · fw 500 · border-radius: 6px<br>Inaktiv: bg #d8d8d5 · tekst #555 · border-radius: 6px · padding: 6px 20px</div>
+        <div style="font-size:11px; font-family:monospace; color:#7c6fcd; margin-top:2px;">Aktiv-state: alltid + font-weight: 600 (ikke kun farge)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BORDER-RADIUS OG SKYGGER -->
+  <section class="section">
+    <div class="section-label">10 — Border-radius og skygger</div>
+
+    <div class="radius-row">
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:4px; width:60px; height:60px;"></div>
+        <div class="radius-token">4px</div>
+        <div class="radius-label">Hero-bilde<br>Liten detalj</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:6px; width:70px; height:60px;"></div>
+        <div class="radius-token">6px</div>
+        <div class="radius-label">Tabs<br>Input-felt</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:12px;"></div>
+        <div class="radius-token">12px</div>
+        <div class="radius-label">Alle kort<br>Bokser</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:16px; width:120px; height:80px;"></div>
+        <div class="radius-token">16px</div>
+        <div class="radius-label">Store bokser<br>Modal</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:100px; width:120px; height:36px;"></div>
+        <div class="radius-token">100px</div>
+        <div class="radius-label">Knapper<br>Badges / pills</div>
+      </div>
+    </div>
+
+    <div style="font-size:var(--type-caption); color:#999; margin: 24px 0 12px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Skygger</div>
+    <div class="shadow-row">
+      <div class="shadow-item">
+        <div class="shadow-box" style="box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);"></div>
+        <div class="shadow-token">shadow-card</div>
+        <div class="shadow-label">Portfolio-kort<br>på grå bakgrunn</div>
+      </div>
+      <div class="shadow-item">
+        <div class="shadow-box" style="box-shadow: 0 4px 16px rgba(0,0,0,0.08);"></div>
+        <div class="shadow-token">shadow-md</div>
+        <div class="shadow-label">Dropdown<br>Tooltip</div>
+      </div>
+      <div class="shadow-item">
+        <div class="shadow-box" style="box-shadow: 0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);"></div>
+        <div class="shadow-token">shadow-lg</div>
+        <div class="shadow-label">Phone-mockup<br>Modal</div>
+      </div>
+      <div class="shadow-item" style="background:#30332f; padding:16px; border-radius:10px;">
+        <div class="shadow-box" style="box-shadow: 0 2px 48px rgba(0,0,0,0.08); background:#474b45;"></div>
+        <div class="shadow-token" style="color:#a89fcd;">shadow-dark-lift</div>
+        <div class="shadow-label" style="color:#9a9a96;">Featured-boks<br>på mørk bg</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; padding:16px 20px; background:#f7f6f4; border-radius:8px; border:1px solid #e8e6e2;">
+      <div style="font-size:var(--type-label); font-weight:600; margin-bottom:8px;">Regel: lys bakgrunn = ingen skygge</div>
+      <div style="font-size:var(--type-caption); color:#767676; line-height:1.6;">
+        Feature-kort på lys bakgrunn (#F0EFEC på #F7F7F7) bruker <strong>aldri skygge</strong> — kontrasten fra fargen er nok.
+        Skygge brukes kun på lyse kort mot en grå eller mørk bakgrunn, og på flytende elementer (mockup, modal, dropdown).
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

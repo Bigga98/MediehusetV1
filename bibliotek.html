@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>Bransjebibliotek — Mediegruppen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=Sorts+Mill+Goudy&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="brand/tokens.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-y: scroll; }
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg-0);
+      min-height: 100vh;
+      padding-top: 72px;
+    }
+
+    .bl-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 18px 196px;
+      background: var(--bg-0);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+    }
+
+    .bl-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-size: var(--type-label);
+      font-weight: 500;
+      color: var(--color-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      letter-spacing: 0.01em;
+      transition: opacity 0.15s;
+      text-decoration: none;
+    }
+
+    .bl-close:hover { opacity: 0.55; }
+
+    .bl-close svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .bl-content {
+      padding: 64px 196px 96px;
+    }
+
+    .bl-heading {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 48px;
+      color: #080808;
+      line-height: 57.6px;
+      letter-spacing: 0;
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .bl-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+
+    .bl-tab {
+      padding: 6px 14px;
+      border-radius: 4px;
+      border: none;
+      background: var(--bg-2);
+      font-family: var(--font-ui);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0;
+      color: var(--color-dark);
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .bl-tab:hover { background: var(--bg-3); }
+
+    .bl-tab.active {
+      background: var(--color-dark);
+      color: #ffffff;
+    }
+
+    .bl-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+
+    .bl-card {
+      background: var(--surface-light);
+      border-radius: 12px;
+      height: 595px;
+      border: 1px solid var(--bg-2);
+    }
+
+    .bl-card.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <script src="components/navbar.js"></script>
+
+  <div class="bl-header">
+    <a href="index.html" class="bl-close">
+      <svg viewBox="0 0 16 16"><polyline points="10,3 5,8 10,13"/></svg>
+      Tilbake
+    </a>
+  </div>
+
+  <div class="bl-content">
+    <h2 class="bl-heading">Se demoer fra forskjellige bransjer</h2>
+
+    <div class="bl-tabs">
+      <button class="bl-tab active" data-filter="alle">Alle</button>
+      <button class="bl-tab" data-filter="snekker">Snekker</button>
+      <button class="bl-tab" data-filter="rorlegger">Rørlegger</button>
+      <button class="bl-tab" data-filter="handverk">Andre håndverker tjenester</button>
+    </div>
+
+    <div class="bl-grid">
+      <div class="bl-card" data-bransje="snekker"></div>
+      <div class="bl-card" data-bransje="rorlegger"></div>
+      <div class="bl-card" data-bransje="snekker"></div>
+      <div class="bl-card" data-bransje="handverk"></div>
+      <div class="bl-card" data-bransje="rorlegger"></div>
+      <div class="bl-card" data-bransje="handverk"></div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.bl-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.bl-tab').forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        var filter = tab.dataset.filter;
+        document.querySelectorAll('.bl-card').forEach(function(card) {
+          card.classList.toggle('hidden', filter !== 'alle' && card.dataset.bransje !== filter);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
