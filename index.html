@@ -22,12 +22,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&family=Frank+Ruhl+Libre&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=Sorts+Mill+Goudy&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="brand/tokens.css" />
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { overflow-y: scroll; }
     body { font-family: var(--font-ui); overflow-x: hidden; }
+    [data-animate] { will-change: transform, opacity; }
     @media (max-width: 768px) {
       * { max-width: 100%; }
       .hero-slider, .hero-slide, .hero-slider-dots,
@@ -808,16 +807,15 @@
       color: var(--color-mid);
       line-height: var(--lh-body);
       padding: 0 var(--space-lg);
-      max-height: 0;
+      height: 0;
       overflow: hidden;
       opacity: 0;
-      transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1),
-                  padding  0.42s cubic-bezier(0.4, 0, 0.2, 1),
-                  opacity  0.3s ease 0.05s;
+      transition: height 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+                  padding 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease 0.05s;
     }
 
     .faq-item.open .faq-answer {
-      max-height: 200px;
       padding-bottom: var(--space-lg);
       opacity: 1;
     }
@@ -3293,11 +3291,21 @@
       btn.addEventListener('click', () => {
         const item = btn.parentElement;
         const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-answer').style.height = '0';
+        });
+        if (!isOpen) {
+          const answer = item.querySelector('.faq-answer');
+          item.classList.add('open');
+          answer.style.height = answer.scrollHeight + 'px';
+        }
       });
     });
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <!-- ── MG ANIMATE ENGINE ──────────────────────────────────────────────────
        Attributt-basert animasjonssystem. Legg data-animate på et element
@@ -3336,7 +3344,7 @@
       'fade-in':    ()   => ({ opacity: 0 }),
       'scale-in':   ()   => ({ opacity: 0, scale: 0.96, y: 8 }),
     };
-    const TO = { opacity: 1, x: 0, y: 0, scale: 1, clearProps: 'transform,opacity' };
+    const TO = { opacity: 1, x: 0, y: 0, scale: 1, clearProps: 'transform,opacity,will-change' };
 
     /* ── Hero: load-timeline ── */
     const heroEls = document.querySelectorAll('[data-animate][data-hero]');

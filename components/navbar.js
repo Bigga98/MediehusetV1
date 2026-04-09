@@ -320,7 +320,7 @@
       });
       ticking = true;
     }
-  });
+  }, { passive: true });
 
   // Directional underline — strek vokser fra den siden musen entrer fra
   linkWrap.querySelectorAll('a:not(.meta)').forEach(link => {
