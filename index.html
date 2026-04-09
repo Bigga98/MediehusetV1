@@ -2576,6 +2576,104 @@
         flex-wrap: wrap;
         gap: 12px;
       }
+
+      /* ── FOOTER KOLONNER ── */
+      .footer-body {
+        grid-template-columns: 1fr;
+        padding: 48px 20px;
+        gap: 36px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 24px 20px;
+      }
+
+      .footer-bottom__links {
+        gap: var(--space-md);
+      }
+
+      /* ── BRANSJEBIBLIOTEK TALL-KORT ── */
+      .bransjelib__card--tall {
+        width: 100%;
+        flex-shrink: 1;
+        min-height: 320px;
+      }
+
+      .bransjelib__col {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .bransjelib__col .bransjelib__card {
+        min-height: 260px;
+      }
+
+      /* ── SERVICE — TELEFON-MOCKUP ── */
+      .phone-mockup {
+        width: 240px;
+        height: 490px;
+      }
+
+      /* ── DEMOER — KORT-HØYDE ── */
+      .demo-kort__preview {
+        min-height: 140px;
+      }
+
+      /* ── BRANSJER TABS — DEMO-KNAPP ── */
+      .bransjer-demo-btn {
+        width: auto;
+        margin-top: 0;
+      }
+
+      /* ── HERO CTA ── */
+      .hero .cta-btn,
+      .hero .scroll-hint {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* ── POPUP MOBIL ── */
+      .popup-overlay {
+        align-items: flex-end;
+        justify-content: center;
+        padding: 0;
+      }
+
+      .popup-card {
+        border-radius: 16px 16px 0 0;
+        max-height: 92vh;
+        overflow-y: auto;
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .popup-left {
+        display: none;
+      }
+
+      .popup-right {
+        padding: 32px 20px 40px;
+        width: 100%;
+      }
+
+      .popup-form-row {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      /* ── INKLUDERT — INTERNE ELEMENTER ── */
+      .inkludert__items {
+        gap: 24px;
+      }
+
+      .inkludert__btn-primary,
+      .inkludert__btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
   </style>

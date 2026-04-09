@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vilkår — Mediegruppen</title>
+  <meta name="description" content="Tjenestevilkår for Mediegruppenens webtjenester og abonnementsløsninger." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Hanken+Grotesk:wght@300;400;500;600&family=Instrument+Sans:wght@400&family=Inter:wght@100;300;400;500&family=Raleway:wght@400;500;600&family=Sarpanch:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 72px;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      padding: 0 80px;
+      z-index: 100;
+      transition: background 0.35s ease, border-bottom 0.35s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navbar.scrolled {
+      background: rgba(250,249,247,0.97);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .navbar.hide-nav {
+      transform: translateY(-100%);
+    }
+
+    .navbar.scrolled .logo { color: #17181c; }
+    .navbar.scrolled .nav-links a { color: rgba(23,24,28,0.50); }
+    .navbar.scrolled .nav-links a::after { background: rgba(23,24,28,0.40); }
+    .navbar.scrolled .nav-links a:hover { color: rgba(23,24,28,0.90); }
+    .navbar.scrolled .nav-links a[aria-current="page"] { color: rgba(23,24,28,0.90); }
+    .navbar.scrolled .nav-links a[aria-current="page"]::after { background: rgba(23,24,28,0.30); }
+    .navbar.scrolled .cta { background: #17181c; color: #ffffff; }
+    .navbar.scrolled .cta:hover { background: rgba(23,24,28,0.82); }
+
+    .navbar .logo {
+      font-family: 'Sarpanch', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      color: #ffffff;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .navbar .logo-flip {
+      width: 22px;
+      height: 22px;
+      perspective: 300px;
+      flex-shrink: 0;
+    }
+
+    .navbar .logo-flip-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navbar .logo:hover .logo-flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .navbar .logo-flip-front,
+    .navbar .logo-flip-back {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .navbar .logo-flip-back {
+      transform: rotateY(180deg);
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 40px;
+      margin: 0 auto;
+      list-style: none;
+      padding: 0;
+    }
+
+    .navbar .nav-links a {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.25s ease;
+      --underline-origin: left;
+    }
+
+    .navbar .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.50);
+      transform: scaleX(0);
+      transform-origin: var(--underline-origin) center;
+      transition: transform 0.25s ease;
+    }
+
+    .navbar .nav-links a:hover { color: rgba(255,255,255,0.92); }
+    .navbar .nav-links a:hover::after { transform: scaleX(1); }
+
+    .navbar .nav-links a[aria-current="page"] { color: rgba(255,255,255,0.92); }
+    .navbar .nav-links a[aria-current="page"]::after {
+      transform: scaleX(1);
+      background: rgba(255,255,255,0.35);
+    }
+
+    .navbar .cta {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+      color: #17181c;
+      background: #ffffff;
+      border: none;
+      border-radius: 100px;
+      padding: 10px 22px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease, opacity 0.2s ease;
+    }
+
+    .navbar .cta:hover { background: rgba(255,255,255,0.88); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      position: relative;
+      width: 100%;
+      min-width: 1440px;
+      height: 540px;
+      background-color: #17181c;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 80px 88px;
+      overflow: hidden;
+    }
+
+    .page-hero__eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .page-hero__heading {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: 88px;
+      line-height: 0.97;
+      letter-spacing: -3px;
+      color: #ffffff;
+      max-width: 940px;
+    }
+
+    .page-hero__body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 100;
+      font-size: 17px;
+      line-height: 26px;
+      color: rgba(255,255,255,0.50);
+      max-width: 500px;
+      margin-top: 24px;
+    }
+
+    .page-hero__rule {
+      position: absolute;
+      bottom: 0;
+      left: 80px;
+      right: 80px;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* ── INNHOLD ── */
+    .pv {
+      width: 100%;
+      min-width: 1440px;
+      background: #efede9;
+      padding: 80px 80px 100px;
+    }
+
+    .pv__inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .pv__updated {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: rgba(25,23,21,0.4);
+      margin-bottom: 48px;
+    }
+
+    .pv__section {
+      margin-bottom: 48px;
+    }
+
+    .pv__number {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: rgba(25,23,21,0.3);
+      margin-bottom: 10px;
+    }
+
+    .pv__heading {
+      font-family: 'Raleway', sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: #17191b;
+      margin-bottom: 16px;
+    }
+
+    .pv__body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .pv__body p + p { margin-top: 12px; }
+
+    .pv__body ul {
+      margin: 12px 0 0 20px;
+      padding: 0;
+    }
+
+    .pv__body ul li {
+      margin-bottom: 8px;
+      line-height: 1.65;
+    }
+
+    .pv__body strong {
+      font-weight: 500;
+      color: #17191b;
+    }
+
+    .pv__body a {
+      color: #17191b;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .pv__body a:hover { color: #444; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #17191b;
+      width: 100%;
+    }
+
+    .footer__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 64px 80px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .footer__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer__logo {
+      font-family: 'Raleway', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .footer__tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    .footer__col-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin: 0 0 16px;
+    }
+
+    .footer__links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer__links a:hover { color: #ffffff; }
+
+    .footer__bottom {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 80px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__copy {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer__legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer__legal a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer__legal a:hover { color: rgba(255,255,255,0.6); }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── PAGE HERO ── -->
+  <section class="page-hero">
+
+    <div id="navbar"></div>
+
+    <p class="page-hero__eyebrow">Vilkår — Mediegruppen</p>
+    <h1 class="page-hero__heading">Tjenestevilkår.</h1>
+    <p class="page-hero__body">Vilkår for bruk av Mediegruppenens webtjenester og abonnementsløsninger.</p>
+    <div class="page-hero__rule"></div>
+
+  </section>
+
+
+  <!-- ── INNHOLD ── -->
+  <section class="pv">
+    <div class="pv__inner">
+
+      <p class="pv__updated">Sist oppdatert: 9. april 2026</p>
+
+      <div class="pv__section">
+        <p class="pv__number">01</p>
+        <h2 class="pv__heading">Om Mediegruppen</h2>
+        <div class="pv__body">
+          <p>Mediegruppen er et webdesignbyrå basert i Oslo som tilbyr nettside-design, utvikling og løpende vedlikehold for små og mellomstore bedrifter.</p>
+          <p>E-post: <a href="mailto:hei@mediegruppen.no">hei@mediegruppen.no</a><br>
+          Telefon: <a href="tel:+4748118680">+47 481 18 680</a></p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">02</p>
+        <h2 class="pv__heading">Hva tjenesten inkluderer</h2>
+        <div class="pv__body">
+          <p>En avtale med Mediegruppen inkluderer design, utvikling og drift av én nettside. Følgende er inkludert i abonnementet:</p>
+          <ul>
+            <li>Skreddersydd nettside-design og utvikling</li>
+            <li>Hosting og domene (der dette er avtalefestet)</li>
+            <li>Løpende vedlikehold og oppdateringer</li>
+            <li>Teknisk support — én fast kontaktperson</li>
+            <li>Tekstendringer og mindre innholdsoppdateringer</li>
+            <li>SSL-sertifikat og sikkerhetsmessig vedlikehold</li>
+          </ul>
+          <p>Større endringer i design eller struktur faktureres etter medgått tid og avtales særskilt.</p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">03</p>
+        <h2 class="pv__heading">Priser og betaling</h2>
+        <div class="pv__body">
+          <p>Priser fremgår av tilbud eller avtaledokument sendt kunden. Fakturering skjer månedlig, med betalingsfrist på 14 dager fra fakturadato.</p>
+          <p>Ved forsinket betaling forbeholder Mediegruppen seg retten til å:</p>
+          <ul>
+            <li>Legge til forsinkelsesrente i henhold til forsinkelsesrenteloven</li>
+            <li>Sette nettsiden i vedlikeholdsmodus inntil betaling er mottatt</li>
+          </ul>
+          <p>Alle priser er oppgitt ekskl. mva. med mindre annet er avtalt.</p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">04</p>
+        <h2 class="pv__heading">Oppsigelse og ingen bindingstid</h2>
+        <div class="pv__body">
+          <p>Avtalen løper månedlig uten bindingstid. Begge parter kan si opp avtalen med <strong>én måneds skriftlig varsel</strong>, gjeldende fra første dag i påfølgende måned.</p>
+          <p>Oppsigelse sendes til <a href="mailto:hei@mediegruppen.no">hei@mediegruppen.no</a>. Vi bekrefter mottatt oppsigelse innen én arbeidsdag.</p>
+          <p>Ved oppsigelse:</p>
+          <ul>
+            <li>Alle utestående fakturaer forfaller til betaling</li>
+            <li>Kunden får utlevert kildekode og innhold etter ønske</li>
+            <li>Hosting og domene kan overføres til kunden mot evt. direkte kostnad fra leverandør</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">05</p>
+        <h2 class="pv__heading">Eierskap til nettside og innhold</h2>
+        <div class="pv__body">
+          <p>Kunden eier alt innhold de selv leverer — tekster, bilder og logoer. Etter fullbetaling overføres også eierskap til det ferdige designet og kildekoden til kunden.</p>
+          <p>Mediegruppen forbeholder seg retten til å vise nettsiden som referanseprosjekt i markedsføring, med mindre kunden skriftlig ber om noe annet.</p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">06</p>
+        <h2 class="pv__heading">Kundens ansvar</h2>
+        <div class="pv__body">
+          <p>Kunden er ansvarlig for:</p>
+          <ul>
+            <li>At innhold som leveres til Mediegruppen ikke krenker tredjeparts rettigheter</li>
+            <li>At opplysninger gitt i avtalen er korrekte</li>
+            <li>Å gi tilbakemelding innen rimelig tid slik at prosjektet kan gjennomføres</li>
+          </ul>
+          <p>Vesentlig forsinkelse på grunn av manglende tilbakemelding fra kunden kan medføre justeringer i leveringstid.</p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">07</p>
+        <h2 class="pv__heading">Ansvarsbegrensning</h2>
+        <div class="pv__body">
+          <p>Mediegruppen er ikke ansvarlig for indirekte tap, tapte inntekter eller følgeskader som følge av nedetid, tekniske feil hos tredjeparts leverandører (hosting, domene, betalingsløsning e.l.) eller force majeure.</p>
+          <p>Mediegruppenens samlede ansvar overfor kunden er begrenset til beløpet kunden har betalt de siste tre månedene før krav fremsettes.</p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">08</p>
+        <h2 class="pv__heading">Endringer i vilkårene</h2>
+        <div class="pv__body">
+          <p>Mediegruppen kan oppdatere disse vilkårene ved behov. Vesentlige endringer varsles kunden på e-post med minst 30 dagers frist. Fortsatt bruk av tjenesten etter varslet endringsdato regnes som aksept av nye vilkår.</p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">09</p>
+        <h2 class="pv__heading">Lovvalg og tvisteløsning</h2>
+        <div class="pv__body">
+          <p>Avtalen er underlagt norsk rett. Eventuelle tvister søkes løst i minnelighet. Dersom partene ikke oppnår enighet, behandles saken ved Oslo tingrett som verneting.</p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">10</p>
+        <h2 class="pv__heading">Kontakt</h2>
+        <div class="pv__body">
+          <p>Spørsmål om vilkårene kan rettes til:</p>
+          <p>Mediegruppen<br>
+          E-post: <a href="mailto:hei@mediegruppen.no">hei@mediegruppen.no</a><br>
+          Telefon: <a href="tel:+4748118680">+47 481 18 680</a></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER ── -->
+  <div id="footer"></div>
+
+
+  <script src="components/navbar.js"></script>
+  <script src="components/footer.js"></script>
+</body>
+</html>
