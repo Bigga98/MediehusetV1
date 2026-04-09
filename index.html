@@ -29,11 +29,7 @@
     html { overflow-y: scroll; }
     body { font-family: var(--font-ui); overflow-x: hidden; }
     @media (max-width: 768px) {
-      * { max-width: 100%; }
-      .hero-slider, .hero-slide, .hero-slider-dots,
-      .wa-bubble, .wa-attachment,
-      .phone-mockup, .phone-mockup * { max-width: none; }
-      img, video { max-width: 100%; height: auto; }
+      img, video, svg, iframe, canvas { max-width: 100%; height: auto; }
     }
 
     /* ── HERO ─────────────────────────────────── */
@@ -590,15 +586,12 @@
     .wa-row,
     .wa-timestamp-center {
       opacity: 0;
-      max-height: 0;
-      overflow: hidden;
       transform: translateY(-4px);
-      transition: opacity 0.28s ease, transform 0.28s ease, max-height 0.28s ease;
+      transition: opacity 0.28s ease, transform 0.28s ease;
     }
     .wa-row.visible,
     .wa-timestamp-center.visible {
       opacity: 1;
-      max-height: 200px;
       transform: translateY(0);
     }
     .wa-typing-indicator {
@@ -814,17 +807,15 @@
       font-size: 15px;
       color: var(--color-mid);
       line-height: var(--lh-body);
-      padding: 0 var(--space-lg);
+      padding: 0 var(--space-lg) var(--space-lg);
       height: 0;
       overflow: hidden;
       opacity: 0;
       transition: height 0.38s cubic-bezier(0.4, 0, 0.2, 1),
-                  padding 0.38s cubic-bezier(0.4, 0, 0.2, 1),
                   opacity 0.3s ease 0.05s;
     }
 
     .faq-item.open .faq-answer {
-      padding-bottom: var(--space-lg);
       opacity: 1;
     }
 
@@ -1756,6 +1747,39 @@
       background-color: transparent;
       color: #ffffff;
       border-color: #222222;
+    }
+
+    /* ── TOUCH: deaktiver background-position transitions ────────────────
+       background-position er en paint-operasjon (ikke GPU-composited).
+       På touch-enheter (mobil/nettbrett) gjelder ikke hover, så
+       vi skrur av disse transisjonene helt.
+    ─────────────────────────────────────────────────────────────────── */
+    @media (hover: none) {
+      :is(
+        .hero .cta-btn,
+        .hva-vi-leverer .section-btn,
+        .demoer-cta,
+        .prising-kort__cta,
+        .prising-kort--featured .prising-kort__cta
+      ) {
+        transition: transform 0.2s ease, opacity 0.2s;
+        background-image: none;
+      }
+
+      .footer-cta__btn {
+        transition: transform 0.2s ease;
+        background-image: none;
+      }
+
+      .bransjer-demo-btn,
+      .inkludert__btn-ghost,
+      .bransjelib__btn {
+        transition: none;
+        background-image: none;
+      }
+
+      .faq-cta::before { display: none; }
+      .faq-cta { transition: none; }
     }
 
     /* ── KONTAKT POPUP ── */
@@ -3364,7 +3388,8 @@
           const kids    = Array.from(el.children);
           const stagger = parseFloat(el.dataset.stagger ?? 0.12);
           tl.fromTo(kids, { opacity: 0, y: 18 },
-            { opacity: 1, y: 0, duration, stagger, clearProps: 'transform,opacity' }, delay);
+            { opacity: 1, y: 0, duration, stagger,
+              onComplete: () => gsap.set(kids, { clearProps: 'transform,opacity' }) }, delay);
         } else {
           const from = (FROM[type] ?? FROM['fade-up'])(el);
           tl.fromTo(el, from, { ...TO, duration }, delay);
@@ -3391,7 +3416,9 @@
         gsap.fromTo(kids,
           { opacity: 0, y: 18 },
           { opacity: 1, y: 0, duration, ease, stagger, delay,
-            clearProps: 'transform,opacity', scrollTrigger: st }
+            scrollTrigger: st,
+            onComplete: () => gsap.set(kids, { clearProps: 'transform,opacity' })
+          }
         );
         return;
       }
