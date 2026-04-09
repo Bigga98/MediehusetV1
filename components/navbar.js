@@ -201,15 +201,15 @@
         display: flex;
       }
     }
+    @media (hover: none) {
+      .mg-nav__links a,
+      .mg-nav__links a::after,
+      .mg-nav__cta,
+      .mg-nav__hamburger span {
+        transition: none;
+      }
+    }
   `;
-
-  // Ensure Sorts Mill Goudy is loaded (logo font)
-  if (!document.querySelector('link[href*="Sorts+Mill+Goudy"]')) {
-    const fontLink = document.createElement('link');
-    fontLink.rel = 'stylesheet';
-    fontLink.href = 'https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap';
-    document.head.appendChild(fontLink);
-  }
 
   // Inject styles
   const style = document.createElement('style');
@@ -428,6 +428,7 @@
       .popup-submit{width:100%;height:48px;background:#222;border:none;border-radius:12px;font-family:'Instrument Sans',Helvetica,sans-serif;font-size:14px;font-weight:500;color:#fff;letter-spacing:.02em;cursor:pointer;transition:background .15s,transform .15s,box-shadow .15s;margin-top:2px;display:flex;align-items:center;justify-content:center;gap:8px}
       .popup-submit:hover{background:#1e2119;box-shadow:0 4px 16px rgba(48,51,47,.2)}
       .popup-submit:active{transform:scale(.98)}
+      @media(hover:none){.popup-submit:active{transform:none}.popup-submit{transition:background .15s}}
       .popup-contact-links{display:flex;gap:20px;margin-top:16px;flex-wrap:wrap}
       .popup-contact-link{display:flex;align-items:center;gap:6px;font-size:13px;color:#555;text-decoration:none;transition:color .2s}
       .popup-contact-link:hover{color:#111}

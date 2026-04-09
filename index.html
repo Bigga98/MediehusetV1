@@ -28,6 +28,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { overflow-y: scroll; }
     body { font-family: var(--font-ui); overflow-x: hidden; }
+    a, button { -webkit-tap-highlight-color: transparent; }
     @media (max-width: 768px) {
       img, video, svg, iframe, canvas { max-width: 100%; height: auto; }
     }
@@ -1755,31 +1756,42 @@
        vi skrur av disse transisjonene helt.
     ─────────────────────────────────────────────────────────────────── */
     @media (hover: none) {
+      /* Alle knapper — fjern transitions og gradienter */
       :is(
         .hero .cta-btn,
         .hva-vi-leverer .section-btn,
         .demoer-cta,
         .prising-kort__cta,
-        .prising-kort--featured .prising-kort__cta
+        .prising-kort--featured .prising-kort__cta,
+        .footer-cta__btn,
+        .bransjer-demo-btn,
+        .inkludert__btn-ghost,
+        .inkludert__btn-primary,
+        .bransjelib__btn,
+        .bransjelib__cta,
+        .hero-slider-btn,
+        .tab
       ) {
-        transition: transform 0.2s ease, opacity 0.2s;
-        background-image: none;
-      }
-
-      .footer-cta__btn {
-        transition: transform 0.2s ease;
-        background-image: none;
-      }
-
-      .bransjer-demo-btn,
-      .inkludert__btn-ghost,
-      .bransjelib__btn {
         transition: none;
         background-image: none;
       }
 
+      /* faq-cta */
       .faq-cta::before { display: none; }
       .faq-cta { transition: none; }
+
+      /* SVG-pilar — alle */
+      .hero .cta-btn svg,
+      .hva-vi-leverer .section-btn svg,
+      .faq-cta svg,
+      .bransjelib__cta svg,
+      .bransjer-demo-btn svg,
+      .prising-kort__cta svg,
+      .inkludert__btn-primary svg,
+      .footer-cta__btn svg {
+        transition: none;
+        animation: none;
+      }
     }
 
     /* ── KONTAKT POPUP ── */
