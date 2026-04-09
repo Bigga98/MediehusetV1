@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>Tjenester — Mediegruppen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Instrument+Sans&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="brand/tokens.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-y: scroll; }
+    body { font-family: var(--font-ui); }
+
+    /* ── PAGE HERO ─────────────────────────── */
+    .page-hero {
+      width: 1440px;
+      background: #f5f4f1;
+      padding: 164px var(--grid-margin) 112px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse at center, rgba(110,140,90,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .page-hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 16px;
+      background: rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 100px;
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      color: rgba(0,0,0,0.45);
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+      margin-bottom: var(--space-lg);
+      position: relative;
+    }
+
+    .page-hero__heading {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 76px;
+      color: #1a1a18;
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      max-width: 760px;
+      margin-bottom: var(--space-lg);
+      position: relative;
+    }
+
+    .page-hero__sub {
+      font-family: var(--font-body);
+      font-size: var(--type-lead);
+      color: rgba(0,0,0,0.5);
+      line-height: var(--lh-body);
+      max-width: 460px;
+      margin-bottom: var(--space-xl);
+      position: relative;
+    }
+
+    .page-hero__cta-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      position: relative;
+    }
+
+    .page-hero__btn-primary {
+      height: 44px;
+      padding: 0 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #1e1b18;
+      border-radius: 100px;
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: var(--type-label);
+      color: #f5f4f1;
+      text-decoration: none;
+      transition: background 0.18s;
+    }
+    .page-hero__btn-primary:hover { background: #333; }
+    .page-hero__btn-primary svg {
+      width: 13px; height: 13px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      transition: transform 0.18s;
+    }
+    .page-hero__btn-primary:hover svg { transform: translateX(3px); }
+
+    .page-hero__btn-secondary {
+      font-family: var(--font-ui);
+      font-size: var(--type-label);
+      color: rgba(0,0,0,0.45);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      padding-bottom: 1px;
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .page-hero__btn-secondary:hover {
+      color: rgba(0,0,0,0.75);
+      border-color: rgba(0,0,0,0.4);
+    }
+
+    /* ── TJENESTE SEKSJONER ─────────────────── */
+    .tjeneste {
+      width: 1440px;
+      padding: 96px var(--grid-margin);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .tjeneste--rev .tjeneste__text { order: 2; }
+    .tjeneste--rev .tjeneste__visual { order: 1; }
+
+    .tjeneste__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      background: var(--color-dark);
+      color: #cfdeca;
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      font-weight: 400;
+      border-radius: 100px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .tjeneste__heading {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 44px;
+      color: var(--color-dark);
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+      margin-bottom: var(--space-md);
+    }
+
+    .tjeneste__desc {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      color: #555;
+      line-height: var(--lh-body);
+      margin-bottom: var(--space-xl);
+    }
+
+    .tjeneste__features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: var(--space-xl);
+    }
+    .tjeneste__features li {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      color: var(--color-dark);
+    }
+    .tjeneste__features li svg {
+      width: 16px; height: 16px;
+      stroke: #7a9e74; fill: none;
+      stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .tjeneste__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 44px;
+      padding: 0 24px;
+      background: var(--color-dark);
+      border-radius: 100px;
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: var(--type-label);
+      color: #fff;
+      text-decoration: none;
+      transition: background-position 0.4s ease;
+      background-image: linear-gradient(120deg, #30332f 0%, #30332f 45%, #3d5038 75%, #253240 100%);
+      background-size: 250% 100%;
+      background-position: left center;
+    }
+    .tjeneste__cta:hover { background-position: right center; }
+    .tjeneste__cta svg {
+      width: 13px; height: 13px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      transition: transform 0.18s;
+    }
+    .tjeneste__cta:hover svg { transform: translateX(3px); }
+
+    .tjeneste__visual {
+      background: var(--bg-2);
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Browser mockup (tjeneste 1) */
+    .browser-mockup {
+      width: 88%;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.14);
+    }
+    .browser-bar {
+      background: #f0f0f0;
+      padding: 9px 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .browser-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .browser-dot:nth-child(1) { background: #ff5f57; }
+    .browser-dot:nth-child(2) { background: #febc2e; }
+    .browser-dot:nth-child(3) { background: #28c840; }
+    .browser-url {
+      flex: 1; height: 16px;
+      background: #e2e2e2;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+    .browser-body { background: var(--bg-1); }
+    .browser-nav-strip {
+      background: var(--color-dark);
+      height: 36px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 14px;
+    }
+    .browser-nav-logo {
+      width: 60px; height: 8px;
+      background: rgba(255,255,255,0.55);
+      border-radius: 3px;
+    }
+    .browser-nav-links {
+      display: flex; gap: 10px; margin-left: auto;
+    }
+    .browser-nav-link {
+      width: 32px; height: 6px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 3px;
+    }
+    .browser-hero-strip {
+      background: var(--bg-3);
+      height: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0 20px;
+    }
+    .browser-hero-h {
+      height: 10px; width: 140px;
+      background: var(--color-dark);
+      opacity: 0.6; border-radius: 4px;
+    }
+    .browser-hero-sub {
+      height: 7px; width: 100px;
+      background: var(--color-dark);
+      opacity: 0.25; border-radius: 3px;
+    }
+    .browser-cards-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      padding: 14px;
+    }
+    .browser-card {
+      background: #fff;
+      border-radius: 6px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .browser-card-icon {
+      width: 18px; height: 18px;
+      background: var(--bg-3);
+      border-radius: 4px;
+      margin-bottom: 2px;
+    }
+    .browser-card-line {
+      height: 6px; border-radius: 2px;
+      background: var(--bg-3);
+    }
+
+    /* Before/After (tjeneste 2) */
+    .before-after {
+      width: 84%;
+      display: flex;
+      gap: 12px;
+    }
+    .ba-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .ba-label {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .ba-label--before { color: #aaa; }
+    .ba-label--after  { color: #7a9e74; }
+    .ba-divider { width: 1px; background: rgba(0,0,0,0.1); align-self: stretch; }
+    .ba-row {
+      height: 22px;
+      border-radius: 3px;
+    }
+
+    /* Process cards (tjeneste 3) */
+    .process-steps-visual {
+      width: 84%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .psv-step {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .psv-num {
+      width: 30px; height: 30px;
+      background: var(--color-dark);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 14px;
+      color: #cfdeca;
+      flex-shrink: 0;
+    }
+    .psv-content { flex: 1; }
+    .psv-title {
+      font-family: var(--font-ui);
+      font-size: 13px; font-weight: 500;
+      color: var(--color-dark);
+      margin-bottom: 2px;
+    }
+    .psv-desc {
+      font-family: var(--font-body);
+      font-size: 12px; color: #888;
+    }
+    .psv-check {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── PROSESSEN ──────────────────────────── */
+    .tjenester-prosess {
+      width: 1440px;
+      padding: 96px var(--grid-margin);
+    }
+    .prosess-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-sm);
+      margin-bottom: 64px;
+    }
+    .prosess-eyebrow {
+      display: inline-flex;
+      padding: 5px 14px;
+      background: var(--color-dark);
+      color: #cfdeca;
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      font-weight: 400;
+      border-radius: 100px;
+    }
+    .prosess-heading {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: var(--type-h2);
+      color: var(--color-dark);
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+    }
+    .prosess-sub {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      color: #666;
+      line-height: var(--lh-body);
+      max-width: 440px;
+    }
+    .prosess-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+      position: relative;
+    }
+    .prosess-grid::before {
+      content: '';
+      position: absolute;
+      top: 27px;
+      left: calc(12.5% + 12px);
+      right: calc(12.5% + 12px);
+      height: 1px;
+      background: var(--color-dark);
+      opacity: 0.1;
+      z-index: 0;
+    }
+    .prosess-step {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+    .prosess-step__num {
+      width: 54px; height: 54px;
+      background: var(--color-dark);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 22px;
+      color: #cfdeca;
+    }
+    .prosess-step__title {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 22px;
+      color: var(--color-dark);
+      line-height: 1.2;
+    }
+    .prosess-step__desc {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      color: #666;
+      line-height: var(--lh-body);
+    }
+
+    /* ── PRISING ────────────────────────────── */
+    .seksjon-prising {
+      width: 1440px;
+      background-color: var(--bg-dark);
+      padding: 96px var(--grid-margin);
+    }
+    .prising-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .prising-heading {
+      font-family: var(--font-ui);
+      font-weight: 300;
+      font-size: var(--type-h2);
+      color: #f0f1f2;
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+    .prising-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      width: 100%;
+    }
+    .prising-kort {
+      background-color: var(--surface-dark);
+      padding: var(--space-xl) var(--space-lg) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      position: relative;
+    }
+    .prising-kort--featured { background-color: var(--surface-dark-hi); }
+    .prising-kort__badge {
+      position: absolute;
+      top: var(--space-lg); right: var(--space-lg);
+      padding: 4px 12px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 100px;
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      color: #b0bcc8;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+    }
+    .prising-kort__navn {
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      color: #868891;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+    }
+    .prising-kort__pris { display: flex; align-items: baseline; gap: 6px; }
+    .prising-kort__belop {
+      font-family: var(--font-ui);
+      font-weight: 300;
+      font-size: 52px;
+      color: #f0f1f2;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .prising-kort__valuta {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      color: #6b6d72;
+    }
+    .prising-kort__desc {
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      color: #6b6d72;
+      line-height: var(--lh-body);
+      margin-top: calc(-1 * var(--space-sm));
+    }
+    .prising-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.08); }
+    .prising-kort__features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      flex: 1;
+    }
+    .prising-kort__features li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      color: #bfc0c4;
+      line-height: var(--lh-ui);
+    }
+    .prising-kort__features li svg {
+      width: 14px; height: 14px;
+      stroke: #7a9e74; fill: none;
+      stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .prising-kort__cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 49px;
+      background: var(--bg-dark);
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: var(--type-label);
+      color: #f0f1f2;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .prising-kort__cta:hover { background: #111317; }
+    .prising-kort--featured .prising-kort__cta {
+      background: var(--bg-0);
+      color: var(--color-dark);
+    }
+    .prising-kort--featured .prising-kort__cta:hover { background: #fff; }
+    .prising-kort__cta {
+      gap: 7px;
+    }
+    .prising-kort__cta svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      transition: transform 0.18s;
+    }
+    .prising-kort__cta:hover svg { transform: translateX(3px); }
+
+    /* ── FOOTER ─────────────────────────────── */
+    .site-footer {
+      width: 1440px;
+      background-color: var(--bg-footer);
+      display: flex;
+      flex-direction: column;
+    }
+    .footer-cta {
+      padding: var(--section-padding-y) var(--grid-margin);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-cta::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: -60px;
+      width: 520px; height: 420px;
+      background: radial-gradient(ellipse at center, rgba(120,140,100,0.12) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .footer-cta__heading {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 58px;
+      color: #eef0f1;
+      line-height: var(--lh-heading);
+      letter-spacing: var(--ls-h2);
+      max-width: 660px;
+      position: relative;
+    }
+    .footer-cta__heading em { font-style: italic; color: #9da89a; }
+    .footer-cta__eyebrow {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6e7a6b;
+      margin-bottom: 20px;
+    }
+    .footer-cta__eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 1px;
+      background: #6e7a6b;
+      vertical-align: middle;
+      margin-right: 10px; margin-bottom: 1px;
+    }
+    .footer-cta__action {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-sm);
+      flex-shrink: 0;
+    }
+    .footer-cta__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--icon-gap);
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #eef0f1;
+      border-radius: 100px;
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: var(--type-label);
+      color: var(--color-dark);
+      text-decoration: none;
+      transition: background 0.18s, transform 0.18s;
+      white-space: nowrap;
+    }
+    .footer-cta__btn:hover { background: #fff; transform: translateY(-1px); }
+    .footer-cta__btn svg {
+      width: 13px; height: 13px;
+      stroke: currentColor; fill: none; stroke-width: 2;
+      transition: transform 0.18s;
+    }
+    .footer-cta__btn:hover svg { transform: translate(2px, -2px); }
+    .footer-cta__note {
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      color: #6e7270;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+    }
+    .footer-body {
+      padding: var(--section-padding-y) var(--grid-margin);
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--space-xl);
+    }
+    .footer-brand__wordmark {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 22px;
+      color: #d8dbd6;
+      letter-spacing: -0.01em;
+    }
+    .footer-brand__tagline {
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      color: #777b77;
+      line-height: var(--lh-body);
+      max-width: 260px;
+      margin-top: var(--space-sm);
+    }
+    .footer-brand__social {
+      display: flex;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+    .social-link {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.14);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .social-link:hover {
+      border-color: rgba(255,255,255,0.38);
+      background: rgba(255,255,255,0.07);
+      transform: translateY(-1px);
+    }
+    .social-link svg {
+      width: 13px; height: 13px;
+      stroke: #909590; fill: none; stroke-width: 1.8;
+      transition: stroke 0.2s;
+    }
+    .social-link:hover svg { stroke: #c0c5be; }
+    .footer-col__label {
+      font-family: var(--font-ui);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+      color: #7a7d76;
+      margin-bottom: var(--space-md);
+    }
+    .footer-col__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .footer-col__list a {
+      font-family: var(--font-body);
+      font-size: var(--type-label);
+      color: #868891;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-col__list a:hover { color: #d3d7d8; }
+    .footer-bottom {
+      padding: var(--space-md) var(--grid-margin);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-bottom__copy {
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      color: #6a6d68;
+    }
+    .footer-bottom__links { display: flex; gap: var(--space-lg); }
+    .footer-bottom__links a {
+      font-family: var(--font-ui);
+      font-size: var(--type-caption);
+      color: #6a6d68;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-bottom__links a:hover { color: #a0a4a0; }
+
+    /* ── POPUP ──────────────────────────────── */
+    .popup-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .popup-overlay.open { opacity: 1; visibility: visible; }
+    .popup-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(20,22,20,0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .popup-card {
+      position: relative; z-index: 1;
+      display: flex; max-width: 860px; width: 100%;
+      border-radius: 24px; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.06);
+      transform: translateY(20px) scale(0.96);
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .popup-overlay.open .popup-card { transform: translateY(0) scale(1); }
+    .popup-left {
+      flex: 0 0 300px;
+      background: var(--color-dark);
+      padding: 52px 40px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; overflow: hidden;
+    }
+    .popup-left::before {
+      content: ''; position: absolute;
+      top: -80px; right: -80px;
+      width: 220px; height: 220px;
+      border-radius: 50%; background: rgba(255,255,255,0.04);
+    }
+    .popup-left::after {
+      content: ''; position: absolute;
+      bottom: -60px; left: -60px;
+      width: 180px; height: 180px;
+      border-radius: 50%; background: rgba(255,255,255,0.03);
+    }
+    .popup-left-top { position: relative; z-index: 1; }
+    .popup-brand-dot {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px; margin-bottom: 28px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .popup-left-heading {
+      font-family: var(--font-heading);
+      font-size: 30px; font-weight: 500;
+      line-height: 1.2; letter-spacing: -0.01em;
+      color: #fff; margin-bottom: 14px;
+    }
+    .popup-left-sub {
+      font-family: var(--font-ui);
+      font-size: 13px; line-height: 1.65;
+      color: rgba(255,255,255,0.5);
+    }
+    .popup-trust { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; }
+    .popup-trust-item {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-ui); font-size: 13px;
+      color: rgba(255,255,255,0.65);
+    }
+    .popup-trust-item svg { flex-shrink: 0; opacity: 0.7; }
+    .popup-right {
+      flex: 1; background: #fff;
+      padding: 48px 48px 44px; position: relative;
+    }
+    .popup-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 30px; height: 30px;
+      background: #f2f2f2; border: none; border-radius: 50%;
+      cursor: pointer; color: #777; font-size: 17px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, color 0.15s;
+    }
+    .popup-close:hover { background: #e6e6e6; color: #111; }
+    .popup-right-heading {
+      font-family: var(--font-heading);
+      font-size: 26px; font-weight: 600;
+      letter-spacing: -0.01em; color: #17181c; margin-bottom: 4px;
+    }
+    .popup-right-sub {
+      font-family: var(--font-ui);
+      font-size: 13px; color: #999; margin-bottom: 26px;
+    }
+    .popup-form { display: flex; flex-direction: column; gap: 11px; }
+    .popup-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+    .popup-input, .popup-textarea {
+      width: 100%; padding: 0 14px; height: 44px;
+      background: #f7f7f7; border: 1.5px solid transparent; border-radius: 10px;
+      font-family: var(--font-ui); font-size: 14px; color: #17181c;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    }
+    .popup-textarea { height: auto; padding: 12px 14px; min-height: 110px; resize: none; }
+    .popup-input::placeholder, .popup-textarea::placeholder { color: #bbb; }
+    .popup-input:focus, .popup-textarea:focus {
+      border-color: var(--color-dark);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(48,51,47,0.07);
+    }
+    .popup-submit {
+      width: 100%; height: 48px;
+      background: var(--color-dark); border: none; border-radius: 12px;
+      font-family: var(--font-ui); font-size: 14px; font-weight: 500;
+      color: #fff; letter-spacing: 0.02em; cursor: pointer;
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s; margin-top: 2px;
+    }
+    .popup-submit:hover { background: #1e2119; box-shadow: 0 4px 16px rgba(48,51,47,0.2); }
+    .popup-submit:active { transform: scale(0.98); }
+    .popup-success {
+      display: none; text-align: center; padding: 48px 0 24px;
+    }
+    .popup-success-icon {
+      width: 56px; height: 56px;
+      background: #f0fdf4; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .popup-success h3 {
+      font-family: var(--font-heading);
+      font-size: 24px; font-weight: 600; color: #17181c; margin-bottom: 8px;
+    }
+    .popup-success p { font-family: var(--font-ui); font-size: 14px; color: #999; }
+    @media (max-width: 600px) {
+      .popup-left { display: none; }
+      .popup-right { padding: 36px 24px 32px; }
+    }
+
+    @media (max-width: 768px) {
+      body { overflow-x: hidden; }
+
+      /* Fix all 1440px-width sections */
+      .page-hero, .tjeneste, .tjenester-prosess, .seksjon-prising, .site-footer {
+        width: 100%;
+      }
+
+      /* Page hero */
+      .page-hero {
+        padding: 100px 20px 60px;
+        text-align: left;
+        align-items: flex-start;
+      }
+      .page-hero__heading { font-size: 40px; letter-spacing: -0.02em; }
+      .page-hero__sub { max-width: 100%; }
+      .page-hero__cta-row { flex-wrap: wrap; }
+
+      /* Tjeneste sections */
+      .tjeneste {
+        grid-template-columns: 1fr;
+        padding: 60px 20px;
+        gap: 36px;
+      }
+      .tjeneste--rev .tjeneste__text { order: 1; }
+      .tjeneste--rev .tjeneste__visual { order: 2; }
+      .tjeneste__visual { min-height: 280px; }
+      .tjeneste__heading { font-size: 32px; }
+
+      /* Prosessen */
+      .tjenester-prosess { padding: 60px 20px; }
+      .prosess-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .prosess-grid::before { display: none; }
+
+      /* Prising */
+      .seksjon-prising { padding: 60px 20px; }
+      .prising-grid { grid-template-columns: 1fr; }
+
+      /* Footer */
+      .footer-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 48px 20px;
+        gap: 32px;
+      }
+      .footer-cta__heading { font-size: 36px; }
+      .footer-cta__action { align-items: flex-start; }
+      .footer-body {
+        grid-template-columns: 1fr;
+        padding: 40px 20px 24px;
+        gap: 28px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 20px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <script src="components/navbar.js"></script>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero__eyebrow" data-animate="fade-up" data-hero data-delay="0">Tjenester</div>
+    <h1 class="page-hero__heading" data-animate="fade-up" data-hero data-delay="0.1" data-duration="0.8">Vi bygger nettsider som jobber for deg</h1>
+    <p class="page-hero__sub" data-animate="fade-up" data-hero data-delay="0.22">Fra idé til ferdig nettside — vi tar oss av alt. Du sender bilder og tekst, vi leverer resultater.</p>
+    <div class="page-hero__cta-row" data-animate="fade-up" data-hero data-delay="0.34">
+      <a href="#" class="page-hero__btn-primary">Få et utkast <svg viewBox="0 0 13 13"><path d="M2 6.5h9M7 2l4.5 4.5L7 11"/></svg></a>
+      <a href="#prising" class="page-hero__btn-secondary">Se priser</a>
+    </div>
+  </section>
+
+  <!-- TJENESTE 1: NY NETTSIDE -->
+  <section class="tjeneste" style="background: var(--bg-0);">
+    <div class="tjeneste__text" data-animate="fade-up">
+      <span class="tjeneste__eyebrow">Ny nettside</span>
+      <h2 class="tjeneste__heading">En nettside bygget fra bunnen av</h2>
+      <p class="tjeneste__desc">Vi starter med et ferdig utkast tilpasset din bransje. Du gir tilbakemelding, vi ferdigstiller. Ingen teknisk kunnskap nødvendig — bare send bilder og tekst.</p>
+      <ul class="tjeneste__features">
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Inntil 5 tilpassede sider</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Design tilpasset din bransje</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Kontaktskjema og kart</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Mobiloptimalisert</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Rask hosting inkludert (1 år)</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Grunnleggende SEO-oppsett</li>
+      </ul>
+      <a href="#" class="tjeneste__cta">Kom i gang <svg viewBox="0 0 13 13"><path d="M2 6.5h9M7 2l4.5 4.5L7 11"/></svg></a>
+    </div>
+    <div class="tjeneste__visual" data-animate="fade-up" data-delay="0.12" style="background: var(--bg-2); padding: 32px;">
+      <div class="browser-mockup">
+        <div class="browser-bar">
+          <div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div>
+          <div class="browser-url"></div>
+        </div>
+        <div class="browser-body">
+          <div class="browser-nav-strip">
+            <div class="browser-nav-logo"></div>
+            <div class="browser-nav-links">
+              <div class="browser-nav-link"></div>
+              <div class="browser-nav-link"></div>
+              <div class="browser-nav-link"></div>
+            </div>
+          </div>
+          <div class="browser-hero-strip">
+            <div class="browser-hero-h"></div>
+            <div class="browser-hero-sub"></div>
+          </div>
+          <div class="browser-cards-strip">
+            <div class="browser-card">
+              <div class="browser-card-icon"></div>
+              <div class="browser-card-line" style="width:70%"></div>
+              <div class="browser-card-line" style="width:90%"></div>
+              <div class="browser-card-line" style="width:55%"></div>
+            </div>
+            <div class="browser-card">
+              <div class="browser-card-icon"></div>
+              <div class="browser-card-line" style="width:80%"></div>
+              <div class="browser-card-line" style="width:65%"></div>
+              <div class="browser-card-line" style="width:75%"></div>
+            </div>
+            <div class="browser-card">
+              <div class="browser-card-icon"></div>
+              <div class="browser-card-line" style="width:60%"></div>
+              <div class="browser-card-line" style="width:85%"></div>
+              <div class="browser-card-line" style="width:70%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TJENESTE 2: REDESIGN -->
+  <section class="tjeneste tjeneste--rev" style="background: var(--bg-1);">
+    <div class="tjeneste__text" data-animate="fade-up">
+      <span class="tjeneste__eyebrow">Redesign</span>
+      <h2 class="tjeneste__heading">Gi nettsiden din et nytt ansikt</h2>
+      <p class="tjeneste__desc">Ser nettsiden din gammel ut, er treg, eller gjenspeiler den ikke kvaliteten på det du leverer? Vi moderniserer den uten at du mister innholdet du allerede har.</p>
+      <ul class="tjeneste__features">
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Nytt, moderne design</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Beholder eksisterende innhold</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Raskere lastetid</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Mobiloptimalisert fra bunnen av</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Forbedret SEO-struktur</li>
+      </ul>
+      <a href="#" class="tjeneste__cta">Få et utkast <svg viewBox="0 0 13 13"><path d="M2 6.5h9M7 2l4.5 4.5L7 11"/></svg></a>
+    </div>
+    <div class="tjeneste__visual" data-animate="fade-up" data-delay="0.12" style="background: var(--bg-2);">
+      <div class="before-after">
+        <div class="ba-col">
+          <div class="ba-label ba-label--before">Før</div>
+          <div class="ba-row" style="background:#e0e0e0; height:26px;"></div>
+          <div class="ba-row" style="background:#ebebeb; height:56px;"></div>
+          <div class="ba-row" style="background:#e4e4e4; height:18px; width:70%;"></div>
+          <div class="ba-row" style="background:#ebebeb; height:18px; width:85%;"></div>
+          <div class="ba-row" style="background:#e0e0e0; height:36px;"></div>
+          <div class="ba-row" style="background:#ebebeb; height:22px; width:60%;"></div>
+        </div>
+        <div class="ba-divider"></div>
+        <div class="ba-col">
+          <div class="ba-label ba-label--after">Etter</div>
+          <div class="ba-row" style="background:var(--color-dark); height:26px;"></div>
+          <div class="ba-row" style="background:var(--bg-3); height:56px; display:flex; align-items:center; justify-content:center;">
+            <div style="width:55%; height:7px; background:var(--color-dark); opacity:0.45; border-radius:3px;"></div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px;">
+            <div class="ba-row" style="background:white; box-shadow:0 2px 6px rgba(0,0,0,0.08);"></div>
+            <div class="ba-row" style="background:white; box-shadow:0 2px 6px rgba(0,0,0,0.08);"></div>
+          </div>
+          <div class="ba-row" style="background:white; height:28px; box-shadow:0 2px 6px rgba(0,0,0,0.08);"></div>
+          <div style="display:flex; gap:5px;">
+            <div style="height:22px; flex:1; background:var(--color-dark); border-radius:100px;"></div>
+            <div style="height:22px; width:60px; border:1.5px solid var(--color-dark); border-radius:100px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TJENESTE 3: SERVICE-AVTALE -->
+  <section class="tjeneste" style="background: var(--bg-2);">
+    <div class="tjeneste__text" data-animate="fade-up">
+      <span class="tjeneste__eyebrow">Service-avtale</span>
+      <h2 class="tjeneste__heading">Vi oppdaterer nettsiden for deg</h2>
+      <p class="tjeneste__desc">Lansert nytt prosjekt? Fått nye priser? Vil legge til et sesong­tilbud? Send oss en melding — vi tar oss av det. Ingen ekstra kostnad, ingen teknisk styr.</p>
+      <ul class="tjeneste__features">
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Inkludert i domenehostingen</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Send melding — vi ordner resten</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Nye prosjekter, priser, tekst og bilder</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Svar innen én arbeidsdag</li>
+        <li><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>Via SMS, e-post eller WhatsApp</li>
+      </ul>
+      <a href="#" class="tjeneste__cta">Spør oss <svg viewBox="0 0 13 13"><path d="M2 6.5h9M7 2l4.5 4.5L7 11"/></svg></a>
+    </div>
+    <div class="tjeneste__visual" data-animate="fade-up" data-delay="0.12" style="background: var(--bg-3);">
+      <div class="process-steps-visual">
+        <div class="psv-step">
+          <div class="psv-num">1</div>
+          <div class="psv-content">
+            <div class="psv-title">Du sender en melding</div>
+            <div class="psv-desc">Via SMS, e-post eller WhatsApp</div>
+          </div>
+          <div class="psv-check" style="background:#f0fdf4;">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><polyline points="1.5,5.5 4,8.5 9.5,2" stroke="#4e7f49" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="psv-step">
+          <div class="psv-num">2</div>
+          <div class="psv-content">
+            <div class="psv-title">Vi oppdaterer nettsiden</div>
+            <div class="psv-desc">Innen én arbeidsdag er det live</div>
+          </div>
+          <div class="psv-check" style="background:#f0fdf4;">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><polyline points="1.5,5.5 4,8.5 9.5,2" stroke="#4e7f49" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="psv-step">
+          <div class="psv-num">3</div>
+          <div class="psv-content">
+            <div class="psv-title">Ingen ekstra kostnad</div>
+            <div class="psv-desc">Tjenesten er inkludert</div>
+          </div>
+          <div class="psv-check" style="background:#f0fdf4;">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><polyline points="1.5,5.5 4,8.5 9.5,2" stroke="#4e7f49" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROSESSEN -->
+  <section class="tjenester-prosess" style="background: var(--bg-3);">
+    <div class="prosess-top" data-animate="stagger" data-stagger="0.1">
+      <span class="prosess-eyebrow">Prosessen</span>
+      <h2 class="prosess-heading">Slik fungerer det</h2>
+      <p class="prosess-sub">Fra første melding til ferdig nettside — uten at du trenger å gjøre noe teknisk.</p>
+    </div>
+    <div class="prosess-grid" data-animate="stagger" data-stagger="0.14" data-delay="0.05">
+      <div class="prosess-step">
+        <div class="prosess-step__num">1</div>
+        <div class="prosess-step__title">Du tar kontakt</div>
+        <div class="prosess-step__desc">Send oss en kort melding om bedriften din og hva du trenger. Vi svarer innen én arbeidsdag.</div>
+      </div>
+      <div class="prosess-step">
+        <div class="prosess-step__num">2</div>
+        <div class="prosess-step__title">Vi sender et utkast</div>
+        <div class="prosess-step__desc">Basert på bransje og ønsker lager vi et ferdig design-utkast. Du trenger ikke gjøre noe teknisk.</div>
+      </div>
+      <div class="prosess-step">
+        <div class="prosess-step__num">3</div>
+        <div class="prosess-step__title">Du gir tilbakemelding</div>
+        <div class="prosess-step__desc">Liker du det vi har laget? Si ifra om hva du vil endre. Vi justerer inntil du er fornøyd.</div>
+      </div>
+      <div class="prosess-step">
+        <div class="prosess-step__num">4</div>
+        <div class="prosess-step__title">Vi lanserer</div>
+        <div class="prosess-step__desc">Vi publiserer nettsiden og sørger for at alt fungerer. Du er live på nett.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRISING -->
+  <section class="seksjon-prising" id="prising">
+    <div class="prising-inner">
+      <h2 class="prising-heading" data-animate="fade-up">Et nytt oppdrag betaler for nettsiden din</h2>
+      <div class="prising-grid" data-animate="stagger" data-stagger="0.15" data-delay="0.1">
+        <div class="prising-kort">
+          <div class="prising-kort__navn">Standardpakke</div>
+          <div class="prising-kort__pris">
+            <span class="prising-kort__belop">14 900</span>
+            <span class="prising-kort__valuta">kr eks. mva</span>
+          </div>
+          <p class="prising-kort__desc">En ferdig nettside på 2 uker. Fast pris, ingen overraskelser.</p>
+          <div class="prising-divider"></div>
+          <ul class="prising-kort__features">
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>Inntil 5 sider</li>
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>Mobiloptimalisert design</li>
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>Kontaktskjema og kart</li>
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>Rask hosting inkludert (1 år)</li>
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>Grunnleggende SEO-oppsett</li>
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>2 runder med korrektur</li>
+          </ul>
+          <a href="#" class="prising-kort__cta">Kom i gang <svg viewBox="0 0 13 13"><path d="M2 6.5h9M7 2l4.5 4.5L7 11"/></svg></a>
+        </div>
+        <div class="prising-kort prising-kort--featured">
+          <div class="prising-kort__badge">Mest valgt</div>
+          <div class="prising-kort__navn">Vekstpakke</div>
+          <div class="prising-kort__pris">
+            <span class="prising-kort__belop">24 900</span>
+            <span class="prising-kort__valuta">kr eks. mva</span>
+          </div>
+          <p class="prising-kort__desc">Alt i Standard, pluss service-avtale og innholdsoppdateringer.</p>
+          <div class="prising-divider"></div>
+          <ul class="prising-kort__features">
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>Alt i Standardpakke</li>
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>Inntil 10 sider</li>
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>6 mnd service-avtale inkludert</li>
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>Vi legger ut nye prosjekter for deg</li>
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>Avansert SEO og Google-profil</li>
+            <li><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>Ubegrensede korrektur-runder</li>
+          </ul>
+          <a href="#" class="prising-kort__cta">Kom i gang <svg viewBox="0 0 13 13"><path d="M2 6.5h9M7 2l4.5 4.5L7 11"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-cta">
+      <h2 class="footer-cta__heading" data-animate="fade-up">
+        <span class="footer-cta__eyebrow">La oss snakke</span>
+        Klar for en nettside som <em>faktisk</em><br>jobber for deg?
+      </h2>
+      <div class="footer-cta__action" data-animate="fade-up" data-delay="0.15">
+        <a href="#" class="footer-cta__btn">
+          Send oss en melding
+          <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+        </a>
+        <span class="footer-cta__note">Ingen bindingstid · Svar innen 24t</span>
+      </div>
+    </div>
+    <div class="footer-body">
+      <div class="footer-brand">
+        <div class="footer-brand__wordmark">Mediegruppen</div>
+        <p class="footer-brand__tagline">Vi bygger nettsider for håndverksbedrifter som vil vokse. Fast pris, rask levering.</p>
+        <div class="footer-brand__social">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="#787c82" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__label">Tjenester</div>
+        <ul class="footer-col__list">
+          <li><a href="tjenester.html">Ny nettside</a></li>
+          <li><a href="tjenester.html">Redesign</a></li>
+          <li><a href="tjenester.html">Service-avtale</a></li>
+          <li><a href="#">SEO-optimalisering</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__label">Om oss</div>
+        <ul class="footer-col__list">
+          <li><a href="om-oss.html">Hvem vi er</a></li>
+          <li><a href="#">Referanser</a></li>
+          <li><a href="tjenester.html#prising">Priser</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col__label">Kontakt</div>
+        <ul class="footer-col__list">
+          <li><a href="mailto:hei@mediegruppen.no">hei@mediegruppen.no</a></li>
+          <li><a href="tel:+4748118680">+47 481 18 680</a></li>
+          <li><a href="#" class="js-popup">Bestill en samtale</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-bottom__copy">© 2026 Mediegruppen AS. Alle rettigheter forbeholdt.</span>
+      <div class="footer-bottom__links">
+        <a href="personvern.html">Personvern</a>
+        <a href="personvern.html#cookies">Cookies</a>
+        <a href="vilkår.html">Vilkår</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- POPUP -->
+  <div class="popup-overlay" id="kontaktPopup">
+    <div class="popup-backdrop" onclick="closeContactPopup()"></div>
+    <div class="popup-card">
+      <div class="popup-left">
+        <div class="popup-left-top">
+          <div class="popup-brand-dot">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L16 6V12L9 16L2 12V6L9 2Z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/></svg>
+          </div>
+          <p class="popup-left-heading">La oss ta en prat om nettsiden din</p>
+          <p class="popup-left-sub">Vi hjelper deg med å få en nettside som faktisk gjør jobben — og som du er stolt av.</p>
+        </div>
+        <div class="popup-trust">
+          <div class="popup-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Svar innen én arbeidsdag
+          </div>
+          <div class="popup-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Ingen bindingstid
+          </div>
+          <div class="popup-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Fast pris — ingen overraskelser
+          </div>
+        </div>
+      </div>
+      <div class="popup-right">
+        <button class="popup-close" onclick="closeContactPopup()">&times;</button>
+        <div id="popupFormView">
+          <h2 class="popup-right-heading">Send oss en melding</h2>
+          <p class="popup-right-sub">Vi tar kontakt innen én arbeidsdag.</p>
+          <form class="popup-form" id="popupForm" onsubmit="submitPopupForm(event)">
+            <div class="popup-form-row">
+              <input class="popup-input" type="text" name="name" placeholder="Navn" required />
+              <input class="popup-input" type="email" name="email" placeholder="E-post" required />
+            </div>
+            <input class="popup-input" type="text" name="company" placeholder="Bedrift / Nettside" />
+            <textarea class="popup-textarea" name="message" placeholder="Hva kan vi hjelpe med?"></textarea>
+            <button class="popup-submit" type="submit">Send melding</button>
+          </form>
+        </div>
+        <div class="popup-success" id="popupSuccess">
+          <div class="popup-success-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>Meldingen er sendt!</h3>
+          <p>Vi tar kontakt innen én arbeidsdag.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openContactPopup() {
+      document.getElementById('kontaktPopup').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeContactPopup() {
+      document.getElementById('kontaktPopup').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeContactPopup();
+    });
+    document.addEventListener('mg-kontakt', openContactPopup);
+
+    var SUPABASE_URL = 'https://seevzkxodkvgiffanacg.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNlZXZ6a3hvZGt2Z2lmZmFuYWNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDUzODksImV4cCI6MjA4NTk4MTM4OX0.bGUpZQk1xDSVrinv9YzaeZHHHJyhKpf_54ywZyHWt6g';
+
+    function submitPopupForm(e) {
+      e.preventDefault();
+      var form = document.getElementById('popupForm');
+      var submitBtn = form.querySelector('.popup-submit');
+      var originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sender...';
+      submitBtn.disabled = true;
+      var name    = form.querySelector('[name="name"]').value || '';
+      var email   = form.querySelector('[name="email"]').value || '';
+      var company = form.querySelector('[name="company"]').value || '';
+      var message = form.querySelector('[name="message"]').value || '';
+      fetch(SUPABASE_URL + '/rest/v1/leads', {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ name, email, message: company + (message ? '\n' + message : ''), service_type: 'Tjenester', source: 'tjenester' })
+      });
+      var emailData = new FormData();
+      emailData.append('name', name);
+      emailData.append('email', email);
+      emailData.append('message', (company ? 'Bedrift: ' + company + '\n' : '') + message);
+      emailData.append('_subject', 'Ny kontaktforespørsel fra ' + name);
+      emailData.append('_captcha', 'false');
+      fetch('https://formsubmit.co/ajax/birbra.bb@gmail.com', { method: 'POST', body: emailData })
+        .then(function(r) {
+          if (r.ok) {
+            document.getElementById('popupFormView').style.display = 'none';
+            document.getElementById('popupSuccess').style.display = 'block';
+          } else {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            alert('Noe gikk galt. Prøv igjen.');
+          }
+        })
+        .catch(function() {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+          alert('Noe gikk galt. Prøv igjen.');
+        });
+    }
+
+    document.querySelectorAll('.tjeneste__cta, .page-hero__btn-primary, .prising-kort__cta, .footer-cta__btn, .js-popup').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        openContactPopup();
+      });
+    });
+  </script>
+
+  <!-- MG ANIMATE ENGINE -->
+  <script>
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+    const FROM = {
+      'fade-up':    (el) => ({ opacity: 0, y:  parseFloat(el.dataset.y ?? 22) }),
+      'fade-down':  (el) => ({ opacity: 0, y: -parseFloat(el.dataset.y ?? 18) }),
+      'fade-left':  (el) => ({ opacity: 0, x: -parseFloat(el.dataset.x ?? 40) }),
+      'fade-right': (el) => ({ opacity: 0, x:  parseFloat(el.dataset.x ?? 40) }),
+      'fade-in':    ()   => ({ opacity: 0 }),
+      'scale-in':   ()   => ({ opacity: 0, scale: 0.96, y: 8 }),
+    };
+    const TO = { opacity: 1, x: 0, y: 0, scale: 1, clearProps: 'transform,opacity' };
+    const heroEls = document.querySelectorAll('[data-animate][data-hero]');
+    if (heroEls.length) {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      heroEls.forEach(el => {
+        const type = el.dataset.animate;
+        const delay = parseFloat(el.dataset.delay ?? 0);
+        const duration = parseFloat(el.dataset.duration ?? 0.7);
+        if (type === 'stagger') {
+          const kids = Array.from(el.children);
+          const stagger = parseFloat(el.dataset.stagger ?? 0.12);
+          tl.fromTo(kids, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration, stagger, clearProps: 'transform,opacity' }, delay);
+        } else {
+          const from = (FROM[type] ?? FROM['fade-up'])(el);
+          tl.fromTo(el, from, { ...TO, duration }, delay);
+        }
+      });
+    }
+    document.querySelectorAll('[data-animate]:not([data-hero])').forEach(el => {
+      const type = el.dataset.animate;
+      const start = el.dataset.trigger ?? 'top 82%';
+      const delay = parseFloat(el.dataset.delay ?? 0);
+      const duration = parseFloat(el.dataset.duration ?? 0.7);
+      const ease = 'power3.out';
+      const st = { trigger: el, start, once: true };
+      if (type === 'stagger') {
+        const kids = Array.from(el.children);
+        const stagger = parseFloat(el.dataset.stagger ?? 0.12);
+        gsap.fromTo(kids, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration, ease, stagger, delay, clearProps: 'transform,opacity', scrollTrigger: st });
+        return;
+      }
+      const from = (FROM[type] ?? FROM['fade-up'])(el);
+      gsap.fromTo(el, from, { ...TO, duration, ease, delay, scrollTrigger: st });
+    });
+  })();
+  </script>
+
+</body>
+</html>

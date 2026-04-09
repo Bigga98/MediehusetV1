@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personvern — Mediegruppen</title>
+  <meta name="description" content="Personvernerklaering og vilkar for bruk av Mediegruppenens nettsider og tjenester." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Hanken+Grotesk:wght@300;400;500;600&family=Instrument+Sans:wght@400&family=Inter:wght@100;300;400;500&family=Raleway:wght@400;500;600&family=Sarpanch:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 72px;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      padding: 0 80px;
+      z-index: 100;
+      transition: background 0.35s ease, border-bottom 0.35s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navbar.scrolled {
+      background: rgba(250,249,247,0.97);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .navbar.hide-nav {
+      transform: translateY(-100%);
+    }
+
+    .navbar.scrolled .logo { color: #17181c; }
+    .navbar.scrolled .nav-links a { color: rgba(23,24,28,0.50); }
+    .navbar.scrolled .nav-links a::after { background: rgba(23,24,28,0.40); }
+    .navbar.scrolled .nav-links a:hover { color: rgba(23,24,28,0.90); }
+    .navbar.scrolled .nav-links a[aria-current="page"] { color: rgba(23,24,28,0.90); }
+    .navbar.scrolled .nav-links a[aria-current="page"]::after { background: rgba(23,24,28,0.30); }
+    .navbar.scrolled .cta { background: #17181c; color: #ffffff; }
+    .navbar.scrolled .cta:hover { background: rgba(23,24,28,0.82); }
+
+    .navbar .logo {
+      font-family: 'Sarpanch', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      color: #ffffff;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .navbar .logo-flip {
+      width: 22px;
+      height: 22px;
+      perspective: 300px;
+      flex-shrink: 0;
+    }
+
+    .navbar .logo-flip-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navbar .logo:hover .logo-flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .navbar .logo-flip-front,
+    .navbar .logo-flip-back {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .navbar .logo-flip-back {
+      transform: rotateY(180deg);
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 40px;
+      margin: 0 auto;
+      list-style: none;
+      padding: 0;
+    }
+
+    .navbar .nav-links a {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.25s ease;
+      --underline-origin: left;
+    }
+
+    .navbar .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.50);
+      transform: scaleX(0);
+      transform-origin: var(--underline-origin) center;
+      transition: transform 0.25s ease;
+    }
+
+    .navbar .nav-links a:hover { color: rgba(255,255,255,0.92); }
+    .navbar .nav-links a:hover::after { transform: scaleX(1); }
+
+    .navbar .nav-links a[aria-current="page"] { color: rgba(255,255,255,0.92); }
+    .navbar .nav-links a[aria-current="page"]::after {
+      transform: scaleX(1);
+      background: rgba(255,255,255,0.35);
+    }
+
+    .navbar .cta {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+      color: #17181c;
+      background: #ffffff;
+      border: none;
+      border-radius: 100px;
+      padding: 10px 22px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease, opacity 0.2s ease;
+    }
+
+    .navbar .cta:hover { background: rgba(255,255,255,0.88); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      position: relative;
+      width: 100%;
+      min-width: 1440px;
+      height: 540px;
+      background-color: #17181c;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 80px 88px;
+      overflow: hidden;
+    }
+
+    .page-hero__eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .page-hero__heading {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: 88px;
+      line-height: 0.97;
+      letter-spacing: -3px;
+      color: #ffffff;
+      max-width: 940px;
+    }
+
+    .page-hero__body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 100;
+      font-size: 17px;
+      line-height: 26px;
+      color: rgba(255,255,255,0.50);
+      max-width: 500px;
+      margin-top: 24px;
+    }
+
+    .page-hero__rule {
+      position: absolute;
+      bottom: 0;
+      left: 80px;
+      right: 80px;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* ── PERSONVERN INNHOLD ── */
+    .pv {
+      width: 100%;
+      min-width: 1440px;
+      background: #efede9;
+      padding: 80px 80px 100px;
+    }
+
+    .pv__inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .pv__updated {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: rgba(25,23,21,0.4);
+      margin-bottom: 48px;
+    }
+
+    .pv__section {
+      margin-bottom: 48px;
+    }
+
+    .pv__number {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: rgba(25,23,21,0.3);
+      margin-bottom: 10px;
+    }
+
+    .pv__heading {
+      font-family: 'Raleway', sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: #17191b;
+      margin-bottom: 16px;
+    }
+
+    .pv__body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .pv__body p + p { margin-top: 12px; }
+
+    .pv__body ul {
+      margin: 12px 0 0 20px;
+      padding: 0;
+    }
+
+    .pv__body ul li {
+      margin-bottom: 8px;
+      line-height: 1.65;
+    }
+
+    .pv__body strong {
+      font-weight: 500;
+      color: #17191b;
+    }
+
+    .pv__body a {
+      color: #17191b;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .pv__body a:hover { color: #444; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #17191b;
+      width: 100%;
+    }
+
+    .footer__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 64px 80px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .footer__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer__logo {
+      font-family: 'Raleway', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .footer__tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    .footer__col-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin: 0 0 16px;
+    }
+
+    .footer__links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer__links a:hover { color: #ffffff; }
+
+    .footer__bottom {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 80px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__copy {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer__legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer__legal a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer__legal a:hover { color: rgba(255,255,255,0.6); }
+
+    @media (max-width: 768px) {
+      body { overflow-x: hidden; }
+
+      .navbar { padding: 0 20px; }
+      .navbar .nav-links { display: none; }
+
+      .page-hero {
+        min-width: 0;
+        height: auto;
+        padding: 100px 20px 48px;
+      }
+      .page-hero__heading {
+        font-size: 44px;
+        letter-spacing: -1.5px;
+      }
+      .page-hero__body { max-width: 100%; }
+      .page-hero__rule { left: 20px; right: 20px; }
+
+      .pv {
+        min-width: 0;
+        padding: 48px 20px 64px;
+      }
+
+      .footer__inner {
+        grid-template-columns: 1fr;
+        padding: 40px 20px 24px;
+        gap: 28px;
+      }
+      .footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 20px 20px;
+      }
+      .footer__legal { flex-direction: column; gap: 10px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── PAGE HERO ── -->
+  <section class="page-hero">
+
+    <div id="navbar"></div>
+
+    <p class="page-hero__eyebrow">Personvern — Mediegruppen</p>
+    <h1 class="page-hero__heading">Personvern<br>og vilkar.</h1>
+    <p class="page-hero__body">Hvordan vi behandler dine opplysninger og vilkarene for bruk av vare tjenester.</p>
+    <div class="page-hero__rule"></div>
+
+  </section>
+
+
+  <!-- ── PERSONVERN ── -->
+  <section class="pv">
+    <div class="pv__inner">
+
+      <p class="pv__updated">Sist oppdatert: 15. januar 2025</p>
+
+      <div class="pv__section">
+        <p class="pv__number">01</p>
+        <h2 class="pv__heading">Hvem vi er</h2>
+        <div class="pv__body">
+          <p>Mediegruppen er et webdesignbyrå basert i Oslo. Vi hjelper bedrifter med å få moderne nettsider som driver vekst og resultater.</p>
+          <p>Kontaktinformasjon:<br>E-post: <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a></p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">02</p>
+        <h2 class="pv__heading">Hvilke data vi samler inn</h2>
+        <div class="pv__body">
+          <p>Når du fyller ut kontaktskjemaet på nettsiden vår, samler vi inn følgende opplysninger:</p>
+          <ul>
+            <li><strong>Nettside-URL:</strong> Adressen til din eksisterende nettside (hvis aktuelt)</li>
+            <li><strong>E-postadresse:</strong> For å kunne kontakte deg med designforslag</li>
+            <li><strong>Telefonnummer:</strong> Valgfritt felt for enklere kommunikasjon</li>
+            <li><strong>Melding:</strong> Valgfritt felt der du kan beskrive dine ønsker</li>
+            <li><strong>Bedriftsnavn og tjenester:</strong> For nye nettsider, informasjon om din bedrift</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">03</p>
+        <h2 class="pv__heading">Hvorfor vi samler inn data</h2>
+        <div class="pv__body">
+          <p>Vi samler kun inn data som er nødvendig for å:</p>
+          <ul>
+            <li>Lage et skreddersydd designforslag til deg</li>
+            <li>Kontakte deg med forslaget via e-post</li>
+            <li>Følge opp henvendelsen din ved behov</li>
+            <li>Forbedre våre tjenester basert på tilbakemeldinger</li>
+          </ul>
+          <p>Vi bruker aldri dine opplysninger til markedsføring, nyhetsbrev eller spam. Du vil kun motta kommunikasjon relatert til din forespørsel.</p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">04</p>
+        <h2 class="pv__heading">Hvordan data lagres og beskyttes</h2>
+        <div class="pv__body">
+          <p>Dine opplysninger behandles konfidensielt og lagres sikkert:</p>
+          <ul>
+            <li>Skjemadata sendes via kryptert forbindelse (HTTPS)</li>
+            <li>Vi lagrer kun data så lenge det er nødvendig for å behandle din henvendelse</li>
+            <li>Data slettes automatisk etter prosjektet er avsluttet, med mindre du ber om noe annet</li>
+            <li>Kun autoriserte personer hos Mediegruppen har tilgang til dine opplysninger</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">05</p>
+        <h2 class="pv__heading">Tredjeparts tjenester</h2>
+        <div class="pv__body">
+          <p>Vi bruker FormSubmit.co for å håndtere skjemainnsendinger. FormSubmit er en sikker tjeneste som:</p>
+          <ul>
+            <li>Videresender skjemadata til vår e-post</li>
+            <li>Ikke lagrer personopplysninger permanent</li>
+            <li>Bruker kryptert overføring av data</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">06</p>
+        <h2 class="pv__heading">Dine rettigheter</h2>
+        <div class="pv__body">
+          <p>I henhold til personvernlovgivningen (GDPR) har du følgende rettigheter:</p>
+          <ul>
+            <li><strong>Rett til innsyn:</strong> Du kan be om å få vite hvilke opplysninger vi har lagret om deg</li>
+            <li><strong>Rett til retting:</strong> Du kan be om at feilaktige opplysninger blir korrigert</li>
+            <li><strong>Rett til sletting:</strong> Du kan be om at alle dine opplysninger blir slettet</li>
+            <li><strong>Rett til dataportabilitet:</strong> Du kan be om å få utlevert dine data i et lesbart format</li>
+          </ul>
+          <p>For å utøve disse rettighetene, kontakt oss på <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a>.</p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">07</p>
+        <h2 class="pv__heading" id="cookies">Informasjonskapsler (cookies)</h2>
+        <div class="pv__body">
+          <p>Denne nettsiden bruker ingen informasjonskapsler for sporing eller analyse. Vi samler ikke inn data om din nettleseratferd utover det du selv oppgir i skjemaet.</p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">08</p>
+        <h2 class="pv__heading">Kontakt oss</h2>
+        <div class="pv__body">
+          <p>Har du spørsmål om hvordan vi behandler dine personopplysninger? Ta gjerne kontakt:</p>
+          <p>Mediegruppen<br>E-post: <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a><br>Lokasjon: Oslo, Norge</p>
+        </div>
+      </div>
+
+      <div class="pv__section">
+        <p class="pv__number">09</p>
+        <h2 class="pv__heading">Endringer i personvernerklæringen</h2>
+        <div class="pv__body">
+          <p>Vi kan oppdatere denne personvernerklæringen fra tid til annen. Eventuelle endringer vil bli publisert på denne siden med oppdatert dato øverst. Vi anbefaler at du jevnlig sjekker denne siden for å holde deg informert om hvordan vi beskytter dine opplysninger.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER ── -->
+  <div id="footer"></div>
+
+
+  <script src="components/navbar.js"></script>
+  <script src="components/footer.js"></script>
+</body>
+</html>
