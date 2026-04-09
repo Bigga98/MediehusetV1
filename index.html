@@ -20,13 +20,12 @@
   <title>Mediegruppen — Hero + Hva vi leverer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&family=Frank+Ruhl+Libre&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=Sorts+Mill+Goudy&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="brand/tokens.css" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { overflow-y: scroll; }
     body { font-family: var(--font-ui); overflow-x: hidden; }
-    [data-animate] { will-change: transform, opacity; }
     @media (max-width: 768px) {
       * { max-width: 100%; }
       .hero-slider, .hero-slide, .hero-slider-dots,
@@ -519,7 +518,7 @@
       max-width: 78%;
       padding: 8px 11px;
       border-radius: 16px;
-      font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+      font-family: 'Instrument Sans', 'Helvetica Neue', sans-serif;
       font-size: 12px;
       font-weight: 300;
       line-height: 1.45;
@@ -746,17 +745,24 @@
       text-decoration: none;
       margin-top: var(--gap-body-cta);
       background-color: transparent;
-      background-image: linear-gradient(120deg, #222222 0%, #222222 55%, transparent 55%, transparent 100%);
-      background-size: 250% 100%;
-      background-position: right center;
-      transition: background-position 0.4s cubic-bezier(0.25, 0, 0, 1), color 0.3s cubic-bezier(0.25, 0, 0, 1);
+      position: relative;
+      overflow: hidden;
+      transition: color 0.35s cubic-bezier(0.25, 0, 0, 1);
     }
 
-    .faq-cta:hover {
-      background-position: left center;
-      color: var(--color-white);
-      border-color: var(--color-dark);
+    .faq-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--color-dark);
+      transform: translateX(-101%);
+      transition: transform 0.35s cubic-bezier(0.25, 0, 0, 1);
+      z-index: 0;
     }
+
+    .faq-cta:hover::before { transform: translateX(0); }
+    .faq-cta:hover { color: var(--color-white); }
+    .faq-cta > * { position: relative; z-index: 1; }
 
     .faq-list {
       display: flex;
@@ -3344,7 +3350,7 @@
       'fade-in':    ()   => ({ opacity: 0 }),
       'scale-in':   ()   => ({ opacity: 0, scale: 0.96, y: 8 }),
     };
-    const TO = { opacity: 1, x: 0, y: 0, scale: 1, clearProps: 'transform,opacity,will-change' };
+    const TO = { opacity: 1, x: 0, y: 0, scale: 1, force3D: true, clearProps: 'transform,opacity' };
 
     /* ── Hero: load-timeline ── */
     const heroEls = document.querySelectorAll('[data-animate][data-hero]');
