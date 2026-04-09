@@ -18,7 +18,7 @@
     /* ── PAGE HERO ─────────────────────────── */
     .page-hero {
       width: 1440px;
-      background: var(--bg-dark);
+      background: #f5f4f1;
       padding: 164px var(--grid-margin) 112px;
       display: flex;
       flex-direction: column;
@@ -33,7 +33,7 @@
       top: -120px; left: 50%;
       transform: translateX(-50%);
       width: 700px; height: 500px;
-      background: radial-gradient(ellipse at center, rgba(110,140,90,0.13) 0%, transparent 65%);
+      background: radial-gradient(ellipse at center, rgba(110,140,90,0.07) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -41,13 +41,13 @@
       display: inline-flex;
       align-items: center;
       padding: 5px 16px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.1);
       border-radius: 100px;
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 500;
-      color: rgba(255,255,255,0.4);
+      color: rgba(0,0,0,0.45);
       letter-spacing: var(--ls-caps);
       text-transform: uppercase;
       margin-bottom: var(--space-lg);
@@ -58,7 +58,7 @@
       font-family: var(--font-display);
       font-weight: 400;
       font-size: 76px;
-      color: #eef0f1;
+      color: #1a1a18;
       line-height: 1.04;
       letter-spacing: -0.025em;
       max-width: 760px;
@@ -69,7 +69,7 @@
     .page-hero__sub {
       font-family: var(--font-body);
       font-size: var(--type-lead);
-      color: rgba(255,255,255,0.4);
+      color: rgba(0,0,0,0.5);
       line-height: var(--lh-body);
       max-width: 460px;
       margin-bottom: var(--space-xl);
@@ -89,16 +89,16 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      background: #eef0f1;
+      background: #1e1b18;
       border-radius: 100px;
       font-family: var(--font-ui);
       font-weight: 500;
       font-size: var(--type-label);
-      color: var(--bg-dark);
+      color: #f5f4f1;
       text-decoration: none;
       transition: background 0.18s;
     }
-    .page-hero__btn-primary:hover { background: #fff; }
+    .page-hero__btn-primary:hover { background: #333; }
     .page-hero__btn-primary svg {
       width: 13px; height: 13px;
       stroke: currentColor; fill: none;
@@ -110,15 +110,15 @@
     .page-hero__btn-secondary {
       font-family: var(--font-ui);
       font-size: var(--type-label);
-      color: rgba(255,255,255,0.38);
+      color: rgba(0,0,0,0.45);
       text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
+      border-bottom: 1px solid rgba(0,0,0,0.2);
       padding-bottom: 1px;
       transition: color 0.18s, border-color 0.18s;
     }
     .page-hero__btn-secondary:hover {
-      color: rgba(255,255,255,0.65);
-      border-color: rgba(255,255,255,0.35);
+      color: rgba(0,0,0,0.75);
+      border-color: rgba(0,0,0,0.4);
     }
 
     /* ── TJENESTE SEKSJONER ─────────────────── */
@@ -922,6 +922,69 @@
       .popup-left { display: none; }
       .popup-right { padding: 36px 24px 32px; }
     }
+
+    @media (max-width: 768px) {
+      body { overflow-x: hidden; }
+
+      /* Fix all 1440px-width sections */
+      .page-hero, .tjeneste, .tjenester-prosess, .seksjon-prising, .site-footer {
+        width: 100%;
+      }
+
+      /* Page hero */
+      .page-hero {
+        padding: 100px 20px 60px;
+        text-align: left;
+        align-items: flex-start;
+      }
+      .page-hero__heading { font-size: 40px; letter-spacing: -0.02em; }
+      .page-hero__sub { max-width: 100%; }
+      .page-hero__cta-row { flex-wrap: wrap; }
+
+      /* Tjeneste sections */
+      .tjeneste {
+        grid-template-columns: 1fr;
+        padding: 60px 20px;
+        gap: 36px;
+      }
+      .tjeneste--rev .tjeneste__text { order: 1; }
+      .tjeneste--rev .tjeneste__visual { order: 2; }
+      .tjeneste__visual { min-height: 280px; }
+      .tjeneste__heading { font-size: 32px; }
+
+      /* Prosessen */
+      .tjenester-prosess { padding: 60px 20px; }
+      .prosess-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .prosess-grid::before { display: none; }
+
+      /* Prising */
+      .seksjon-prising { padding: 60px 20px; }
+      .prising-grid { grid-template-columns: 1fr; }
+
+      /* Footer */
+      .footer-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 48px 20px;
+        gap: 32px;
+      }
+      .footer-cta__heading { font-size: 36px; }
+      .footer-cta__action { align-items: flex-start; }
+      .footer-body {
+        grid-template-columns: 1fr;
+        padding: 40px 20px 24px;
+        gap: 28px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 20px 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1226,7 +1289,7 @@
         <div class="footer-col__label">Kontakt</div>
         <ul class="footer-col__list">
           <li><a href="mailto:hei@mediegruppen.no">hei@mediegruppen.no</a></li>
-          <li><a href="tel:+4712345678">+47 123 45 678</a></li>
+          <li><a href="tel:+4748118680">+47 481 18 680</a></li>
           <li><a href="#" class="js-popup">Bestill en samtale</a></li>
         </ul>
       </div>
@@ -1234,9 +1297,9 @@
     <div class="footer-bottom">
       <span class="footer-bottom__copy">© 2026 Mediegruppen AS. Alle rettigheter forbeholdt.</span>
       <div class="footer-bottom__links">
-        <a href="#">Personvern</a>
-        <a href="#">Cookies</a>
-        <a href="#">Vilkår</a>
+        <a href="personvern.html">Personvern</a>
+        <a href="personvern.html#cookies">Cookies</a>
+        <a href="vilkår.html">Vilkår</a>
       </div>
     </div>
   </footer>

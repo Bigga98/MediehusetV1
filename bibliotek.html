@@ -110,13 +110,143 @@
     }
 
     .bl-card {
-      background: var(--surface-light);
-      border-radius: 12px;
-      height: 595px;
-      border: 1px solid var(--bg-2);
+      background: #e5e2dd;
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-height: 600px;
     }
 
     .bl-card.hidden { display: none; }
+
+    .bl-card__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bl-card__tag {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #999;
+    }
+
+    .bl-card__title {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #111;
+      line-height: 1.15;
+    }
+
+    .bl-card__desc {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+      max-width: 420px;
+    }
+
+    .bl-card__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 500;
+      color: #111;
+      background: none;
+      border: 1px solid rgba(0,0,0,0.18);
+      border-radius: 4px;
+      padding: 6px 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+      align-self: flex-start;
+    }
+
+    .bl-card__btn:hover {
+      background: rgba(0,0,0,0.06);
+      border-color: rgba(0,0,0,0.3);
+    }
+
+    .bl-card__btn svg {
+      width: 11px;
+      height: 11px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .bl-card__image {
+      flex: 1;
+      border-radius: 4px;
+      background-color: #d4d1cc;
+      background-size: cover;
+      background-position: center top;
+      min-height: 380px;
+      overflow: hidden;
+    }
+
+    .bl-card__image--screenshot {
+      background-size: 100% auto;
+      background-position: top center;
+    }
+
+    @media (max-width: 768px) {
+      body { overflow-x: hidden; }
+
+      .bl-header {
+        padding: 14px 20px;
+      }
+
+      .bl-content {
+        padding: 36px 20px 64px;
+      }
+
+      .bl-heading {
+        font-size: 32px;
+        line-height: 1.15;
+        margin-bottom: 28px;
+        text-align: left;
+      }
+
+      .bl-tabs {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 28px;
+      }
+
+      .bl-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .bl-card {
+        min-height: auto;
+        padding: 20px;
+        gap: 16px;
+      }
+
+      .bl-card__image {
+        min-height: 280px;
+      }
+
+      .bl-card__image--screenshot {
+        min-height: 380px;
+      }
+
+      .bl-card__title {
+        font-size: 22px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -141,12 +271,67 @@
     </div>
 
     <div class="bl-grid">
-      <div class="bl-card" data-bransje="snekker"></div>
-      <div class="bl-card" data-bransje="rorlegger"></div>
-      <div class="bl-card" data-bransje="snekker"></div>
-      <div class="bl-card" data-bransje="handverk"></div>
-      <div class="bl-card" data-bransje="rorlegger"></div>
-      <div class="bl-card" data-bransje="handverk"></div>
+
+      <div class="bl-card" data-bransje="snekker">
+        <div class="bl-card__meta">
+          <span class="bl-card__tag">Byggmester — Konsept</span>
+          <h3 class="bl-card__title">Konstrukt AS</h3>
+          <p class="bl-card__desc">Et eksempel på hvordan en nettside for et byggmesterfirma kan se ut — tydelig struktur, tjenesteoversikt og kontaktflyt.</p>
+          <a href="#" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+        </div>
+        <div class="bl-card__image" style="background-image: url('images/demo-nordbygg-1.jpg');"></div>
+      </div>
+
+      <div class="bl-card" data-bransje="snekker">
+        <div class="bl-card__meta">
+          <span class="bl-card__tag">Snekker / Tømmermann — Konsept</span>
+          <h3 class="bl-card__title">Berge Tre & Bygg</h3>
+          <p class="bl-card__desc">Et eksempel på hvordan en nettside for et snekker- og tømmerfirma kan presentere tjenester, tilbygg og rehabiliteringsprosjekter.</p>
+          <a href="#" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+        </div>
+        <div class="bl-card__image" style="background-image: url('images/demo-rorlegger-1.webp');"></div>
+      </div>
+
+      <div class="bl-card" data-bransje="snekker">
+        <div class="bl-card__meta">
+          <span class="bl-card__tag">Snekker — Konsept</span>
+          <h3 class="bl-card__title">Hagen Interiør</h3>
+          <p class="bl-card__desc">Et eksempel på en nettside for et snekkerfirma med fokus på innredning og interiør — bildegalleri, tjenester og kontakt.</p>
+          <a href="#" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+        </div>
+        <div class="bl-card__image"></div>
+      </div>
+
+      <div class="bl-card" data-bransje="handverk">
+        <div class="bl-card__meta">
+          <span class="bl-card__tag">Blikkenslager — Konsept</span>
+          <h3 class="bl-card__title">Blikkenslagerverksted</h3>
+          <p class="bl-card__desc">Et eksempel på hvordan en blikkenslager kan presentere seg på nett — med tydelig fokus på tak, beslag og kontaktmuligheter.</p>
+          <a href="#" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+        </div>
+        <div class="bl-card__image bl-card__image--screenshot" style="background-image: url('images/demo-blikkenslager-1.jpg');"></div>
+      </div>
+
+      <div class="bl-card" data-bransje="rorlegger">
+        <div class="bl-card__meta">
+          <span class="bl-card__tag">Rørlegger — Konsept</span>
+          <h3 class="bl-card__title">Strand Rør & Bad</h3>
+          <p class="bl-card__desc">Et eksempel på en nettside for en rørleggerbedrift med fokus på bad — tjenestepresentasjon, prosjekter og enkel booking.</p>
+          <a href="#" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+        </div>
+        <div class="bl-card__image"></div>
+      </div>
+
+      <div class="bl-card" data-bransje="handverk">
+        <div class="bl-card__meta">
+          <span class="bl-card__tag">Elektriker — Konsept</span>
+          <h3 class="bl-card__title">Moen Elektro</h3>
+          <p class="bl-card__desc">Et eksempel på en nettside for en elektrikerbedrift — enkel struktur som gjør det lett for nye kunder å finne frem og ta kontakt.</p>
+          <a href="#" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+        </div>
+        <div class="bl-card__image"></div>
+      </div>
+
     </div>
   </div>
 

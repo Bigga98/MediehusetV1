@@ -30,8 +30,10 @@
     body { font-family: var(--font-ui); overflow-x: hidden; }
     @media (max-width: 768px) {
       * { max-width: 100%; }
-      .hero-slider, .hero-slide, .hero-slider-dots { max-width: none; }
-      img, video, svg { max-width: 100%; height: auto; }
+      .hero-slider, .hero-slide, .hero-slider-dots,
+      .wa-bubble, .wa-attachment,
+      .phone-mockup, .phone-mockup * { max-width: none; }
+      img, video { max-width: 100%; height: auto; }
     }
 
     /* ── HERO ─────────────────────────────────── */
@@ -1960,9 +1962,14 @@
       background-color: #faf9f7;
       padding: 96px var(--grid-margin);
       display: flex;
+      flex-wrap: wrap;
       gap: 80px;
       align-items: flex-start;
       border-top: 1px solid #e8e5e0;
+    }
+
+    .seksjon-inkludert > .inkludert__cta-row {
+      flex-basis: 100%;
     }
 
     .inkludert__left {
@@ -2465,7 +2472,7 @@
       .seksjon-inkludert {
         flex-direction: column;
         padding: 60px 20px;
-        gap: 40px;
+        gap: 24px;
       }
 
       .inkludert__left {
@@ -2480,6 +2487,7 @@
       .inkludert__right {
         padding-top: 0;
         width: 100%;
+        gap: 24px;
       }
 
       /* ── BRANSJER ── */
@@ -2490,13 +2498,6 @@
       .seksjon-bransjer__tabs {
         flex-wrap: wrap;
         gap: 8px;
-      }
-
-      .bransjer-demo-btn {
-        margin-left: 0;
-        width: 100%;
-        justify-content: center;
-        margin-top: 8px;
       }
 
       .seksjon-bransjer__grid {
@@ -2595,20 +2596,29 @@
         gap: var(--space-md);
       }
 
-      /* ── BRANSJEBIBLIOTEK TALL-KORT ── */
-      .bransjelib__card--tall {
+      /* ── BRANSJEBIBLIOTEK ── */
+      .bransjelib__cards {
+        flex: none;
         width: 100%;
-        flex-shrink: 1;
-        min-height: 320px;
+        flex-direction: column;
       }
 
       .bransjelib__col {
-        flex-direction: column;
+        flex: none;
         width: 100%;
+        flex-direction: column;
       }
 
-      .bransjelib__col .bransjelib__card {
+      .bransjelib__card {
+        position: relative;
         min-height: 260px;
+        flex: none;
+      }
+
+      .bransjelib__card--tall {
+        width: 100%;
+        flex: none;
+        min-height: 320px;
       }
 
       /* ── SERVICE — TELEFON-MOCKUP ── */
@@ -2622,10 +2632,43 @@
         min-height: 140px;
       }
 
+      /* ── BRANSJER — HORISONTALE KORT ── */
+      .img-placeholder {
+        height: auto;
+      }
+
+      .img-placeholder.horizontal {
+        flex-direction: column;
+      }
+
+      .card-img.horizontal-img {
+        width: 100%;
+        height: 220px;
+        margin: 0 !important;
+        border-radius: 4px 4px 0 0;
+        order: -1;
+      }
+
+      .img-placeholder.horizontal .card-content {
+        order: 1;
+        padding: var(--space-lg);
+      }
+
+      /* Tall-kort: reduser høyde på mobil */
+      .img-placeholder.tall {
+        min-height: auto;
+      }
+
+      .card-img.tall-img {
+        height: 220px;
+      }
+
       /* ── BRANSJER TABS — DEMO-KNAPP ── */
       .bransjer-demo-btn {
-        width: auto;
-        margin-top: 0;
+        flex-basis: 100%;
+        justify-content: center;
+        margin-left: 0;
+        margin-top: 4px;
       }
 
       /* ── HERO CTA ── */
@@ -2667,12 +2710,14 @@
       /* ── INKLUDERT — INTERNE ELEMENTER ── */
       .inkludert__items {
         gap: 24px;
+        margin-bottom: 0;
       }
 
       .inkludert__btn-primary,
       .inkludert__btn-ghost {
-        width: 100%;
+        flex: 1;
         justify-content: center;
+        white-space: nowrap;
       }
     }
 
@@ -2694,7 +2739,7 @@
 
     <div class="cta-row" data-animate="fade-up" data-hero data-delay="0.38">
       <a href="#" class="cta-btn" onclick="openContactPopup(); return false;">Få et utkast <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
-      <span class="scroll-hint">Se en demo <svg viewBox="0 0 341 312" width="13" height="12" fill="#222222"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></span>
+      <a href="#eksempler" class="scroll-hint" onclick="document.getElementById('eksempler').scrollIntoView({behavior:'smooth'}); return false;">Se en demo <svg viewBox="0 0 341 312" width="13" height="12" fill="#222222"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
     </div>
 
     <div class="hero-image" data-animate="fade-up" data-hero data-delay="0.5" data-duration="0.85" data-y="40">
@@ -2853,14 +2898,10 @@
         </div>
       </div>
 
-      <div class="inkludert__cta-row" data-animate="fade-up" data-delay="0.3">
-        <a href="#" class="inkludert__btn-primary" onclick="openContactPopup(); return false;">Kontakt oss <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
-        <a href="#eksempler" class="inkludert__btn-ghost">Se eksempler</a>
-      </div>
     </div>
 
-    <div class="inkludert__right" data-animate="stagger" data-stagger="0.1" data-delay="0.2">
-      <div class="inkludert__item">
+    <div class="inkludert__right">
+      <div class="inkludert__item" data-animate="fade-up" data-delay="0.05">
         <div class="inkludert__item-header">
           <div class="inkludert__icon">
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="url(#grad-icon)" d="m620-284 56-56q6-6 6-14t-6-14L540-505q4-11 6-22t2-25q0-57-40.5-97.5T410-690q-17 0-34 4.5T343-673l94 94-56 56-94-94q-8 16-12.5 33t-4.5 34q0 57 40.5 97.5T408-412q13 0 24.5-2t22.5-6l137 136q6 6 14 6t14-6ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
@@ -2870,7 +2911,7 @@
         <p class="inkludert__item-desc">Vi holder nettsiden oppdatert, sikker og i gang — uten at du trenger å løfte en finger. Alt fra oppdateringer til backup håndteres av oss.</p>
       </div>
 
-      <div class="inkludert__item">
+      <div class="inkludert__item" data-animate="fade-up" data-delay="0.17">
         <div class="inkludert__item-header">
           <div class="inkludert__icon">
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="url(#grad-icon)" d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440ZM331.5-411.5Q320-423 320-440t11.5-28.5Q343-480 360-480t28.5 11.5Q400-457 400-440t-11.5 28.5Q377-400 360-400t-28.5-11.5Zm240 0Q560-423 560-440t11.5-28.5Q583-480 600-480t28.5 11.5Q640-457 640-440t-11.5 28.5Q617-400 600-400t-28.5-11.5ZM241-462q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
@@ -2879,6 +2920,11 @@
         </div>
         <p class="inkludert__item-desc">Du får en fast kontaktperson — ikke en ticketkø. Vi svarer raskt og hjelper deg med alt fra tekstendringer til større oppdateringer.</p>
       </div>
+    </div>
+
+    <div class="inkludert__cta-row" data-animate="fade-up" data-delay="0.3">
+      <a href="#" class="inkludert__btn-primary" onclick="openContactPopup(); return false;">Kontakt oss <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+      <a href="#eksempler" class="inkludert__btn-ghost">Se eksempler</a>
     </div>
   </section>
 
