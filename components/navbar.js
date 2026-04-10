@@ -14,7 +14,7 @@
     { label: 'Tjenester',    href: root + 'tjenester.html' },
     { label: 'Om oss',       href: root + 'om-oss.html' },
     { label: 'Nettside-demoer', href: root + 'bibliotek.html' },
-    { label: 'Brand Guide',  href: root + 'brand/guide.html', meta: true },
+    // { label: 'Brand Guide',  href: root + 'brand/guide.html', meta: true },
   ];
 
   const current = location.pathname;
