@@ -24,9 +24,9 @@
   /* LAYOUT / GRID
      ------------------------------------------ */
   --grid-columns:     12;
-  --grid-margin:      160px;  /* Venstre + høyre sidemargin — innhold starter kol. 2 */
+  --grid-margin:       48px;  /* Venstre + høyre sidemargin — innhold starter kol. 2 */
   --grid-gutter:      24px;   /* Mellom kolonner */
-  --content-width: 1120px;    /* 1440 - 2×160 */
+  --content-width: 1344px;    /* 1440 - 2×48 */
 
   /* SEKSJON-NIVÅ
      ------------------------------------------ */
@@ -67,6 +67,7 @@
      Alt som er knapper, nav, labels, hints. */
   --type-label:      14px;   /* Nav, knapp-tekst, kort-titler. w: 500    */
   --type-caption:    12px;   /* Liten hjelpetekst, fotnoter. w: 400      */
+  --type-card-label: 10px;   /* Knapp-tekst uppercase, kort-label. w: 500 */
 
   /* TYPOGRAFI — Letter-spacing
      ------------------------------------------ */
@@ -75,6 +76,8 @@
   --ls-h2:       -0.02em;
   --ls-body:      0em;
   --ls-caps:      0.05em;   /* Versaler / labels i caps */
+  --ls-card-btn:  0.2em;    /* Knapp-tekst uppercase tracking            */
+  --ls-card-label: 0.2em;   /* Badge/label uppercase tracking            */
 
   /* TYPOGRAFI — Line-height
      ------------------------------------------ */
@@ -94,18 +97,18 @@
      Lyse nivåer er varme nøytrale (beige/lin undertone fra #f5f4f1).
      Bruk i rekkefølge for å skape rytme mellom seksjoner.
      ------------------------------------------ */
-  --bg-0:       #f5f4f1;   /* Hero — varm lin-hvit                      */
-  --bg-1:       #eeece8;   /* Off-white varm — primærflate seksjoner     */
-  --bg-2:       #e4e1da;   /* Lys grå varm — sekundærflate/Demoer       */
-  --bg-3:       #eceae5;   /* Mellomlys varm — Bransjer                 */
+  --bg-0:       #ffffff;   /* Hero                                       */
+  --bg-1:       #ffffff;   /* Primærflate seksjoner                      */
+  --bg-2:       #ffffff;   /* Sekundærflate/Demoer                       */
+  --bg-3:       #ffffff;   /* Bransjer                                   */
   --bg-dark:    #1e1b18;   /* Varm mørkbrun-svart — Prising             */
   --bg-footer:  #2c2926;   /* Varm footer                               */
 
   /* Surface-farger (kort/bokser oppå seksjoner)
-     Lyse seksjoner: --surface-light = varm hvit (løft fra varm bg)
+     Lyse seksjoner: --surface-light = nøytral lys grå på hvit bg
      Mørke seksjoner: --surface-dark / --surface-dark-hi = litt lysere enn bg
      ------------------------------------------ */
-  --surface-light:    #faf9f6;   /* Kort på bg-1/bg-2/bg-3               */
+  --surface-light:    #f4f4f4;   /* Kort på hvit bakgrunn                 */
   --surface-dark:     #252525;   /* Kort på bg-dark                      */
   --surface-dark-hi:  #2e2e2e;   /* Fremhevet kort på bg-dark            */
 

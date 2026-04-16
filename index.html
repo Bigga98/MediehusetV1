@@ -21,14 +21,32 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&display=fallback" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@300;400;500&family=Sora:wght@300;400&family=DM+Sans:wght@400&family=Chakra+Petch:wght@500&family=Funnel+Display:wght@300;400;500&display=fallback" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,200,0,0" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <link rel="stylesheet" href="brand/tokens.css" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { overflow-y: scroll; }
-    body { font-family: var(--font-ui); overflow-x: hidden; }
+    html { overflow-y: scroll; overflow-x: clip; }
+    body { font-family: var(--font-ui); }
+
+    /* ── 12-col grid ─────────────────────────────────── */
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 24px;
+    }
+    .col-full { grid-column: 1 / -1; }
+    .col-1    { grid-column: span 1; }
+    .col-2    { grid-column: span 2; }
+    .col-3    { grid-column: span 3; }
+    .col-4    { grid-column: span 4; }
+    .col-6    { grid-column: span 6; }
+    .col-8    { grid-column: span 8; }
     a, button { -webkit-tap-highlight-color: transparent; }
     @media (max-width: 768px) {
       img, video, svg, iframe, canvas { max-width: 100%; height: auto; }
@@ -36,67 +54,131 @@
 
     /* ── HERO ─────────────────────────────────── */
     .hero {
-      background: #f5f4f1;
+      background: #ffffff;
       width: 100%;
-      min-height: 1346px;
+      padding: 148px 48px 0;
+      display: flex;
+      flex-direction: column;
+      overflow-x: clip;
+    }
+
+    .hero__stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(15,17,23,0.5);
+      margin-bottom: 16px;
+    }
+
+    .hero__stat-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #0d2218;
+      flex-shrink: 0;
+    }
+
+    .hero__heading {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: clamp(48px, 6.5vw, 88px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--color-dark);
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .hero__cta-row {
+      margin-bottom: 48px;
+    }
+
+    .hero__input-wrap {
+      display: flex;
+      align-items: center;
+      background: #efefef;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 12px;
+      padding: 6px;
+      max-width: 500px;
+      gap: 0;
+    }
+
+    .hero__input-wrap input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 12px 18px;
+      font-family: var(--font-ui);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--color-dark);
+    }
+
+    .hero__input-wrap input::placeholder {
+      color: rgba(15,17,23,0.4);
+    }
+
+    .hero__input-wrap button {
+      flex-shrink: 0;
+      background: #071510;
+      color: #ffffff;
+      border: none;
+      border-radius: 999px !important;
+      padding: 12px 22px;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      letter-spacing: 0;
+    }
+
+    .hero__input-wrap button:hover {
+      background: #0d2218;
+    }
+
+    .hero__mockup {
+      width: 100%;
+      height: 540px;
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
       position: relative;
     }
 
-
-    .hero .badge {
-      position: absolute;
-      top: 224px;
-      left: 700px;
-      width: 41px;
-      height: 40px;
-      background-color: var(--color-dark);
-      border-radius: 12px;
-      transform: rotate(5deg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero .badge svg { transform: rotate(-5deg); }
-
-    /* Heading: var(--type-display) = 90px (var fra 88px) */
-    .hero .heading {
-      position: absolute;
-      top: 252px;
-      left: 324px;
-      width: 791px;
-      font-family: var(--font-display);
-      font-weight: 400;
-      color: var(--color-dark);
-      font-size: var(--type-display);
-      text-align: center;
-      letter-spacing: var(--ls-display);
-      line-height: var(--lh-display);
+    /* ── GLOBAL KNAPP-STIL — radius + font + farge ── */
+    .hero .cta-btn,
+    .hero .scroll-hint,
+    .hero__input-wrap button,
+    .hva-vi-leverer .section-btn,
+    .demoer-cta,
+    .faq-cta,
+    .bransjer-demo-btn,
+    .prising-kort__cta,
+    .footer-cta__btn,
+    .inkludert__btn-primary,
+    .inkludert__btn-ghost,
+    .bransjelib__cta,
+    .popup-submit,
+    .tab {
+      border-radius: 100px !important;
+      font-family: 'Funnel Display', sans-serif !important;
+      font-weight: 400 !important;
     }
 
-    /* Undertekst: var(--type-lead) = 20px ✓ */
-    .hero .subtext {
-      position: absolute;
-      top: 474px;
-      left: 406px;
-      width: 628px;
-      font-family: var(--font-body);
-      font-weight: 400;
-      color: #616160;
-      font-size: var(--type-lead);
-      text-align: center;
-      line-height: var(--lh-body);
+    /* Mørke fylte knapper — ren svart */
+    .hero .cta-btn,
+    .hva-vi-leverer .section-btn,
+    .demoer-cta,
+    .popup-submit {
+      background-color: #000000 !important;
     }
 
-    .hero .cta-row {
-      position: absolute;
-      top: 614px;
-      left: 570px;
-      display: flex;
-      align-items: center;
-      gap: var(--space-lg);
-    }
-
-    /* CTA-knapp: var(--type-label) = 14px ✓ */
+    /* CTA-knapp: SUSE, 500, 10px, ls 0.2em, uppercase */
     .hero .cta-btn {
       height: 42px;
       padding: 0 26px;
@@ -105,47 +187,87 @@
       align-items: center;
       justify-content: center;
       background-color: var(--color-dark);
-      border-radius: 0;
+      border-radius: 6px;
       font-family: var(--font-ui);
       font-weight: 500;
       color: var(--color-white);
-      font-size: var(--type-label);
+      font-size: 13px;
+      letter-spacing: 0;
       text-decoration: none;
     }
-    @keyframes arrow-snap {
-      0%   { transform: translateX(0); }
-      30%  { transform: translateX(-3px); }
-      100% { transform: translateX(5px); }
+    /* CTA-knapper — dual-pil animasjon */
+    .hva-vi-leverer .section-btn,
+    .faq-cta,
+    .prising-kort__cta,
+    .inkludert__btn-primary {
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero .cta-btn svg,
-    .hva-vi-leverer .section-btn svg,
-    .faq-cta svg,
-    .bransjelib__cta svg,
-    .bransjer-demo-btn svg,
-    .prising-kort__cta svg,
-    .inkludert__btn-primary svg {
-      width: 13px;
-      height: 13px;
+    /* Høyre pil — glir ut til høyre */
+    .btn-ar {
       fill: currentColor;
-      stroke: none;
       flex-shrink: 0;
-      transition: transform 0.18s;
+      transition: transform 0.35s cubic-bezier(0.0, 0, 0.2, 1), opacity 0.25s ease;
     }
 
-    /* Svarte knapper — snap-animasjon */
-    .hero .cta-btn:hover svg,
-    .hva-vi-leverer .section-btn:hover svg,
-    .inkludert__btn-primary:hover svg,
-    .prising-kort__cta:hover svg {
-      animation: arrow-snap 0.35s cubic-bezier(0.25, 0, 0, 1) forwards;
+    .hva-vi-leverer .section-btn:hover .btn-ar,
+    .faq-cta:hover .btn-ar,
+    .prising-kort__cta:hover .btn-ar,
+    .inkludert__btn-primary:hover .btn-ar {
+      transform: translateX(28px);
+      opacity: 0;
     }
 
-    /* Borderknapper — enkel slide */
-    .faq-cta:hover svg,
-    .bransjelib__cta:hover svg,
-    .bransjer-demo-btn:hover svg {
-      transform: translateX(3px);
+    /* Venstre pil — inline-knapper (absolutt posisjonert) */
+    .btn-al {
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      display: inline-flex;
+      align-items: center;
+      transform: translateX(-32px) translateY(-50%);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.0, 0, 0.2, 1), opacity 0.3s ease;
+    }
+
+    .hva-vi-leverer .section-btn:hover .btn-al,
+    .faq-cta:hover .btn-al,
+    .inkludert__btn-primary:hover .btn-al {
+      transform: translateX(0) translateY(-50%);
+      opacity: 1;
+    }
+
+    /* Venstre pil — prisingknapper (centeret, in-flow) */
+    .prising-kort__cta .btn-al {
+      position: static;
+      transform: none;
+      max-width: 0;
+      overflow: hidden;
+      margin-right: 0;
+      top: auto;
+      left: auto;
+      transition: max-width 0.35s cubic-bezier(0.0, 0, 0.2, 1),
+                  opacity 0.3s ease,
+                  margin-right 0.35s cubic-bezier(0.0, 0, 0.2, 1);
+    }
+    .prising-kort__cta:hover .btn-al {
+      max-width: 26px;
+      margin-right: 6px;
+      opacity: 1;
+    }
+
+    /* Tekst — dytter til høyre */
+    .btn-text {
+      display: inline-block;
+      transition: transform 0.35s cubic-bezier(0.0, 0, 0.2, 1);
+    }
+
+    .hva-vi-leverer .section-btn:hover .btn-text,
+    .faq-cta:hover .btn-text,
+    .inkludert__btn-primary:hover .btn-text,
+    .prising-kort__cta:hover .btn-text {
+      transform: translateX(26px);
     }
     .faq-cta,
     .bransjelib__cta,
@@ -162,59 +284,35 @@
       gap: 10px;
       height: 42px;
       padding: 0 22px;
-      background: #e8e8e5;
-      border-radius: 0;
+      background: #efefed;
+      border-radius: 6px;
       font-family: var(--font-ui);
-      font-weight: 400;
+      font-weight: 500;
       color: #222222;
-      font-size: var(--type-label);
+      font-size: 13px;
       letter-spacing: 0;
       text-decoration: none;
       cursor: pointer;
     }
 
-    .hero .hero-image::after {
+    .hero__mockup::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(20,20,18,0.22);
+      background: rgba(20,20,18,0.12);
       z-index: 1;
       pointer-events: none;
     }
 
-    .hero .hero-image {
-      position: absolute;
-      top: 713px;
-      left: 40px;
-      width: 860px;
-      height: 590px;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .hero .hero-side-box {
-      position: absolute;
-      top: 713px;
-      left: 920px;
-      width: 480px;
-      height: 590px;
-      border-radius: 4px;
-      background-color: var(--bg-2);
-      background-image: url('images/hero-side-new.webp');
-      background-size: cover;
-      background-position: 65% top;
-      overflow: hidden;
-    }
-
     .hero-slider {
       display: flex;
-      width: 200%;
+      width: 300%;
       height: 100%;
       transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .hero-slide {
-      width: 50%;
+      width: 33.333%;
       height: 100%;
       background-size: cover;
       background-repeat: no-repeat;
@@ -235,6 +333,11 @@
       background-image: url('images/hero-side-new.webp');
       background-position: 65% top;
       display: none;
+    }
+
+    .hero-slide--4 {
+      background-image: url('images/mockup-macbook-air-grovstein-nordbygg.jpeg');
+      background-position: center center;
     }
 
     .hero-dot--3 {
@@ -260,7 +363,7 @@
     }
 
     .hero-slider-btn:hover {
-      background: #fff;
+      background: #ffffff;
       transform: translateY(-50%) scale(1.08);
     }
 
@@ -309,7 +412,7 @@
     }
 
     .hero-dot.active {
-      background: #fff;
+      background: #ffffff;
       transform: scale(1.25);
     }
 
@@ -317,100 +420,110 @@
     .seksjon-service {
       width: 100%;
       background-color: var(--bg-1);
-      padding: var(--section-padding-y) var(--grid-margin);
+      padding: 96px 48px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 24px;
+      row-gap: 64px;
+      align-items: start;
     }
 
     .service-top {
+      grid-column: 1 / 8;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
+      align-items: flex-start;
       gap: var(--space-sm);
-      margin-bottom: var(--space-xl);
     }
 
-    .service-badge {
+    .service-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      background: none;
-      color: #888;
+      gap: 8px;
       font-family: var(--font-ui);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0;
-      border-radius: 0;
-    }
-    .service-badge::before {
-      content: '/';
-      font-size: 13px;
-      font-weight: 300;
-      color: #aaa;
-      font-style: italic;
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      margin-bottom: 4px;
     }
 
     .service-heading {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: var(--type-h2);
-      color: #000;
-      line-height: var(--lh-heading);
-      letter-spacing: var(--ls-h2);
-      max-width: 800px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: clamp(28px, 3.5vw, 42px);
+      color: var(--color-dark);
+      line-height: 1.07;
+      letter-spacing: -0.03em;
+      max-width: 580px;
     }
 
     .service-lead {
       font-family: var(--font-body);
-      font-size: var(--type-lead);
-      color: #444;
+      font-weight: 400;
+      font-size: var(--type-body);
+      color: var(--color-mid);
       line-height: var(--lh-body);
-      max-width: 520px;
+      max-width: 480px;
     }
 
     .service-grid {
+      grid-column: 1 / -1;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 24px;
       align-items: center;
     }
 
     .service-phone {
+      grid-column: 1 / 6;
       display: flex;
-      justify-content: center;
-      width: 100%;
+      justify-content: flex-start;
     }
 
     .service-right {
+      grid-column: 7 / 13;
       display: flex;
       flex-direction: column;
-      gap: var(--space-lg);
+      gap: 20px;
     }
 
     .service-right-heading {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: var(--type-h2);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: clamp(20px, 2vw, 28px);
       color: var(--color-dark);
-      line-height: var(--lh-heading);
-      letter-spacing: var(--ls-h2);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
     }
 
     .service-info-boxes {
       display: flex;
       flex-direction: column;
-      gap: var(--space-sm);
+      gap: 10px;
     }
 
     .service-info-box {
       background: var(--surface-light);
-      border-radius: 0;
-      padding: var(--space-lg);
+      border-radius: 10px;
+      padding: 16px 20px;
       font-family: var(--font-body);
-      font-size: var(--type-body);
+      font-weight: 400;
+      font-size: 15px;
       color: var(--color-dark);
       line-height: var(--lh-body);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .service-info-box::before {
+      content: 'check_circle';
+      font-family: 'Material Symbols Outlined';
+      font-size: 18px;
+      font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20;
+      line-height: 1;
+      color: rgba(13,34,24,0.4);
+      flex-shrink: 0;
     }
 
     .phone-mockup {
@@ -445,7 +558,7 @@
 
     /* WA-style header */
     .wa-header {
-      background: #fff;
+      background: #ffffff;
       padding: 44px 14px 10px;
       display: flex;
       align-items: center;
@@ -518,7 +631,7 @@
       max-width: 78%;
       padding: 8px 11px;
       border-radius: 16px;
-      font-family: 'Instrument Sans', 'Helvetica Neue', sans-serif;
+      font-family: 'SUSE', monospace;
       font-size: 12px;
       font-weight: 300;
       line-height: 1.45;
@@ -548,7 +661,7 @@
       display: flex;
       align-items: center;
       gap: 9px;
-      background: #fff;
+      background: #ffffff;
       border-radius: 12px;
       padding: 8px 11px;
       max-width: 78%;
@@ -625,7 +738,7 @@
       align-items: center;
       padding: 8px 12px 20px;
       gap: 8px;
-      background: #fff;
+      background: #ffffff;
       border-top: 1px solid #ebebeb;
       flex-shrink: 0;
     }
@@ -683,7 +796,7 @@
 
     .service-right-text {
       font-family: var(--font-heading);
-      font-weight: 500;
+      font-weight: 400;
       font-size: var(--type-h2);
       color: #000;
       line-height: var(--lh-heading);
@@ -696,80 +809,86 @@
     .seksjon-faq {
       width: 100%;
       background-color: var(--bg-2);
-      padding: var(--section-padding-y) var(--grid-margin);
+      padding: 96px 48px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 24px;
+      row-gap: 48px;
       align-items: start;
     }
 
     .faq-left {
+      grid-column: 3 / 11;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 48px;
+    }
+
+    .faq-left__text {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
       gap: 0;
-      padding-top: var(--space-sm);
+    }
+
+    .faq-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-ui);
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      margin-bottom: 12px;
     }
 
     .faq-heading {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: var(--type-h2);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: clamp(32px, 3.5vw, 48px);
       color: var(--color-dark);
-      line-height: var(--lh-heading);
-      letter-spacing: var(--ls-h2);
+      line-height: 1.07;
+      letter-spacing: -0.03em;
     }
 
     .faq-subtext {
       font-family: var(--font-body);
+      font-weight: 400;
       font-size: var(--type-body);
-      color: var(--color-mid);
+      color: rgba(0,0,0,0.45);
       line-height: var(--lh-body);
-      max-width: 340px;
-      margin-top: var(--gap-heading-body);   /* 12px — heading→tekst */
+      margin-top: 12px;
     }
 
     .faq-cta {
       display: inline-flex;
       align-items: center;
-      padding: 10px 22px;
-      border-radius: 4px;
-      border: 1px solid var(--color-dark);
-      font-family: var(--font-ui);
-      font-weight: 500;
-      font-size: var(--type-label);
-      color: var(--color-dark);
+      flex-shrink: 0;
+      padding: 12px 24px;
+      border: none;
+      font-size: 13px;
+      letter-spacing: 0;
+      color: var(--color-white);
       text-decoration: none;
-      margin-top: var(--gap-body-cta);
-      background-color: transparent;
+      background-color: var(--color-dark);
       position: relative;
       overflow: hidden;
-      transition: color 0.35s cubic-bezier(0.25, 0, 0, 1);
+      transition: background 0.15s;
     }
 
-    .faq-cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--color-dark);
-      transform: translateX(-101%);
-      transition: transform 0.35s cubic-bezier(0.25, 0, 0, 1);
-      z-index: 0;
-    }
-
-    .faq-cta:hover::before { transform: translateX(0); }
-    .faq-cta:hover { color: var(--color-white); }
-    .faq-cta > * { position: relative; z-index: 1; }
+    .faq-cta:hover { background: #333; }
 
     .faq-list {
+      grid-column: 3 / 11;
       display: flex;
       flex-direction: column;
-      gap: var(--space-sm);
+      gap: 8px;
     }
 
     .faq-item {
       background: var(--surface-light);
-      border-radius: 0;
+      border-radius: 10px;
       overflow: hidden;
     }
 
@@ -778,16 +897,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: var(--space-lg) var(--space-lg);
+      padding: 0 20px;
+      height: 56px;
       background: none;
       border: none;
       cursor: pointer;
-      font-family: var(--font-body);
+      font-family: 'DM Sans', sans-serif;
       font-weight: 400;
       font-size: var(--type-body);
       color: var(--color-dark);
       text-align: left;
-      line-height: var(--lh-ui);
+      line-height: 1;
     }
 
     .faq-icon {
@@ -806,10 +926,11 @@
 
     .faq-answer {
       font-family: var(--font-body);
+      font-weight: 400;
       font-size: 15px;
       color: var(--color-mid);
       line-height: var(--lh-body);
-      padding: 0 var(--space-lg) var(--space-lg);
+      padding: 0 24px var(--space-lg);
       height: 0;
       overflow: hidden;
       opacity: 0;
@@ -822,65 +943,110 @@
     }
 
     /* ── SEKSJON BRANSJER ────────────────────── */
+    .seksjon-tom-boks {
+      width: 100%;
+      background-color: #ffffff;
+      padding: 96px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .tom-boks {
+      width: 100%;
+      max-width: 860px;
+      background: #f5f5f3;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 24px;
+      gap: 24px;
+      transition: background 0.35s cubic-bezier(0.25, 0, 0, 1), transform 0.35s cubic-bezier(0.25, 0, 0, 1), box-shadow 0.35s cubic-bezier(0.25, 0, 0, 1);
+    }
+    .tom-boks:hover {
+      background: #e8e8e6;
+    }
+    .tom-boks__bilde {
+      width: 240px;
+      height: 240px;
+      flex-shrink: 0;
+      background: #e2e2e0;
+      border-radius: 4px;
+    }
+    .tom-boks__innhold {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 24px 24px;
+    }
+    .tom-boks__undertekst {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: #222;
+      line-height: 1.6;
+      margin-top: 24px;
+      max-width: 380px;
+    }
+    .tom-boks__label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 34px;
+      font-weight: 400;
+      color: #111;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
     .seksjon-bransjer {
       width: 100%;
       background-color: var(--bg-3);
-      padding: var(--section-padding-y) var(--grid-margin);
+      padding: 96px 48px;
       display: flex;
       flex-direction: column;
       gap: 0;
     }
 
     .seksjon-bransjer__heading {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: var(--type-h2);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: clamp(28px, 3.5vw, 42px);
       color: #080808;
-      line-height: var(--lh-heading);
-      letter-spacing: var(--ls-h2);
-      max-width: 633px;
-      margin-bottom: var(--space-xl);
+      line-height: 1.07;
+      letter-spacing: -0.03em;
+      max-width: 580px;
+      margin-bottom: 48px;
     }
 
-    .seksjon-bransjer__tabs {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      margin-bottom: var(--space-xl);
+    .seksjon-bransjer__cta {
+      margin-top: 32px;
     }
 
     .bransjer-demo-btn {
-      margin-left: auto;
-      padding: 9px 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
       border-radius: 4px;
       border: 1px solid var(--color-dark);
       background: transparent;
       font-family: var(--font-ui);
-      font-weight: 400;
-      font-size: var(--type-label);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0;
       color: var(--color-dark);
       cursor: pointer;
       text-decoration: none;
       transition: background 0.15s, color 0.15s;
     }
 
-
-    .tab {
-      padding: 9px 20px;
-      border-radius: 4px;
-      border: none;
-      background: var(--bg-2);
-      font-family: var(--font-ui);
-      font-weight: 400;
-      font-size: var(--type-label);
-      color: var(--color-dark);
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
+    .bransjer-demo-btn svg {
+      width: 12px;
+      height: 12px;
     }
 
-    .tab:hover { background: var(--surface-light); }
-
-    .tab.active {
+    .bransjer-demo-btn:hover {
       background: var(--color-dark);
       color: var(--color-white);
     }
@@ -895,7 +1061,11 @@
       display: flex;
       flex-direction: column;
       gap: var(--space-lg);
-      will-change: transform, opacity;
+    }
+
+    .col-right {
+      display: flex;
+      flex-direction: column;
     }
 
     .img-placeholder {
@@ -908,8 +1078,8 @@
     }
 
     .img-placeholder.tall {
-      height: 100%;
-      min-height: 733px;
+      flex: 1;
+      min-height: 600px;
     }
 
     .card-img {
@@ -931,10 +1101,10 @@
 
     .card-img.horizontal-img {
       width: 45%;
-      height: auto;
+      height: 100%;
       flex-shrink: 0;
-      margin: var(--space-lg) 0 var(--space-lg) var(--space-lg);
-      border-radius: 4px;
+      margin: 0;
+      border-radius: 0;
     }
 
     .card-content {
@@ -946,60 +1116,77 @@
 
     .card-tag {
       font-family: var(--font-ui);
-      font-size: var(--type-caption);
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: var(--ls-caps);
+      letter-spacing: 0.07em;
       text-transform: uppercase;
-      color: #4e4e4e;
+      color: rgba(15,17,23,0.45);
     }
 
     .card-title {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 22px;
       color: var(--color-dark);
-      line-height: var(--lh-heading);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
 
     .card-desc {
-      font-family: var(--font-body);
-      font-size: var(--type-body);
-      color: #666;
-      line-height: var(--lh-body);
-      margin-top: var(--space-xs);
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: rgba(15,17,23,0.55);
+      line-height: 1.65;
+      margin-top: 6px;
     }
 
     /* ── HVA VI LEVERER ───────────────────────── */
     .hva-vi-leverer {
-      width: 100%;
       background-color: var(--bg-1);
-      padding: 96px var(--grid-margin);
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+      padding: calc(var(--section-padding-y) * 2) 48px;
+      box-sizing: border-box;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--grid-gutter);
+      position: relative;
+    }
+
+    .hva-vi-leverer .hvl-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-ui);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: #000000;
+      margin-bottom: var(--space-sm);
     }
 
     .hva-vi-leverer .section-heading {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      color: var(--color-dark);
-      font-size: var(--type-h2);
-      letter-spacing: var(--ls-h2);
-      line-height: var(--lh-heading);
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 400;
+      line-height: 1.07;
+      letter-spacing: -0.03em;
+      color: #000000;
     }
 
     .hva-vi-leverer .section-text {
-      width: 628px;
-      font-family: var(--font-body);
-      font-weight: 400;
-      color: #555;
-      font-size: var(--type-body);
-      line-height: var(--lh-body);
-      margin-top: var(--space-sm);   /* 12px — tett på heading */
+      font-family: 'Sora', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(15,17,23,0.75);
+      margin-top: var(--space-sm);
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hva-vi-leverer .section-btn {
-      align-self: flex-start;
       display: inline-flex;
       align-items: center;
       gap: 7px;
@@ -1009,61 +1196,107 @@
       font-family: var(--font-ui);
       font-weight: 500;
       color: var(--color-white);
-      font-size: var(--type-label);
+      font-size: 13px;
+      letter-spacing: 0;
       text-decoration: none;
       margin-top: var(--space-lg);   /* 24px — ny handling */
     }
 
     .hva-vi-leverer .cards {
-      display: flex;
-      gap: var(--grid-gutter);
-      margin-top: var(--space-xl);   /* 48px — nytt innholdsnivå */
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+      margin-top: var(--gap-cta-content);
     }
 
     .hva-vi-leverer .card {
-      flex: 1;
-      height: 320px;
-      background-color: var(--bg-2);
+      background: #f6f6f6;
+      border-radius: 6px;
+      padding: var(--card-padding) var(--card-padding) var(--space-sm) var(--card-padding);
+      display: block;
+      overflow: hidden;
+      min-height: 380px;
+      transition: background 0.2s ease;
+      position: relative;
+    }
+
+    .card__deco {
+      position: absolute;
+      bottom: 16px;
+      right: 20px;
+      font-family: 'Material Symbols Outlined';
+      font-size: 80px;
+      font-variation-settings: 'FILL' 0, 'wght' 100, 'GRAD' -25, 'opsz' 48;
+      line-height: 1;
+      color: rgba(15,17,23,0.75);
+      pointer-events: none;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+
+    .hva-vi-leverer .card:hover .card__deco {
+      color: rgba(30,80,160,0.9);
+    }
+    .hva-vi-leverer .card:hover {
+      background: #c8d8f0;
+    }
+    .hva-vi-leverer .card:hover .card-label {
+      background: #7faad4;
+    }
+
+    .hva-vi-leverer .card-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-ui);
+      font-size: var(--type-card-label);
+      font-weight: 500;
+      letter-spacing: var(--ls-card-label);
+      text-transform: uppercase;
+      color: rgba(15,17,23,0.45);
+      background: rgba(15,17,23,0.06);
+      transition: background 0.2s ease;
       border-radius: 4px;
-      padding: var(--card-padding);
+      padding: 4px 8px;
+      margin-bottom: var(--space-sm);
+      width: fit-content;
     }
 
     .hva-vi-leverer .card-icon {
-      width: 42px;
-      height: 44px;
-      background-color: var(--color-dark);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-lg);
+      font-family: 'Material Symbols Outlined';
+      font-size: 14px;
+      font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20;
+      color: rgba(15,17,23,0.45);
+      flex-shrink: 0;
+      line-height: 1;
+      user-select: none;
     }
 
-    .hva-vi-leverer .card-icon svg {
-      width: 20px;
-      height: 20px;
-      fill: none;
-      stroke: #fff;
-      stroke-width: 1.5;
-    }
-
-    /* Kort-tittel: var(--type-body) = 16px, 600 ✓ */
+    /* Kort-tittel: Inter, 400, 24px, ls -0.03em, lh 1.15 */
     .hva-vi-leverer .card-title {
-      font-family: var(--font-ui);
-      font-weight: 600;
-      color: var(--color-dark);
-      font-size: var(--type-body);
-      line-height: var(--lh-ui);
-      margin-bottom: var(--space-xs);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: #000000;
+      margin-bottom: var(--space-sm);
     }
 
-    /* Kort-beskrivelse: var(--type-label) = 14px (var fra 14px ✓) */
+    .hva-vi-leverer .card-img {
+      height: 220px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      margin: var(--space-lg) 0 0 0;
+    }
+
+    /* Kort-beskrivelse: Sora, 300, 13px, lh 1.7 */
     .hva-vi-leverer .card-desc {
-      font-family: var(--font-body);
-      font-weight: 400;
-      color: #666;
-      font-size: var(--type-label);
-      line-height: var(--lh-body);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(15,17,23,0.75);
     }
 
     /* ── DEMOER ──────────────────────────────── */
@@ -1092,15 +1325,17 @@
       background: var(--color-dark);
       color: #cfdeca;
       font-family: var(--font-ui);
-      font-size: var(--type-caption);
-      font-weight: 400;
+      font-size: var(--type-card-label);
+      font-weight: 500;
+      letter-spacing: var(--ls-card-label);
+      text-transform: uppercase;
       border-radius: 100px;
       margin-bottom: var(--space-sm);
     }
 
     .demoer-heading {
       font-family: var(--font-heading);
-      font-weight: 600;
+      font-weight: 400;
       font-size: var(--type-h2);
       color: var(--color-dark);
       line-height: var(--lh-heading);
@@ -1110,6 +1345,7 @@
 
     .demoer-lead {
       font-family: var(--font-body);
+      font-weight: 300;
       font-size: var(--type-body);
       color: #666;
       line-height: var(--lh-body);
@@ -1125,8 +1361,9 @@
       background-color: var(--color-dark);
       border-radius: 100px;
       font-family: var(--font-ui);
-      font-weight: 500;
-      font-size: var(--type-label);
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0;
       color: var(--color-white);
       text-decoration: none;
       transition: opacity 0.15s;
@@ -1139,10 +1376,7 @@
       height: 13px;
       fill: currentColor;
       stroke: none;
-      transition: transform 0.15s;
     }
-
-    .demoer-cta:hover svg { transform: translateX(3px); }
 
     .demoer-right {
       display: flex;
@@ -1220,9 +1454,9 @@
 
     .demo-kort__bransje {
       font-family: var(--font-ui);
-      font-size: var(--type-caption);
+      font-size: var(--type-card-label);
       font-weight: 500;
-      letter-spacing: var(--ls-caps);
+      letter-spacing: var(--ls-card-label);
       text-transform: uppercase;
       color: var(--color-mid);
     }
@@ -1250,8 +1484,8 @@
     /* ── PRISING ─────────────────────────────── */
     .seksjon-prising {
       width: 100%;
-      background-color: #222222;
-      padding: 96px var(--grid-margin);
+      background-color: #000000;
+      padding: 96px 48px;
     }
 
     .prising-inner {
@@ -1260,11 +1494,24 @@
       align-items: center;
     }
 
-    .prising-heading {
+    .prising-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
       font-family: var(--font-ui);
-      font-weight: 300;
-      font-size: var(--type-h2);
-      color: #f0f1f2;
+      font-size: var(--type-card-label);
+      font-weight: 500;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: var(--space-lg);
+    }
+
+    .prising-heading {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: clamp(32px, 4vw, 56px);
+      color: var(--color-white);
       line-height: var(--lh-heading);
       letter-spacing: var(--ls-h2);
       text-align: center;
@@ -1273,14 +1520,15 @@
 
     .prising-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-lg);
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 12px;
       width: 100%;
+      max-width: 100%;
     }
 
     .prising-kort {
-      background-color: var(--surface-dark);
-      border-radius: 0px;
+      background-color: #f4f2f0;
+      border-radius: 10px;
       padding: var(--space-xl) var(--space-lg) var(--space-lg);
       display: flex;
       flex-direction: column;
@@ -1289,59 +1537,93 @@
     }
 
     .prising-kort--featured {
-      background-color: var(--surface-dark-hi);
+      background-color: #f4f2f0;
     }
+
+    /* Knappefarge per pakke */
+    .prising-kort--standard .prising-kort__cta {
+      background: #122b1a;
+    }
+    .prising-kort--standard .prising-kort__cta:hover {
+      background: #1a3d24;
+    }
+
+    .prising-kort--featured .prising-kort__cta {
+      background: #0a1e11;
+    }
+    .prising-kort--featured .prising-kort__cta:hover {
+      background: #112b18;
+    }
+
+    .prising-kort--enterprise .prising-kort__cta {
+      background: #180c2e;
+    }
+    .prising-kort--enterprise .prising-kort__cta:hover {
+      background: #231040;
+    }
+
 
     .prising-kort__badge {
       position: absolute;
       top: var(--space-lg);
       right: var(--space-lg);
       padding: 4px 12px;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.08);
       border-radius: 100px;
       font-family: var(--font-ui);
-      font-size: var(--type-caption);
+      font-size: var(--type-card-label);
       font-weight: 500;
-      color: #b0bcc8;
-      letter-spacing: var(--ls-caps);
+      color: var(--color-mid);
+      letter-spacing: var(--ls-card-label);
       text-transform: uppercase;
+    }
+
+    .prising-kort__tittel {
+      font-family: 'Funnel Display', sans-serif;
+      font-weight: 400;
+      font-size: 22px;
+      color: #111;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
     }
 
     .prising-kort__navn {
       font-family: var(--font-ui);
-      font-size: var(--type-caption);
+      font-size: var(--type-card-label);
       font-weight: 500;
-      color: #868891;
-      letter-spacing: var(--ls-caps);
+      color: #888;
+      letter-spacing: var(--ls-card-label);
       text-transform: uppercase;
     }
 
     .prising-kort__pris {
       display: flex;
       align-items: baseline;
-      gap: 6px;
+      gap: var(--space-xs);
     }
 
     .prising-kort__belop {
-      font-family: var(--font-ui);
+      font-family: 'DM Sans', sans-serif;
       font-weight: 300;
-      font-size: 52px;
-      color: #f0f1f2;
+      font-size: clamp(40px, 5vw, 64px);
+      color: #111;
       line-height: 1;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
     }
 
     .prising-kort__valuta {
-      font-family: var(--font-body);
-      font-size: var(--type-body);
-      color: #6b6d72;
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: #888;
     }
 
     .prising-kort__desc {
-      font-family: var(--font-body);
-      font-size: var(--type-label);
-      color: #6b6d72;
-      line-height: var(--lh-body);
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: #888;
+      line-height: 1.65;
       margin-top: calc(-1 * var(--space-sm));
     }
 
@@ -1363,22 +1645,40 @@
       display: flex;
       align-items: flex-start;
       gap: var(--space-sm);
-      font-family: var(--font-body);
-      font-size: var(--type-label);
-      color: #bfc0c4;
-      line-height: var(--lh-ui);
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: #444;
+      line-height: var(--lh-body);
     }
 
     .prising-kort__features li svg {
-      width: 14px;
-      height: 14px;
-      stroke: #7a9e74;
+      width: 12px;
+      height: 12px;
+      stroke: #2d7a4f;
       fill: none;
       stroke-width: 2.5;
       stroke-linecap: round;
       stroke-linejoin: round;
       flex-shrink: 0;
+    }
+
+    .prising-kort__features li svg {
+      background: transparent;
+    }
+
+    .prising-kort__check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
       margin-top: 1px;
+    }
+
+    .prising-kort__features li svg {
+      stroke: #444 !important;
     }
 
     .prising-kort__cta {
@@ -1386,36 +1686,111 @@
       align-items: center;
       justify-content: center;
       height: 49px;
-      border-radius: 0px;
-      background: var(--bg-dark);
+      border-radius: 8px !important;
+      background: #1a1a1a;
       font-family: var(--font-ui);
       font-weight: 500;
-      font-size: var(--type-label);
-      color: #f0f1f2;
+      font-size: 13px;
+      letter-spacing: 0;
+      color: #fff;
       text-decoration: none;
       transition: background 0.15s;
     }
 
     .prising-kort__cta:hover {
-      background: #111317;
+      background: #333;
     }
 
-    .prising-kort--featured .prising-kort__cta {
-      background: var(--bg-0);
-      color: var(--color-dark);
+    .prising-kort--utkast .prising-kort__cta {
+      background: #333;
+      color: #fff;
     }
 
-    .prising-kort--featured .prising-kort__cta:hover {
-      background: #fff;
-    }
 
     /* ── FOOTER ──────────────────────────────── */
     .site-footer {
       width: 100%;
-      background-color: #222222;
+      background-color: #111111;
       display: flex;
       flex-direction: column;
       position: relative;
+    }
+
+    .footer-kontakt-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-kontakt-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 72px;
+      background-color: #f4f2f0;
+      color: #111111;
+      font-family: 'Funnel Display', sans-serif;
+      font-weight: 400;
+      font-size: clamp(28px, 4vw, 48px);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      border-radius: 100px;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s ease;
+    }
+
+    .footer-kontakt-btn:hover {
+      color: #111111;
+    }
+
+    .footer-kontakt-btn-text {
+      position: relative;
+      z-index: 1;
+      transition: transform 0.4s cubic-bezier(0.0, 0, 0.2, 1);
+    }
+
+    /* Høyre pil — i layout (holder bredden), glir ut på hover */
+    .fkb-arrow-right {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      margin-left: 20px;
+      margin-top: 9px;
+      color: #111111;
+      transition: transform 0.4s cubic-bezier(0.0, 0, 0.2, 1), opacity 0.3s ease;
+    }
+
+    .footer-kontakt-btn:hover .fkb-arrow-right {
+      transform: translateX(90px);
+      opacity: 0;
+    }
+
+    /* Venstre pil — absolutt posisjonert, glir inn fra venstre */
+    .fkb-arrow-left {
+      position: absolute;
+      left: 72px;
+      top: 50%;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      margin-top: 4px;
+      color: #111111;
+      transform: translateX(-80px) translateY(-50%);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.0, 0, 0.2, 1), opacity 0.35s ease;
+    }
+
+    .footer-kontakt-btn:hover .fkb-arrow-left {
+      transform: translateX(0) translateY(-50%);
+      opacity: 1;
+    }
+
+    .footer-kontakt-btn:hover .footer-kontakt-btn-text {
+      transform: translateX(72px);
     }
 
     .footer-cta {
@@ -1442,10 +1817,10 @@
     }
 
     .footer-cta__heading {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: 58px;
-      color: #eef0f1;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: var(--type-h2);
+      color: #f0ede8;
       line-height: var(--lh-heading);
       letter-spacing: var(--ls-h2);
       max-width: 660px;
@@ -1454,15 +1829,15 @@
 
     .footer-cta__heading em {
       font-style: italic;
-      color: #eef0f1;
+      color: #c8c4be;
     }
 
     .footer-cta__eyebrow {
       display: block;
       font-family: var(--font-ui);
-      font-size: 11px;
+      font-size: var(--type-label);
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: var(--ls-caps);
       text-transform: uppercase;
       color: #6e7a6b;
       margin-bottom: 20px;
@@ -1492,12 +1867,13 @@
       align-items: center;
       gap: var(--icon-gap);
       padding: var(--btn-padding-y) var(--btn-padding-x);
-      background-color: #eef0f1;
-      border-radius: 100px;
+      background-color: #f4f2f0;
+      border-radius: 8px;
       font-family: var(--font-ui);
-      font-weight: 500;
-      font-size: var(--type-label);
-      color: var(--color-dark);
+      font-weight: 300;
+      font-size: 14px;
+      letter-spacing: 0;
+      color: #111111;
       text-decoration: none;
       transition: background 0.18s, transform 0.18s;
       white-space: nowrap;
@@ -1524,7 +1900,7 @@
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       color: #6e7270;
-      letter-spacing: var(--ls-caps);
+      letter-spacing: var(--ls-footer-contact);
       text-transform: uppercase;
     }
 
@@ -1536,8 +1912,8 @@
     }
 
     .footer-brand__wordmark {
-      font-family: var(--font-heading);
-      font-weight: 500;
+      font-family: 'Funnel Display', sans-serif;
+      font-weight: 400;
       font-size: 22px;
       color: #d8dbd6;
       letter-spacing: -0.01em;
@@ -1546,7 +1922,8 @@
 
     .footer-brand__tagline {
       font-family: var(--font-body);
-      font-size: var(--type-label);
+      font-weight: 300;
+      font-size: var(--type-body);
       color: #777b77;
       line-height: var(--lh-body);
       max-width: 260px;
@@ -1592,9 +1969,9 @@
 
     .footer-col__label {
       font-family: var(--font-ui);
-      font-size: 11px;
+      font-size: var(--type-caption);
       font-weight: 500;
-      letter-spacing: var(--ls-caps);
+      letter-spacing: var(--ls-footer-cat);
       text-transform: uppercase;
       color: #7a7d76;
       margin-bottom: var(--space-md);
@@ -1609,7 +1986,8 @@
 
     .footer-col__list a {
       font-family: var(--font-body);
-      font-size: var(--type-label);
+      font-weight: 300;
+      font-size: var(--type-body);
       color: #868891;
       text-decoration: none;
       transition: color 0.15s;
@@ -1630,6 +2008,7 @@
     .footer-bottom__copy {
       font-family: var(--font-ui);
       font-size: var(--type-caption);
+      letter-spacing: var(--ls-article-date);
       color: #6a6d68;
     }
 
@@ -1641,6 +2020,7 @@
     .footer-bottom__links a {
       font-family: var(--font-ui);
       font-size: var(--type-caption);
+      letter-spacing: var(--ls-article-date);
       color: #6a6d68;
       text-decoration: none;
       transition: color 0.15s;
@@ -1650,84 +2030,16 @@
       color: #a0a4a0;
     }
 
-    /* ── KNAPPER — HOVER-GRADIENT ─────────────────────────────────────────
-       Fellesnevner via :is() — unngår hardkoding per knapp.
-       Teknikk: gradient med background-size 200% og background-position
-       som animerer fra venstre (flat) til høyre (gradient synlig).
-    ─────────────────────────────────────────────────────────────────────── */
-
-    /* — Primærknapper (mørk bakgrunn, hvit tekst) — */
-    :is(
-      .hero .cta-btn,
-      .hva-vi-leverer .section-btn,
-      .demoer-cta,
-      .prising-kort__cta
-    ) {
-      background-image: linear-gradient(
-        120deg,
-        #1a1c1e 0%,
-        #1a1c1e 45%,
-        #2e4030 75%,
-        #1e2e38 100%
-      );
-      background-size: 250% 100%;
-      background-position: left center;
-      transition: background-position 0.45s ease, transform 0.2s ease, opacity 0.2s;
+    /* — Primærknapper hover — ren svart, ingen gradient */
+    .hero .cta-btn:hover,
+    .hva-vi-leverer .section-btn:hover,
+    .demoer-cta:hover,
+    .popup-submit:hover {
+      background-color: #1a1a1a !important;
+      opacity: 1;
     }
 
-    :is(
-      .hero .cta-btn,
-      .hva-vi-leverer .section-btn,
-      .demoer-cta,
-      .prising-kort__cta
-    ):hover {
-      background-position: right center;
-      opacity: 1; /* overskriver .demoer-cta:hover { opacity: 0.85 } */
-    }
-
-    /* Featured pricing-kort har lys bakgrunn — egen gradient */
-    .prising-kort--featured .prising-kort__cta {
-      background-image: linear-gradient(
-        120deg,
-        var(--bg-1) 0%,
-        var(--bg-1) 45%,
-        #ffffff 75%,
-        #e8edf0 100%
-      );
-      background-size: 250% 100%;
-      background-position: left center;
-    }
-
-    .prising-kort--featured .prising-kort__cta:hover {
-      background-position: right center;
-    }
-
-    /* — Footer-knapp (lys bakgrunn på mørk seksjon) — */
-    .footer-cta__btn {
-      background-image: linear-gradient(
-        120deg,
-        #eef0f1 0%,
-        #eef0f1 45%,
-        #ffffff 75%,
-        #dde8e0 100%
-      );
-      background-size: 250% 100%;
-      background-position: left center;
-      transition: background-position 0.45s ease, transform 0.2s ease;
-    }
-
-    .footer-cta__btn:hover {
-      background-image: linear-gradient(
-        120deg,
-        #eef0f1 0%,
-        #eef0f1 45%,
-        #ffffff 75%,
-        #dde8e0 100%
-      );
-      background-size: 250% 100%;
-      background-position: right center;
-      transform: translateY(-1px);
-    }
+    /* Featured pricing-kort */
 
     /* — Sekundærknapper (outline / border) — */
     .bransjer-demo-btn {
@@ -1778,9 +2090,6 @@
       }
 
       /* faq-cta */
-      .faq-cta::before { display: none; }
-      .faq-cta { transition: none; }
-
       /* SVG-pilar — alle */
       .hero .cta-btn svg,
       .hva-vi-leverer .section-btn svg,
@@ -1873,8 +2182,9 @@
       margin-bottom: 14px;
     }
     .popup-left-sub {
-      font-family: var(--font-ui);
-      font-size: 13px; line-height: 1.65;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: var(--type-body); line-height: var(--lh-body);
       color: rgba(255,255,255,0.5);
     }
     .popup-trust {
@@ -1883,8 +2193,9 @@
     }
     .popup-trust-item {
       display: flex; align-items: center; gap: 10px;
-      font-family: var(--font-ui);
-      font-size: 13px;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: var(--type-body);
       color: rgba(255,255,255,0.65);
     }
     .popup-trust-item svg { flex-shrink: 0; opacity: 0.7; }
@@ -1915,8 +2226,10 @@
       margin-bottom: 4px;
     }
     .popup-right-sub {
-      font-family: var(--font-ui);
-      font-size: 13px; color: #999;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: var(--type-body); color: #999;
+      line-height: var(--lh-body);
       margin-bottom: 26px;
     }
     .popup-form { display: flex; flex-direction: column; gap: 11px; }
@@ -1942,7 +2255,7 @@
     .popup-input:focus,
     .popup-textarea:focus {
       border-color: var(--color-dark);
-      background: #fff;
+      background: #ffffff;
       box-shadow: 0 0 0 3px rgba(48,51,47,0.07);
     }
     .popup-submit {
@@ -2002,42 +2315,50 @@
     /* ── SEKSJON INKLUDERT I LEVERANSEN ──────── */
     .seksjon-inkludert {
       width: 100%;
-      background-color: #faf9f7;
-      padding: 96px var(--grid-margin);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 80px;
-      align-items: flex-start;
-      border-top: 1px solid #e8e5e0;
-    }
-
-    .seksjon-inkludert > .inkludert__cta-row {
-      flex-basis: 100%;
+      background-color: #f4f7f4;
+      padding: 96px 48px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 24px;
+      row-gap: 64px;
+      align-items: start;
     }
 
     .inkludert__left {
-      flex: 0 0 480px;
+      grid-column: 1 / 6;
       display: flex;
       flex-direction: column;
-      gap: 0;
+    }
+
+    .inkludert__right {
+      grid-column: 7 / 13;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .seksjon-inkludert > .inkludert__cta-row {
+      grid-column: 1 / -1;
     }
 
     .inkludert__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-family: var(--font-ui);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #888;
-      margin-bottom: 16px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: #000000;
+      margin-bottom: 12px;
     }
 
     .inkludert__heading {
-      font-family: var(--font-display);
+      font-family: 'DM Sans', sans-serif;
       font-weight: 400;
-      font-size: 52px;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.07;
+      letter-spacing: -0.03em;
       color: var(--color-dark);
       margin-bottom: 48px;
     }
@@ -2046,7 +2367,7 @@
       display: flex;
       flex-direction: column;
       gap: 36px;
-      margin-bottom: 48px;
+      margin-bottom: 0;
     }
 
     .inkludert__item {
@@ -2058,39 +2379,33 @@
     .inkludert__item-header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .inkludert__icon {
+      font-family: 'Material Symbols Outlined';
+      font-size: 18px;
+      font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20;
+      line-height: 1;
+      color: rgba(13,34,24,0.5);
       flex-shrink: 0;
-      width: 24px;
-      height: 24px;
-      color: #1a1c1e;
-      display: flex;
-      align-items: center;
-      margin-top: -6px;
-    }
-
-    .inkludert__icon svg {
-      width: 100%;
-      height: 100%;
     }
 
     .inkludert__item-title {
-      font-family: var(--font-ui);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--color-dark);
-      line-height: 1;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: #0d2218;
+      line-height: 1.2;
     }
 
     .inkludert__item-desc {
-      font-family: var(--font-body);
-      font-size: 15px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
       line-height: 1.65;
-      color: #616160;
+      color: rgba(15,17,23,0.55);
     }
 
     .inkludert__cta-row {
@@ -2105,10 +2420,12 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      background-color: var(--color-dark);
+      background-color: #071510;
       font-family: var(--font-ui);
-      font-size: var(--type-label);
+      font-size: var(--type-card-label);
       font-weight: 500;
+      letter-spacing: var(--ls-card-btn);
+      text-transform: uppercase;
       color: var(--color-white);
       text-decoration: none;
     }
@@ -2118,7 +2435,6 @@
       height: 13px;
       fill: currentColor;
       stroke: none;
-      transition: transform 0.2s ease;
     }
 
 
@@ -2128,8 +2444,10 @@
       display: inline-flex;
       align-items: center;
       font-family: var(--font-ui);
-      font-size: var(--type-label);
+      font-size: var(--type-card-label);
       font-weight: 500;
+      letter-spacing: var(--ls-card-btn);
+      text-transform: uppercase;
       color: var(--color-dark);
       text-decoration: none;
       border: 1px solid var(--color-dark);
@@ -2153,6 +2471,213 @@
       padding-top: 192px;
     }
 
+    /* ── PORTEFØLJE ───────────────────────────── */
+    .seksjon-portefolje {
+      background: #ffffff;
+      padding: 80px 48px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 24px;
+      row-gap: 48px;
+      overflow-x: clip;
+    }
+    .porto-intro {
+      grid-column: 1 / 12;
+      text-align: left;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .porto-intro__left { flex: 1; }
+    .porto-nav {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding-bottom: 4px;
+    }
+    .porto-nav__btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(15,17,23,0.2);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .porto-nav__btn:hover { background: #fff; border-color: #000; }
+    .porto-nav__btn svg { width: 14px; height: 14px; }
+    .porto-nav__btn svg path { stroke: #000; fill: none; stroke-width: 2; }
+    .porto-heading {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.07;
+      color: #000000;
+      margin-top: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .porto-lead {
+      font-family: 'Sora', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(15,17,23,0.55);
+    }
+    .porto-grid {
+      grid-column: 1 / -1;
+      margin-left: -24px;
+      margin-right: -24px;
+      display: flex;
+      gap: 16px;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .porto-grid::-webkit-scrollbar { display: none; }
+    .porto-kort {
+      flex-shrink: 0;
+      width: 380px;
+      scroll-snap-align: start;
+      background: #efefef;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      min-height: 800px;
+      transition: opacity 0.3s;
+    }
+    .porto-kort.dim { opacity: 0.18; }
+    .porto-kort__bilde {
+      flex: none;
+      height: 420px;
+      margin: 0 16px 0;
+      border-radius: 4px;
+      background-size: cover;
+      background-position: center top;
+      position: relative;
+    }
+    .porto-kort__ikon {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-family: 'Material Symbols Outlined';
+      font-size: 64px;
+      font-variation-settings: 'FILL' 0, 'wght' 100, 'GRAD' -25, 'opsz' 48;
+      line-height: 1;
+      color: rgba(255,255,255,0.85);
+    }
+    .porto-kort__footer {
+      padding: 20px 24px 16px;
+      position: relative;
+    }
+    .porto-kort__tittelrad {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .porto-kort__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      padding: 6px 12px;
+      border: 1.5px solid rgba(15,17,23,0.25);
+      border-radius: 4px;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(15,17,23,0.7);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .porto-kort__cta:hover { border-color: #000; color: #000; }
+    .porto-kort__cta svg { width: 10px; height: 10px; }
+    .porto-kort__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-ui);
+      font-size: var(--type-card-label);
+      font-weight: 500;
+      letter-spacing: var(--ls-card-label);
+      text-transform: uppercase;
+      color: rgba(15,17,23,0.45);
+      background: rgba(15,17,23,0.06);
+      border-radius: 4px;
+      padding: 4px 8px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+    .porto-kort__tag .card-icon {
+      font-family: 'Material Symbols Outlined';
+      font-size: 13px;
+      font-weight: 200;
+      font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20;
+      line-height: 1;
+    }
+    .porto-kort__navn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin-bottom: 12px;
+    }
+    .porto-kort__domain {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 300;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+    .porto-kort__desc {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.45;
+      color: rgba(0,0,0,0.65);
+    }
+    .porto-kort__squares {
+      display: flex;
+      gap: 8px;
+      padding: 8px 16px 16px;
+    }
+    .porto-kort__square {
+      flex: 1;
+      aspect-ratio: 1 / 1;
+      background: #ebebeb;
+      border-radius: 4px;
+    }
+
+    .porto-kort__pil {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      background: #111;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px;
+    }
+    .porto-kort__pil svg {
+      fill: #fff;
+    }
+
     /* ── SEKSJON BRANSJEBIBLIOTEK ─────────────── */
     .seksjon-bransjelib {
       width: 100%;
@@ -2174,7 +2699,7 @@
 
     .bransjelib__heading {
       font-family: var(--font-heading);
-      font-weight: 500;
+      font-weight: 400;
       font-size: var(--type-h2);
       color: var(--color-dark);
       line-height: var(--lh-heading);
@@ -2189,7 +2714,7 @@
 
     .bransjelib__lead {
       font-family: var(--font-body);
-      font-weight: 400;
+      font-weight: 300;
       font-size: var(--type-body);
       color: #555;
       line-height: var(--lh-body);
@@ -2205,8 +2730,9 @@
       background-color: var(--color-dark);
       border-radius: 0;
       font-family: var(--font-ui);
-      font-weight: 500;
-      font-size: var(--type-label);
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0;
       color: #ffffff;
       text-decoration: none;
       transition: opacity 0.15s;
@@ -2277,18 +2803,18 @@
       border: 1px solid rgba(255,255,255,0.35);
       border-radius: 0;
       font-family: var(--font-ui);
-      font-size: 10px;
+      font-size: var(--type-card-label);
       font-weight: 500;
       color: rgba(255,255,255,0.75);
-      letter-spacing: 0.08em;
+      letter-spacing: var(--ls-overlay-label);
       text-transform: uppercase;
     }
     .bransjelib__trade-more {
       font-family: var(--font-ui);
-      font-size: 11px;
+      font-size: var(--type-label);
       font-weight: 400;
       color: rgba(255,255,255,0.52);
-      letter-spacing: 0.04em;
+      letter-spacing: var(--ls-overlay-label);
       text-transform: uppercase;
     }
 
@@ -2389,9 +2915,9 @@
     /* Eyebrow-merke over heading */
     .bransjelib__eyebrow {
       font-family: var(--font-ui);
-      font-size: 11px;
+      font-size: var(--type-label);
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: var(--ls-caps);
       text-transform: uppercase;
       color: var(--color-mid);
       margin-bottom: 10px;
@@ -2411,53 +2937,58 @@
         padding: 100px 20px 0;
       }
 
-      .hero .badge { display: none; }
+      .hero__stat { display: none; }
 
-      .hero .heading {
-        position: static;
+      .hero__heading {
         width: 100%;
-        font-size: 38px;
+        font-size: clamp(28px, 8vw, 42px);
         text-align: center;
         letter-spacing: -0.02em;
-        line-height: 1.1;
+        line-height: 1.07;
+        max-width: 100%;
       }
 
-      .hero .subtext {
-        position: static;
+      .hero__cta-row {
         width: 100%;
-        text-align: center;
-        margin-top: 16px;
-        font-size: 15px;
       }
 
-      .hero .cta-row {
-        position: static;
-        justify-content: center;
+      .hero__input-wrap {
+        max-width: 100%;
         flex-wrap: wrap;
-        margin-top: 28px;
-        gap: 12px;
+        gap: 8px;
       }
 
-      .hero .hero-image {
-        position: relative;
-        top: auto;
-        left: auto;
+      .hero__input-wrap input {
+        min-width: 0;
+        flex: 1 1 160px;
+      }
+
+      .hero__input-wrap button {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+
+      .hero__mockup {
         width: 100%;
-        height: 240px;
+        height: 280px;
         margin-top: 36px;
         border-radius: 4px 4px 0 0;
-      }
-
-      .hero .hero-image::after {
-        display: none;
       }
 
       .hero-slide--3 {
         display: block;
       }
 
+      .hero-slide--4 {
+        display: none;
+      }
+
       .hero-dot--3 {
         display: block;
+      }
+
+      .hero-dot--4 {
+        display: none;
       }
 
       #heroSlider {
@@ -2474,21 +3005,39 @@
 
       /* ── HVA VI LEVERER ── */
       .hva-vi-leverer {
+        display: block;
         padding: 60px 20px;
       }
 
-      .hva-vi-leverer .section-text {
-        width: 100%;
-      }
-
       .hva-vi-leverer .cards {
+        display: flex;
         flex-direction: column;
+        margin-top: 32px;
         gap: 16px;
       }
 
       .hva-vi-leverer .card {
         height: auto;
         padding: 24px;
+      }
+
+      /* ── PORTEFØLJE ── */
+      .seksjon-portefolje {
+        padding: 60px 0 60px 20px;
+      }
+
+      .porto-intro {
+        padding-right: 20px;
+      }
+
+      .porto-grid {
+        margin-left: 0;
+        margin-right: 0;
+        padding-right: 20px;
+      }
+
+      .porto-kort {
+        width: calc(100vw - 60px);
       }
 
       /* ── BRANSJEBIBLIOTEK ── */
@@ -2513,12 +3062,14 @@
 
       /* ── INKLUDERT I LEVERANSEN ── */
       .seksjon-inkludert {
+        display: flex;
         flex-direction: column;
         padding: 60px 20px;
         gap: 24px;
       }
 
       .inkludert__left {
+        grid-column: 1 / -1;
         flex: none;
         width: 100%;
       }
@@ -2554,10 +3105,25 @@
       /* ── SERVICE ── */
       .seksjon-service {
         padding: 60px 20px;
+        grid-template-columns: 1fr;
+      }
+
+      .service-top {
+        grid-column: 1 / -1;
       }
 
       .service-grid {
         grid-template-columns: 1fr;
+        row-gap: 32px;
+      }
+
+      .service-phone {
+        grid-column: 1 / -1;
+        justify-content: center;
+      }
+
+      .service-right {
+        grid-column: 1 / -1;
       }
 
       .service-right-text {
@@ -2762,6 +3328,53 @@
         justify-content: center;
         white-space: nowrap;
       }
+
+      /* ── TOM-BOKS (bilde + tekst side om side) ── */
+      .seksjon-tom-boks {
+        padding: 60px 20px;
+        gap: 12px;
+      }
+
+      .tom-boks {
+        flex-direction: column;
+        padding: 0;
+        gap: 0;
+      }
+
+      .tom-boks__bilde {
+        width: 100%;
+        height: 220px;
+        border-radius: 4px 4px 0 0;
+      }
+
+      .tom-boks__innhold {
+        padding: 20px 20px 24px;
+      }
+
+      /* ── FAQ (grid-column ut av range) ── */
+      .faq-left {
+        grid-column: 1 / -1;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .faq-list {
+        grid-column: 1 / -1;
+      }
+
+      /* ── FOOTER KONTAKT-KNAPP ── */
+      .footer-kontakt-wrap {
+        padding: 48px 20px;
+      }
+
+      .footer-kontakt-btn {
+        padding: 18px 32px;
+        font-size: clamp(20px, 6vw, 32px);
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
     }
 
   </style>
@@ -2771,24 +3384,30 @@
   <!-- HERO -->
   <section class="hero">
 
-
-    <h1 class="heading" data-animate="fade-up" data-hero data-delay="0.1" data-duration="0.75">Nettsider for håndverk-bedrifter</h1>
-
-    <p class="subtext" data-animate="fade-up" data-hero data-delay="0.25">
-      Vi bygger nettsider som gjør mer enn å fylle en URL. De tiltrekker riktige kunder,
-      kommuniserer tydelig og konverterer besøk til henvendelser.
-    </p>
-
-    <div class="cta-row" data-animate="fade-up" data-hero data-delay="0.38">
-      <a href="#" class="cta-btn" onclick="openContactPopup(); return false;">Få et utkast <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
-      <a href="#eksempler" class="scroll-hint" onclick="document.getElementById('eksempler').scrollIntoView({behavior:'smooth'}); return false;">Se en demo <svg viewBox="0 0 341 312" width="13" height="12" fill="#222222"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+    <!-- 1. Stat -->
+    <div class="hero__stat" data-animate="fade-up" data-hero data-delay="0.05">
+      <span class="hero__stat-dot"></span>
+      <span>Nettsider som gjør besøkende til betalende kunder</span>
     </div>
 
-    <div class="hero-image" data-animate="fade-up" data-hero data-delay="0.5" data-duration="0.85" data-y="40">
+    <!-- 2. Heading -->
+    <h1 class="hero__heading" data-animate="fade-up" data-hero data-delay="0.12">Nettsider for norske bedrifter</h1>
+
+    <!-- 3. CTA -->
+    <div class="hero__cta-row" data-animate="fade-up" data-hero data-delay="0.22">
+      <div class="hero__input-wrap">
+        <input type="email" placeholder="Din e-postadresse" />
+        <button onclick="openContactPopup(); return false;">Få et utkast</button>
+      </div>
+    </div>
+
+    <!-- 4. Produktmockup -->
+    <div class="hero__mockup" data-animate="fade-up" data-hero data-delay="0.35" data-y="30">
       <div class="hero-slider" id="heroSlider">
         <div class="hero-slide hero-slide--3"></div>
         <div class="hero-slide hero-slide--1"></div>
         <div class="hero-slide hero-slide--2"></div>
+        <div class="hero-slide hero-slide--4"></div>
       </div>
       <div class="hero-slider-dots">
         <button class="hero-slider-btn hero-slider-prev" onclick="heroSlide(-1)" aria-label="Forrige">
@@ -2797,103 +3416,151 @@
         <span class="hero-dot active" onclick="heroGoTo(0)"></span>
         <span class="hero-dot" onclick="heroGoTo(1)"></span>
         <span class="hero-dot hero-dot--3" onclick="heroGoTo(2)"></span>
+        <span class="hero-dot hero-dot--4" onclick="heroGoTo(2)"></span>
         <button class="hero-slider-btn hero-slider-next" onclick="heroSlide(1)" aria-label="Neste">
           <svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg>
         </button>
       </div>
     </div>
 
-    <div class="hero-side-box" data-animate="fade-up" data-hero data-delay="0.62" data-duration="0.85" data-y="40"></div>
-
   </section>
 
   <!-- HVA VI LEVERER -->
   <section class="hva-vi-leverer">
-    <h2 class="section-heading" data-animate="fade-up">Hva vi leverer</h2>
 
-    <p class="section-text" data-animate="fade-up" data-delay="0.1">
-      Enten du starter fra null eller vil ha et moderne design på det du allerede har,
-      prosessen er den samme: enkel, rask og uten krav til teknisk kunnskap fra din side.
-    </p>
 
-    <a href="#" class="section-btn" data-animate="fade-up" data-delay="0.2" onclick="openContactPopup(); return false;">Få et utkast <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
-
-    <div class="cards" data-animate="stagger" data-stagger="0.13">
-      <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
-        </div>
-        <div class="card-title">Ny eller oppdatert nettside</div>
-        <div class="card-desc">Vi bygger en nettside fra bunnen av, eller gir den du allerede har et moderne design. Du bestemmer hva du vil ha – vi tar oss av resten.</div>
+    <div style="grid-column: 2 / 12; text-align: center;">
+      <div class="hvl-eyebrow" data-animate="fade-up">
+        <span style="font-family: 'Material Symbols Outlined'; font-size: 15px; font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20; line-height: 1;">deployed_code</span>
+        <span>Tjenester</span>
       </div>
+      <h2 class="section-heading" data-animate="fade-up">Hva vi leverer</h2>
 
-      <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
-        </div>
-        <div class="card-title">Fast pris, ingen overraskelser</div>
-        <div class="card-desc">Du vet hva du betaler før vi starter. Ingen timepris, ingen skjulte kostnader og ingen lange bindingstider.</div>
-      </div>
+      <p class="section-text" data-animate="fade-up" data-delay="0.1">
+        Enten du starter fra null eller vil ha et moderne design på det du allerede har,
+        prosessen er den samme: enkel, rask og uten krav til teknisk kunnskap fra din side.
+      </p>
 
-      <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="card-title">Inkl. service etter leveranse</div>
-        <div class="card-desc">Gjennomført et nytt prosjekt? Send oss bilder og tekst – så legger vi det ut for deg. Du trenger ikke gjøre noe teknisk selv.</div>
-      </div>
+      <a href="#" class="section-btn" data-animate="fade-up" data-delay="0.2" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Få et utkast</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
     </div>
+
+    <div class="cards" style="grid-column: 1 / -1;" data-animate="stagger" data-stagger="0.13">
+        <div class="card">
+          <p class="card-label"><span class="card-icon">design_services</span>Design og utvikling</p>
+          <div class="card-title">Ny eller oppdatert nettside</div>
+          <div class="card-desc">Vi bygger en nettside fra bunnen av, eller gir den du allerede har et moderne design. Du bestemmer hva du vil ha – vi tar oss av resten.</div>
+          <span class="card__deco">interests</span>
+        </div>
+
+        <div class="card">
+          <p class="card-label"><span class="card-icon">price_check</span>Prising</p>
+          <div class="card-title">Fast pris, ingen overraskelser</div>
+          <div class="card-desc">Du vet hva du betaler før vi starter. Ingen timepris, ingen skjulte kostnader og ingen lange bindingstider.</div>
+          <span class="card__deco">universal_currency</span>
+        </div>
+
+        <div class="card">
+          <p class="card-label"><span class="card-icon">support_agent</span>Support</p>
+          <div class="card-title">Inkl. service etter leveranse</div>
+          <div class="card-desc">Gjennomført et nytt prosjekt? Send oss bilder og tekst – så legger vi det ut for deg. Du trenger ikke gjøre noe teknisk selv.</div>
+          <span class="card__deco">volunteer_activism</span>
+        </div>
+      </div>
+
   </section>
 
-  <!-- SEKSJON BRANSJEBIBLIOTEK -->
-  <section class="seksjon-bransjelib" id="eksempler">
-    <div class="bransjelib__left">
-      <p class="bransjelib__eyebrow">Bransjebibliotek</p>
-      <h2 class="bransjelib__heading">Nettsider for din <em>bransje</em></h2>
-      <p class="bransjelib__lead">Vi lager nettsider for rørleggere, snekkere, elektrikere m.m</p>
-      <a href="bibliotek.html" class="bransjelib__cta">Se bransjebiblioteket vårt <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+  <!-- TOM SEKSJON -->
+  <!-- PORTEFØLJE-SEKSJON -->
+  <section class="seksjon-portefolje">
+    <div class="porto-intro" data-animate="fade-up">
+      <div class="porto-intro__left">
+        <div class="hvl-eyebrow">
+          <span style="font-family: 'Material Symbols Outlined'; font-size: 15px; font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20; line-height: 1;">auto_awesome</span>
+          <span>Portefølje</span>
+        </div>
+        <h2 class="porto-heading"><span style="color: rgba(0,0,0,0.45);">Et</span> <span style="color: #0d2218;">utvalg konsepter</span> <span style="color: rgba(0,0,0,0.45);">vi har laget<br>for ulike bransjer.</span></h2>
+        <a href="bibliotek.html" style="display: inline-block; margin-top: 24px; padding: 10px 20px; border: 1.5px solid #0d2218; border-radius: 999px; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: #fff; background: #0d2218; text-decoration: none;">Se bransjebiblioteket</a>
+      </div>
+      <div class="porto-nav">
+        <button class="porto-nav__btn" onclick="portoScroll(-1)" aria-label="Forrige">
+          <svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg>
+        </button>
+        <button class="porto-nav__btn" onclick="portoScroll(1)" aria-label="Neste">
+          <svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg>
+        </button>
+      </div>
     </div>
-    <div class="bransjelib__cards">
-      <div class="bransjelib__col">
 
-        <!-- Kort 1: Bransjeoversikt -->
-        <div class="bransjelib__card bransjelib__card--bransje">
-          <div class="bransjelib__card-bg" style="background-image: url('images/macbook-rugged-stone.jpeg'); background-position: center center;"></div>
-          <div class="bransjelib__card-bottom">
-            <div class="bransjelib__trades">
-              <span class="bransjelib__trade-chip">Rørlegger</span>
-              <span class="bransjelib__trade-chip">Snekker</span>
-              <span class="bransjelib__trade-chip">Elektriker</span>
-              <span class="bransjelib__trade-chip">Tømrer</span>
-              <span class="bransjelib__trade-chip">Maler</span>
-            </div>
-            <p class="bransjelib__trade-more">+ flere bransjer i biblioteket</p>
+    <div class="porto-grid" data-lazy-anim="stagger" data-stagger="0.15">
+
+      <!-- Kort 1 -->
+      <a href="#" class="porto-kort">
+        <div class="porto-kort__footer">
+          <div class="porto-kort__tittelrad">
+            <p class="porto-kort__navn">Oslo Rørlegger AS</p>
+            <span class="porto-kort__cta">Se nettsiden <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8L8 2M8 2H3M8 2v5"/></svg></span>
           </div>
-          <a href="bibliotek.html" class="bransjelib__card-link" aria-label="Se bransjebiblioteket"></a>
-          <span class="bransjelib__btn">
-            <svg viewBox="0 0 20 20" fill="none" stroke="#1a1c1e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
-          </span>
+          <p class="porto-kort__desc">Et konsept for en rørleggerbedrift i Oslo. Designet for å konvertere besøkende til leads med tydelig CTA, rask lasting og et uttrykk som bygger tillit fra første sekund.</p>
         </div>
-
-        <!-- Kort 2: Mockup-visning -->
-        <div class="bransjelib__card bransjelib__card--mockup">
-          <div class="bransjelib__card-bg" style="background-image: url('images/mockup-rorlegger.jpeg'); background-position: center center;"></div>
-          <a href="bibliotek.html" class="bransjelib__card-link" aria-label="Se bransjebiblioteket"></a>
-          <span class="bransjelib__btn">
-            <svg viewBox="0 0 20 20" fill="none" stroke="#1a1c1e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
-          </span>
+        <div class="porto-kort__bilde" style="overflow:hidden;">
+          <img data-src="images/mockup-rorlegger.webp" src="" style="width:100%; height:100%; object-fit:cover; object-position:top; transform:scale(1.15) translateY(2%); display:block;" decoding="async">
         </div>
+        <div class="porto-kort__squares">
+          <div class="porto-kort__square" style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:8px; background:#071629; overflow:hidden; padding:20px;">
+            <span style="font-family:'Material Symbols Outlined'; font-size:26px; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 24; line-height:1; color:rgba(255,255,255,0.9);">water_pump</span>
+            <p style="font-family:'DM Sans',sans-serif; font-size:22px; font-weight:400; color:#ffffff; letter-spacing:-0.02em; line-height:1.15; text-align:center; white-space:nowrap;">Oslo Rørlegger</p>
+          </div>
+          <div class="porto-kort__square" data-bg="images/gemini-handverker-smilende-bygningsplass.webp" style="background-size: cover; background-position: center;"></div>
+        </div>
+      </a>
 
-      </div>
-      <div class="bransjelib__card bransjelib__card--tall">
-        <div class="bransjelib__card-bg" style="background-image: url('images/gruppe-8.webp'); background-position: center top;"></div>
-        <a href="bibliotek.html" class="bransjelib__card-link" aria-label="Se bransjebiblioteket"></a>
-        <span class="bransjelib__btn">
-          <svg viewBox="0 0 20 20" fill="none" stroke="#1a1c1e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
-        </span>
-      </div>
+      <!-- Kort 2 -->
+      <a href="#" class="porto-kort">
+        <div class="porto-kort__footer">
+          <div class="porto-kort__tittelrad">
+            <p class="porto-kort__navn">Konstrukt</p>
+            <span class="porto-kort__cta">Se nettsiden <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8L8 2M8 2H3M8 2v5"/></svg></span>
+          </div>
+          <p class="porto-kort__desc">Et konsept for en snekker og byggbedrift. Fokus på prosjektpresentasjon og troverdighet med et rent, profesjonelt design som speiler kvaliteten på håndverket.</p>
+        </div>
+        <div class="porto-kort__bilde" style="overflow:hidden;">
+          <img data-src="images/macbook-nordbygg.webp" src="" style="width:100%; height:100%; object-fit:cover; object-position:top; transform:scale(1.15) translateY(2%); display:block;" decoding="async">
+        </div>
+        <div class="porto-kort__squares">
+          <div class="porto-kort__square" style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:8px; background:#1e1e1e; overflow:hidden; padding:20px;">
+            <svg width="26" height="26" viewBox="0 0 417 418" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M263.037 417L381.537 203.5L327.537 8.5L98.5366 417H263.037Z" fill="rgba(255,255,255,0.9)"/>
+              <path d="M150.037 0.5L31.5366 214L85.5366 409L314.537 0.5H150.037Z" fill="rgba(255,255,255,0.9)"/>
+              <path d="M57.0649 0.5L0.536621 102.416L26.2963 195.5L135.537 0.5H57.0649Z" fill="rgba(255,255,255,0.9)"/>
+              <path d="M359.008 417.5L415.537 315.584L389.777 222.5L280.537 417.5H359.008Z" fill="rgba(255,255,255,0.9)"/>
+            </svg>
+            <p style="font-family:'Chakra Petch',sans-serif; font-size:22px; font-weight:500; color:#ffffff; letter-spacing:0; line-height:1.15; text-align:center; white-space:nowrap;">Konstrukt</p>
+          </div>
+          <div class="porto-kort__square" data-bg="images/nordbygg-hero-naeringsbygg.webp" style="background-size: cover; background-position: center;"></div>
+        </div>
+      </a>
+
+      <!-- Kort 3 -->
+      <a href="#" class="porto-kort">
+        <div class="porto-kort__footer">
+          <div class="porto-kort__tittelrad">
+            <p class="porto-kort__navn">Berge Tre & Bygg</p>
+            <span class="porto-kort__cta">Se nettsiden <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8L8 2M8 2H3M8 2v5"/></svg></span>
+          </div>
+          <p class="porto-kort__desc">Et eksempel på hvordan en nettside for et snekker- og tømmerfirma kan presentere tjenester, tilbygg og rehabiliteringsprosjekter.</p>
+        </div>
+        <div class="porto-kort__bilde" style="overflow:hidden;">
+          <img data-src="images/mockup-macbook-air-betong-tomrer-oslo.webp" src="" style="width:100%; height:100%; object-fit:cover; object-position:top; transform:scale(1.15) translateY(2%); display:block;" decoding="async">
+        </div>
+        <div class="porto-kort__squares">
+          <div class="porto-kort__square"></div>
+          <div class="porto-kort__square"></div>
+        </div>
+      </a>
+
     </div>
   </section>
+
 
   <!-- Delt SVG-gradient for inkludert-ikoner -->
   <svg width="0" height="0" style="position:absolute">
@@ -2910,33 +3577,27 @@
   <!-- SEKSJON INKLUDERT I LEVERANSEN -->
   <section class="seksjon-inkludert">
     <div class="inkludert__left">
-      <div style="display:flex; align-items:flex-end; gap:6px; margin-bottom:16px;">
-        <svg width="9" height="11" viewBox="105 21 117 147" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:3px;">
-          <path d="M150.09 167.261L105.212 167.261L129.302 132.857L183.792 55.0372L207.022 21.8616L222.223 64.2455L150.09 167.261Z" fill="#888"/>
-        </svg>
-        <p class="inkludert__eyebrow" style="margin-bottom:0;">Inkludert i leveransen</p>
+      <div class="inkludert__eyebrow" style="margin-bottom:16px;">
+        <span style="font-family: 'Material Symbols Outlined'; font-size: 15px; font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20; line-height: 1;">workspace_premium</span>
+        <span>Inkludert i leveransen</span>
       </div>
-      <h2 class="inkludert__heading" data-animate="fade-up" data-delay="0.08">Alt du trenger<br>— på ett sted</h2>
+      <h2 class="inkludert__heading" data-animate="fade-up" data-delay="0.08">Alt du trenger<br>på ett sted</h2>
 
       <div class="inkludert__items" data-animate="stagger" data-stagger="0.1" data-delay="0.15">
         <div class="inkludert__item">
           <div class="inkludert__item-header">
-            <div class="inkludert__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="url(#grad-icon)" d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q146 0 255.5 91.5T872-559h-82q-19-73-68.5-130.5T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h80v120h-40L168-552q-3 18-5.5 36t-2.5 36q0 131 92 225t228 95v80Zm364-20L716-228q-21 12-45 20t-51 8q-75 0-127.5-52.5T440-380q0-75 52.5-127.5T620-560q75 0 127.5 52.5T800-380q0 27-8 51t-20 45l128 128-56 56ZM691-309q29-29 29-71t-29-71q-29-29-71-29t-71 29q-29 29-29 71t29 71q29 29 71 29t71-29Z"/></svg>
-            </div>
+            <span class="inkludert__icon">travel_explore</span>
             <h3 class="inkludert__item-title">SEO-optimalisering</h3>
           </div>
-          <p class="inkludert__item-desc">Nettsiden din bygges for å rangere i Google — med riktig struktur, metadata og innhold fra dag én.</p>
+          <p class="inkludert__item-desc">Nettsiden din bygges for å rangere i Google med riktig struktur, metadata og innhold fra dag én.</p>
         </div>
 
         <div class="inkludert__item">
           <div class="inkludert__item-header">
-            <div class="inkludert__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="url(#grad-icon)" d="M480-316.5q38-.5 56-27.5l224-336-336 224q-27 18-28.5 55t22.5 61q24 24 62 23.5Zm0-483.5q59 0 113.5 16.5T696-734l-76 48q-33-17-68.5-25.5T480-720q-133 0-226.5 93.5T160-400q0 42 11.5 83t32.5 77h552q23-38 33.5-79t10.5-85q0-36-8.5-70T766-540l48-76q30 47 47.5 100T880-406q1 57-13 109t-41 99q-11 18-30 28t-40 10H204q-21 0-40-10t-30-28q-26-45-40-95.5T80-400q0-83 31.5-155.5t86-127Q252-737 325-768.5T480-800Zm7 313Z"/></svg>
-            </div>
+            <span class="inkludert__icon">speed</span>
             <h3 class="inkludert__item-title">Google-hastighet</h3>
           </div>
-          <p class="inkludert__item-desc">Vi optimaliserer for PageSpeed og Core Web Vitals — slik at Google rangerer deg høyere og besøkende ikke forlater siden.</p>
+          <p class="inkludert__item-desc">Vi optimaliserer for PageSpeed og Core Web Vitals slik at Google rangerer deg høyere og besøkende ikke forlater siden.</p>
         </div>
       </div>
 
@@ -2945,80 +3606,61 @@
     <div class="inkludert__right">
       <div class="inkludert__item" data-animate="fade-up" data-delay="0.05">
         <div class="inkludert__item-header">
-          <div class="inkludert__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="url(#grad-icon)" d="m620-284 56-56q6-6 6-14t-6-14L540-505q4-11 6-22t2-25q0-57-40.5-97.5T410-690q-17 0-34 4.5T343-673l94 94-56 56-94-94q-8 16-12.5 33t-4.5 34q0 57 40.5 97.5T408-412q13 0 24.5-2t22.5-6l137 136q6 6 14 6t14-6ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-          </div>
+          <span class="inkludert__icon">build</span>
           <h3 class="inkludert__item-title">Drift og vedlikehold</h3>
         </div>
-        <p class="inkludert__item-desc">Vi holder nettsiden oppdatert, sikker og i gang — uten at du trenger å løfte en finger. Alt fra oppdateringer til backup håndteres av oss.</p>
+        <p class="inkludert__item-desc">Vi holder nettsiden oppdatert, sikker og i gang uten at du trenger å løfte en finger. Alt fra oppdateringer til backup håndteres av oss.</p>
       </div>
 
       <div class="inkludert__item" data-animate="fade-up" data-delay="0.17">
         <div class="inkludert__item-header">
-          <div class="inkludert__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path fill="url(#grad-icon)" d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440ZM331.5-411.5Q320-423 320-440t11.5-28.5Q343-480 360-480t28.5 11.5Q400-457 400-440t-11.5 28.5Q377-400 360-400t-28.5-11.5Zm240 0Q560-423 560-440t11.5-28.5Q583-480 600-480t28.5 11.5Q640-457 640-440t-11.5 28.5Q617-400 600-400t-28.5-11.5ZM241-462q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
-          </div>
+          <span class="inkludert__icon">support_agent</span>
           <h3 class="inkludert__item-title">Personlig service</h3>
         </div>
-        <p class="inkludert__item-desc">Du får en fast kontaktperson — ikke en ticketkø. Vi svarer raskt og hjelper deg med alt fra tekstendringer til større oppdateringer.</p>
+        <p class="inkludert__item-desc">Du får en fast kontaktperson, ikke en ticketkø. Vi svarer raskt og hjelper deg med alt fra tekstendringer til større oppdateringer.</p>
       </div>
     </div>
 
     <div class="inkludert__cta-row" data-animate="fade-up" data-delay="0.3">
-      <a href="#" class="inkludert__btn-primary" onclick="openContactPopup(); return false;">Kontakt oss <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+      <a href="#" class="inkludert__btn-primary" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Kontakt oss</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
       <a href="#eksempler" class="inkludert__btn-ghost">Se eksempler</a>
     </div>
   </section>
 
-  <!-- SEKSJON BRANSJER -->
-  <section class="seksjon-bransjer">
-    <h2 class="seksjon-bransjer__heading" data-animate="fade-up">Hva innebærer en moderne nettside?</h2>
-
-    <div class="seksjon-bransjer__tabs" data-animate="fade-up" data-delay="0.12">
-      <button class="tab active">UI</button>
-      <button class="tab">Hastighet</button>
-      <button class="tab">Design</button>
-      <button class="tab">Teknisk kapasitet</button>
-      <a href="#" class="bransjer-demo-btn" onclick="openContactPopup(); return false;">Få en demo side <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
-    </div>
-
-    <div class="seksjon-bransjer__grid">
-      <div class="col-left" data-animate="fade-up" data-trigger="top 85%" data-y="18">
-        <div class="img-placeholder horizontal">
-          <div class="card-content">
-            <div class="card-tag">Hastighet</div>
-            <div class="card-title">Lastetid under 1 sekund</div>
-            <p class="card-desc">En treg nettside mister kunder. Vi bygger for fart — optimalisert kode, lynrask hosting og ingen unødvendig tyngde.</p>
-          </div>
-          <div class="card-img horizontal-img" style="margin: var(--space-lg) var(--space-lg) var(--space-lg) 0; background-image: url('images/hastighet-mockup.webp'); background-size: cover; background-position: calc(50% + 30px) center;"></div>
-        </div>
-        <div class="img-placeholder horizontal">
-          <div class="card-img horizontal-img" style="background-image: url('images/mockup-mobil.webp'); background-size: 200%; background-repeat: no-repeat; background-position: 30% center;"></div>
-          <div class="card-content">
-            <div class="card-tag">Mobilvennlig</div>
-            <div class="card-title">Ser bra ut på alle skjermer</div>
-            <p class="card-desc">Over 70% av besøkende kommer fra mobil. Nettsiden din tilpasser seg automatisk — uten at du trenger å tenke på det.</p>
-          </div>
-        </div>
+  <!-- TOM BOKS-SEKSJON -->
+  <section class="seksjon-tom-boks">
+    <div class="tom-boks">
+      <div class="tom-boks__bilde" style="background-image: url('images/mockuuups-macbook-rock-surface.jpeg'); background-size: cover; background-position: center;"></div>
+      <div class="tom-boks__innhold">
+        <p class="tom-boks__label">Design som konverterer</p>
+        <p class="tom-boks__undertekst">Vi bygger nettsider etter designprinsipper som er utviklet for å gjøre nettbesøkende til kunder — fra struktur og hierarki til knapper og call-to-action.</p>
       </div>
-      <div class="col-right" data-animate="fade-up" data-trigger="top 85%" data-delay="0.08" data-y="18" style="will-change: transform, opacity;">
-        <div class="img-placeholder tall">
-          <div class="card-img tall-img" style="background-image: url('images/macbook-konkret.webp'); background-size: cover; background-repeat: no-repeat; background-position: center center;"></div>
-          <div class="card-content">
-            <div class="card-tag">Design</div>
-            <div class="card-title">Designet for å skape tillit</div>
-            <p class="card-desc">Førsteinntrykket avgjør om en potensiell kunde blir eller forsvinner. Vi designer nettsider som kommuniserer profesjonalitet og troverdighet fra første sekund.</p>
-          </div>
-        </div>
+    </div>
+    <div class="tom-boks">
+      <div class="tom-boks__bilde" style="background-image: url('images/mockuuups-iphone-concrete.jpeg'); background-size: cover; background-position: center;"></div>
+      <div class="tom-boks__innhold">
+        <p class="tom-boks__label">Mobilvennlig fra dag én</p>
+        <p class="tom-boks__undertekst">Over halvparten av alle nettbesøk skjer på mobil. Vi bygger nettsider som ser ut og fungerer perfekt på alle skjermstørrelser — uten at du trenger å tenke på det.</p>
+      </div>
+    </div>
+    <div class="tom-boks">
+      <div class="tom-boks__bilde"><svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:100%;"><defs><style>.wf-bar{transform-box:fill-box;transform-origin:left center;animation:wfGrow 3s ease-in-out forwards}.wf-r1{animation-delay:.1s}.wf-r2{animation-delay:.22s}.wf-r3{animation-delay:.36s}@keyframes wfGrow{0%,2%{transform:scaleX(0)}70%,100%{transform:scaleX(1)}}</style></defs><rect width="240" height="240" fill="#f0efed" rx="4"/><text id="spd-num" x="120" y="100" font-family="'DM Sans',sans-serif" font-size="72" font-weight="500" fill="#111" text-anchor="middle" letter-spacing="-0.04em">6.4s</text><text x="120" y="122" font-family="'DM Sans',sans-serif" font-size="11" font-weight="400" fill="#bbb" text-anchor="middle" letter-spacing="0.05em">LASTETID</text><line x1="20" y1="142" x2="220" y2="142" stroke="#dddcda" stroke-width="1"/><rect class="wf-bar wf-r1" x="20" y="154" width="30" height="9" rx="2" fill="#111" opacity="0.75"/><rect class="wf-bar wf-r2" x="24" y="172" width="96" height="9" rx="2" fill="#111" opacity="0.35"/><rect class="wf-bar wf-r3" x="28" y="190" width="152" height="9" rx="2" fill="#111" opacity="0.15"/><line x1="20" y1="212" x2="220" y2="212" stroke="#dddcda" stroke-width="1"/><text x="20" y="226" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#ccc">0ms</text><text x="220" y="226" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#ccc" text-anchor="end">1000ms</text><script>(function(){var el=document.getElementById('spd-num');if(!el)return;function run(){var cur=64;function tick(){el.textContent=(cur/10).toFixed(1)+'s';if(cur>8){cur--;setTimeout(tick,55);}}tick();}run();})();</script></svg></div>
+      <div class="tom-boks__innhold">
+        <p class="tom-boks__label">Hastighet</p>
+        <p class="tom-boks__undertekst">En treg nettside koster deg kunder. Vi bygger med hastighet i fokus — optimaliserte bilder, ren kode og rask lastetid som også gir deg bedre plassering i Google.</p>
       </div>
     </div>
   </section>
+
 
   <!-- SEKSJON SERVICE -->
   <section class="seksjon-service">
 
     <div class="service-top" data-animate="stagger" data-stagger="0.1">
-      <span class="service-badge">Service</span>
+      <div class="service-eyebrow">
+        <span style="font-family:'Material Symbols Outlined'; font-size:15px; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 20; line-height:1;">build_circle</span>
+        <span>Service</span>
+      </div>
       <h2 class="service-heading">Behov for å oppdatere nettsiden senere?</h2>
       <p class="service-lead">En nettside er aldri helt ferdig. Ting endrer seg, nye tjenester, oppdaterte priser, sesongkampanjer, eller bare en tekst som bør justeres.</p>
     </div>
@@ -3103,11 +3745,11 @@
         </div>
       </div>
       <div class="service-right" data-animate="fade-left" data-trigger="top 82%" data-delay="0.12">
-        <p class="service-right-heading">Har du et prosjekt, en referanse, en kampanje eller noe annet du vil oppdatere på nettsiden?</p>
+        <p class="service-right-heading">Har du noe du vil oppdatere på nettsiden?</p>
         <div class="service-info-boxes">
-          <div class="service-info-box">Du trenger kun å sende oss en melding eller ringe oss</div>
-          <div class="service-info-box">Det påløper ingen ekstra kostnader for oppdateringen.</div>
-          <div class="service-info-box">Tjenesten er allerede inkludert i domenehostingen.</div>
+          <div class="service-info-box">Send oss en melding eller ring oss direkte</div>
+          <div class="service-info-box">Ingen ekstra kostnader for oppdateringen</div>
+          <div class="service-info-box">Inkludert i domenehostingen</div>
         </div>
       </div>
     </div>
@@ -3117,10 +3759,16 @@
   <!-- SEKSJON FAQ -->
   <section class="seksjon-faq">
 
-    <div class="faq-left" data-animate="stagger" data-stagger="0.1">
-      <h2 class="faq-heading">Spørsmålene dine, besvart</h2>
-      <p class="faq-subtext">Raske svar på det vi oftest blir spurt om.</p>
-      <a href="#" class="faq-cta" onclick="openContactPopup(); return false;">Kontakt oss <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+    <div class="faq-left" data-animate="fade-up">
+      <div class="faq-left__text">
+        <div class="faq-eyebrow">
+          <span style="font-family:'Material Symbols Outlined'; font-size:15px; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 20; line-height:1;">help</span>
+          <span>FAQ</span>
+        </div>
+        <h2 class="faq-heading">Spørsmålene dine, besvart</h2>
+        <p class="faq-subtext">Raske svar på det vi oftest blir spurt om.</p>
+      </div>
+      <a href="#" class="faq-cta" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Kontakt oss</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
     </div>
 
     <div class="faq-list" data-animate="stagger" data-stagger="0.09" data-delay="0.05">
@@ -3171,85 +3819,148 @@
   <section class="seksjon-prising" id="priser">
     <div class="prising-inner">
 
-      <h2 class="prising-heading" data-animate="fade-up">Et nytt oppdrag betaler for nettsiden din</h2>
+      <div class="prising-eyebrow">
+        <span style="font-family:'Material Symbols Outlined'; font-size:15px; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 20; line-height:1;">payments</span>
+        <span>Pris</span>
+      </div>
+      <h2 class="prising-heading">Et nytt oppdrag betaler for nettsiden din</h2>
 
-      <div class="prising-grid" data-animate="stagger" data-stagger="0.15" data-delay="0.1">
+      <div class="prising-grid">
 
-        <!-- Standardpakke -->
-        <div class="prising-kort">
-          <div class="prising-kort__navn">Standardpakke</div>
+        <!-- Utkast -->
+        <div class="prising-kort prising-kort--utkast">
+          <h3 class="prising-kort__tittel">Mediegruppen — Utkast</h3>
           <div class="prising-kort__pris">
-            <span class="prising-kort__belop">14 900</span>
-            <span class="prising-kort__valuta">kr eks. mva</span>
+            <span class="prising-kort__belop">0</span>
           </div>
-          <p class="prising-kort__desc">En ferdig nettside på 2 uker. Fast pris, ingen overraskelser.</p>
           <div class="prising-divider"></div>
           <ul class="prising-kort__features">
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
+              Gratis designutkast
+            </li>
+            <li>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
+              Skreddersydd til din bransje
+            </li>
+            <li>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
+              Ingen binding
+            </li>
+            <li>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
+              Levert innen 48 timer
+            </li>
+          </ul>
+          <a href="#" class="prising-kort__cta" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Få utkast</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
+        </div>
+
+        <!-- Standardpakke -->
+        <div class="prising-kort prising-kort--standard">
+          <h3 class="prising-kort__tittel">Mediegruppen — Standard</h3>
+          <div class="prising-kort__pris">
+            <span class="prising-kort__belop">14 900</span>
+            <span class="prising-kort__valuta">kr</span>
+          </div>
+          <div class="prising-divider"></div>
+          <ul class="prising-kort__features">
+            <li>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               Inntil 5 sider
             </li>
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               Mobiloptimalisert design
             </li>
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               Kontaktskjema og kart
             </li>
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               Rask hosting inkludert (1 år)
             </li>
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               Grunnleggende SEO-oppsett
             </li>
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               2 runder med korrektur
             </li>
           </ul>
-          <a href="#" class="prising-kort__cta" onclick="openContactPopup(); return false;">Kom i gang <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+          <a href="#" class="prising-kort__cta" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Kom i gang</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
         </div>
 
         <!-- Vekstpakke -->
         <div class="prising-kort prising-kort--featured">
           <div class="prising-kort__badge">Mest valgt</div>
-          <div class="prising-kort__navn">Vekstpakke</div>
+          <h3 class="prising-kort__tittel">Mediegruppen — Vekst</h3>
           <div class="prising-kort__pris">
             <span class="prising-kort__belop">24 900</span>
-            <span class="prising-kort__valuta">kr eks. mva</span>
+            <span class="prising-kort__valuta">kr</span>
           </div>
-          <p class="prising-kort__desc">Alt i Standard, pluss service-avtale og innholdsoppdateringer.</p>
           <div class="prising-divider"></div>
           <ul class="prising-kort__features">
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               Alt i Standardpakke
             </li>
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               Inntil 10 sider
             </li>
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               6 mnd service-avtale inkludert
             </li>
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               Vi legger ut nye prosjekter for deg
             </li>
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               Avansert SEO og Google-profil
             </li>
             <li>
-              <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
               Ubegrensede korrektur-runder
             </li>
           </ul>
-          <a href="#" class="prising-kort__cta" onclick="openContactPopup(); return false;">Kom i gang <svg viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
+          <a href="#" class="prising-kort__cta" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Kom i gang</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="prising-kort prising-kort--enterprise">
+          <h3 class="prising-kort__tittel">Mediegruppen — Enterprise</h3>
+          <div class="prising-kort__pris">
+            <span class="prising-kort__belop">78 900</span>
+            <span class="prising-kort__valuta">kr</span>
+          </div>
+          <div class="prising-divider"></div>
+          <ul class="prising-kort__features">
+            <li>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
+              Alt i Vekstpakke
+            </li>
+            <li>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
+              A/B-testing for høyere konvertering
+            </li>
+            <li>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
+              Vi optimaliserer til du selger mer
+            </li>
+            <li>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
+              3 år gratis hosting inkludert
+            </li>
+            <li>
+              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
+              3 år service-avtale inkludert
+            </li>
+          </ul>
+          <a href="#" class="prising-kort__cta" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Kom i gang</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
         </div>
 
       </div>
@@ -3259,18 +3970,17 @@
   <!-- FOOTER -->
   <footer class="site-footer">
 
-    <!-- Pre-footer CTA -->
-    <div class="footer-cta">
-      <h2 class="footer-cta__heading" data-animate="fade-up">
-        <span class="footer-cta__eyebrow">La oss snakke</span>
-        Klar for en nettside som <em>faktisk</em><br>jobber for deg?
-      </h2>
-      <div class="footer-cta__action" data-animate="fade-up" data-delay="0.15">
-        <a href="#" class="footer-cta__btn" onclick="openContactPopup(); return false;">
-          Få et gratis utkast
-          <svg viewBox="0 0 341 312" fill="#1a1a18"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg>
-        </a>
-      </div>
+    <!-- Footer CTA -->
+    <div class="footer-kontakt-wrap">
+      <a href="#" class="footer-kontakt-btn" onclick="openContactPopup(); return false;">
+        <span class="fkb-arrow-left">
+          <svg width="52" height="36" viewBox="0 0 356 246" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg>
+        </span>
+        <span class="footer-kontakt-btn-text">Kontakt oss</span>
+        <span class="fkb-arrow-right">
+          <svg width="52" height="36" viewBox="0 0 356 246" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg>
+        </span>
+      </a>
     </div>
 
     <!-- Footer kolonner -->
@@ -3331,16 +4041,31 @@
   </footer>
 
   <script>
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.parentElement;
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const answer = item.querySelector('.faq-answer');
+
+      item.addEventListener('mouseenter', () => {
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-answer').style.height = '0';
+        });
+        item.classList.add('open');
+        answer.style.height = answer.scrollHeight + 'px';
+      });
+
+      item.addEventListener('mouseleave', () => {
+        item.classList.remove('open');
+        answer.style.height = '0';
+      });
+
+      // Behold klikk for mobil
+      item.querySelector('.faq-question').addEventListener('click', () => {
         const isOpen = item.classList.contains('open');
         document.querySelectorAll('.faq-item').forEach(i => {
           i.classList.remove('open');
           i.querySelector('.faq-answer').style.height = '0';
         });
         if (!isOpen) {
-          const answer = item.querySelector('.faq-answer');
           item.classList.add('open');
           answer.style.height = answer.scrollHeight + 'px';
         }
@@ -3387,7 +4112,19 @@
       'fade-in':    ()   => ({ opacity: 0 }),
       'scale-in':   ()   => ({ opacity: 0, scale: 0.96, y: 8 }),
     };
-    const TO = { opacity: 1, x: 0, y: 0, scale: 1, force3D: true, clearProps: 'transform,opacity' };
+    const TO = { opacity: 1, x: 0, y: 0, scale: 1, force3D: true, clearProps: 'transform,opacity,will-change' };
+
+    /* ── Pre-init: sett alle scroll-animerte elementer usynlige med en gang
+       slik at det aldri er et glimt av synlig→usynlig før animasjon starter ── */
+    document.querySelectorAll('[data-animate]:not([data-hero])').forEach(el => {
+      const type = el.dataset.animate;
+      if (type === 'stagger') {
+        gsap.set(Array.from(el.children), { opacity: 0, y: 18, willChange: 'transform, opacity' });
+      } else {
+        const from = (FROM[type] ?? FROM['fade-up'])(el);
+        gsap.set(el, { ...from, willChange: 'transform, opacity' });
+      }
+    });
 
     /* ── Hero: load-timeline ── */
     const heroEls = document.querySelectorAll('[data-animate][data-hero]');
@@ -3402,7 +4139,7 @@
           const stagger = parseFloat(el.dataset.stagger ?? 0.12);
           tl.fromTo(kids, { opacity: 0, y: 18 },
             { opacity: 1, y: 0, duration, stagger,
-              onComplete: () => gsap.set(kids, { clearProps: 'transform,opacity' }) }, delay);
+              onComplete: () => gsap.set(kids, { clearProps: 'transform,opacity,will-change' }) }, delay);
         } else {
           const from = (FROM[type] ?? FROM['fade-up'])(el);
           tl.fromTo(el, from, { ...TO, duration }, delay);
@@ -3410,34 +4147,28 @@
       });
     }
 
-    /* ── Scroll-animerte elementer ──
-       gsap.fromTo() med scrollTrigger-property innebygd i tweenen.
-       Dette eliminerer render-frame-gapet som onEnter-tilnærmingen
-       hadde (set → gap → to), og gir umiddelbar animasjonsstart.
-    ── */
+    /* ── Scroll-animerte elementer ── */
     document.querySelectorAll('[data-animate]:not([data-hero])').forEach(el => {
       const type     = el.dataset.animate;
-      const start    = el.dataset.trigger  ?? 'top 82%';
+      const start    = el.dataset.trigger  ?? 'top 85%';
       const delay    = parseFloat(el.dataset.delay    ?? 0);
-      const duration = parseFloat(el.dataset.duration ?? 0.7);
-      const ease     = 'power3.out';
+      const duration = parseFloat(el.dataset.duration ?? 0.65);
+      const ease     = 'power2.out';
       const st       = { trigger: el, start, once: true };
 
       if (type === 'stagger') {
         const kids    = Array.from(el.children);
         const stagger = parseFloat(el.dataset.stagger ?? 0.12);
-        gsap.fromTo(kids,
-          { opacity: 0, y: 18 },
-          { opacity: 1, y: 0, duration, ease, stagger, delay,
-            scrollTrigger: st,
-            onComplete: () => gsap.set(kids, { clearProps: 'transform,opacity' })
+        gsap.to(kids,
+          { opacity: 1, y: 0, x: 0, scale: 1, duration, ease, stagger, delay,
+            scrollTrigger: st, force3D: true,
+            onComplete: () => gsap.set(kids, { clearProps: 'transform,opacity,will-change' })
           }
         );
         return;
       }
 
-      const from = (FROM[type] ?? FROM['fade-up'])(el);
-      gsap.fromTo(el, from, { ...TO, duration, ease, delay, scrollTrigger: st });
+      gsap.to(el, { ...TO, duration, ease, delay, scrollTrigger: st });
     });
   })();
   </script>
@@ -3642,6 +4373,44 @@
       });
     }
 
+    function initPortoKortWidth() {
+      const section = document.querySelector('.seksjon-portefolje');
+      const grid = document.querySelector('.porto-grid');
+      if (!section || !grid) return;
+
+      // Section: padding 24px, 12-col grid with 24px gaps
+      // Grid is now 100vw (grid-column 1/-1, margin ±-24px)
+      // Cards should align visually with col 2 start → col 12 end (same as section 2)
+      const sectionPad = 24;
+      const colGap = 24;
+      const totalCols = 12;
+      const viewportW = section.offsetWidth; // full section width = viewport width
+
+      const contentWidth = viewportW - sectionPad * 2;
+      const colWidth = (contentWidth - (totalCols - 1) * colGap) / totalCols;
+
+      // Offset from left edge of scroll container to start of col 1
+      const col1start = sectionPad;
+      grid.style.paddingLeft = col1start + 'px';
+      grid.style.scrollPaddingLeft = col1start + 'px';
+
+      // Card width = half of (col1 → col11) area minus one gap between cards
+      const col1to11Width = colWidth * 10 + colGap * 9;
+      const GAP = 16;
+      const cardWidth = (col1to11Width - GAP) / 2;
+
+      grid.querySelectorAll('.porto-kort').forEach(k => {
+        k.style.width = cardWidth + 'px';
+      });
+    }
+
+    function portoScroll(dir) {
+      const grid = document.querySelector('.porto-grid');
+      const kort = grid.querySelector('.porto-kort');
+      const kortWidth = kort.offsetWidth + 16;
+      grid.scrollBy({ left: dir * kortWidth, behavior: 'smooth' });
+    }
+
     function heroSlide(dir) {
       _heroIdx = (_heroIdx + dir + heroGetTotal()) % heroGetTotal();
       heroUpdateUI();
@@ -3657,6 +4426,71 @@
         closeContactPopup();
       }
     });
+
+    initPortoKortWidth();
+    window.addEventListener('resize', initPortoKortWidth);
+
+    // Smart lazy load + animasjon: trigger når seksjon 2 er 30% synlig
+    (function() {
+      var portoLoaded = false;
+
+      function animatePortoCards() {
+        var grid = document.querySelector('.porto-grid');
+        if (!grid || typeof gsap === 'undefined') return;
+        var kids = Array.from(grid.children);
+        var stagger = parseFloat(grid.dataset.stagger || 0.15);
+        gsap.fromTo(kids,
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: stagger,
+            onComplete: function() { gsap.set(kids, { clearProps: 'transform,opacity' }); }
+          }
+        );
+      }
+
+      var portoObserver = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) loadPorto();
+      }, { threshold: 0.3 });
+
+      function loadPorto() {
+        if (portoLoaded) return;
+        portoLoaded = true;
+        portoObserver.disconnect();
+        var imgs = Array.from(document.querySelectorAll('.porto-grid img[data-src]'));
+        imgs.forEach(function(img) { img.src = img.dataset.src; });
+        document.querySelectorAll('.porto-grid [data-bg]').forEach(function(el) {
+          el.style.backgroundImage = "url('" + el.dataset.bg + "')";
+        });
+        if (imgs.length === 0) {
+          animatePortoCards();
+        } else {
+          var loaded = 0;
+          function onLoad() { if (++loaded >= imgs.length) animatePortoCards(); }
+          imgs.forEach(function(img) {
+            if (img.complete) onLoad();
+            else { img.addEventListener('load', onLoad); img.addEventListener('error', onLoad); }
+          });
+        }
+      }
+
+      // Start kortene usynlige
+      var grid = document.querySelector('.porto-grid');
+      if (grid) {
+        Array.from(grid.children).forEach(function(card) { card.style.opacity = '0'; });
+      }
+
+      var seksjon2 = document.querySelector('.hva-vi-leverer');
+      var porto = document.querySelector('.seksjon-portefolje');
+      if (seksjon2) {
+        // Allerede forbi seksjon 2 eller porto er synlig ved reload → last umiddelbart
+        var s2rect = seksjon2.getBoundingClientRect();
+        var portoRect = porto ? porto.getBoundingClientRect() : null;
+        if (s2rect.bottom < window.innerHeight || (portoRect && portoRect.top < window.innerHeight)) {
+          loadPorto();
+        } else {
+          portoObserver.observe(seksjon2);
+        }
+      }
+    })();
 
     var SUPABASE_URL = 'https://seevzkxodkvgiffanacg.supabase.co';
     var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNlZXZ6a3hvZGt2Z2lmZmFuYWNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDUzODksImV4cCI6MjA4NTk4MTM4OX0.bGUpZQk1xDSVrinv9YzaeZHHHJyhKpf_54ywZyHWt6g';

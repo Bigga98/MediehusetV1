@@ -9,6 +9,11 @@
   const script = document.currentScript;
   const root = script?.dataset?.root ?? './';
 
+  const fontLink = document.createElement('link');
+  fontLink.rel = 'stylesheet';
+  fontLink.href = 'https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500&display=swap';
+  document.head.appendChild(fontLink);
+
   const links = [
     { label: 'Hjem',         href: root + 'index.html' },
     { label: 'Tjenester',    href: root + 'tjenester.html' },
@@ -27,9 +32,9 @@
       will-change: transform;
       display: flex;
       align-items: center;
-      padding: 0 80px;
+      padding: 0 48px;
       z-index: 1000;
-      background: rgba(245, 244, 241, 0.95);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0,0,0,0.06);
       transition: background 0.2s, transform 0.4s cubic-bezier(0.25, 0, 0, 1);
@@ -38,19 +43,27 @@
       transform: translateY(-100%);
     }
     .mg-nav.scrolled {
-      background: rgba(245, 244, 241, 0.92);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0,0,0,0.06);
     }
     .mg-nav__logo {
       display: flex;
       align-items: center;
-      font-family: 'Sorts Mill Goudy', Georgia, serif;
+      font-family: 'Instrument Sans', Helvetica, sans-serif;
       font-weight: 400;
-      font-size: 24px;
+      font-size: 20px;
+      letter-spacing: 0.1em;
       color: #141414;
       text-decoration: none;
       margin-right: auto;
+    }
+    .mg-nav__logo svg {
+      transition: transform 0.35s cubic-bezier(0.25, 0, 0, 1);
+      transform-origin: center;
+    }
+    .mg-nav__logo:hover svg {
+      transform: scaleY(0.8);
     }
     .mg-nav__links {
       display: flex;
@@ -59,7 +72,7 @@
       margin-left: auto;
     }
     .mg-nav__links a {
-      font-family: 'Instrument Sans', Helvetica, sans-serif;
+      font-family: 'Funnel Display', sans-serif;
       font-weight: 400;
       font-size: 16px;
       color: #111;
@@ -113,7 +126,7 @@
       border: 1px solid #000;
       font-family: 'Instrument Sans', Helvetica, sans-serif;
       font-weight: 500;
-      font-size: 13px;
+      font-size: 14px;
       color: #0c0c0c;
       text-decoration: none;
       white-space: nowrap;
@@ -171,9 +184,11 @@
       display: flex;
     }
     .mg-nav__drawer a {
-      font-family: 'Instrument Sans', Helvetica, sans-serif;
-      font-size: 18px;
-      font-weight: 400;
+      font-family: 'SUSE', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: #111;
       text-decoration: none;
       padding: 14px 0;
@@ -223,7 +238,7 @@
   const logo = document.createElement('a');
   logo.className = 'mg-nav__logo';
   logo.href = root + 'index.html';
-  logo.innerHTML = '<img src="' + root + 'images/logo.svg" alt="Mediegruppen logo" style="height:36px;width:auto;display:block;margin-right:12px;position:relative;top:-4px;"> Mediegruppen';
+  logo.innerHTML = '<em style="font-family:\'Funnel Display\',sans-serif;font-style:normal;font-weight:400;">Mediegruppen</em><svg height="28" viewBox="0 0 327 246" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:28px;width:auto;display:block;margin-left:5px;position:relative;top:0px;" aria-label="Mediegruppen logo"><path d="M188.447 153.654L126.214 242.532C124.946 244.341 122.452 244.781 120.643 243.514L89.9243 222.005C88.1147 220.738 87.6749 218.244 88.942 216.434L151.401 127.233L88.9406 38.5495C87.6726 36.749 88.0983 34.2623 89.8931 32.9862L120.634 11.1291C122.445 9.84215 124.956 10.2762 126.23 12.0959L188.433 100.996C189.705 102.814 189.254 105.32 187.428 106.581L162.335 123.904C160.041 125.487 160.03 128.873 162.313 130.472L187.464 148.083C189.274 149.35 189.714 151.844 188.447 153.654Z" fill="#1B1A1A"/><path d="M279.447 153.654L217.214 242.532C215.946 244.341 213.452 244.781 211.643 243.514L180.924 222.005C179.115 220.738 178.675 218.244 179.942 216.434L242.401 127.233L179.941 38.5495C178.673 36.749 179.098 34.2623 180.893 32.9862L211.634 11.1291C213.445 9.84215 215.956 10.2762 217.23 12.0959L279.433 100.996C280.705 102.814 280.254 105.32 278.428 106.581L253.335 123.904C251.041 125.487 251.03 128.873 253.313 130.472L278.464 148.083C280.274 149.35 280.714 151.844 279.447 153.654Z" fill="#1B1A1A"/></svg>';
 
   const linkWrap = document.createElement('div');
   linkWrap.className = 'mg-nav__links';
@@ -411,14 +426,14 @@
       .popup-left-top{position:relative;z-index:1}
       .popup-brand-dot{width:36px;height:36px;background:rgba(255,255,255,.1);border-radius:10px;margin-bottom:28px;display:flex;align-items:center;justify-content:center}
       .popup-left-heading{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:500;line-height:1.2;letter-spacing:-.01em;color:#fff;margin-bottom:14px}
-      .popup-left-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;line-height:1.65;color:rgba(255,255,255,.5)}
+      .popup-left-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;line-height:1.7;color:rgba(255,255,255,.5)}
       .popup-trust{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px}
       .popup-trust-item{display:flex;align-items:center;gap:10px;font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;color:rgba(255,255,255,.65)}
       .popup-right{flex:1;background:#fff;padding:48px 48px 44px;position:relative}
       .popup-close{position:absolute;top:14px;right:14px;width:30px;height:30px;background:#f2f2f2;border:none;border-radius:50%;cursor:pointer;color:#777;font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
       .popup-close:hover{background:#e6e6e6;color:#111}
       .popup-right-heading{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:600;letter-spacing:-.01em;color:#17181c;margin-bottom:4px}
-      .popup-right-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;color:#999;margin-bottom:26px}
+      .popup-right-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;line-height:1.7;color:#999;margin-bottom:26px}
       .popup-form{display:flex;flex-direction:column;gap:11px}
       .popup-form-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
       .popup-input,.popup-textarea{width:100%;padding:0 14px;height:44px;background:#f7f7f7;border:1.5px solid transparent;border-radius:10px;font-family:'Instrument Sans',Helvetica,sans-serif;font-size:14px;color:#17181c;outline:none;transition:border-color .15s,background .15s,box-shadow .15s}
