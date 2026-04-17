@@ -96,50 +96,22 @@
       margin-bottom: 48px;
     }
 
-    .hero__input-wrap {
-      display: flex;
-      align-items: center;
-      background: #efefef;
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 12px;
-      padding: 6px;
-      max-width: 500px;
-      gap: 0;
-    }
-
-    .hero__input-wrap input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      padding: 12px 18px;
-      font-family: var(--font-ui);
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--color-dark);
-    }
-
-    .hero__input-wrap input::placeholder {
-      color: rgba(15,17,23,0.4);
-    }
-
-    .hero__input-wrap button {
-      flex-shrink: 0;
-      background: #071510;
+    .hero__cta-btn {
+      background: #181E15;
       color: #ffffff;
       border: none;
-      border-radius: 999px !important;
-      padding: 12px 22px;
+      border-radius: 999px;
+      padding: 14px 32px;
       font-family: var(--font-ui);
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 500;
       cursor: pointer;
       white-space: nowrap;
       letter-spacing: 0;
     }
 
-    .hero__input-wrap button:hover {
-      background: #0d2218;
+    .hero__cta-btn:hover {
+      background: #232b1f;
     }
 
     .hero__mockup {
@@ -153,7 +125,7 @@
     /* ── GLOBAL KNAPP-STIL — radius + font + farge ── */
     .hero .cta-btn,
     .hero .scroll-hint,
-    .hero__input-wrap button,
+    .hero__cta-btn,
     .hva-vi-leverer .section-btn,
     .demoer-cta,
     .faq-cta,
@@ -2903,7 +2875,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 170px 20px 0;
+        padding: 200px 20px 0;
+        background: linear-gradient(to bottom, #DCEEEA 0%, #ffffff 100%);
       }
 
       .hero__stat { display: none; }
@@ -2919,32 +2892,23 @@
 
       .hero__cta-row {
         width: 100%;
+        margin-bottom: 16px;
       }
 
-      .hero__input-wrap {
-        max-width: 100%;
-        flex-direction: column;
-        gap: 6px;
-        padding: 6px;
-      }
-
-      .hero__input-wrap input {
+      .hero__cta-btn {
         width: 100%;
-        padding: 14px 18px;
-      }
-
-      .hero__input-wrap button {
-        width: 100%;
-        min-height: 48px;
-        justify-content: center;
+        min-height: 52px;
+        font-size: 17px;
         display: flex;
         align-items: center;
+        justify-content: center;
       }
+
 
       .hero__mockup {
         display: block;
         height: 260px;
-        margin-top: 32px;
+        margin-top: 0;
         border-radius: 6px 6px 0 0;
       }
 
@@ -3380,10 +3344,7 @@
 
     <!-- 3. CTA -->
     <div class="hero__cta-row" data-animate="fade-up" data-hero data-delay="0.22">
-      <div class="hero__input-wrap">
-        <input type="email" placeholder="Din e-postadresse" />
-        <button onclick="openContactPopup(); return false;">Få et utkast</button>
-      </div>
+      <button class="hero__cta-btn" onclick="openContactPopup(); return false;">Få et utkast</button>
     </div>
 
     <!-- 4. Produktmockup -->

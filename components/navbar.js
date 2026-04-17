@@ -51,8 +51,8 @@
       display: flex;
       align-items: center;
       font-family: 'Instrument Sans', Helvetica, sans-serif;
-      font-weight: 400;
-      font-size: 20px;
+      font-weight: 600;
+      font-size: 16px;
       letter-spacing: 0.1em;
       color: #141414;
       text-decoration: none;
@@ -172,11 +172,11 @@
       top: 72px;
       left: 0;
       right: 0;
-      background: rgba(245, 244, 241, 0.97);
+      background: rgba(255, 255, 255, 0.97);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
       flex-direction: column;
-      padding: 24px 24px 32px;
+      padding: 8px 20px 24px;
       gap: 0;
       z-index: 999;
     }
@@ -184,23 +184,26 @@
       display: flex;
     }
     .mg-nav__drawer a {
-      font-family: 'SUSE', monospace;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      font-family: 'Funnel Display', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
       color: #111;
       text-decoration: none;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(0,0,0,0.07);
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
     .mg-nav__drawer a:last-child {
       border-bottom: none;
     }
+    .mg-nav__drawer a.active {
+      color: #2D5A73;
+    }
     .mg-nav__drawer a.meta {
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0;
+      text-transform: none;
       color: #999;
       border: none;
       padding-top: 20px;
@@ -209,6 +212,7 @@
       .mg-nav {
         padding: 0 20px;
         height: 60px;
+        backdrop-filter: none;
       }
       .mg-nav__drawer {
         top: 60px;
@@ -242,7 +246,7 @@
   const logo = document.createElement('a');
   logo.className = 'mg-nav__logo';
   logo.href = root + 'index.html';
-  logo.innerHTML = '<em style="font-family:\'Funnel Display\',sans-serif;font-style:normal;font-weight:400;">Mediegruppen</em><svg height="28" viewBox="0 0 327 246" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:28px;width:auto;display:block;margin-left:5px;position:relative;top:0px;" aria-label="Mediegruppen logo"><path d="M188.447 153.654L126.214 242.532C124.946 244.341 122.452 244.781 120.643 243.514L89.9243 222.005C88.1147 220.738 87.6749 218.244 88.942 216.434L151.401 127.233L88.9406 38.5495C87.6726 36.749 88.0983 34.2623 89.8931 32.9862L120.634 11.1291C122.445 9.84215 124.956 10.2762 126.23 12.0959L188.433 100.996C189.705 102.814 189.254 105.32 187.428 106.581L162.335 123.904C160.041 125.487 160.03 128.873 162.313 130.472L187.464 148.083C189.274 149.35 189.714 151.844 188.447 153.654Z" fill="#1B1A1A"/><path d="M279.447 153.654L217.214 242.532C215.946 244.341 213.452 244.781 211.643 243.514L180.924 222.005C179.115 220.738 178.675 218.244 179.942 216.434L242.401 127.233L179.941 38.5495C178.673 36.749 179.098 34.2623 180.893 32.9862L211.634 11.1291C213.445 9.84215 215.956 10.2762 217.23 12.0959L279.433 100.996C280.705 102.814 280.254 105.32 278.428 106.581L253.335 123.904C251.041 125.487 251.03 128.873 253.313 130.472L278.464 148.083C280.274 149.35 280.714 151.844 279.447 153.654Z" fill="#1B1A1A"/></svg>';
+  logo.innerHTML = '<em style="font-family:\'Funnel Display\',sans-serif;font-style:normal;font-weight:400;">Mediegruppen</em><svg height="22" viewBox="0 0 327 246" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:22px;width:auto;display:block;margin-left:5px;position:relative;top:0px;" aria-label="Mediegruppen logo"><path d="M188.447 153.654L126.214 242.532C124.946 244.341 122.452 244.781 120.643 243.514L89.9243 222.005C88.1147 220.738 87.6749 218.244 88.942 216.434L151.401 127.233L88.9406 38.5495C87.6726 36.749 88.0983 34.2623 89.8931 32.9862L120.634 11.1291C122.445 9.84215 124.956 10.2762 126.23 12.0959L188.433 100.996C189.705 102.814 189.254 105.32 187.428 106.581L162.335 123.904C160.041 125.487 160.03 128.873 162.313 130.472L187.464 148.083C189.274 149.35 189.714 151.844 188.447 153.654Z" fill="#1B1A1A"/><path d="M279.447 153.654L217.214 242.532C215.946 244.341 213.452 244.781 211.643 243.514L180.924 222.005C179.115 220.738 178.675 218.244 179.942 216.434L242.401 127.233L179.941 38.5495C178.673 36.749 179.098 34.2623 180.893 32.9862L211.634 11.1291C213.445 9.84215 215.956 10.2762 217.23 12.0959L279.433 100.996C280.705 102.814 280.254 105.32 278.428 106.581L253.335 123.904C251.041 125.487 251.03 128.873 253.313 130.472L278.464 148.083C280.274 149.35 280.714 151.844 279.447 153.654Z" fill="#1B1A1A"/></svg>';
 
   const linkWrap = document.createElement('div');
   linkWrap.className = 'mg-nav__links';
@@ -322,11 +326,29 @@
   let lastScrollY = window.scrollY;
   let ticking = false;
 
+  function updateNavBg(scrollY) {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      const hero = document.querySelector('.hero');
+      const heroH = hero ? hero.offsetHeight : window.innerHeight;
+      const progress = Math.min(scrollY / heroH, 1);
+      const r = Math.round(220 + (255 - 220) * progress);
+      const g = Math.round(238 + (255 - 238) * progress);
+      const b = Math.round(234 + (255 - 234) * progress);
+      nav.style.background = `rgb(${r},${g},${b})`;
+    } else {
+      nav.style.background = '';
+    }
+  }
+
+  updateNavBg(window.scrollY);
+
   window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(() => {
         const currentScrollY = window.scrollY;
         nav.classList.toggle('scrolled', currentScrollY > 20);
+        updateNavBg(currentScrollY);
 
         if (currentScrollY > lastScrollY && currentScrollY > 80) {
           nav.classList.add('nav-hidden');
@@ -340,6 +362,8 @@
       ticking = true;
     }
   }, { passive: true });
+
+  window.addEventListener('resize', () => updateNavBg(window.scrollY));
 
   // Directional underline — strek vokser fra den siden musen entrer fra
   linkWrap.querySelectorAll('a:not(.meta)').forEach(link => {
