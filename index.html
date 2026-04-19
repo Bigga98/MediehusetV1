@@ -92,6 +92,16 @@
       margin-bottom: 24px;
     }
 
+    .hero__sub {
+      font-family: var(--font-ui);
+      font-size: 17px;
+      font-weight: 400;
+      color: rgba(15,17,23,0.55);
+      max-width: 480px;
+      line-height: 1.55;
+      margin-bottom: 28px;
+    }
+
     .hero__cta-row {
       margin-bottom: 48px;
     }
@@ -101,7 +111,7 @@
       color: #ffffff;
       border: none;
       border-radius: 999px;
-      padding: 14px 32px;
+      padding: 14px 48px;
       font-family: var(--font-ui);
       font-size: 15px;
       font-weight: 500;
@@ -1259,7 +1269,7 @@
     .seksjon-demoer {
       width: 100%;
       min-height: 435px;
-      background-color: var(--bg-2);
+      background-color: #041C15;
       padding: var(--section-padding-y) var(--grid-margin);
       display: grid;
       grid-template-columns: 1fr 1.6fr;
@@ -2875,7 +2885,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 200px 20px 0;
+        padding: 200px 14px 0;
         background: linear-gradient(to bottom, #DCEEEA 0%, #ffffff 100%);
       }
 
@@ -2883,25 +2893,36 @@
 
       .hero__heading {
         width: 100%;
-        font-size: clamp(36px, 11vw, 54px);
+        font-size: clamp(44px, 13vw, 64px);
         text-align: center;
         letter-spacing: -0.02em;
         line-height: 1.07;
         max-width: 100%;
       }
 
+      .hero__sub {
+        text-align: center;
+        font-size: 20px;
+        color: rgba(15,17,23,0.85);
+        margin-bottom: 20px;
+      }
+
       .hero__cta-row {
         width: 100%;
         margin-bottom: 16px;
+        display: flex;
+        justify-content: center;
       }
 
       .hero__cta-btn {
-        width: 100%;
+        width: auto;
         min-height: 52px;
         font-size: 17px;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
+        background: #1E281D;
+        color: #ffffff;
       }
 
 
@@ -3238,13 +3259,13 @@
 
       /* ── POPUP MOBIL ── */
       .popup-overlay {
-        align-items: flex-end;
+        align-items: center;
         justify-content: center;
-        padding: 0;
+        padding: 16px;
       }
 
       .popup-card {
-        border-radius: 16px 16px 0 0;
+        border-radius: 16px;
         max-height: 92vh;
         overflow-y: auto;
         width: 100%;
@@ -3294,6 +3315,13 @@
         width: 100%;
         height: 220px;
         border-radius: 4px 4px 0 0;
+        overflow: hidden;
+      }
+
+      .tom-boks__bilde svg {
+        width: 100%;
+        height: 100%;
+        display: block;
       }
 
       .tom-boks__innhold {
@@ -3340,11 +3368,14 @@
     </div>
 
     <!-- 2. Heading -->
-    <h1 class="hero__heading" data-animate="fade-up" data-hero data-delay="0.12">Nettsider for norske bedrifter</h1>
+    <h1 class="hero__heading" data-animate="fade-up" data-hero data-delay="0.12">Nettsider med digital identitet</h1>
+
+    <!-- 2b. Undertekst -->
+    <p class="hero__sub" data-animate="fade-up" data-hero data-delay="0.18">Vi bygger nettsider som ser ut som deg — ikke som alle andre.</p>
 
     <!-- 3. CTA -->
     <div class="hero__cta-row" data-animate="fade-up" data-hero data-delay="0.22">
-      <button class="hero__cta-btn" onclick="openContactPopup(); return false;">Få et utkast</button>
+      <button class="hero__cta-btn" onclick="openContactPopup(); return false;">Få et utkast <svg width="22" height="15" viewBox="0 0 356 246" fill="none" style="margin-left:8px;flex-shrink:0;"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></button>
     </div>
 
     <!-- 4. Produktmockup -->
@@ -3588,7 +3619,7 @@
       </div>
     </div>
     <div class="tom-boks">
-      <div class="tom-boks__bilde"><svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:100%;"><defs><style>.wf-bar{transform-box:fill-box;transform-origin:left center;animation:wfGrow 3s ease-in-out forwards}.wf-r1{animation-delay:.1s}.wf-r2{animation-delay:.22s}.wf-r3{animation-delay:.36s}@keyframes wfGrow{0%,2%{transform:scaleX(0)}70%,100%{transform:scaleX(1)}}</style></defs><rect width="240" height="240" fill="#f0efed" rx="4"/><text id="spd-num" x="120" y="100" font-family="'DM Sans',sans-serif" font-size="72" font-weight="500" fill="#111" text-anchor="middle" letter-spacing="-0.04em">6.4s</text><text x="120" y="122" font-family="'DM Sans',sans-serif" font-size="11" font-weight="400" fill="#bbb" text-anchor="middle" letter-spacing="0.05em">LASTETID</text><line x1="20" y1="142" x2="220" y2="142" stroke="#dddcda" stroke-width="1"/><rect class="wf-bar wf-r1" x="20" y="154" width="30" height="9" rx="2" fill="#111" opacity="0.75"/><rect class="wf-bar wf-r2" x="24" y="172" width="96" height="9" rx="2" fill="#111" opacity="0.35"/><rect class="wf-bar wf-r3" x="28" y="190" width="152" height="9" rx="2" fill="#111" opacity="0.15"/><line x1="20" y1="212" x2="220" y2="212" stroke="#dddcda" stroke-width="1"/><text x="20" y="226" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#ccc">0ms</text><text x="220" y="226" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#ccc" text-anchor="end">1000ms</text><script>(function(){var el=document.getElementById('spd-num');if(!el)return;function run(){var cur=64;function tick(){el.textContent=(cur/10).toFixed(1)+'s';if(cur>8){cur--;setTimeout(tick,55);}}tick();}run();})();</script></svg></div>
+      <div class="tom-boks__bilde"><svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="display:block;width:100%;height:100%;"><defs><style>.wf-bar{transform-box:fill-box;transform-origin:left center;animation:wfGrow 3s ease-in-out forwards}.wf-r1{animation-delay:.1s}.wf-r2{animation-delay:.22s}.wf-r3{animation-delay:.36s}@keyframes wfGrow{0%,2%{transform:scaleX(0)}70%,100%{transform:scaleX(1)}}</style></defs><rect width="240" height="240" fill="#f0efed" rx="4"/><text id="spd-num" x="120" y="118" font-family="'DM Sans',sans-serif" font-size="72" font-weight="500" fill="#111" text-anchor="middle" letter-spacing="-0.04em">6.4s</text><text x="120" y="140" font-family="'DM Sans',sans-serif" font-size="11" font-weight="400" fill="#bbb" text-anchor="middle" letter-spacing="0.05em">LASTETID</text><line x1="20" y1="142" x2="220" y2="142" stroke="#dddcda" stroke-width="1"/><rect class="wf-bar wf-r1" x="20" y="154" width="30" height="9" rx="2" fill="#111" opacity="0.75"/><rect class="wf-bar wf-r2" x="24" y="172" width="96" height="9" rx="2" fill="#111" opacity="0.35"/><rect class="wf-bar wf-r3" x="28" y="190" width="152" height="9" rx="2" fill="#111" opacity="0.15"/><line x1="20" y1="212" x2="220" y2="212" stroke="#dddcda" stroke-width="1"/><text x="20" y="226" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#ccc">0ms</text><text x="220" y="226" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#ccc" text-anchor="end">1000ms</text><script>(function(){var el=document.getElementById('spd-num');if(!el)return;function run(){var cur=64;function tick(){el.textContent=(cur/10).toFixed(1)+'s';if(cur>8){cur--;setTimeout(tick,55);}}tick();}run();})();</script></svg></div>
       <div class="tom-boks__innhold">
         <p class="tom-boks__label">Hastighet</p>
         <p class="tom-boks__undertekst">En treg nettside koster deg kunder. Vi bygger med hastighet i fokus — optimaliserte bilder, ren kode og rask lastetid som også gir deg bedre plassering i Google.</p>
@@ -4454,7 +4485,7 @@
       fetch(SUPABASE_URL + '/rest/v1/leads', {
         method: 'POST',
         headers: { 'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
-        body: JSON.stringify({ name: name, email: email, message: company + (message ? '\n' + message : ''), service_type: 'Kontakt', source: 'hero-preview' })
+        body: JSON.stringify({ name: name, email: email, website: company, message: message, service_type: 'Kontakt', source: 'nettside' })
       });
 
       // FormSubmit e-post
