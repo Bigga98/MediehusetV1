@@ -3250,6 +3250,20 @@
         padding: 60px 20px;
       }
 
+      .hvl__card {
+        padding: 0;
+        display: block;
+      }
+
+      .hva-vi-leverer .section-text {
+        font-size: 17px;
+      }
+
+      .hva-vi-leverer .section-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
       .hva-vi-leverer .cards {
         display: flex;
         flex-direction: column;
@@ -3260,6 +3274,51 @@
       .hva-vi-leverer .card {
         height: auto;
         padding: 24px;
+      }
+
+      .hva-vi-leverer .card-desc {
+        font-size: 16px;
+      }
+
+      /* ── NETTSIDE SOM KONVERTERER ── */
+      .konv__wrap {
+        padding: 40px 20px 32px !important;
+      }
+
+      .konv__inner {
+        height: auto !important;
+        flex-direction: column !important;
+      }
+
+      .konv__left {
+        flex: none !important;
+        width: 100% !important;
+        padding: 36px 24px !important;
+        box-sizing: border-box !important;
+      }
+
+      .konv__right {
+        flex: none !important;
+        width: 100% !important;
+        padding: 24px 20px 32px !important;
+        box-sizing: border-box !important;
+        min-height: 300px !important;
+      }
+
+      .konv__card-wrap {
+        width: 100% !important;
+      }
+
+      .konv__stats-card {
+        width: 100% !important;
+        padding: 24px 20px !important;
+        box-sizing: border-box !important;
+      }
+
+      .konv__cta {
+        width: 100% !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
       }
 
       /* ── PORTEFØLJE ── */
@@ -4186,7 +4245,7 @@
             <div class="p2-header">
               <span class="p2-tag">VVS</span>
               <p class="p2-tittel">Rørlegger nettside</p>
-              <p class="p2-desc">Nettside for rørlegger i Oslo — bygget for å ta imot henvendelser og synlig på Google.</p>
+              <p class="p2-desc">Nettside for rørlegger i Oslo, bygget for å ta imot henvendelser og synlig på Google.</p>
               <a href="bibliotek.html" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="p2-inner">
@@ -4200,7 +4259,7 @@
             <div class="p2-header">
               <span class="p2-tag">Bygg</span>
               <p class="p2-tittel">Byggherre nettside</p>
-              <p class="p2-desc">Profesjonell profil for et byggefirma — presenterer prosjekter og gjør det enkelt å ta kontakt.</p>
+              <p class="p2-desc">Profesjonell profil for et byggefirma, presenterer prosjekter og gjør det enkelt å ta kontakt.</p>
               <a href="bibliotek.html" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="p2-inner">
@@ -4214,7 +4273,7 @@
             <div class="p2-header">
               <span class="p2-tag">Håndverk</span>
               <p class="p2-tittel">Snekkerfirma nettside</p>
-              <p class="p2-desc">Tjenesteside for et lokalt snekkerfirma — med prosjektgalleri og enkel kontaktflyt.</p>
+              <p class="p2-desc">Tjenesteside for et lokalt snekkerfirma, med prosjektgalleri og enkel kontaktflyt.</p>
               <a href="bibliotek.html" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="p2-inner">
@@ -4228,7 +4287,7 @@
             <div class="p2-header">
               <span class="p2-tag">Håndverk</span>
               <p class="p2-tittel">Snekker nettside</p>
-              <p class="p2-desc">Enkel og effektiv nettside for snekker — fokus på tilbud, referanser og rask respons.</p>
+              <p class="p2-desc">Enkel og effektiv nettside for snekker, fokus på tilbud, referanser og rask respons.</p>
               <a href="bibliotek.html" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="p2-inner">
@@ -4414,16 +4473,16 @@
   </svg>
 
   <!-- SEKSJON NETTSIDE SOM KONVERTERER -->
-  <section style="width:100%; padding:80px 48px 32px; background:#ffffff;">
-    <div style="width:100%; height:520px; border-radius:16px; overflow:hidden; background:#1A1B1F; display:flex;">
-      <div style="flex:0 0 55%; padding:56px 64px; display:flex; flex-direction:column; justify-content:center; gap:24px;">
+  <section class="konv__wrap" style="width:100%; padding:80px 48px 32px; background:#ffffff;">
+    <div class="konv__inner" style="width:100%; height:520px; border-radius:16px; overflow:hidden; background:#1A1B1F; display:flex;">
+      <div class="konv__left" style="flex:0 0 55%; padding:56px 64px; display:flex; flex-direction:column; justify-content:center; gap:24px;">
         <p style="font-family:'DM Sans',sans-serif; font-size:14px; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; color:rgba(220,238,234,0.5); margin:0; margin-bottom:-12px;">Nettside</p>
         <h2 style="font-family:'Geist',sans-serif; font-size:clamp(36px,3.8vw,58px); font-weight:400; line-height:1.06; letter-spacing:-0.02em; color:#E7F3F1; margin:0;">En nettside som faktisk<br>f&#229;r folk til &#229; ta kontakt.</h2>
         <p style="font-family:'Hanken Grotesk',sans-serif; font-size:17px; font-weight:300; line-height:1.6; color:#ffffff; margin:0; max-width:480px;">Vi bygger nettsider med tydelig struktur, riktige budskap og klare handlingsknapper &#8212; s&#229; bes&#248;kende blir til kunder.</p>
-        <a href="#kontakt" style="margin-top:8px; display:inline-flex; align-items:center; gap:8px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; color:#E7F3F1; background:transparent; text-decoration:none; width:fit-content; padding:12px 24px; border-radius:999px; border:1px solid rgba(220,238,234,0.4);">Se eksempler</a>
+        <a href="#kontakt" class="konv__cta" style="margin-top:8px; display:inline-flex; align-items:center; gap:8px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; color:#E7F3F1; background:transparent; text-decoration:none; width:fit-content; padding:12px 24px; border-radius:999px; border:1px solid rgba(220,238,234,0.4);">Se eksempler</a>
       </div>
-      <div style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-        <div style="position:relative; z-index:10; width:400px; display:flex; flex-direction:column; align-items:flex-start;">
+      <div class="konv__right" style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+        <div class="konv__card-wrap" style="position:relative; z-index:10; width:400px; display:flex; flex-direction:column; align-items:flex-start;">
           <div style="display:flex; align-items:stretch; border-radius:14px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.25); margin-bottom:-18px; margin-left:24px; position:relative; z-index:11;">
             <div style="background:#1A1B1F; padding:14px 16px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:8px; min-width:58px;">
               <span class="material-symbols-outlined" style="font-size:22px; color:#E7F3F1; font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20;">trending_up</span>
@@ -4434,7 +4493,7 @@
             </div>
           </div>
           <div style="border-radius:28px; padding:10px; border:1px solid rgba(200,225,220,0.5); background:rgba(220,238,234,0.12); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 24px 64px rgba(0,0,0,0.3);">
-            <div style="background:#ffffff; border-radius:20px; padding:36px 40px; width:400px; display:flex; flex-direction:column; gap:20px;">
+            <div class="konv__stats-card" style="background:#ffffff; border-radius:20px; padding:36px 40px; width:400px; display:flex; flex-direction:column; gap:20px;">
               <p style="font-family:'DM Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#9ca3af; margin:0;">Konverteringsrate</p>
               <div style="display:flex; flex-direction:column; gap:14px;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
