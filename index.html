@@ -3162,7 +3162,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 140px 14px 0;
+        padding: 140px 12px 0;
         background: #ffffff;
       }
 
@@ -3247,7 +3247,7 @@
       /* ── HVA VI LEVERER ── */
       .hva-vi-leverer {
         display: block;
-        padding: 60px 20px;
+        padding: 60px 12px;
       }
 
       .hvl__card {
@@ -3282,7 +3282,7 @@
 
       /* ── NETTSIDE SOM KONVERTERER ── */
       .konv__wrap {
-        padding: 40px 20px 32px !important;
+        padding: 40px 12px 32px !important;
         box-sizing: border-box !important;
       }
 
@@ -3297,6 +3297,10 @@
         width: 100% !important;
         padding: 36px 24px !important;
         box-sizing: border-box !important;
+      }
+
+      .konv__left h2 {
+        font-size: 28px !important;
       }
 
       .konv__right {
@@ -3338,7 +3342,7 @@
 
       /* ── PORTEFØLJE ── */
       .seksjon-portefolje {
-        padding: 60px 20px;
+        padding: 60px 12px;
         grid-template-columns: 1fr;
       }
 
@@ -3385,7 +3389,7 @@
       /* ── BRANSJEBIBLIOTEK ── */
       .seksjon-bransjelib {
         flex-direction: column;
-        padding: 60px 20px;
+        padding: 60px 12px;
         gap: 32px;
       }
 
@@ -3404,7 +3408,7 @@
 
       /* ── INKLUDERT I LEVERANSEN ── */
       .seksjon-inkludert {
-        padding: 0 20px;
+        padding: 0 12px;
       }
 
       .inkludert__card {
@@ -3422,7 +3426,7 @@
       }
 
       .inkludert__heading {
-        font-size: 36px;
+        font-size: 28px;
       }
 
       .inkludert__illus {
@@ -3453,7 +3457,7 @@
 
       /* ── BRANSJER ── */
       .seksjon-bransjer {
-        padding: 60px 20px;
+        padding: 60px 12px;
       }
 
       .seksjon-bransjer__tabs {
@@ -3471,7 +3475,7 @@
 
       /* ── SERVICE ── */
       .seksjon-service {
-        padding: 60px 20px;
+        padding: 60px 12px;
         grid-template-columns: 1fr;
       }
 
@@ -5190,6 +5194,7 @@
   <script>
   (function () {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.innerWidth <= 768) return;
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
     gsap.registerPlugin(ScrollTrigger);
