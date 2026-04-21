@@ -3168,7 +3168,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 200px 14px 0;
+        padding: 140px 14px 0;
         background: linear-gradient(to bottom, #DCEEEA 0%, #ffffff 100%);
       }
 
@@ -3343,6 +3343,10 @@
         font-size: 36px;
       }
 
+      .inkludert__illus {
+        min-height: 260px !important;
+      }
+
       .inkludert__right {
         padding-top: 0;
         width: 100%;
@@ -3375,7 +3379,7 @@
 
       .service-grid {
         grid-template-columns: 1fr;
-        row-gap: 48px;
+        row-gap: 32px;
       }
 
       .service-left {
@@ -3386,6 +3390,23 @@
         grid-column: 1 / -1;
         justify-content: center;
         order: -1;
+      }
+
+      .service-image {
+        grid-column: 1 / -1;
+        margin: 0;
+        border-radius: 12px;
+        min-height: 300px;
+        order: -1;
+      }
+
+      .service-image img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
       }
 
       /* ── FAQ ── */
@@ -4068,6 +4089,41 @@
     .p2-btn:hover { background: #F3F4F6; }
 
     .p2-link { position: absolute; inset: 0; z-index: 1; }
+
+    @media (max-width: 768px) {
+      .p2-section {
+        --p2-pad: 20px;
+        --p2-gap: 16px;
+        --p2-box-w: calc(100vw - 64px);
+      }
+
+      .p2-intro {
+        grid-column: 1 / -1;
+        text-align: left;
+        margin-bottom: 20px;
+      }
+
+      .p2-heading {
+        font-size: clamp(28px, 8vw, 40px);
+      }
+
+      .p2-cta {
+        margin-top: 16px;
+      }
+
+      .p2-boks {
+        min-height: 460px;
+        border-radius: 12px;
+      }
+
+      .p2-boks::before {
+        border-radius: 12px;
+      }
+
+      .p2-header {
+        padding: 24px 24px 20px;
+      }
+    }
   </style>
 
   <section class="p2-section">
