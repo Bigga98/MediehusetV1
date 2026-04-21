@@ -21,12 +21,19 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@300;400;500&family=Sora:wght@300;400&family=DM+Sans:wght@400&family=Chakra+Petch:wght@500&family=Funnel+Display:wght@300;400;500&display=fallback" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@300;400;500&family=Sora:wght@300;400&family=DM+Sans:wght@400&family=Chakra+Petch:wght@500&family=Funnel+Display:wght@300;400;500&family=Hanken+Grotesk:wght@300;400;500&family=Geist:wght@400;500;600&display=fallback" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,200,0,0" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <link rel="stylesheet" href="brand/tokens.css" />
   <style>
+    @font-face {
+      font-family: 'Camber';
+      src: url('/Users/birgerbratli/Downloads/CamberTRIAL-Rg.woff') format('woff');
+      font-weight: 400;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { overflow-y: scroll; overflow-x: clip; scroll-behavior: smooth; }
     body { font-family: var(--font-ui); }
@@ -52,13 +59,40 @@
       img, video, svg, iframe, canvas { max-width: 100%; height: auto; }
     }
 
+    /* ── TOPPBANNER ──────────────────────────── */
+    .mg-nav { top: 37px !important; }
+
+    .top-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1001;
+      width: 100%;
+      background: #424964;
+      padding: 10px 24px;
+      text-align: center;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(220,238,234,0.9);
+      letter-spacing: 0.01em;
+    }
+
+    .top-banner strong {
+      font-weight: 600;
+      color: #DCEEEA;
+    }
+
     /* ── HERO ─────────────────────────────────── */
     .hero {
-      background: #ffffff;
+      background: radial-gradient(ellipse 50% 30% at 50% 55%, #D4EBE7 0%, #ffffff 70%);
       width: 100%;
-      padding: 148px 48px 0;
+      padding: 185px 48px 0;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
       overflow-x: clip;
     }
 
@@ -69,7 +103,7 @@
       font-family: var(--font-ui);
       font-size: 13px;
       font-weight: 400;
-      color: rgba(15,17,23,0.5);
+      color: rgba(52,55,63,0.6);
       margin-bottom: 16px;
     }
 
@@ -77,27 +111,27 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #0d2218;
+      background: #34373F;
       flex-shrink: 0;
     }
 
     .hero__heading {
-      font-family: 'Funnel Display', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
-      font-size: clamp(48px, 6.5vw, 88px);
+      font-size: clamp(56px, 7.5vw, 104px);
       line-height: 1.02;
       letter-spacing: -0.04em;
-      color: var(--color-dark);
+      color: #1A1B1F;
       max-width: 780px;
       margin-bottom: 24px;
     }
 
     .hero__sub {
       font-family: var(--font-ui);
-      font-size: 17px;
+      font-size: 22px;
       font-weight: 400;
-      color: rgba(15,17,23,0.55);
-      max-width: 480px;
+      color: rgba(26,27,31,0.85);
+      max-width: 560px;
       line-height: 1.55;
       margin-bottom: 28px;
     }
@@ -106,22 +140,48 @@
       margin-bottom: 48px;
     }
 
+    .hero__search-bar {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(220,238,234,0.5);
+      border: 1px solid rgba(66,85,100,0.12);
+      box-shadow: 0 2px 16px rgba(66,73,100,0.10);
+      border-radius: 999px;
+      padding: 6px;
+      gap: 10px;
+    }
+
+    .hero__search-input {
+      background: #ffffff;
+      border: none;
+      outline: none;
+      border-radius: 999px;
+      padding: 14px 28px;
+      font-family: var(--font-ui);
+      font-size: 16px;
+      color: #34373F;
+      width: 280px;
+    }
+
+    .hero__search-input::placeholder {
+      color: rgba(52,55,63,0.55);
+    }
+
     .hero__cta-btn {
-      background: #181E15;
-      color: #ffffff;
+      background: #34373F;
+      color: #DCEEEA;
       border: none;
       border-radius: 999px;
-      padding: 14px 48px;
+      padding: 14px 36px;
       font-family: var(--font-ui);
-      font-size: 15px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      letter-spacing: 0;
     }
 
     .hero__cta-btn:hover {
-      background: #232b1f;
+      background: #212623;
     }
 
     .hero__mockup {
@@ -302,6 +362,20 @@
       flex-shrink: 0;
     }
 
+    .hero-slide--0 {
+      background-image: url('images/hero-slide-new.jpg');
+      background-position: center center;
+      position: relative;
+    }
+
+    .hero-slide--0::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(231, 243, 241, 0.35);
+      pointer-events: none;
+    }
+
     .hero-slide--1 {
       background-image: url('images/macbook-rugged-stone.webp');
       background-position: center center;
@@ -393,8 +467,15 @@
     /* ── SEKSJON SERVICE ─────────────────────── */
     .seksjon-service {
       width: 100%;
-      background-color: var(--bg-1);
-      padding: 96px 48px;
+      background-color: #ffffff;
+      padding: 32px 48px 0;
+    }
+
+    .service__card {
+      width: 100%;
+      background-color: #1A1B1F;
+      border-radius: 16px;
+      padding: 96px 64px;
     }
 
     .service-left {
@@ -402,7 +483,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: var(--space-sm);
+      gap: 0;
       padding-right: 48px;
     }
 
@@ -413,27 +494,29 @@
       font-family: var(--font-ui);
       font-size: 16px;
       font-weight: 400;
-      color: #000;
-      margin-bottom: 4px;
+      color: rgba(231,243,241,0.5);
+      margin-bottom: 16px;
     }
 
     .service-heading {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
+      font-family: 'Geist', sans-serif;
+      font-weight: 500;
       font-size: clamp(28px, 3.5vw, 42px);
-      color: var(--color-dark);
+      color: #E7F3F1;
       line-height: 1.07;
       letter-spacing: -0.03em;
       max-width: 580px;
+      margin-bottom: 16px;
     }
 
     .service-lead {
-      font-family: var(--font-body);
-      font-weight: 400;
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-weight: 300;
       font-size: var(--type-body);
-      color: var(--color-mid);
+      color: #ffffff;
       line-height: var(--lh-body);
       max-width: 480px;
+      margin-bottom: 32px;
     }
 
     .service-grid {
@@ -449,11 +532,31 @@
       justify-content: center;
     }
 
+    .service-image {
+      grid-column: 7 / 13;
+      position: relative;
+      margin: -96px -64px -96px 0;
+      overflow: hidden;
+      border-radius: 0 16px 16px 0;
+      align-self: stretch;
+    }
+
+    .service-image img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+      display: block;
+    }
+
     .service-right-heading {
       font-family: var(--font-ui);
       font-weight: 500;
       font-size: 13px;
-      color: var(--color-mid);
+      color: rgba(231,243,241,0.45);
       line-height: 1.4;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -463,33 +566,38 @@
     .service-info-boxes {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 20px;
       width: 100%;
-      max-width: 380px;
     }
 
     .service-info-box {
-      background: var(--surface-light);
-      border-radius: 10px;
-      padding: 14px 18px;
-      font-family: var(--font-body);
+      background: none;
+      border-radius: 0;
+      padding: 0;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
-      font-size: 14px;
-      color: var(--color-dark);
-      line-height: 1.4;
+      font-size: 17px;
+      color: #E7F3F1;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
     .service-info-box::before {
-      content: 'check_circle';
+      content: 'check';
       font-family: 'Material Symbols Outlined';
-      font-size: 18px;
-      font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20;
-      line-height: 1;
-      color: rgba(13,34,24,0.4);
-      flex-shrink: 0;
+      font-size: 16px;
+      font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 20;
+      color: #26272B;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 50%;
+      background: #8a9e8a;
+      text-align: center;
+      line-height: 36px;
     }
 
     .phone-mockup {
@@ -810,7 +918,7 @@
     }
 
     .faq-heading {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
       font-size: clamp(32px, 3.5vw, 48px);
       color: var(--color-dark);
@@ -850,10 +958,11 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      min-height: 430px;
     }
 
     .faq-item {
-      background: var(--surface-light);
+      background: #E7F3F1;
       border-radius: 10px;
       overflow: hidden;
     }
@@ -870,7 +979,7 @@
       cursor: pointer;
       font-family: 'DM Sans', sans-serif;
       font-weight: 400;
-      font-size: var(--type-body);
+      font-size: 17px;
       color: var(--color-dark);
       text-align: left;
       line-height: 1;
@@ -894,17 +1003,18 @@
       font-family: var(--font-body);
       font-weight: 400;
       font-size: 15px;
-      color: var(--color-mid);
+      color: var(--color-dark);
       line-height: var(--lh-body);
       padding: 0 24px var(--space-lg);
-      height: 0;
+      max-height: 0;
       overflow: hidden;
       opacity: 0;
-      transition: height 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+      transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1),
                   opacity 0.3s ease 0.05s;
     }
 
     .faq-item.open .faq-answer {
+      max-height: 120px;
       opacity: 1;
     }
 
@@ -975,7 +1085,7 @@
     }
 
     .seksjon-bransjer__heading {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
       font-size: clamp(28px, 3.5vw, 42px);
       color: #080808;
@@ -1090,7 +1200,7 @@
     }
 
     .card-title {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
       font-size: 22px;
       color: var(--color-dark);
@@ -1109,13 +1219,21 @@
 
     /* ── HVA VI LEVERER ───────────────────────── */
     .hva-vi-leverer {
-      background-color: var(--bg-1);
-      padding: calc(var(--section-padding-y) * 2) 48px;
+      background-color: #ffffff;
+      padding: 0 48px;
       box-sizing: border-box;
       width: 100%;
+    }
+
+    .hvl__card {
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 96px 64px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       column-gap: var(--grid-gutter);
+      row-gap: 0;
       position: relative;
     }
 
@@ -1127,27 +1245,27 @@
       font-size: 16px;
       font-weight: 400;
       letter-spacing: 0;
-      color: #000000;
+      color: rgba(26,27,31,0.45);
       margin-bottom: var(--space-sm);
     }
 
     .hva-vi-leverer .section-heading {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: clamp(32px, 4vw, 56px);
       font-weight: 400;
       line-height: 1.07;
       letter-spacing: -0.03em;
-      color: #000000;
+      color: #1A1B1F;
     }
 
     .hva-vi-leverer .section-text {
-      font-family: 'Sora', sans-serif;
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: rgba(15,17,23,0.75);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(26,27,31,0.65);
       margin-top: var(--space-sm);
-      max-width: 480px;
+      max-width: 640px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -1157,11 +1275,11 @@
       align-items: center;
       gap: 7px;
       padding: var(--btn-padding-y) var(--btn-padding-x);
-      background-color: var(--color-dark);
+      background-color: #1A1B1F;
       border-radius: 0;
       font-family: var(--font-ui);
       font-weight: 500;
-      color: var(--color-white);
+      color: #ffffff;
       font-size: 13px;
       letter-spacing: 0;
       text-decoration: none;
@@ -1172,18 +1290,33 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-sm);
-      margin-top: var(--gap-cta-content);
+      margin-top: 40px;
     }
 
     .hva-vi-leverer .card {
-      background: #f6f6f6;
-      border-radius: 6px;
+      background: #ffffff;
+      border: none;
+      border-radius: 8px;
       padding: var(--card-padding) var(--card-padding) var(--space-sm) var(--card-padding);
       display: block;
-      overflow: hidden;
+      overflow: visible;
       min-height: 380px;
-      transition: background 0.2s ease;
+      transition: background 0.25s ease;
       position: relative;
+    }
+
+    .hva-vi-leverer .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      padding: 1px;
+      background: linear-gradient(to bottom, rgba(26,27,31,0.22) 0%, rgba(26,27,31,0.18) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
     }
 
     .card__deco {
@@ -1194,20 +1327,21 @@
       font-size: 80px;
       font-variation-settings: 'FILL' 0, 'wght' 100, 'GRAD' -25, 'opsz' 48;
       line-height: 1;
-      color: rgba(15,17,23,0.75);
+      color: rgba(26,27,31,0.07);
       pointer-events: none;
       user-select: none;
-      transition: color 0.2s ease;
+      transition: color 0.25s ease;
     }
 
     .hva-vi-leverer .card:hover .card__deco {
-      color: rgba(30,80,160,0.9);
+      color: rgba(26,27,31,0.14);
     }
     .hva-vi-leverer .card:hover {
-      background: #c8d8f0;
+      background: #f9f9f8;
     }
     .hva-vi-leverer .card:hover .card-label {
-      background: #7faad4;
+      background: rgba(26,27,31,0.08);
+      color: #1A1B1F;
     }
 
     .hva-vi-leverer .card-label {
@@ -1219,9 +1353,9 @@
       font-weight: 500;
       letter-spacing: var(--ls-card-label);
       text-transform: uppercase;
-      color: rgba(15,17,23,0.45);
-      background: rgba(15,17,23,0.06);
-      transition: background 0.2s ease;
+      color: rgba(26,27,31,0.45);
+      background: rgba(26,27,31,0.05);
+      transition: background 0.25s ease, color 0.25s ease;
       border-radius: 4px;
       padding: 4px 8px;
       margin-bottom: var(--space-sm);
@@ -1232,37 +1366,35 @@
       font-family: 'Material Symbols Outlined';
       font-size: 14px;
       font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20;
-      color: rgba(15,17,23,0.45);
+      color: rgba(26,27,31,0.45);
       flex-shrink: 0;
       line-height: 1;
       user-select: none;
     }
 
-    /* Kort-tittel: Inter, 400, 24px, ls -0.03em, lh 1.15 */
     .hva-vi-leverer .card-title {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 26px;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: -0.03em;
       line-height: 1.15;
-      color: #000000;
+      color: #1A1B1F;
       margin-bottom: var(--space-sm);
     }
 
     .hva-vi-leverer .card-img {
       height: 220px;
-      background: #e0e0e0;
+      background: rgba(26,27,31,0.05);
       border-radius: 4px;
       margin: var(--space-lg) 0 0 0;
     }
 
-    /* Kort-beskrivelse: Sora, 300, 13px, lh 1.7 */
     .hva-vi-leverer .card-desc {
-      font-family: 'Instrument Sans', sans-serif;
-      font-size: 14px;
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 18px;
       font-weight: 300;
       line-height: 1.7;
-      color: rgba(15,17,23,0.75);
+      color: rgba(26,27,31,0.65);
     }
 
     /* ── DEMOER ──────────────────────────────── */
@@ -1352,14 +1484,18 @@
 
     .demo-kort {
       flex: 1;
-      background: var(--bg-3);
+      background: #ffffff;
       border-radius: 8px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       text-decoration: none;
       transition: transform 0.18s, box-shadow 0.18s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      position: relative;
+      border-top: 1.5px solid rgba(26,27,31,0.38);
+      border-left: 1.5px solid rgba(26,27,31,0.22);
+      border-right: 1.5px solid rgba(26,27,31,0.22);
+      border-bottom: 1.5px solid rgba(26,27,31,0.12);
     }
 
     .demo-kort:hover {
@@ -1368,7 +1504,7 @@
     }
 
     .demo-kort__browser {
-      background: var(--bg-2);
+      background: rgba(26,27,31,0.04);
       padding: 7px 10px;
       display: flex;
       align-items: center;
@@ -1381,13 +1517,13 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--bg-3);
+      background: rgba(26,27,31,0.18);
     }
 
     .demo-kort__url {
       flex: 1;
       height: 14px;
-      background: var(--bg-3);
+      background: rgba(26,27,31,0.10);
       border-radius: 4px;
       margin-left: 6px;
     }
@@ -1395,7 +1531,7 @@
     .demo-kort__preview {
       flex: 1;
       min-height: 200px;
-      background: linear-gradient(160deg, var(--bg-3) 0%, #c4c1bb 100%);
+      background: rgba(26,27,31,0.05);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1411,7 +1547,7 @@
 
     .demo-kort__footer {
       padding: var(--space-sm) var(--space-md);
-      background: var(--bg-2);
+      background: rgba(26,27,31,0.03);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1450,14 +1586,17 @@
     /* ── PRISING ─────────────────────────────── */
     .seksjon-prising {
       width: 100%;
-      background-color: #000000;
-      padding: 96px 48px;
+      background-color: #ffffff;
+      padding: 0 48px;
     }
 
     .prising-inner {
       display: flex;
       flex-direction: column;
       align-items: center;
+      background: #1A1B1F;
+      border-radius: 16px;
+      padding: 96px 64px;
     }
 
     .prising-eyebrow {
@@ -1469,15 +1608,15 @@
       font-weight: 500;
       letter-spacing: var(--ls-caps);
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: rgba(231,243,241,0.45);
       margin-bottom: var(--space-lg);
     }
 
     .prising-heading {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
       font-size: clamp(32px, 4vw, 56px);
-      color: var(--color-white);
+      color: #E7F3F1;
       line-height: var(--lh-heading);
       letter-spacing: var(--ls-h2);
       text-align: center;
@@ -1493,8 +1632,9 @@
     }
 
     .prising-kort {
-      background-color: #f4f2f0;
-      border-radius: 10px;
+      background: rgba(231,243,241,0.04);
+      border: 1px solid rgba(231,243,241,0.1);
+      border-radius: 12px;
       padding: var(--space-xl) var(--space-lg) var(--space-lg);
       display: flex;
       flex-direction: column;
@@ -1503,53 +1643,31 @@
     }
 
     .prising-kort--featured {
-      background-color: #f4f2f0;
+      background: rgba(231,243,241,0.08);
+      border-color: rgba(231,243,241,0.2);
     }
-
-    /* Knappefarge per pakke */
-    .prising-kort--standard .prising-kort__cta {
-      background: #0c4541;
-    }
-    .prising-kort--standard .prising-kort__cta:hover {
-      background: #0f5550;
-    }
-
-    .prising-kort--featured .prising-kort__cta {
-      background: #0c4541;
-    }
-    .prising-kort--featured .prising-kort__cta:hover {
-      background: #0f5550;
-    }
-
-    .prising-kort--enterprise .prising-kort__cta {
-      background: #3d1a5c;
-    }
-    .prising-kort--enterprise .prising-kort__cta:hover {
-      background: #4e2275;
-    }
-
 
     .prising-kort__badge {
       position: absolute;
       top: var(--space-lg);
       right: var(--space-lg);
       padding: 4px 12px;
-      background: rgba(255,255,255,0.08);
+      background: rgba(231,243,241,0.1);
       border-radius: 100px;
       font-family: var(--font-ui);
       font-size: var(--type-card-label);
       font-weight: 500;
-      color: var(--color-mid);
+      color: rgba(231,243,241,0.6);
       letter-spacing: var(--ls-card-label);
       text-transform: uppercase;
     }
 
     .prising-kort__tittel {
-      font-family: 'Funnel Display', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
-      font-size: 22px;
-      color: #111;
-      letter-spacing: -0.02em;
+      font-size: 18px;
+      color: rgba(231,243,241,0.5);
+      letter-spacing: -0.01em;
       line-height: 1.1;
     }
 
@@ -1557,7 +1675,7 @@
       font-family: var(--font-ui);
       font-size: var(--type-card-label);
       font-weight: 500;
-      color: #888;
+      color: rgba(231,243,241,0.4);
       letter-spacing: var(--ls-card-label);
       text-transform: uppercase;
     }
@@ -1569,26 +1687,26 @@
     }
 
     .prising-kort__belop {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
+      font-family: 'Geist', sans-serif;
+      font-weight: 400;
       font-size: clamp(40px, 5vw, 64px);
-      color: #111;
+      color: #E7F3F1;
       line-height: 1;
       letter-spacing: -0.03em;
     }
 
     .prising-kort__valuta {
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-weight: 300;
       font-size: 15px;
-      color: #888;
+      color: rgba(231,243,241,0.45);
     }
 
     .prising-kort__desc {
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-weight: 300;
       font-size: 15px;
-      color: #888;
+      color: rgba(231,243,241,0.45);
       line-height: 1.65;
       margin-top: calc(-1 * var(--space-sm));
     }
@@ -1596,7 +1714,7 @@
     .prising-divider {
       width: 100%;
       height: 1px;
-      background: rgba(255,255,255,0.08);
+      background: rgba(231,243,241,0.08);
     }
 
     .prising-kort__features {
@@ -1611,26 +1729,11 @@
       display: flex;
       align-items: flex-start;
       gap: var(--space-sm);
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-weight: 300;
-      font-size: 15px;
-      color: #444;
+      font-size: 14px;
+      color: rgba(231,243,241,0.65);
       line-height: var(--lh-body);
-    }
-
-    .prising-kort__features li svg {
-      width: 12px;
-      height: 12px;
-      stroke: #2d7a4f;
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex-shrink: 0;
-    }
-
-    .prising-kort__features li svg {
-      background: transparent;
     }
 
     .prising-kort__check {
@@ -1644,45 +1747,60 @@
     }
 
     .prising-kort__features li svg {
-      stroke: #444 !important;
+      width: 12px;
+      height: 12px;
+      stroke: rgba(231,243,241,0.5);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      background: transparent;
     }
 
     .prising-kort__cta {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 56px;
-      border-radius: 8px !important;
-      background: #1a1a1a;
-      font-family: var(--font-ui);
+      height: 48px;
+      border-radius: 999px !important;
+      background: #E7F3F1;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 15px;
       letter-spacing: 0;
-      color: #fff;
+      color: #1A1B1F;
       text-decoration: none;
-      transition: background 0.15s;
-      gap: 10px;
+      transition: background 0.15s, color 0.15s;
+      gap: 8px;
+      overflow: hidden;
+      position: relative;
     }
 
     .prising-kort__cta svg {
-      width: 22px;
-      height: 15px;
+      width: 18px;
+      height: 12px;
     }
 
     .prising-kort__cta:hover {
-      background: #333;
+      background: #cde0db;
     }
 
     .prising-kort--utkast .prising-kort__cta {
-      background: #333;
-      color: #fff;
+      background: rgba(231,243,241,0.12);
+      color: #E7F3F1;
+      border: 1px solid rgba(231,243,241,0.2);
+    }
+
+    .prising-kort--utkast .prising-kort__cta:hover {
+      background: rgba(231,243,241,0.18);
     }
 
 
     /* ── FOOTER ──────────────────────────────── */
     .site-footer {
       width: 100%;
-      background-color: #111111;
+      background-color: #1A1B1F;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -1693,7 +1811,7 @@
       justify-content: center;
       align-items: center;
       padding: 80px 48px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(231,243,241,0.08);
     }
 
     .footer-kontakt-btn {
@@ -1701,8 +1819,8 @@
       align-items: center;
       justify-content: center;
       padding: 28px 72px;
-      background-color: #f4f2f0;
-      color: #111111;
+      background-color: #E7F3F1;
+      color: #1A1B1F;
       font-family: 'Funnel Display', sans-serif;
       font-weight: 400;
       font-size: clamp(28px, 4vw, 48px);
@@ -1711,11 +1829,12 @@
       border-radius: 100px;
       position: relative;
       overflow: hidden;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, background 0.3s ease;
     }
 
     .footer-kontakt-btn:hover {
-      color: #111111;
+      color: #1A1B1F;
+      background-color: #cde0db;
     }
 
     .footer-kontakt-btn-text {
@@ -1732,7 +1851,7 @@
       align-items: center;
       margin-left: 20px;
       margin-top: 9px;
-      color: #111111;
+      color: #1A1B1F;
       transition: transform 0.4s cubic-bezier(0.0, 0, 0.2, 1), opacity 0.3s ease;
     }
 
@@ -1750,7 +1869,7 @@
       display: inline-flex;
       align-items: center;
       margin-top: 4px;
-      color: #111111;
+      color: #1A1B1F;
       transform: translateX(-80px) translateY(-50%);
       opacity: 0;
       transition: transform 0.4s cubic-bezier(0.0, 0, 0.2, 1), opacity 0.35s ease;
@@ -1767,7 +1886,7 @@
 
     .footer-cta {
       padding: var(--section-padding-y) var(--grid-margin);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(231,243,241,0.08);
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
@@ -1789,10 +1908,10 @@
     }
 
     .footer-cta__heading {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 300;
       font-size: var(--type-h2);
-      color: #f0ede8;
+      color: #E7F3F1;
       line-height: var(--lh-heading);
       letter-spacing: var(--ls-h2);
       max-width: 660px;
@@ -1801,7 +1920,7 @@
 
     .footer-cta__heading em {
       font-style: italic;
-      color: #c8c4be;
+      color: rgba(231,243,241,0.6);
     }
 
     .footer-cta__eyebrow {
@@ -1811,7 +1930,7 @@
       font-weight: 500;
       letter-spacing: var(--ls-caps);
       text-transform: uppercase;
-      color: #6e7a6b;
+      color: rgba(231,243,241,0.4);
       margin-bottom: 20px;
     }
 
@@ -1820,7 +1939,7 @@
       display: inline-block;
       width: 24px;
       height: 1px;
-      background: #6e7a6b;
+      background: rgba(231,243,241,0.4);
       vertical-align: middle;
       margin-right: 10px;
       margin-bottom: 1px;
@@ -1839,27 +1958,27 @@
       align-items: center;
       gap: var(--icon-gap);
       padding: var(--btn-padding-y) var(--btn-padding-x);
-      background-color: #f4f2f0;
-      border-radius: 8px;
+      background-color: #E7F3F1;
+      border-radius: 999px;
       font-family: var(--font-ui);
       font-weight: 300;
       font-size: 14px;
       letter-spacing: 0;
-      color: #111111;
+      color: #1A1B1F;
       text-decoration: none;
       transition: background 0.18s, transform 0.18s;
       white-space: nowrap;
     }
 
     .footer-cta__btn:hover {
-      background: #ffffff;
+      background: #cde0db;
       transform: translateY(-1px);
     }
 
     .footer-cta__btn svg {
       width: 13px;
       height: 13px;
-      fill: #1a1a18;
+      fill: #1A1B1F;
       stroke: none;
       transition: transform 0.18s;
     }
@@ -1869,9 +1988,9 @@
     }
 
     .footer-cta__note {
-      font-family: var(--font-ui);
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: var(--type-caption);
-      color: #6e7270;
+      color: rgba(231,243,241,0.35);
       letter-spacing: var(--ls-footer-contact);
       text-transform: uppercase;
     }
@@ -1887,16 +2006,16 @@
       font-family: 'Funnel Display', sans-serif;
       font-weight: 400;
       font-size: 22px;
-      color: #d8dbd6;
+      color: #E7F3F1;
       letter-spacing: -0.01em;
       line-height: 1;
     }
 
     .footer-brand__tagline {
-      font-family: var(--font-body);
+      font-family: 'Hanken Grotesk', sans-serif;
       font-weight: 300;
       font-size: var(--type-body);
-      color: #777b77;
+      color: rgba(231,243,241,0.75);
       line-height: var(--lh-body);
       max-width: 260px;
       margin-top: var(--space-sm);
@@ -1912,7 +2031,7 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.14);
+      border: 1px solid rgba(231,243,241,0.14);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1921,31 +2040,31 @@
     }
 
     .social-link:hover {
-      border-color: rgba(255,255,255,0.38);
-      background: rgba(255,255,255,0.07);
+      border-color: rgba(231,243,241,0.38);
+      background: rgba(231,243,241,0.07);
       transform: translateY(-1px);
     }
 
     .social-link svg {
       width: 13px;
       height: 13px;
-      stroke: #909590;
+      stroke: rgba(231,243,241,0.5);
       fill: none;
       stroke-width: 1.8;
       transition: stroke 0.2s;
     }
 
     .social-link:hover svg {
-      stroke: #c0c5be;
+      stroke: #E7F3F1;
     }
 
     .footer-col__label {
-      font-family: var(--font-ui);
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: var(--type-caption);
       font-weight: 500;
       letter-spacing: var(--ls-footer-cat);
       text-transform: uppercase;
-      color: #7a7d76;
+      color: rgba(231,243,241,0.55);
       margin-bottom: var(--space-md);
     }
 
@@ -1957,31 +2076,31 @@
     }
 
     .footer-col__list a {
-      font-family: var(--font-body);
+      font-family: 'Hanken Grotesk', sans-serif;
       font-weight: 300;
       font-size: var(--type-body);
-      color: #868891;
+      color: rgba(231,243,241,0.85);
       text-decoration: none;
       transition: color 0.15s;
     }
 
     .footer-col__list a:hover {
-      color: #d3d7d8;
+      color: #E7F3F1;
     }
 
     .footer-bottom {
       padding: var(--space-md) var(--grid-margin);
-      border-top: 1px solid rgba(255,255,255,0.07);
+      border-top: 1px solid rgba(231,243,241,0.07);
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
     .footer-bottom__copy {
-      font-family: var(--font-ui);
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: var(--type-caption);
       letter-spacing: var(--ls-article-date);
-      color: #6a6d68;
+      color: rgba(231,243,241,0.5);
     }
 
     .footer-bottom__links {
@@ -1990,16 +2109,16 @@
     }
 
     .footer-bottom__links a {
-      font-family: var(--font-ui);
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: var(--type-caption);
       letter-spacing: var(--ls-article-date);
-      color: #6a6d68;
+      color: rgba(231,243,241,0.5);
       text-decoration: none;
       transition: color 0.15s;
     }
 
     .footer-bottom__links a:hover {
-      color: #a0a4a0;
+      color: rgba(231,243,241,0.9);
     }
 
     /* — Primærknapper hover — ren svart, ingen gradient */
@@ -2123,7 +2242,7 @@
     .popup-left-top { }
     .popup-brand-dot { display: none; }
     .popup-left-heading {
-      font-family: 'Funnel Display', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 28px; font-weight: 400;
       line-height: 1.15; letter-spacing: -0.02em;
       color: #ffffff;
@@ -2168,7 +2287,7 @@
     }
     .popup-close:hover { background: #e6e6e6; color: #111; }
     .popup-right-heading {
-      font-family: 'Funnel Display', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 26px; font-weight: 400;
       letter-spacing: -0.02em; color: #17181c;
       margin-bottom: 4px;
@@ -2247,7 +2366,7 @@
       margin-bottom: 20px;
     }
     .popup-success h3 {
-      font-family: 'Funnel Display', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 24px; font-weight: 400;
       color: #17181c; margin-bottom: 8px;
     }
@@ -2264,65 +2383,218 @@
     /* ── SEKSJON INKLUDERT I LEVERANSEN ──────── */
     .seksjon-inkludert {
       width: 100%;
-      background-color: #e6f4e9;
-      padding: 96px 48px;
+      background-color: #ffffff;
+      padding: 0 48px;
+    }
+
+    .inkludert__card {
+      width: 100%;
+      background-color: #26272B;
+      border-radius: 16px;
+      padding: 96px 64px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       column-gap: 24px;
-      row-gap: 64px;
+      row-gap: 0;
       align-items: start;
+      overflow: hidden;
+      position: relative;
     }
 
     .inkludert__left {
       grid-column: 1 / 6;
       display: flex;
       flex-direction: column;
+      position: relative;
+      z-index: 2;
     }
 
     .inkludert__right {
       grid-column: 7 / 13;
       display: flex;
-      flex-direction: column;
-      gap: 36px;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      align-self: center;
     }
 
-    .seksjon-inkludert > .inkludert__cta-row {
-      grid-column: 1 / -1;
+    .inkludert__card > .inkludert__cta-row {
+      grid-column: 1 / 6;
+      position: relative;
+      z-index: 2;
+    }
+
+    .inkludert__illus-frame {
+      border-radius: 28px;
+      padding: 10px;
+      border: 1px solid rgba(200,225,220,0.5);
+      background: rgba(220,238,234,0.12);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+      width: 100%;
+    }
+
+    .inkludert__illus {
+      background: #34373F;
+      border-radius: 20px;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .illus-pill {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: fit-content;
+      padding: 14px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(231,243,241,0.12);
+      background: rgba(231,243,241,0.04);
+    }
+
+    .illus-pill__check {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(231,243,241,0.1);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .illus-pill__check .material-symbols-outlined {
+      font-size: 16px;
+      color: #E7F3F1;
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 20;
+    }
+
+    .illus-pill__label {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #E7F3F1;
+      letter-spacing: -0.01em;
+    }
+
+    .falling-overlay {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 55%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .falling-bg {
+      position: absolute;
+      inset: 0;
+      transform: translateZ(0);
+      will-change: background-position;
+      background-image:
+        radial-gradient(5px 100px at 0px 235px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 235px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 117.5px, rgba(255,225,0,0.75) 100%, transparent 150%),
+        radial-gradient(5px 100px at 0px 252px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 252px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 126px, rgba(255,225,0,0.75) 100%, transparent 150%),
+        radial-gradient(5px 100px at 0px 150px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 150px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 75px, rgba(255,225,0,0.75) 100%, transparent 150%),
+        radial-gradient(5px 100px at 0px 253px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 253px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 126.5px, rgba(255,225,0,0.75) 100%, transparent 150%),
+        radial-gradient(5px 100px at 0px 204px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 204px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 102px, rgba(255,225,0,0.75) 100%, transparent 150%),
+        radial-gradient(5px 100px at 0px 134px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 134px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 67px, rgba(255,225,0,0.75) 100%, transparent 150%),
+        radial-gradient(5px 100px at 0px 179px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 179px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 89.5px, rgba(255,225,0,0.75) 100%, transparent 150%),
+        radial-gradient(5px 100px at 0px 299px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 299px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 149.5px, rgba(255,225,0,0.75) 100%, transparent 150%),
+        radial-gradient(5px 100px at 0px 215px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 215px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 107.5px, rgba(255,225,0,0.75) 100%, transparent 150%),
+        radial-gradient(5px 100px at 0px 281px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 281px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 140.5px, rgba(255,225,0,0.75) 100%, transparent 150%),
+        radial-gradient(5px 100px at 0px 158px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 158px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 79px, rgba(255,225,0,0.75) 100%, transparent 150%),
+        radial-gradient(5px 100px at 0px 210px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(5px 100px at 300px 210px, rgba(255,225,0,0.75), transparent),
+        radial-gradient(1.5px 1.5px at 150px 105px, rgba(255,225,0,0.75) 100%, transparent 150%);
+      background-size:
+        300px 235px, 300px 235px, 300px 235px,
+        300px 252px, 300px 252px, 300px 252px,
+        300px 150px, 300px 150px, 300px 150px,
+        300px 253px, 300px 253px, 300px 253px,
+        300px 204px, 300px 204px, 300px 204px,
+        300px 134px, 300px 134px, 300px 134px,
+        300px 179px, 300px 179px, 300px 179px,
+        300px 299px, 300px 299px, 300px 299px,
+        300px 215px, 300px 215px, 300px 215px,
+        300px 281px, 300px 281px, 300px 281px,
+        300px 158px, 300px 158px, 300px 158px,
+        300px 210px, 300px 210px, 300px 210px;
+      animation: fallingLines 150s linear infinite;
+    }
+
+    @keyframes fallingLines {
+      from { background-position: 0px 220px, 3px 220px, 151.5px 337.5px, 25px 24px, 28px 24px, 176.5px 150px, 50px 16px, 53px 16px, 201.5px 91px, 75px 224px, 78px 224px, 226.5px 230.5px, 100px 19px, 103px 19px, 251.5px 121px, 125px 120px, 128px 120px, 276.5px 187px, 150px 31px, 153px 31px, 301.5px 120.5px, 175px 235px, 178px 235px, 326.5px 384.5px, 200px 121px, 203px 121px, 351.5px 228.5px, 225px 224px, 228px 224px, 376.5px 364.5px, 250px 26px, 253px 26px, 401.5px 105px, 275px 75px, 278px 75px, 426.5px 180px; }
+      to   { background-position: 0px 6800px, 3px 6800px, 151.5px 6917.5px, 25px 13632px, 28px 13632px, 176.5px 13758px, 50px 5416px, 53px 5416px, 201.5px 5491px, 75px 17175px, 78px 17175px, 226.5px 17301.5px, 100px 5119px, 103px 5119px, 251.5px 5221px, 125px 8428px, 128px 8428px, 276.5px 8495px, 150px 9876px, 153px 9876px, 301.5px 9965.5px, 175px 13391px, 178px 13391px, 326.5px 13540.5px, 200px 14741px, 203px 14741px, 351.5px 14848.5px, 225px 18770px, 228px 18770px, 376.5px 18910.5px, 250px 5082px, 253px 5082px, 401.5px 5161px, 275px 6375px, 278px 6375px, 426.5px 6480px; }
+    }
+
+    .falling-blur {
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(1em);
+      background-image: radial-gradient(circle at 50% 50%, transparent 0, transparent 2px, #26272B 2px);
+      background-size: 8px 8px;
+    }
+
+    .falling-fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, #26272B 0%, transparent 30%);
     }
 
     .inkludert__eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-family: var(--font-ui);
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: 0;
-      color: #000000;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(231,243,241,0.6);
       margin-bottom: 12px;
     }
 
     .inkludert__heading {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-weight: 400;
       font-size: clamp(32px, 4vw, 48px);
       line-height: 1.07;
       letter-spacing: -0.03em;
-      color: var(--color-dark);
-      margin-bottom: 48px;
+      color: #E7F3F1;
+      margin-bottom: 32px;
     }
 
     .inkludert__items {
       display: flex;
       flex-direction: column;
-      gap: 36px;
+      gap: 28px;
       margin-bottom: 0;
     }
 
     .inkludert__item {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
     .inkludert__item-header {
@@ -2336,31 +2608,32 @@
       font-size: 18px;
       font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20;
       line-height: 1;
-      color: rgba(13,34,24,0.5);
+      color: rgba(231,243,241,0.45);
       flex-shrink: 0;
     }
 
     .inkludert__item-title {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 18px;
       font-weight: 400;
       letter-spacing: -0.01em;
-      color: #0d2218;
+      color: #E7F3F1;
       line-height: 1.2;
     }
 
     .inkludert__item-desc {
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-weight: 300;
       font-size: 14px;
       line-height: 1.65;
-      color: rgba(15,17,23,0.55);
+      color: rgba(231,243,241,0.55);
     }
 
     .inkludert__cta-row {
       display: flex;
       align-items: center;
       gap: 16px;
+      margin-top: 24px;
     }
 
     .inkludert__btn-primary {
@@ -2369,13 +2642,14 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      background-color: #071510;
-      font-family: var(--font-ui);
+      background-color: #E7F3F1;
+      border-radius: 999px;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 14px;
       font-weight: 500;
       letter-spacing: 0;
       text-transform: none;
-      color: var(--color-white);
+      color: #34373F;
       text-decoration: none;
     }
 
@@ -2392,16 +2666,17 @@
       padding: 0 22px;
       display: inline-flex;
       align-items: center;
-      font-family: var(--font-ui);
+      border-radius: 999px;
+      font-family: 'Hanken Grotesk', sans-serif;
       font-size: 14px;
       font-weight: 500;
       letter-spacing: 0;
       text-transform: none;
-      color: var(--color-dark);
+      color: rgba(231,243,241,0.7);
       text-decoration: none;
-      border: 1px solid var(--color-dark);
+      border: 1px solid rgba(231,243,241,0.35);
       background-color: transparent;
-      background-image: linear-gradient(120deg, #222222 0%, #222222 55%, transparent 55%, transparent 100%);
+      background-image: linear-gradient(120deg, rgba(231,243,241,0.12) 0%, rgba(231,243,241,0.12) 55%, transparent 55%, transparent 100%);
       background-size: 250% 100%;
       background-position: right center;
       transition: background-position 0.4s cubic-bezier(0.25, 0, 0, 1), color 0.3s cubic-bezier(0.25, 0, 0, 1);
@@ -2410,14 +2685,6 @@
     .inkludert__btn-ghost:hover {
       background-position: left center;
       color: var(--color-white);
-    }
-
-    .inkludert__right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 36px;
-      padding-top: 192px;
     }
 
     /* ── PORTEFØLJE ───────────────────────────── */
@@ -2462,7 +2729,7 @@
     .porto-nav__btn svg { width: 14px; height: 14px; }
     .porto-nav__btn svg path { stroke: #000; fill: none; stroke-width: 2; }
     .porto-heading {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: clamp(28px, 3.5vw, 48px);
       font-weight: 400;
       letter-spacing: -0.03em;
@@ -2503,6 +2770,22 @@
       color: inherit;
       min-height: 800px;
       transition: opacity 0.3s;
+      position: relative;
+    }
+
+    .porto-kort::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 6px;
+      padding: 1px;
+      background: linear-gradient(to bottom, rgba(26,27,31,0.22) 0%, rgba(26,27,31,0.18) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 1;
     }
     .porto-kort.dim { opacity: 0.18; }
     .porto-kort__bilde {
@@ -3039,9 +3322,14 @@
 
       /* ── INKLUDERT I LEVERANSEN ── */
       .seksjon-inkludert {
+        padding: 0 16px;
+      }
+
+      .inkludert__card {
+        border-radius: 12px;
+        padding: 48px 24px;
         display: flex;
         flex-direction: column;
-        padding: 60px 20px;
         gap: 24px;
       }
 
@@ -3119,7 +3407,11 @@
 
       /* ── PRISING ── */
       .seksjon-prising {
-        padding: 60px 20px;
+        padding: 0 20px;
+      }
+
+      .prising-inner {
+        padding: 48px 24px;
       }
 
       .prising-grid {
@@ -3354,33 +3646,175 @@
       }
     }
 
+    /* ── SEKSJON BLOGG ─────────────────────────── */
+    .seksjon-blogg {
+      width: 100%;
+      background-color: var(--bg-1);
+      padding: 96px var(--grid-margin);
+    }
+
+    .blogg__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .blogg__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-mid);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .blogg__eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 1px;
+      background: var(--color-mid);
+    }
+
+    .blogg__heading {
+      font-family: 'Geist', sans-serif;
+      font-weight: 400;
+      font-size: clamp(28px, 2.8vw, 40px);
+      color: var(--color-dark);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+    }
+
+    .blogg__header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-dark);
+      text-decoration: none;
+      padding-bottom: 4px;
+      border-bottom: 1px solid currentColor;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+
+    .blogg__header-cta:hover { opacity: 0.55; }
+
+    .blogg__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .blogg-kort {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blogg-kort__bilde {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    .blogg-kort__bilde-inner {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .blogg-kort__tittel {
+      font-family: 'Geist', sans-serif;
+      font-weight: 500;
+      font-size: clamp(18px, 1.6vw, 22px);
+      color: var(--color-dark);
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .blogg-kort__tekst {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .blogg-kort__tags {
+      display: flex;
+      gap: 16px;
+    }
+
+    .blogg-kort__tag {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 400;
+      color: #000;
+    }
+
+    @media (max-width: 900px) {
+      .blogg__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .blogg__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .seksjon-blogg {
+        padding: 64px var(--grid-margin);
+      }
+    }
+
   </style>
 </head>
 <body>
+
+  <!-- TOPPBANNER -->
+  <div class="top-banner">
+    <strong>Gratis utkast</strong> &nbsp;— Vi lager et uforpliktende utkast til din nye nettside. Helt gratis.
+  </div>
 
   <!-- HERO -->
   <section class="hero">
 
     <!-- 1. Stat -->
-    <div class="hero__stat" data-animate="fade-up" data-hero data-delay="0.05">
-      <span class="hero__stat-dot"></span>
-      <span>Nettsider som gjør besøkende til betalende kunder</span>
-    </div>
+
 
     <!-- 2. Heading -->
-    <h1 class="hero__heading" data-animate="fade-up" data-hero data-delay="0.12">Nettsider med digital identitet</h1>
+    <h1 class="hero__heading" data-animate="fade-up" data-hero data-delay="0.12">Flere kunder med ny nettside</h1>
 
     <!-- 2b. Undertekst -->
-    <p class="hero__sub" data-animate="fade-up" data-hero data-delay="0.18">Vi bygger nettsider som ser ut som deg — ikke som alle andre.</p>
+    <p class="hero__sub" data-animate="fade-up" data-hero data-delay="0.18">Vi bygger nettsider med bedre visuelle utrykk. Bygget for å konvertere flere nettbesøk til kunder.</p>
 
     <!-- 3. CTA -->
     <div class="hero__cta-row" data-animate="fade-up" data-hero data-delay="0.22">
-      <button class="hero__cta-btn" onclick="openContactPopup(); return false;">Få et utkast <svg width="22" height="15" viewBox="0 0 356 246" fill="none" style="margin-left:8px;flex-shrink:0;"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></button>
+      <div class="hero__search-bar">
+        <input class="hero__search-input" type="text" placeholder="Din nettside-URL" />
+        <button class="hero__cta-btn" onclick="openContactPopup(); return false;">Få et utkast</button>
+      </div>
     </div>
 
     <!-- 4. Produktmockup -->
     <div class="hero__mockup" data-animate="fade-up" data-hero data-delay="0.35" data-y="30">
       <div class="hero-slider" id="heroSlider">
+        <div class="hero-slide hero-slide--0"></div>
         <div class="hero-slide hero-slide--1"></div>
         <div class="hero-slide hero-slide--2"></div>
         <div class="hero-slide hero-slide--4"></div>
@@ -3391,7 +3825,8 @@
         </button>
         <span class="hero-dot active" onclick="heroGoTo(0)"></span>
         <span class="hero-dot" onclick="heroGoTo(1)"></span>
-        <span class="hero-dot hero-dot--4" onclick="heroGoTo(2)"></span>
+        <span class="hero-dot" onclick="heroGoTo(2)"></span>
+        <span class="hero-dot hero-dot--4" onclick="heroGoTo(3)"></span>
         <button class="hero-slider-btn hero-slider-next" onclick="heroSlide(1)" aria-label="Neste">
           <svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg>
         </button>
@@ -3400,9 +3835,339 @@
 
   </section>
 
+  <!-- PORTEFØLJE-SEKSJON -->
+  <style>
+    :root {
+      --p2-pad: 48px;
+      --p2-gap: 24px;
+      --p2-col: calc((100vw - 96px - 264px) / 12);
+      --p2-box-w: calc(var(--p2-col) * 4 + var(--p2-gap) * 3);
+    }
+
+    .p2-section {
+      width: 100%;
+      overflow-x: clip;
+      padding: 120px 0;
+      background: #ffffff;
+    }
+
+    .p2-container {
+      width: 100%;
+      padding: 0 var(--p2-pad);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--p2-gap);
+    }
+
+    .p2-intro {
+      grid-column: 3 / 11;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .p2-eyebrow {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #1A1B1F;
+      margin-bottom: 12px;
+    }
+
+    .p2-eyebrow .material-symbols-outlined {
+      font-size: 18px;
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+    }
+
+    .p2-heading {
+      font-family: 'Geist', sans-serif;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 400;
+      line-height: 1.07;
+      letter-spacing: -0.03em;
+      color: #1A1B1F;
+    }
+
+    .p2-cta {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 24px;
+      padding: 14px 28px;
+      background: #1A1B1F;
+      color: #E7F3F1;
+      font-family: 'Camber', 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 999px;
+    }
+
+    .p2-rail-wrap {
+      grid-column: 1 / -1;
+      position: relative;
+    }
+
+    .p2-rail-wrap::after {
+      display: none;
+    }
+
+    .p2-rail {
+      display: flex;
+      gap: var(--p2-gap);
+      overflow-x: auto;
+      overflow-y: visible;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+      padding: 4px 0 16px;
+    }
+
+    .p2-rail::-webkit-scrollbar { display: none; }
+    .p2-rail:active { cursor: grabbing; }
+
+    .p2-boks {
+      flex: 0 0 var(--p2-box-w);
+      border-radius: 16px;
+      min-height: 640px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      position: relative;
+    }
+
+    .p2-boks::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: linear-gradient(to bottom, rgba(26,27,31,0.22) 0%, rgba(26,27,31,0.08) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .p2-boks--peek {
+      -webkit-mask-image: linear-gradient(to right, black 30%, transparent 90%);
+      mask-image: linear-gradient(to right, black 30%, transparent 90%);
+    }
+
+    .p2-boks--peek-left {
+      -webkit-mask-image: linear-gradient(to left, black 30%, transparent 90%);
+      mask-image: linear-gradient(to left, black 30%, transparent 90%);
+    }
+
+    .p2-header {
+      padding: 32px 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .p2-tag {
+      font-family: 'Camber', 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+
+    .p2-inner {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      background: linear-gradient(to bottom, #303b3d 0%, #475659 100%);
+      margin: 0 12px 12px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .p2-inner img.p2-base {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+      transition: opacity 0.6s ease;
+      will-change: opacity;
+    }
+
+    .p2-inner:hover img.p2-base { opacity: 0; }
+
+    .p2-inner img.p2-hover {
+      position: absolute;
+      top: 22%;
+      left: 50%;
+      border-radius: 8px;
+      transform: translate3d(-50%, 0, 0) scale(1.08);
+      transform-origin: top center;
+      width: 80% !important;
+      height: auto !important;
+      max-width: none !important;
+      object-fit: contain;
+      object-position: top;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      will-change: opacity, transform;
+    }
+
+    .p2-inner:hover img.p2-hover {
+      opacity: 1;
+      transform: translate3d(-50%, 0, 0) scale(1);
+    }
+
+    .p2-tittel {
+      font-family: 'Geist', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #1A1B1F;
+      margin: 0;
+    }
+
+    .p2-desc {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: #1A1B1F;
+      margin: 0;
+    }
+
+    .p2-btn {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #4B5563;
+      background: transparent;
+      border: 1px solid #E5E7EB;
+      border-radius: 999px;
+      padding: 8px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      margin-top: 4px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .p2-btn:hover { background: #F3F4F6; }
+
+    .p2-link { position: absolute; inset: 0; z-index: 1; }
+  </style>
+
+  <section class="p2-section">
+    <div class="p2-container">
+      <div class="p2-intro">
+        <p class="p2-eyebrow">
+          <span class="material-symbols-outlined">auto_awesome</span>
+          Portefølje
+        </p>
+        <h2 class="p2-heading">Et utvalg konsepter vi har laget<br>for ulike bransjer.</h2>
+        <a href="bibliotek.html" class="p2-cta">Se bransjebibliotek</a>
+      </div>
+
+      <div class="p2-rail-wrap">
+        <div class="p2-rail">
+
+          <div class="p2-boks">
+            <div class="p2-header">
+              <span class="p2-tag">VVS</span>
+              <p class="p2-tittel">Rørlegger nettside</p>
+              <p class="p2-desc">Nettside for rørlegger i Oslo — bygget for å ta imot henvendelser og synlig på Google.</p>
+              <a href="bibliotek.html" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+            <div class="p2-inner">
+              <a href="bibliotek.html" class="p2-link"></a>
+              <img class="p2-base" src="images/mockup-rorlegger.webp" alt="Rørlegger nettside">
+              <img class="p2-hover" src="images/screencap-konsept-blank.png" alt="Hover">
+            </div>
+          </div>
+
+          <div class="p2-boks">
+            <div class="p2-header">
+              <span class="p2-tag">Bygg</span>
+              <p class="p2-tittel">Byggherre nettside</p>
+              <p class="p2-desc">Profesjonell profil for et byggefirma — presenterer prosjekter og gjør det enkelt å ta kontakt.</p>
+              <a href="bibliotek.html" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+            <div class="p2-inner">
+              <a href="bibliotek.html" class="p2-link"></a>
+              <img class="p2-base" src="images/macbook-nordbygg.webp" alt="Byggherre nettside">
+              <img class="p2-hover" src="images/screencap-konsept-nordbygg.png" alt="Hover">
+            </div>
+          </div>
+
+          <div class="p2-boks">
+            <div class="p2-header">
+              <span class="p2-tag">Håndverk</span>
+              <p class="p2-tittel">Snekkerfirma nettside</p>
+              <p class="p2-desc">Tjenesteside for et lokalt snekkerfirma — med prosjektgalleri og enkel kontaktflyt.</p>
+              <a href="bibliotek.html" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+            <div class="p2-inner">
+              <a href="bibliotek.html" class="p2-link"></a>
+              <img class="p2-base" src="images/mockup-macbook-air-betong-tomrer-oslo.webp" alt="Snekkerfirma nettside">
+              <img class="p2-hover" src="images/nettside-skjerm-tomrer-oslo-mork.png" alt="Hover">
+            </div>
+          </div>
+
+          <div class="p2-boks">
+            <div class="p2-header">
+              <span class="p2-tag">Håndverk</span>
+              <p class="p2-tittel">Snekker nettside</p>
+              <p class="p2-desc">Enkel og effektiv nettside for snekker — fokus på tilbud, referanser og rask respons.</p>
+              <a href="bibliotek.html" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+            <div class="p2-inner">
+              <a href="bibliotek.html" class="p2-link"></a>
+              <img class="p2-base" src="images/mockup-rorlegger.webp" alt="Snekker nettside">
+              <img class="p2-hover" src="images/screencap-konsept-blank.png" alt="Hover">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      const rail = document.querySelector('.p2-rail');
+      if (!rail) return;
+      let isDown = false, startX, scrollLeft;
+      rail.addEventListener('mousedown', e => {
+        isDown = true;
+        startX = e.pageX - rail.offsetLeft;
+        scrollLeft = rail.scrollLeft;
+      });
+      document.addEventListener('mouseup', () => { isDown = false; });
+      rail.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - rail.offsetLeft;
+        rail.scrollLeft = scrollLeft - (x - startX) * 1.5;
+      });
+    })();
+  </script>
+
   <!-- HVA VI LEVERER -->
   <section class="hva-vi-leverer">
-
+  <div class="hvl__card">
 
     <div style="grid-column: 2 / 12; text-align: center;">
       <div class="hvl-eyebrow" data-animate="fade-up">
@@ -3442,11 +4207,12 @@
         </div>
       </div>
 
+  </div>
   </section>
 
   <!-- TOM SEKSJON -->
   <!-- PORTEFØLJE-SEKSJON -->
-  <section class="seksjon-portefolje">
+  <section class="seksjon-portefolje" style="display:none;">
     <div class="porto-intro" data-animate="fade-up">
       <div class="porto-intro__left">
         <div class="hvl-eyebrow">
@@ -3549,14 +4315,74 @@
     </defs>
   </svg>
 
+  <!-- SEKSJON NETTSIDE SOM KONVERTERER -->
+  <section style="width:100%; padding:80px 48px 32px; background:#ffffff;">
+    <div style="width:100%; height:520px; border-radius:16px; overflow:hidden; background:#1A1B1F; display:flex;">
+      <div style="flex:0 0 55%; padding:56px 64px; display:flex; flex-direction:column; justify-content:center; gap:24px;">
+        <p style="font-family:'DM Sans',sans-serif; font-size:14px; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; color:rgba(220,238,234,0.5); margin:0; margin-bottom:-12px;">Nettside</p>
+        <h2 style="font-family:'Geist',sans-serif; font-size:clamp(36px,3.8vw,58px); font-weight:400; line-height:1.06; letter-spacing:-0.02em; color:#E7F3F1; margin:0;">En nettside som faktisk<br>f&#229;r folk til &#229; ta kontakt.</h2>
+        <p style="font-family:'Hanken Grotesk',sans-serif; font-size:17px; font-weight:300; line-height:1.6; color:#ffffff; margin:0; max-width:480px;">Vi bygger nettsider med tydelig struktur, riktige budskap og klare handlingsknapper &#8212; s&#229; bes&#248;kende blir til kunder.</p>
+        <a href="#kontakt" style="margin-top:8px; display:inline-flex; align-items:center; gap:8px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; color:#E7F3F1; background:transparent; text-decoration:none; width:fit-content; padding:12px 24px; border-radius:999px; border:1px solid rgba(220,238,234,0.4);">Se eksempler</a>
+      </div>
+      <div style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+        <div style="position:relative; z-index:10; width:400px; display:flex; flex-direction:column; align-items:flex-start;">
+          <div style="display:flex; align-items:stretch; border-radius:14px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.25); margin-bottom:-18px; margin-left:24px; position:relative; z-index:11;">
+            <div style="background:#1A1B1F; padding:14px 16px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:8px; min-width:58px;">
+              <span class="material-symbols-outlined" style="font-size:22px; color:#E7F3F1; font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20;">trending_up</span>
+              <span style="font-family:'DM Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#E7F3F1;">Resultat</span>
+            </div>
+            <div style="background:#E7F3F1; padding:14px 20px; display:flex; align-items:center;">
+              <span style="font-family:'Hanken Grotesk',sans-serif; font-size:15px; font-weight:600; color:#1A1B1F; line-height:1.3;">Nettsider som<br>faktisk konverterer</span>
+            </div>
+          </div>
+          <div style="border-radius:28px; padding:10px; border:1px solid rgba(200,225,220,0.5); background:rgba(220,238,234,0.12); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 24px 64px rgba(0,0,0,0.3);">
+            <div style="background:#ffffff; border-radius:20px; padding:36px 40px; width:400px; display:flex; flex-direction:column; gap:20px;">
+              <p style="font-family:'DM Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#9ca3af; margin:0;">Konverteringsrate</p>
+              <div style="display:flex; flex-direction:column; gap:14px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-family:'DM Sans',sans-serif; font-size:15px; color:#6b7280;">Gjennomsnittlig nettside</span>
+                  <span style="font-family:'Hanken Grotesk',sans-serif; font-size:16px; font-weight:700; color:#1A1B1F;">~1%</span>
+                </div>
+                <div style="height:1px; background:#f3f4f6;"></div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-family:'DM Sans',sans-serif; font-size:15px; color:#6b7280;">Optimalisert nettside</span>
+                  <span style="font-family:'Hanken Grotesk',sans-serif; font-size:16px; font-weight:700; color:#1A1B1F;">3&#8211;5%</span>
+                </div>
+                <div style="height:1px; background:#f3f4f6;"></div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-family:'DM Sans',sans-serif; font-size:15px; color:#6b7280;">Dedikert landingsside</span>
+                  <span style="font-family:'Hanken Grotesk',sans-serif; font-size:16px; font-weight:700; color:#1A1B1F;">5%+</span>
+                </div>
+              </div>
+              <div style="border-top:1px solid #f3f4f6; padding-top:14px; display:flex; align-items:center; gap:8px;">
+                <span style="font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#9ca3af;">Kilde</span>
+                <span style="height:12px; width:1px; background:#e5e7eb;"></span>
+                <span style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:500; color:#374151; background:#f9fafb; border:1px solid #e5e7eb; border-radius:3px; padding:2px 7px;">Unbounce</span>
+                <span style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:500; color:#374151; background:#f9fafb; border:1px solid #e5e7eb; border-radius:3px; padding:2px 7px;">HubSpot</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <canvas id="shaderCanvasKonv" style="position:absolute; inset:0; width:100%; height:100%;"></canvas>
+        <div style="position:absolute; top:-100%; left:-100%; width:300%; height:300%; background:linear-gradient(to bottom,#1A1B1F 0%,#1A1B1F 33%,transparent 47%,transparent 57%,#1A1B1F 70%,#1A1B1F 100%); transform:rotate(-28deg) translate(8%,12%); transform-origin:center;"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- SEKSJON INKLUDERT I LEVERANSEN -->
   <section class="seksjon-inkludert">
+  <div class="inkludert__card">
+    <div class="falling-overlay">
+      <div class="falling-bg"></div>
+      <div class="falling-blur"></div>
+      <div class="falling-fade"></div>
+    </div>
     <div class="inkludert__left">
       <div class="inkludert__eyebrow" style="margin-bottom:16px;">
         <span style="font-family: 'Material Symbols Outlined'; font-size: 15px; font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20; line-height: 1;">workspace_premium</span>
         <span>Inkludert i leveransen</span>
       </div>
-      <h2 class="inkludert__heading" data-animate="fade-up" data-delay="0.08">Alt du trenger<br>på ett sted</h2>
+      <h2 class="inkludert__heading" data-animate="fade-up" data-delay="0.08">Alt du trenger på ett sted</h2>
 
       <div class="inkludert__items" data-animate="stagger" data-stagger="0.1" data-delay="0.15">
         <div class="inkludert__item">
@@ -3566,7 +4392,6 @@
           </div>
           <p class="inkludert__item-desc">Nettsiden din bygges for å rangere i Google med riktig struktur, metadata og innhold fra dag én.</p>
         </div>
-
         <div class="inkludert__item">
           <div class="inkludert__item-header">
             <span class="inkludert__icon">speed</span>
@@ -3574,25 +4399,106 @@
           </div>
           <p class="inkludert__item-desc">Vi optimaliserer for PageSpeed og Core Web Vitals slik at Google rangerer deg høyere og besøkende ikke forlater siden.</p>
         </div>
+        <div class="inkludert__item">
+          <div class="inkludert__item-header">
+            <span class="inkludert__icon">build</span>
+            <h3 class="inkludert__item-title">Drift og vedlikehold</h3>
+          </div>
+          <p class="inkludert__item-desc">Vi holder nettsiden oppdatert, sikker og i gang uten at du trenger å løfte en finger. Alt fra oppdateringer til backup håndteres av oss.</p>
+        </div>
+        <div class="inkludert__item">
+          <div class="inkludert__item-header">
+            <span class="inkludert__icon">support_agent</span>
+            <h3 class="inkludert__item-title">Personlig service</h3>
+          </div>
+          <p class="inkludert__item-desc">Du får en fast kontaktperson, ikke en ticketkø. Vi svarer raskt og hjelper deg med alt fra tekstendringer til større oppdateringer.</p>
+        </div>
       </div>
-
     </div>
 
     <div class="inkludert__right">
-      <div class="inkludert__item" data-animate="fade-up" data-delay="0.05">
-        <div class="inkludert__item-header">
-          <span class="inkludert__icon">build</span>
-          <h3 class="inkludert__item-title">Drift og vedlikehold</h3>
-        </div>
-        <p class="inkludert__item-desc">Vi holder nettsiden oppdatert, sikker og i gang uten at du trenger å løfte en finger. Alt fra oppdateringer til backup håndteres av oss.</p>
-      </div>
+      <div class="inkludert__illus-frame">
+        <div class="inkludert__illus" style="background:#1A1B1F; padding:0; position:relative; overflow:hidden; min-height:420px; align-items:center; justify-content:center;">
+          <!-- Orbit diagram scaled to fit -->
+          <div style="transform:scale(0.78); transform-origin:center center; width:520px; height:580px; position:relative; flex-shrink:0;">
 
-      <div class="inkludert__item" data-animate="fade-up" data-delay="0.17">
-        <div class="inkludert__item-header">
-          <span class="inkludert__icon">support_agent</span>
-          <h3 class="inkludert__item-title">Personlig service</h3>
+            <!-- SVG lines -->
+            <svg style="position:absolute;inset:0;width:520px;height:580px;overflow:visible;" viewBox="0 0 520 580" fill="none">
+              <defs>
+                <linearGradient id="ilg-seo"       gradientUnits="userSpaceOnUse" x1="150"   y1="195"   x2="213.7" y2="245.1"><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="#3f3f3f" stop-opacity="0.85"/></linearGradient>
+                <linearGradient id="ilg-hastighet" gradientUnits="userSpaceOnUse" x1="248"   y1="158"   x2="248"   y2="228"  ><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="#3f3f3f" stop-opacity="0.85"/></linearGradient>
+                <linearGradient id="ilg-drift"     gradientUnits="userSpaceOnUse" x1="346"   y1="195"   x2="282.3" y2="245.1"><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="#3f3f3f" stop-opacity="0.85"/></linearGradient>
+                <linearGradient id="ilg-service"   gradientUnits="userSpaceOnUse" x1="150"   y1="348.3" x2="213"   y2="301.1"><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="#3f3f3f" stop-opacity="0.85"/></linearGradient>
+                <linearGradient id="ilg-domene"    gradientUnits="userSpaceOnUse" x1="248"   y1="367"   x2="248"   y2="319"  ><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="#3f3f3f" stop-opacity="0.85"/></linearGradient>
+                <linearGradient id="ilg-mobil"     gradientUnits="userSpaceOnUse" x1="346"   y1="348.3" x2="283"   y2="301.1"><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="#3f3f3f" stop-opacity="0.85"/></linearGradient>
+              </defs>
+              <path d="M 213.7 245.1 Q 199.4 198.2 150.0 195.0"   stroke="url(#ilg-seo)"       stroke-width="1" stroke-linecap="round"/>
+              <path d="M 248.0 228.0 Q 276.0 193.0 248.0 158.0"   stroke="url(#ilg-hastighet)" stroke-width="1" stroke-linecap="round"/>
+              <path d="M 282.3 245.1 Q 331.7 241.9 346.0 195.0"   stroke="url(#ilg-drift)"     stroke-width="1" stroke-linecap="round"/>
+              <path d="M 213.0 301.1 Q 164.5 302.4 150.0 348.3"   stroke="url(#ilg-service)"   stroke-width="1" stroke-linecap="round"/>
+              <path d="M 248.0 319.0 Q 220.0 343.0 248.0 367.0"   stroke="url(#ilg-domene)"    stroke-width="1" stroke-linecap="round"/>
+              <path d="M 283.0 301.1 Q 297.5 347.0 346.0 348.3"   stroke="url(#ilg-mobil)"     stroke-width="1" stroke-linecap="round"/>
+            </svg>
+
+            <!-- Ellipse -->
+            <div style="position:absolute;left:203px;top:227px;width:90px;height:93px;border-radius:50%;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.15),rgba(255,255,255,0.45));">
+              <div style="width:100%;height:100%;border-radius:50%;background:#9A9267;"></div>
+            </div>
+
+            <!-- Logo -->
+            <div style="position:absolute;left:212px;top:250px;width:64px;height:48px;">
+              <svg viewBox="0 0 327 246" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="48">
+                <defs>
+                  <linearGradient id="ilg-logo" x1="0" y1="0" x2="0" y2="246" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
+                    <stop offset="1" stop-color="#E8E0C8" stop-opacity="0.88"/>
+                  </linearGradient>
+                </defs>
+                <path d="M188.447 153.654L126.214 242.532C124.946 244.341 122.452 244.781 120.643 243.514L89.9243 222.005C88.1147 220.738 87.6749 218.244 88.942 216.434L151.401 127.233L88.9406 38.5495C87.6726 36.749 88.0983 34.2623 89.8931 32.9862L120.634 11.1291C122.445 9.84215 124.956 10.2762 126.23 12.0959L188.433 100.996C189.705 102.814 189.254 105.32 187.428 106.581L162.335 123.904C160.041 125.487 160.03 128.873 162.313 130.472L187.464 148.083C189.274 149.35 189.714 151.844 188.447 153.654Z" fill="url(#ilg-logo)"/>
+                <path d="M279.447 153.654L217.214 242.532C215.946 244.341 213.452 244.781 211.643 243.514L180.924 222.005C179.115 220.738 178.675 218.244 179.942 216.434L242.401 127.233L179.941 38.5495C178.673 36.749 179.098 34.2623 180.893 32.9862L211.634 11.1291C213.445 9.84215 215.956 10.2762 217.23 12.0959L279.433 100.996C280.705 102.814 280.254 105.32 278.428 106.581L253.335 123.904C251.041 125.487 251.03 128.873 253.313 130.472L278.464 148.083C280.274 149.35 280.714 151.844 279.447 153.654Z" fill="url(#ilg-logo)"/>
+              </svg>
+            </div>
+
+            <!-- Badges -->
+            <div style="position:absolute;left:40px;top:81px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+              <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
+                <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">manage_search</span></div>
+                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">SEO</span></div>
+              </div>
+            </div>
+            <div style="position:absolute;left:193px;top:40px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+              <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
+                <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">speed</span></div>
+                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Hastighet</span></div>
+              </div>
+            </div>
+            <div style="position:absolute;left:346px;top:81px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+              <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
+                <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">build</span></div>
+                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Drift</span></div>
+              </div>
+            </div>
+            <div style="position:absolute;left:40px;top:320px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+              <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
+                <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">support_agent</span></div>
+                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Service</span></div>
+              </div>
+            </div>
+            <div style="position:absolute;left:193px;top:367px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+              <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
+                <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">dns</span></div>
+                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Domene</span></div>
+              </div>
+            </div>
+            <div style="position:absolute;left:346px;top:320px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+              <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
+                <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">smartphone</span></div>
+                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Mobil</span></div>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <p class="inkludert__item-desc">Du får en fast kontaktperson, ikke en ticketkø. Vi svarer raskt og hjelper deg med alt fra tekstendringer til større oppdateringer.</p>
       </div>
     </div>
 
@@ -3600,6 +4506,31 @@
       <a href="#" class="inkludert__btn-primary" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Kontakt oss</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
       <a href="#priser" class="inkludert__btn-ghost">Se priser</a>
     </div>
+  </div>
+  </section>
+
+  <!-- SEKSJON SERVICE -->
+  <section class="seksjon-service">
+  <div class="service__card">
+    <div class="service-grid">
+      <div class="service-left" data-animate="stagger" data-stagger="0.1">
+        <div class="service-eyebrow">
+          <span style="font-family:'Material Symbols Outlined'; font-size:15px; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 20; line-height:1;">build_circle</span>
+          <span>Service</span>
+        </div>
+        <h2 class="service-heading">Behov for å oppdatere nettsiden senere?</h2>
+        <p class="service-lead">En nettside er aldri helt ferdig. Ting endrer seg, nye tjenester, oppdaterte priser, sesongkampanjer, eller bare en tekst som bør justeres.</p>
+        <div class="service-info-boxes">
+          <div class="service-info-box">Send oss en melding</div>
+          <div class="service-info-box">Ingen ekstra kostnader for oppdateringen</div>
+          <div class="service-info-box">Inkludert i domenehostingen</div>
+        </div>
+      </div>
+      <div class="service-image" data-animate="fade-up" data-delay="0.15">
+        <img src="images/mockup-iphone-service.png" alt="Service mockup">
+      </div>
+    </div>
+  </div>
   </section>
 
   <!-- TOM BOKS-SEKSJON -->
@@ -3625,107 +4556,6 @@
         <p class="tom-boks__undertekst">En treg nettside koster deg kunder. Vi bygger med hastighet i fokus — optimaliserte bilder, ren kode og rask lastetid som også gir deg bedre plassering i Google.</p>
       </div>
     </div>
-  </section>
-
-
-  <!-- SEKSJON SERVICE -->
-  <section class="seksjon-service">
-
-    <div class="service-grid">
-      <div class="service-left" data-animate="stagger" data-stagger="0.1">
-        <div class="service-eyebrow">
-          <span style="font-family:'Material Symbols Outlined'; font-size:15px; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 20; line-height:1;">build_circle</span>
-          <span>Service</span>
-        </div>
-        <h2 class="service-heading">Behov for å oppdatere nettsiden senere?</h2>
-        <p class="service-lead">En nettside er aldri helt ferdig. Ting endrer seg, nye tjenester, oppdaterte priser, sesongkampanjer, eller bare en tekst som bør justeres.</p>
-        <p class="service-right-heading">Har du noe du vil oppdatere på nettsiden?</p>
-        <div class="service-info-boxes">
-          <div class="service-info-box">Send oss en melding eller ring oss direkte</div>
-          <div class="service-info-box">Ingen ekstra kostnader for oppdateringen</div>
-          <div class="service-info-box">Inkludert i domenehostingen</div>
-        </div>
-      </div>
-      <div class="service-phone">
-        <div class="phone-mockup">
-
-          <!-- Header -->
-          <div class="wa-header">
-            <span class="wa-back">←</span>
-            <div class="wa-avatar">MG</div>
-            <div class="wa-info">
-              <div class="wa-name">Mediegruppen</div>
-            </div>
-          </div>
-
-          <!-- Messages -->
-          <div class="wa-messages">
-            <div class="wa-timestamp-center">I dag, 14:23</div>
-
-            <div class="wa-row sent">
-              <div class="wa-bubble">Hei! Kan dere oppdatere prislisten på nettsiden? Vi har nye priser fra april. Legger ved oppdatert liste.</div>
-            </div>
-
-            <div class="wa-row sent">
-              <div class="wa-attachment">
-                <div class="wa-attachment__icon xls">XLS</div>
-                <div>
-                  <div class="wa-attachment__name">Prisliste-april-2026.xlsx</div>
-                  <div class="wa-attachment__size">24 KB</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="wa-row sent">
-              <div class="wa-attachment">
-                <div class="wa-attachment__icon pdf">PDF</div>
-                <div>
-                  <div class="wa-attachment__name">Nytt-logo-oppdatert.pdf</div>
-                  <div class="wa-attachment__size">1.2 MB</div>
-                </div>
-              </div>
-              <div class="wa-meta">Lest 14:23</div>
-            </div>
-
-            <div class="wa-row received" id="wa-typing-1-placeholder">
-              <div class="wa-typing-indicator" id="wa-typing-1">
-                <span></span><span></span><span></span>
-              </div>
-            </div>
-
-            <div class="wa-row received" id="wa-reply-1">
-              <div class="wa-bubble">Mottatt! Vi oppdaterer prislisten og bytter logoen i dag. Sender link når det er live.</div>
-              <div class="wa-meta">14:25 ✓✓</div>
-            </div>
-
-            <div class="wa-row received" id="wa-typing-2-placeholder">
-              <div class="wa-typing-indicator" id="wa-typing-2">
-                <span></span><span></span><span></span>
-              </div>
-            </div>
-
-            <div class="wa-row received" id="wa-reply-2">
-              <div class="wa-bubble">Ferdig! Sjekk her: snekkerhalvorsen.no/prisliste</div>
-              <div class="wa-meta">14:47 ✓✓</div>
-            </div>
-
-            <div class="wa-row sent" id="wa-final">
-              <div class="wa-bubble">Perfekt, takk! 👍</div>
-            </div>
-          </div>
-
-          <!-- Input bar -->
-          <div class="wa-input-bar">
-            <div class="wa-input">Skriv en melding...</div>
-            <div class="wa-send-btn">
-              <svg viewBox="0 0 12 12"><path d="M6 10V2M2 6l4-4 4 4"/></svg>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
   </section>
 
   <!-- SEKSJON FAQ -->
@@ -3939,6 +4769,105 @@
     </div>
   </section>
 
+  <!-- BLOGG -->
+  <section class="seksjon-blogg">
+    <div class="blogg__header">
+      <div>
+        <div class="blogg__eyebrow">Ressurser</div>
+        <h2 class="blogg__heading">Tips og innsikt for håndverksbedrifter</h2>
+      </div>
+      <a href="#" class="blogg__header-cta">
+        Se alle artikler
+        <svg width="14" height="10" viewBox="0 0 341 312" fill="currentColor"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg>
+      </a>
+    </div>
+
+    <div class="blogg__grid">
+
+      <!-- Kort 1 -->
+      <article class="blogg-kort" data-animate="fade-up">
+        <div class="blogg-kort__bilde">
+          <svg class="blogg-kort__bilde-inner" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1e1b18"/>
+                <stop offset="100%" style="stop-color:#3a3530"/>
+              </linearGradient>
+            </defs>
+            <rect width="640" height="400" fill="url(#bg1)"/>
+            <circle cx="480" cy="80" r="180" fill="#2d5a4e" opacity="0.35"/>
+            <circle cx="160" cy="320" r="140" fill="#1a3d34" opacity="0.25"/>
+            <text x="48" y="210" font-family="'Geist',sans-serif" font-size="52" font-weight="500" fill="rgba(255,255,255,0.12)" letter-spacing="-0.03em">Google</text>
+            <text x="48" y="272" font-family="'Geist',sans-serif" font-size="52" font-weight="500" fill="rgba(255,255,255,0.07)" letter-spacing="-0.03em">Maps</text>
+          </svg>
+        </div>
+        <h3 class="blogg-kort__tittel">Slik får du flere henvendelser direkte fra Google Maps</h3>
+        <p class="blogg-kort__tekst">De fleste kunder søker lokalt. Vi viser deg hva som faktisk påvirker plasseringen din — og hva du kan gjøre i dag.</p>
+        <div class="blogg-kort__tags">
+          <span class="blogg-kort__tag">SEO</span>
+          <span class="blogg-kort__tag">Synlighet</span>
+        </div>
+      </article>
+
+      <!-- Kort 2 -->
+      <article class="blogg-kort" data-animate="fade-up" data-delay="0.1">
+        <div class="blogg-kort__bilde">
+          <svg class="blogg-kort__bilde-inner" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f0ede8"/>
+                <stop offset="100%" style="stop-color:#e2ddd6"/>
+              </linearGradient>
+            </defs>
+            <rect width="640" height="400" fill="url(#bg2)"/>
+            <rect x="60" y="70" width="220" height="160" rx="6" fill="white" opacity="0.85"/>
+            <rect x="76" y="92" width="70" height="9" rx="2" fill="#1e1b18" opacity="0.18"/>
+            <rect x="76" y="111" width="168" height="6" rx="2" fill="#1e1b18" opacity="0.1"/>
+            <rect x="76" y="125" width="140" height="6" rx="2" fill="#1e1b18" opacity="0.07"/>
+            <rect x="76" y="139" width="155" height="6" rx="2" fill="#1e1b18" opacity="0.07"/>
+            <rect x="76" y="173" width="88" height="28" rx="3" fill="#1e1b18" opacity="0.88"/>
+            <rect x="320" y="100" width="260" height="210" rx="6" fill="white" opacity="0.7"/>
+            <rect x="336" y="120" width="90" height="9" rx="2" fill="#1e1b18" opacity="0.14"/>
+            <rect x="336" y="139" width="220" height="5" rx="2" fill="#1e1b18" opacity="0.07"/>
+            <rect x="336" y="152" width="185" height="5" rx="2" fill="#1e1b18" opacity="0.05"/>
+          </svg>
+        </div>
+        <h3 class="blogg-kort__tittel">Hva koster en profesjonell nettside for håndverkere i 2025?</h3>
+        <p class="blogg-kort__tekst">Fra 3 000 til 150 000 kroner — prisene varierer enormt. Vi bryter ned hva du faktisk betaler for, og hva som er verdt pengene.</p>
+        <div class="blogg-kort__tags">
+          <span class="blogg-kort__tag">Nettsider</span>
+          <span class="blogg-kort__tag">Guide</span>
+        </div>
+      </article>
+
+      <!-- Kort 3 -->
+      <article class="blogg-kort" data-animate="fade-up" data-delay="0.2">
+        <div class="blogg-kort__bilde">
+          <svg class="blogg-kort__bilde-inner" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="bg3" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#2d4a3e"/>
+                <stop offset="100%" style="stop-color:#1a3028"/>
+              </linearGradient>
+            </defs>
+            <rect width="640" height="400" fill="url(#bg3)"/>
+            <circle cx="320" cy="200" r="260" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="80"/>
+            <text x="50" y="240" font-family="'Geist',sans-serif" font-size="160" font-weight="600" fill="rgba(255,255,255,0.06)" letter-spacing="-0.04em">5</text>
+            <rect x="48" y="280" width="3" height="48" fill="#6abfaa" opacity="0.6"/>
+            <text x="60" y="302" font-family="'Instrument Sans',sans-serif" font-size="13" fill="rgba(255,255,255,0.45)" letter-spacing="0.08em">MARKEDSFØRING</text>
+          </svg>
+        </div>
+        <h3 class="blogg-kort__tittel">5 grunner til at håndverksbedrifter mister kunder uten nettside</h3>
+        <p class="blogg-kort__tekst">Anbefalinger fra fornøyde kunder er bra — men hva skjer når potensielle kunder ikke finner deg på nett? Vi ser på hva bedrifter faktisk taper.</p>
+        <div class="blogg-kort__tags">
+          <span class="blogg-kort__tag">Markedsføring</span>
+          <span class="blogg-kort__tag">Artikkel</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="site-footer">
 
@@ -4017,30 +4946,19 @@
       const answer = item.querySelector('.faq-answer');
 
       item.addEventListener('mouseenter', () => {
-        document.querySelectorAll('.faq-item').forEach(i => {
-          i.classList.remove('open');
-          i.querySelector('.faq-answer').style.height = '0';
-        });
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
         item.classList.add('open');
-        answer.style.height = answer.scrollHeight + 'px';
       });
 
       item.addEventListener('mouseleave', () => {
         item.classList.remove('open');
-        answer.style.height = '0';
       });
 
       // Behold klikk for mobil
       item.querySelector('.faq-question').addEventListener('click', () => {
         const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => {
-          i.classList.remove('open');
-          i.querySelector('.faq-answer').style.height = '0';
-        });
-        if (!isOpen) {
-          item.classList.add('open');
-          answer.style.height = answer.scrollHeight + 'px';
-        }
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
       });
     });
   </script>
@@ -4401,7 +5319,11 @@
     });
 
     initPortoKortWidth();
-    window.addEventListener('resize', initPortoKortWidth);
+    let _resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(_resizeTimer);
+      _resizeTimer = setTimeout(initPortoKortWidth, 150);
+    });
 
     // Smart lazy load + animasjon: trigger når seksjon 2 er 30% synlig
     (function() {
@@ -4564,5 +5486,78 @@
     })();
   </script>
 
+
+  <script>
+    (function() {
+      const canvas = document.getElementById('shaderCanvasKonv');
+      if (!canvas || typeof THREE === 'undefined') return;
+      const container = canvas.parentElement;
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      const camera = new THREE.Camera();
+      camera.position.z = 1;
+      const scene = new THREE.Scene();
+      const uniforms = {
+        time:       { value: 1.0 },
+        resolution: { value: new THREE.Vector2() }
+      };
+      const material = new THREE.ShaderMaterial({
+        uniforms,
+        vertexShader: 'void main() { gl_Position = vec4(position, 1.0); }',
+        fragmentShader: `
+          precision highp float;
+          uniform vec2 resolution;
+          uniform float time;
+          void main(void) {
+            vec2 uv = gl_FragCoord.xy / resolution.xy;
+            float t = time * 0.20;
+            float wx = uv.x + sin(uv.y * 6.0 + t * 0.5) * 0.003;
+            float s1 = pow(abs(sin(wx * 150.0)),       16.0) * 1.0;
+            float s2 = pow(abs(sin(wx * 150.0 + 1.5)), 22.0) * 0.55;
+            float s3 = pow(abs(sin(wx * 150.0 + 2.9)), 28.0) * 0.35;
+            float stripe = s1 + s2 + s3;
+            float wy  = uv.y * 4.5 - t * 3.0;
+            float wx2 = uv.x * 6.0 + t * 0.5;
+            float aurora = 0.5 + 0.5 * sin(wy + sin(wx2) * 0.8);
+            aurora = pow(max(0.0, aurora), 1.8);
+            stripe *= mix(0.10, 1.0, aurora);
+            vec2 g1pos = vec2(0.62 + sin(t * 0.42) * 0.22, 0.55 + cos(t * 0.35) * 0.28);
+            float g1   = smoothstep(0.60, 0.0, length(uv - g1pos));
+            vec2 g2pos = vec2(0.78 + cos(t * 0.65) * 0.16, 0.38 + sin(t * 0.75) * 0.22);
+            float g2   = smoothstep(0.38, 0.0, length(uv - g2pos)) * 0.65;
+            float diag = uv.y + uv.x * 0.30;
+            float fade = smoothstep(0.12, 0.40, diag) * smoothstep(0.95, 0.72, diag);
+            vec3 base   = vec3(0.055, 0.100, 0.092);
+            vec3 teal   = vec3(0.16,  0.45,  0.38);
+            vec3 bright = vec3(0.78,  0.96,  0.90);
+            vec3 color = base;
+            color = mix(color, teal,   stripe * 0.72);
+            color = mix(color, bright, stripe * stripe * 0.58);
+            color += g1 * vec3(0.09, 0.33, 0.25) * (0.85 + sin(t * 0.8) * 0.15);
+            color += g2 * vec3(0.07, 0.26, 0.20);
+            color *= fade;
+            vec3 panelBg = vec3(0.102, 0.106, 0.122);
+            color = mix(panelBg, color, smoothstep(0.0, 0.20, uv.x));
+            gl_FragColor = vec4(color, 1.0);
+          }
+        `
+      });
+      const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+      scene.add(mesh);
+      function resize() {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        renderer.setSize(w, h);
+        uniforms.resolution.value.set(renderer.domElement.width, renderer.domElement.height);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      (function animate() {
+        requestAnimationFrame(animate);
+        uniforms.time.value += 0.05;
+        renderer.render(scene, camera);
+      })();
+    })();
+  </script>
 </body>
 </html>
