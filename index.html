@@ -1040,13 +1040,31 @@
     .tom-boks::before {
       content: '';
       position: absolute;
-      width: 420px;
-      height: 420px;
+      width: 476px;
+      height: 611px;
       border-radius: 50%;
-      right: -120px;
-      bottom: -160px;
-      background: #f9f8f6;
+      left: 427px;
+      top: -11px;
+      background: rgba(255,255,255,0.18);
       pointer-events: none;
+      z-index: 0;
+    }
+    .tom-boks::after {
+      content: '';
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      left: 600px;
+      top: 280px;
+      background: rgba(255,255,255,0.13);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .tom-boks__bilde,
+    .tom-boks__innhold {
+      position: relative;
+      z-index: 1;
     }
     .tom-boks:hover {
       background: #f9f9f8;
