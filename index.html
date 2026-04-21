@@ -1026,7 +1026,7 @@
     .tom-boks {
       width: 100%;
       max-width: 860px;
-      background: linear-gradient(135deg, #d6d0c8 0%, #e8e3dc 40%, #f2eeea 100%);
+      background: linear-gradient(to bottom right, #e5dfd8, #f2eeeb 55%, #f9f8f7);
       border-radius: 8px 8px 12px 12px;
       display: flex;
       flex-direction: row;
@@ -1040,31 +1040,24 @@
     .tom-boks::before {
       content: '';
       position: absolute;
-      width: 476px;
-      height: 611px;
+      width: 360px;
+      height: 360px;
       border-radius: 50%;
-      left: 427px;
-      top: -11px;
-      background: rgba(255,255,255,0.18);
+      right: -80px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(146,142,135,0.15) 0%, transparent 70%);
       pointer-events: none;
-      z-index: 0;
     }
     .tom-boks::after {
       content: '';
       position: absolute;
-      width: 260px;
-      height: 260px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      left: 600px;
-      top: 280px;
-      background: rgba(255,255,255,0.13);
+      right: 40px;
+      bottom: -60px;
+      background: radial-gradient(circle, rgba(146,142,135,0.10) 0%, transparent 70%);
       pointer-events: none;
-      z-index: 0;
-    }
-    .tom-boks__bilde,
-    .tom-boks__innhold {
-      position: relative;
-      z-index: 1;
     }
     .tom-boks:hover {
       background: #f9f9f8;
