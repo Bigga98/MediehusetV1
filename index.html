@@ -1025,23 +1025,37 @@
     .tom-boks {
       width: 100%;
       max-width: 860px;
-      background: #f5f5f3;
-      border-radius: 6px;
+      background: #ffffff;
+      border-radius: 8px 8px 12px 12px;
       display: flex;
       flex-direction: row;
       align-items: center;
       padding: 24px;
       gap: 24px;
-      transition: background 0.35s cubic-bezier(0.25, 0, 0, 1), transform 0.35s cubic-bezier(0.25, 0, 0, 1), box-shadow 0.35s cubic-bezier(0.25, 0, 0, 1);
+      position: relative;
+      transition: background 0.25s ease;
+    }
+    .tom-boks::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 8px 8px 12px 12px;
+      padding: 1px;
+      background: linear-gradient(to bottom, rgba(26,27,31,0.22) 0%, rgba(26,27,31,0.18) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
     }
     .tom-boks:hover {
-      background: #ddefeb;
+      background: #f9f9f8;
     }
     .tom-boks__bilde {
       width: 240px;
       height: 240px;
       flex-shrink: 0;
-      background: #e2e2e0;
+      background: rgba(26,27,31,0.05);
       border-radius: 4px;
     }
     .tom-boks__innhold {
@@ -1052,21 +1066,20 @@
       padding: 0 24px 24px;
     }
     .tom-boks__undertekst {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 18px;
       font-weight: 300;
-      color: #222;
-      line-height: 1.6;
-      margin-top: 24px;
-      max-width: 380px;
+      color: rgba(26,27,31,0.65);
+      line-height: 1.7;
+      margin-top: 12px;
     }
     .tom-boks__label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 34px;
-      font-weight: 400;
-      color: #111;
+      font-family: 'Geist', sans-serif;
+      font-size: 26px;
+      font-weight: 500;
+      color: #1A1B1F;
       letter-spacing: -0.03em;
-      line-height: 1;
+      line-height: 1.15;
     }
 
     .seksjon-bransjer {
@@ -1290,7 +1303,7 @@
     .hva-vi-leverer .card {
       background: #ffffff;
       border: none;
-      border-radius: 8px;
+      border-radius: 8px 8px 12px 12px;
       padding: var(--card-padding) var(--card-padding) var(--space-sm) var(--card-padding);
       display: block;
       overflow: visible;
@@ -1303,7 +1316,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 8px;
+      border-radius: 8px 8px 12px 12px;
       padding: 1px;
       background: linear-gradient(to bottom, rgba(26,27,31,0.22) 0%, rgba(26,27,31,0.18) 100%);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -2620,7 +2633,7 @@
       font-weight: 300;
       font-size: 17px;
       line-height: 1.6;
-      color: #ffffff;
+      color: rgba(231,243,241,0.72);
     }
 
     .inkludert__cta-row {
@@ -3533,13 +3546,13 @@
       /* ── FAQ ── */
       .seksjon-faq {
         grid-template-columns: 1fr;
-        padding: 60px 20px;
+        padding: 60px 12px;
       }
 
       /* ── DEMOER ── */
       .seksjon-demoer {
         grid-template-columns: 1fr;
-        padding: 60px 20px;
+        padding: 60px 12px;
       }
 
       .demoer-right {
@@ -3549,7 +3562,7 @@
 
       /* ── PRISING ── */
       .seksjon-prising {
-        padding: 0 20px;
+        padding: 0 12px;
       }
 
       .prising-inner {
@@ -3569,7 +3582,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 32px;
-        padding: 60px 20px;
+        padding: 60px 12px;
       }
 
       .footer-cta__heading {
@@ -3581,7 +3594,7 @@
       }
 
       .footer-bottom {
-        padding: 28px 20px;
+        padding: 28px 12px;
         flex-direction: column;
         gap: 24px;
       }
@@ -3594,7 +3607,7 @@
       /* ── FOOTER KOLONNER ── */
       .footer-body {
         grid-template-columns: 1fr;
-        padding: 48px 20px;
+        padding: 48px 12px;
         gap: 36px;
       }
 
@@ -3602,7 +3615,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
-        padding: 24px 20px;
+        padding: 24px 12px;
       }
 
       .footer-bottom__links {
@@ -3735,7 +3748,7 @@
 
       /* ── TOM-BOKS (bilde + tekst side om side) ── */
       .seksjon-tom-boks {
-        padding: 60px 20px;
+        padding: 60px 12px;
         gap: 12px;
       }
 
@@ -3748,7 +3761,7 @@
       .tom-boks__bilde {
         width: 100%;
         height: 220px;
-        border-radius: 4px 4px 0 0;
+        border-radius: 7px 7px 0 0;
         overflow: hidden;
       }
 
@@ -3759,7 +3772,7 @@
       }
 
       .tom-boks__innhold {
-        padding: 20px 20px 24px;
+        padding: 20px 12px 24px;
       }
 
       /* ── FAQ (grid-column ut av range) ── */
