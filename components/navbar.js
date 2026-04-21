@@ -213,6 +213,12 @@
         padding: 0 20px;
         height: 60px;
         backdrop-filter: none;
+        background: transparent;
+        border-bottom: none;
+      }
+      .mg-nav.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        border-bottom: 1px solid rgba(0,0,0,0.06);
       }
       .mg-nav__drawer {
         top: 60px;
