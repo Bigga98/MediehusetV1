@@ -3192,15 +3192,29 @@
 
       .hero__cta-row {
         width: 100%;
-        margin-bottom: 16px;
+        margin-bottom: 24px;
         display: flex;
         justify-content: center;
+      }
+
+      .hero__search-bar {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .hero__search-input {
+        width: 0;
+        flex: 1;
+        min-width: 0;
+        padding: 14px 16px;
+        font-size: 16px;
       }
 
       .hero__cta-btn {
         width: auto;
         min-height: 52px;
-        font-size: 17px;
+        font-size: 16px;
+        padding: 14px 20px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -3827,7 +3841,7 @@
     <!-- 3. CTA -->
     <div class="hero__cta-row" data-animate="fade-up" data-hero data-delay="0.22">
       <div class="hero__search-bar">
-        <input class="hero__search-input" type="text" placeholder="Din nettside-URL" />
+        <input class="hero__search-input" type="url" placeholder="Din nettside-URL" autocomplete="url" />
         <button class="hero__cta-btn" onclick="openContactPopup(); return false;">Få et utkast</button>
       </div>
     </div>
