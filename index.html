@@ -2248,9 +2248,26 @@
 
     .popup-left {
       flex: 0 0 240px; background: #0a0b0e;
-      padding: 44px 32px; display: flex; flex-direction: column;
-      justify-content: space-between;
+      position: relative; overflow: hidden;
       border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .popup-slide {
+      position: absolute; inset: 0; overflow: hidden;
+    }
+    .popup-slide img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center; display: block;
+      will-change: transform, opacity; transform-origin: center center;
+    }
+    .popup-left-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,9,11,0.92) 0%, rgba(8,9,11,0.3) 60%, transparent 100%);
+      z-index: 1;
+    }
+    .popup-left-content {
+      position: relative; z-index: 2;
+      height: 100%; padding: 44px 32px;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
     .popup-brand-dot { display: none; }
     .popup-left-heading {
@@ -5279,27 +5296,28 @@
 
       <!-- Venstre panel -->
       <div class="popup-left">
-        <div class="popup-left-top">
-          <div class="popup-brand-dot">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M9 2L16 6V12L9 16L2 12V6L9 2Z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/>
-            </svg>
+        <div class="popup-slide" id="popup-slide-0"><img src="images/kontakt-slide-1.jpeg" alt=""></div>
+        <div class="popup-slide" id="popup-slide-1"><img src="images/kontakt-slide-2.jpeg" alt=""></div>
+        <div class="popup-slide" id="popup-slide-2"><img src="images/kontakt-slide-3.jpeg" alt=""></div>
+        <div class="popup-left-overlay"></div>
+        <div class="popup-left-content">
+          <div class="popup-left-top">
+            <p class="popup-left-heading">La oss ta en prat om nettsiden din</p>
+            <p class="popup-left-sub">Vi hjelper deg med å få en nettside som faktisk gjør jobben — og som du er stolt av.</p>
           </div>
-          <p class="popup-left-heading">La oss ta en prat om nettsiden din</p>
-          <p class="popup-left-sub">Vi hjelper deg med å få en nettside som faktisk gjør jobben — og som du er stolt av.</p>
-        </div>
-        <div class="popup-trust">
-          <div class="popup-trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Svar innen én arbeidsdag
-          </div>
-          <div class="popup-trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Ingen bindingstid
-          </div>
-          <div class="popup-trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Fast pris — ingen overraskelser
+          <div class="popup-trust">
+            <div class="popup-trust-item">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Svar innen én arbeidsdag
+            </div>
+            <div class="popup-trust-item">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Ingen bindingstid
+            </div>
+            <div class="popup-trust-item">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Fast pris — ingen overraskelser
+            </div>
           </div>
         </div>
       </div>
@@ -5357,9 +5375,56 @@
   </div>
 
   <script>
+    /* ── Popup bildeslider ── */
+    (function() {
+      var pSlides, pN, pHOLD = 4.2, pFADE = 1.3, pKB, pTimer = null, pStarted = false;
+      var kenBurns = [
+        { from: { scale:1.04, xPercent:2,  yPercent:0  }, to: { scale:1.11, xPercent:-2, yPercent:0  } },
+        { from: { scale:1.04, xPercent:-2, yPercent:0  }, to: { scale:1.11, xPercent:2,  yPercent:0  } },
+        { from: { scale:1.06, xPercent:0,  yPercent:1  }, to: { scale:1.12, xPercent:0,  yPercent:-1 } },
+      ];
+
+      function startKB(slide, idx) {
+        var img = slide.querySelector('img');
+        var cfg = kenBurns[idx % kenBurns.length];
+        gsap.killTweensOf(img);
+        gsap.fromTo(img, { ...cfg.from }, { ...cfg.to, duration: pHOLD + pFADE * 2, ease: 'none' });
+      }
+
+      function runPopupSlide(curr) {
+        var next = (curr + 1) % pN;
+        gsap.set(pSlides[next], { opacity: 0, zIndex: 2 });
+        pTimer = gsap.delayedCall(pHOLD, function() {
+          startKB(pSlides[next], next);
+          gsap.timeline({ onComplete: function() {
+            gsap.set(pSlides[curr], { zIndex: 0 });
+            gsap.set(pSlides[next], { zIndex: 1 });
+            runPopupSlide(next);
+          }})
+          .to(pSlides[curr], { opacity: 0, duration: pFADE, ease: 'power1.inOut' }, 0)
+          .to(pSlides[next], { opacity: 1, duration: pFADE, ease: 'power1.inOut' }, 0);
+        });
+      }
+
+      function initPopupSlider() {
+        if (pStarted) return;
+        pSlides = Array.from(document.querySelectorAll('.popup-slide'));
+        pN = pSlides.length;
+        if (!pN) return;
+        pStarted = true;
+        gsap.set(pSlides, { opacity: 0, zIndex: 0 });
+        gsap.set(pSlides[0], { opacity: 1, zIndex: 1 });
+        startKB(pSlides[0], 0);
+        runPopupSlide(0);
+      }
+
+      window._initPopupSlider = initPopupSlider;
+    })();
+
     function openContactPopup() {
       document.getElementById('kontaktPopup').classList.add('open');
       document.body.style.overflow = 'hidden';
+      if (window._initPopupSlider) window._initPopupSlider();
     }
 
     function closeContactPopup() {
