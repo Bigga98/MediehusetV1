@@ -214,6 +214,14 @@
       -webkit-appearance: none;
     }
 
+    .form-field input:-webkit-autofill,
+    .form-field input:-webkit-autofill:hover,
+    .form-field input:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 100px #0f1013 inset;
+      -webkit-text-fill-color: #ffffff;
+      caret-color: #ffffff;
+    }
+
     .form-field input::placeholder,
     .form-field textarea::placeholder {
       color: rgba(255,255,255,0.55);
