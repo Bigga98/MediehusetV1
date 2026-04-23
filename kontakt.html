@@ -443,18 +443,24 @@
     btn.textContent = 'Sender…';
     btn.disabled = true;
 
-    const now = new Date().toISOString();
+    const navn    = document.getElementById('navn').value.trim();
+    const epost   = document.getElementById('epost').value.trim();
+    const bedrift = document.getElementById('bedrift').value.trim();
+    const telefon = document.getElementById('telefon').value.trim();
+    const melding = document.getElementById('melding').value.trim();
+
+    const fullMessage = [
+      bedrift  ? 'Bedrift: ' + bedrift   : '',
+      telefon  ? 'Tlf: '    + telefon    : '',
+      melding,
+    ].filter(Boolean).join('\n');
+
     const { error } = await sb.from('leads').insert([{
-      name:       document.getElementById('navn').value.trim(),
-      email:      document.getElementById('epost').value.trim(),
-      phone:      document.getElementById('telefon').value.trim(),
-      message:    document.getElementById('melding').value.trim(),
-      comment:    document.getElementById('bedrift').value.trim()
-                    ? 'Bedrift: ' + document.getElementById('bedrift').value.trim()
-                    : '',
-      source:     'Kontaktskjema',
-      created_at: now,
-      updated_at: now,
+      name:         navn,
+      email:        epost,
+      message:      fullMessage,
+      service_type: 'Kontaktskjema',
+      source:       'kontakt.html',
     }]);
 
     if (error) {
