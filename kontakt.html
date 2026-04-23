@@ -314,6 +314,95 @@
       color: rgba(255,255,255,0.65);
     }
 
+    /* ─── Success state ─── */
+    .form-success {
+      display: none;
+      flex-direction: column;
+      animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-success__label {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #6fcf97;
+      margin-bottom: 16px;
+    }
+
+    .form-success__heading {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      font-size: clamp(24px, 2.8vw, 34px);
+      color: #ffffff;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .form-success__sub {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 40px;
+    }
+
+    .form-success__about {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 28px 0;
+      margin-bottom: 36px;
+    }
+
+    .form-success__about p {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    .form-success__btn {
+      width: auto;
+      align-self: flex-start;
+      height: 46px;
+      padding: 0 28px;
+      background: #ffffff;
+      color: #0f1013;
+      border: none;
+      border-radius: 999px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .form-success__btn:hover {
+      background: #efefef;
+      transform: translateY(-1px);
+    }
+
+    .form-success__btn svg {
+      width: 13px;
+      height: 13px;
+      transition: transform 0.2s ease;
+    }
+
+    .form-success__btn:hover svg {
+      transform: translateX(3px);
+    }
+
     /* ─── Responsive ─── */
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; }
@@ -413,6 +502,21 @@
 
     </form>
 
+    <div class="form-success" id="formSuccess">
+      <p class="form-success__label">Mottatt</p>
+      <h2 class="form-success__heading">Vi tar kontakt innen én arbeidsdag.</h2>
+      <p class="form-success__sub">Mens du venter — se hva vi har bygget for andre bedrifter.</p>
+      <div class="form-success__about">
+        <p>Mediegruppen hjelper små og mellomstore bedrifter med nettsider som faktisk gjør en forskjell — rask, profesjonell og bygget for å gi deg flere kunder.</p>
+      </div>
+      <a href="index.html" class="form-success__btn">
+        Se nettsiden vår
+        <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 7.5h11M8.5 3l4.5 4.5L8.5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
   </div>
 
 </div>
@@ -501,13 +605,15 @@
     if (error) {
       console.error('Supabase-feil:', error);
       btn.textContent = 'Noe gikk galt — prøv igjen';
-      btn.style.background = '#fef0f0';
-      btn.style.color = '#e55';
+      btn.style.background = 'rgba(255,80,80,0.12)';
+      btn.style.color = '#ff6b6b';
       btn.disabled = false;
     } else {
-      btn.textContent = 'Sendt — vi tar kontakt snart';
-      btn.style.background = '#d4edda';
-      btn.style.color = '#1A1B1F';
+      document.getElementById('kontaktskjema').style.display = 'none';
+      document.querySelector('.form-header').style.display = 'none';
+      document.querySelector('.form-divider').style.display = 'none';
+      const success = document.getElementById('formSuccess');
+      success.style.display = 'flex';
     }
   });
 </script>
