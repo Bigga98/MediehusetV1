@@ -493,40 +493,46 @@
 
     const popupStyle = document.createElement('style');
     popupStyle.textContent = `
-      .popup-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+      .popup-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
       .popup-overlay.open{opacity:1;visibility:visible}
-      .popup-backdrop{position:absolute;inset:0;background:rgba(20,22,20,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-      .popup-card{position:relative;z-index:1;display:flex;max-width:860px;width:100%;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.28),0 0 0 1px rgba(255,255,255,.06);transform:translateY(20px) scale(.96);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+      .popup-backdrop{position:absolute;inset:0;background:rgba(8,9,11,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+      .popup-card{position:relative;z-index:1;display:flex;max-width:780px;width:100%;overflow:hidden;border-radius:4px;box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.07);transform:translateY(24px) scale(.97);transition:transform .45s cubic-bezier(.22,1,.36,1)}
       .popup-overlay.open .popup-card{transform:translateY(0) scale(1)}
-      .popup-left{flex:0 0 300px;background:#1e1b18;padding:52px 40px;display:flex;flex-direction:column;justify-content:space-between}
+      .popup-left{flex:0 0 260px;background:#0a0b0e;padding:44px 36px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid rgba(255,255,255,.06)}
       .popup-brand-dot{display:none}
-      .popup-left-heading{font-family:'Funnel Display',sans-serif;font-size:28px;font-weight:400;line-height:1.15;letter-spacing:-.02em;color:#fff;margin-bottom:14px}
-      .popup-left-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;line-height:1.7;color:rgba(255,255,255,.5)}
-      .popup-trust{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px}
-      .popup-trust-item{display:flex;align-items:center;gap:10px;font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;color:rgba(255,255,255,.65)}
-      .popup-right{flex:1;background:#fff;padding:48px 48px 44px;position:relative}
-      .popup-close{position:absolute;top:14px;right:14px;width:30px;height:30px;background:#f2f2f2;border:none;border-radius:50%;cursor:pointer;color:#777;font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
-      .popup-close:hover{background:#e6e6e6;color:#111}
-      .popup-right-heading{font-family:'Funnel Display',sans-serif;font-size:26px;font-weight:400;letter-spacing:-.02em;color:#17181c;margin-bottom:4px}
-      .popup-right-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;line-height:1.7;color:#999;margin-bottom:26px}
-      .popup-form{display:flex;flex-direction:column;gap:11px}
-      .popup-form-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-      .popup-input,.popup-textarea{width:100%;padding:0 14px;height:44px;background:#f7f7f7;border:1.5px solid transparent;border-radius:10px;font-family:'Instrument Sans',Helvetica,sans-serif;font-size:14px;color:#17181c;outline:none;transition:border-color .15s,background .15s,box-shadow .15s}
-      .popup-textarea{height:auto;padding:12px 14px;min-height:110px;resize:none}
-      .popup-input::placeholder,.popup-textarea::placeholder{color:#bbb}
-      .popup-input:focus,.popup-textarea:focus{border-color:#222;background:#fff;box-shadow:0 0 0 3px rgba(48,51,47,.07)}
-      .popup-submit{width:100%;height:48px;background:#222;border:none;border-radius:100px;font-family:'Funnel Display',sans-serif;font-size:15px;font-weight:400;color:#fff;letter-spacing:.01em;cursor:pointer;transition:background .15s,transform .15s,box-shadow .15s;margin-top:2px;display:flex;align-items:center;justify-content:center;gap:8px}
-      .popup-submit:hover{background:#0d2218;box-shadow:0 4px 16px rgba(0,0,0,.18)}
-      .popup-submit:active{transform:scale(.98)}
-      @media(hover:none){.popup-submit:active{transform:none}.popup-submit{transition:background .15s}}
-      .popup-contact-links{display:flex;gap:20px;margin-top:16px;flex-wrap:wrap}
-      .popup-contact-link{display:flex;align-items:center;gap:6px;font-size:13px;color:#555;text-decoration:none;transition:color .2s}
-      .popup-contact-link:hover{color:#111}
-      .popup-success{display:none;text-align:center;padding:48px 0 24px}
-      .popup-success-icon{width:56px;height:56px;background:#f0fdf4;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:20px}
-      .popup-success h3{font-family:'Funnel Display',sans-serif;font-size:24px;font-weight:400;color:#17181c;margin-bottom:8px}
-      .popup-success p{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:14px;color:#999}
-      @media(max-width:600px){.popup-left{display:none}.popup-right{padding:36px 24px 32px}}
+      .popup-left-heading{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;line-height:1.2;letter-spacing:-.02em;color:#fff;margin-bottom:12px}
+      .popup-left-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;line-height:1.7;color:rgba(255,255,255,.35)}
+      .popup-trust{display:flex;flex-direction:column;gap:14px}
+      .popup-trust-item{display:flex;align-items:center;gap:10px;font-family:'Instrument Sans',Helvetica,sans-serif;font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.01em}
+      .popup-trust-item svg{flex-shrink:0;opacity:.6}
+      .popup-right{flex:1;background:#0f1013;padding:44px 44px 40px;position:relative}
+      .popup-close{position:absolute;top:16px;right:16px;width:28px;height:28px;background:rgba(255,255,255,.07);border:none;border-radius:50%;cursor:pointer;color:rgba(255,255,255,.4);font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
+      .popup-close:hover{background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)}
+      .popup-right-heading{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;letter-spacing:-.025em;color:#fff;margin-bottom:6px;line-height:1.1}
+      .popup-right-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,.35);margin-bottom:28px}
+      .popup-form{display:flex;flex-direction:column;gap:0}
+      .popup-form-row{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+      .popup-field{display:flex;flex-direction:column;gap:7px;margin-bottom:24px}
+      .popup-field label{font-family:'Instrument Sans',sans-serif;font-size:10px;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase}
+      .popup-input,.popup-textarea{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.5);border-radius:0;padding:0 0 11px;height:40px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;font-weight:300;color:#fff;outline:none;transition:border-color .2s ease,box-shadow .2s ease;-webkit-appearance:none}
+      .popup-input::placeholder,.popup-textarea::placeholder{color:rgba(255,255,255,.28)}
+      .popup-input:-webkit-autofill,.popup-input:-webkit-autofill:focus{-webkit-box-shadow:0 0 0 100px #0f1013 inset;-webkit-text-fill-color:#fff}
+      .popup-input:hover,.popup-textarea:hover{border-bottom-color:rgba(255,255,255,.65)}
+      .popup-input:focus,.popup-textarea:focus{border-bottom-color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.1)}
+      .popup-textarea{height:auto;padding:0 0 11px;min-height:72px;resize:none;line-height:1.6}
+      .popup-submit{width:auto;align-self:flex-start;height:42px;padding:0 24px;background:#fff;color:#0f1013;border:none;border-radius:999px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s,transform .15s,box-shadow .15s;display:inline-flex;align-items:center;gap:8px;margin-top:4px}
+      .popup-submit:hover{background:#efefef;transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.4)}
+      .popup-submit:active{transform:translateY(0);box-shadow:none}
+      .popup-submit svg{transition:transform .2s ease}
+      .popup-submit:hover svg{transform:translateX(3px)}
+      .popup-contact-links{display:flex;gap:20px;margin-top:18px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.06);padding-top:16px}
+      .popup-contact-link{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s;font-family:'Instrument Sans',sans-serif}
+      .popup-contact-link:hover{color:rgba(255,255,255,.7)}
+      .popup-success{display:none;padding:24px 0}
+      .popup-success-icon{width:40px;height:40px;background:rgba(111,207,151,.1);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px}
+      .popup-success h3{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;color:#fff;margin-bottom:8px;letter-spacing:-.02em}
+      .popup-success p{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;color:rgba(255,255,255,.4);line-height:1.6}
+      @media(max-width:640px){.popup-left{display:none}.popup-right{padding:36px 28px 32px}.popup-form-row{grid-template-columns:1fr}}
     `;
     document.head.appendChild(popupStyle);
 
@@ -537,16 +543,13 @@
         <div class="popup-card">
           <div class="popup-left">
             <div class="popup-left-top">
-              <div class="popup-brand-dot">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L16 6V12L9 16L2 12V6L9 2Z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/></svg>
-              </div>
               <p class="popup-left-heading">La oss ta en prat om nettsiden din</p>
               <p class="popup-left-sub">Vi hjelper deg med å få en nettside som faktisk gjør jobben — og som du er stolt av.</p>
             </div>
             <div class="popup-trust">
-              <div class="popup-trust-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Svar innen én arbeidsdag</div>
-              <div class="popup-trust-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Ingen bindingstid</div>
-              <div class="popup-trust-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Fast pris — ingen overraskelser</div>
+              <div class="popup-trust-item"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Svar innen én arbeidsdag</div>
+              <div class="popup-trust-item"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Ingen bindingstid</div>
+              <div class="popup-trust-item"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Fast pris — ingen overraskelser</div>
             </div>
           </div>
           <div class="popup-right">
@@ -556,21 +559,33 @@
               <p class="popup-right-sub">Vi tar kontakt innen én arbeidsdag.</p>
               <form class="popup-form" id="popupForm" onsubmit="submitPopupForm(event)">
                 <div class="popup-form-row">
-                  <input class="popup-input" type="text" name="name" placeholder="Navn" required />
-                  <input class="popup-input" type="email" name="email" placeholder="E-post" required />
+                  <div class="popup-field">
+                    <label>Navn</label>
+                    <input class="popup-input" type="text" name="name" placeholder="Ola Nordmann" required />
+                  </div>
+                  <div class="popup-field">
+                    <label>E-post</label>
+                    <input class="popup-input" type="email" name="email" placeholder="ola@bedrift.no" required />
+                  </div>
                 </div>
-                <input class="popup-input" type="text" name="company" placeholder="Bedrift / Nettside" />
-                <textarea class="popup-textarea" name="message" placeholder="Hva kan vi hjelpe med?"></textarea>
-                <button class="popup-submit" type="submit">Send melding <svg viewBox="0 0 341 312" fill="currentColor" width="14" height="13"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></button>
+                <div class="popup-field">
+                  <label>Bedrift / Nettside</label>
+                  <input class="popup-input" type="text" name="company" placeholder="Bedrift AS" />
+                </div>
+                <div class="popup-field">
+                  <label>Melding</label>
+                  <textarea class="popup-textarea" name="message" placeholder="Hva kan vi hjelpe med?"></textarea>
+                </div>
+                <button class="popup-submit" type="submit">Send melding <svg viewBox="0 0 15 15" fill="none" width="13" height="13"><path d="M2 7.5h11M8.5 3l4.5 4.5L8.5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
               </form>
               <div class="popup-contact-links">
-                <a href="tel:+4748118680" class="popup-contact-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+47 481 18 680</a>
-                <a href="mailto:post@mediegruppen.no" class="popup-contact-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>post@mediegruppen.no</a>
+                <a href="tel:+4748118680" class="popup-contact-link"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+47 481 18 680</a>
+                <a href="mailto:post@mediegruppen.no" class="popup-contact-link"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>post@mediegruppen.no</a>
               </div>
             </div>
             <div class="popup-success" id="popupSuccess">
-              <div class="popup-success-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <h3>Meldingen er sendt!</h3>
+              <div class="popup-success-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6fcf97" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <h3>Sendt!</h3>
               <p>Vi tar kontakt innen én arbeidsdag.</p>
             </div>
           </div>
