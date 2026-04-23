@@ -105,7 +105,8 @@
 
     /* ─── RIGHT: Form ─── */
     .form-side {
-      background: #1A1B1F;
+      background: #0f1013;
+      background-image: radial-gradient(ellipse at 80% 0%, rgba(255,255,255,0.025) 0%, transparent 60%);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -116,62 +117,70 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 52px;
+      margin-bottom: 40px;
     }
 
     .form-logo-wordmark {
       font-family: 'Instrument Sans', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
-      color: rgba(255,255,255,0.55);
-      letter-spacing: 0.02em;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.04em;
     }
 
     .form-logo-sep {
       width: 1px;
-      height: 14px;
-      background: rgba(255,255,255,0.15);
+      height: 12px;
+      background: rgba(255,255,255,0.12);
     }
 
     .form-logo-page {
       font-family: 'Instrument Sans', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 400;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.25);
+    }
+
+    .form-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 40px;
     }
 
     .form-header {
-      margin-bottom: 36px;
+      margin-bottom: 44px;
     }
 
     .form-header h1 {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-weight: 400;
-      font-size: clamp(28px, 3vw, 38px);
+      font-weight: 300;
+      font-size: clamp(30px, 3vw, 42px);
       color: #ffffff;
-      letter-spacing: -0.025em;
-      line-height: 1.1;
-      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: 12px;
     }
 
     .form-header p {
       font-family: 'Instrument Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.45);
-      line-height: 1.6;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.65;
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 11px;
+      column-gap: 32px;
+      row-gap: 36px;
     }
 
     .form-field {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
     }
 
     .form-field.full {
@@ -180,105 +189,121 @@
 
     .form-field label {
       font-family: 'Instrument Sans', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
-      color: rgba(255,255,255,0.35);
-      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
     .form-field input,
     .form-field textarea {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.45);
-      border-radius: 4px;
-      padding: 0 14px;
-      height: 44px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.28);
+      border-radius: 0;
+      padding: 0 0 13px;
+      height: 48px;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.85);
+      font-size: 16px;
+      font-weight: 300;
+      color: #ffffff;
       outline: none;
-      transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
       width: 100%;
+      -webkit-appearance: none;
     }
 
     .form-field input::placeholder,
     .form-field textarea::placeholder {
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.38);
+      font-weight: 300;
+    }
+
+    .form-field input:hover,
+    .form-field textarea:hover {
+      border-bottom-color: rgba(255,255,255,0.45);
     }
 
     .form-field input:focus,
     .form-field textarea:focus {
-      border-color: rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.07);
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.04);
+      border-bottom-color: #ffffff;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.15);
     }
 
     .form-field textarea {
       height: auto;
-      padding: 12px 14px;
-      min-height: 110px;
+      padding: 0 0 13px;
+      min-height: 100px;
       resize: none;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .form-actions {
-      margin-top: 22px;
+      margin-top: 28px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
     }
 
     .btn-submit {
-      width: 100%;
-      height: 48px;
+      width: auto;
+      align-self: flex-start;
+      height: 46px;
+      padding: 0 28px;
       background: #ffffff;
-      color: #1A1B1F;
+      color: #0f1013;
       border: none;
-      border-radius: 4px;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 15px;
-      font-weight: 400;
+      border-radius: 999px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
       letter-spacing: 0.01em;
       cursor: pointer;
-      transition: background 0.15s ease, transform 0.1s ease;
-      display: flex;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .btn-submit:hover {
-      background: #f0f0f0;
+      background: #efefef;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
 
     .btn-submit:active {
-      transform: scale(0.98);
+      transform: translateY(0);
+      box-shadow: none;
     }
 
     .btn-submit svg {
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-submit:hover svg {
+      transform: translateX(3px);
     }
 
     .form-footer {
       font-family: 'Instrument Sans', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 400;
-      color: rgba(255,255,255,0.2);
-      text-align: center;
-      line-height: 1.5;
+      color: rgba(255,255,255,0.25);
+      line-height: 1.6;
     }
 
     .form-footer a {
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.38);
       text-decoration: underline;
-      text-decoration-color: rgba(255,255,255,0.12);
+      text-decoration-color: rgba(255,255,255,0.15);
+      transition: color 0.15s ease;
     }
 
     .form-footer a:hover {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.65);
     }
 
     /* ─── Responsive ─── */
@@ -286,7 +311,7 @@
       .layout { grid-template-columns: 1fr; }
       .image-side { min-height: 260px; }
       .form-side { padding: 48px 32px; }
-      .form-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; row-gap: 28px; }
       .form-field.full { grid-column: 1; }
     }
 
@@ -329,8 +354,10 @@
       <span class="form-logo-page">Kontakt</span>
     </div>
 
+    <div class="form-divider"></div>
+
     <div class="form-header">
-      <h1>La oss ta en prat</h1>
+      <h1>Fortell oss om bedriften din.</h1>
       <p>Fyll ut skjemaet, så tar vi kontakt med&nbsp;deg innen én arbeidsdag.</p>
     </div>
 
