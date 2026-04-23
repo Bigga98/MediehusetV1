@@ -46,7 +46,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@300;400;500&family=Sora:wght@300;400&family=DM+Sans:wght@300;400&family=Chakra+Petch:wght@500&family=Funnel+Display:wght@300;400;500&family=Hanken+Grotesk:wght@300;400;500&display=fallback" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&family=Sora:wght@300;400&display=fallback" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,200,0,0" rel="stylesheet">
   <link rel="preload" as="image" href="images/hero-slide-new.jpg">
   <script>
@@ -161,15 +161,23 @@
       flex-shrink: 0;
     }
 
+    .hero__text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
     .hero__heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: clamp(56px, 7.5vw, 104px);
       line-height: 1.02;
       letter-spacing: -0.04em;
       color: #1A1B1F;
       max-width: 780px;
-      margin-bottom: 24px;
+      margin-bottom: 0;
     }
 
     .hero__sub {
@@ -179,7 +187,7 @@
       color: rgba(26,27,31,0.85);
       max-width: 560px;
       line-height: 1.55;
-      margin-bottom: 28px;
+      margin-bottom: 0;
     }
 
     .hero__cta-row {
@@ -221,7 +229,7 @@
       border: none;
       border-radius: 999px;
       padding: 14px 28px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-neue);
       font-size: 15px;
       font-weight: 500;
       text-decoration: none;
@@ -236,7 +244,7 @@
     .hero__mockup {
       width: 100%;
       height: 540px;
-      border-radius: 8px 8px 0 0;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
       overflow: hidden;
       position: relative;
     }
@@ -255,8 +263,8 @@
     .bransjelib__cta,
     .popup-submit,
     .tab {
-      border-radius: 100px !important;
-      font-family: 'Funnel Display', sans-serif !important;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-neue) !important;
       font-weight: 400 !important;
     }
 
@@ -267,7 +275,7 @@
       background-color: #000000 !important;
     }
 
-    /* CTA-knapp: SUSE, 500, 10px, ls 0.2em, uppercase */
+    /* CTA-knapp: font-ui (Instrument Sans), 500, 10px, ls 0.2em, uppercase */
     .cta-btn,
     .hero .cta-btn {
       height: 42px;
@@ -277,7 +285,7 @@
       align-items: center;
       justify-content: center;
       background-color: var(--color-dark);
-      border-radius: 6px;
+      border-radius: var(--radius-sm);
       font-family: var(--font-ui);
       font-weight: 500;
       color: var(--color-white);
@@ -375,7 +383,7 @@
       height: 42px;
       padding: 0 22px;
       background: #efefed;
-      border-radius: 6px;
+      border-radius: var(--radius-sm);
       font-family: var(--font-ui);
       font-weight: 500;
       color: var(--color-dark);
@@ -508,13 +516,13 @@
     .seksjon-service {
       width: 100%;
       background-color: transparent;
-      padding: 32px 24px 0;
+      padding: 0 24px 0;
     }
 
     .service__card {
       width: 100%;
       background-color: #1A1B1F;
-      border-radius: 8px;
+      border-radius: var(--radius-lg);
       padding: 96px 64px;
     }
 
@@ -539,7 +547,7 @@
     }
 
     .service-heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: clamp(28px, 3.5vw, 42px);
       color: #E7F3F1;
@@ -550,13 +558,13 @@
     }
 
     .service-lead {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-weight: 300;
       font-size: 17px;
       color: #ffffff;
       line-height: 1.6;
       max-width: 480px;
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
 
     .service-grid {
@@ -577,7 +585,7 @@
       position: relative;
       margin: -96px -64px -96px 0;
       overflow: hidden;
-      border-radius: 0 16px 16px 0;
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
       align-self: stretch;
     }
 
@@ -614,7 +622,7 @@
       background: none;
       border-radius: 0;
       padding: 0;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: 17px;
       color: #E7F3F1;
@@ -745,7 +753,7 @@
       max-width: 78%;
       padding: 8px 11px;
       border-radius: 16px;
-      font-family: 'SUSE', monospace;
+      font-family: var(--font-ui);
       font-size: 12px;
       font-weight: 300;
       line-height: 1.45;
@@ -958,7 +966,7 @@
     }
 
     .faq-heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: clamp(32px, 3.5vw, 48px);
       color: var(--color-dark);
@@ -1003,7 +1011,7 @@
 
     .faq-item {
       background: #ffffff;
-      border-radius: 10px;
+      border-radius: var(--radius-md);
       overflow: hidden;
     }
 
@@ -1017,7 +1025,7 @@
       background: none;
       border: none;
       cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: 17px;
       color: var(--color-dark);
@@ -1063,17 +1071,17 @@
       width: 100%;
       background-color: transparent;
       padding: 96px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 24px;
+      row-gap: 16px;
     }
     .tom-boks {
+      grid-column: 3 / 11;
       width: 100%;
-      max-width: 860px;
       background: #ffffff;
       border: 1px solid rgba(0,0,0,0.07);
-      border-radius: 8px 8px 12px 12px;
+      border-radius: var(--radius-sm) var(--radius-sm) var(--radius-md) var(--radius-md);
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -1113,7 +1121,7 @@
       height: 240px;
       flex-shrink: 0;
       background: rgba(26,27,31,0.05);
-      border-radius: 4px;
+      border-radius: var(--radius-xs);
     }
     .tom-boks__innhold {
       flex: 1;
@@ -1123,7 +1131,7 @@
       padding: 0 24px 24px;
     }
     .tom-boks__undertekst {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: 18px;
       font-weight: 300;
       color: rgba(26,27,31,0.65);
@@ -1131,7 +1139,7 @@
       margin-top: 12px;
     }
     .tom-boks__label {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: 32px;
       font-weight: 500;
       color: #1A1B1F;
@@ -1149,7 +1157,7 @@
     }
 
     .seksjon-bransjer__heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: clamp(28px, 3.5vw, 42px);
       color: #080808;
@@ -1168,7 +1176,7 @@
       align-items: center;
       gap: 8px;
       padding: 10px 22px;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       border: 1px solid var(--color-dark);
       background: transparent;
       font-family: var(--font-ui);
@@ -1210,7 +1218,7 @@
 
     .img-placeholder {
       background: var(--surface-light);
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       height: 356px;
       display: flex;
       flex-direction: column;
@@ -1226,7 +1234,7 @@
       background: var(--bg-3);
       height: 180px;
       flex-shrink: 0;
-      border-radius: 4px;
+      border-radius: var(--radius-xs);
       margin: var(--space-lg) var(--space-lg) 0;
     }
 
@@ -1264,7 +1272,7 @@
     }
 
     .card-title {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 300;
       font-size: 22px;
       color: var(--color-dark);
@@ -1273,7 +1281,7 @@
     }
 
     .card-desc {
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: var(--font-ui);
       font-weight: 300;
       font-size: 14px;
       color: rgba(15,17,23,0.55);
@@ -1284,7 +1292,7 @@
     /* ── HVA VI LEVERER ───────────────────────── */
     .hva-vi-leverer {
       background-color: transparent;
-      padding: 0 24px;
+      padding: 0 24px 80px;
       box-sizing: border-box;
       width: 100%;
     }
@@ -1292,13 +1300,18 @@
     .hvl__card {
       width: 100%;
       background-color: transparent;
-      border-radius: 16px;
+      border-radius: var(--radius-lg);
       padding: 96px 64px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       column-gap: var(--grid-gutter);
       row-gap: 0;
       position: relative;
+    }
+
+    .hvl__intro {
+      grid-column: 2 / 12;
+      text-align: center;
     }
 
     .hva-vi-leverer .hvl-eyebrow {
@@ -1314,7 +1327,7 @@
     }
 
     .hva-vi-leverer .section-heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: clamp(32px, 4vw, 56px);
       font-weight: 400;
       line-height: 1.07;
@@ -1323,7 +1336,7 @@
     }
 
     .hva-vi-leverer .section-text {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: 18px;
       font-weight: 300;
       line-height: 1.7;
@@ -1339,13 +1352,13 @@
       align-items: center;
       padding: 14px 28px;
       background: #1A1B1F;
-      color: #E7F3F1 !important;
-      border-radius: 999px !important;
-      font-family: 'DM Sans', sans-serif !important;
-      font-size: 17px !important;
-      font-weight: 300 !important;
+      color: #E7F3F1;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-neue);
+      font-size: 17px;
+      font-weight: 300;
       text-decoration: none;
-      margin-top: 24px;
+      margin-top: 32px;
     }
 
     .hva-vi-leverer .cards {
@@ -1360,7 +1373,7 @@
     .hva-vi-leverer .card {
       background: #ffffff;
       border: none;
-      border-radius: 4px 4px 6px 6px;
+      border-radius: var(--radius-sm);
       padding: var(--card-padding) var(--card-padding) var(--space-sm) var(--card-padding);
       display: block;
       overflow: visible;
@@ -1411,7 +1424,7 @@
       background: transparent;
       border: 1px solid rgba(26,27,31,0.45);
       transition: background 0.25s ease, color 0.25s ease;
-      border-radius: 4px;
+      border-radius: var(--radius-xs);
       padding: 4px 8px;
       margin-bottom: var(--space-sm);
       width: fit-content;
@@ -1428,7 +1441,7 @@
     }
 
     .hva-vi-leverer .card-title {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: 26px;
       font-weight: 500;
       letter-spacing: -0.03em;
@@ -1440,12 +1453,12 @@
     .hva-vi-leverer .card-img {
       height: 220px;
       background: rgba(26,27,31,0.05);
-      border-radius: 4px;
+      border-radius: var(--radius-xs);
       margin: var(--space-lg) 0 0 0;
     }
 
     .hva-vi-leverer .card-desc {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: 18px;
       font-weight: 300;
       line-height: 1.7;
@@ -1482,7 +1495,7 @@
       font-weight: 500;
       letter-spacing: var(--ls-card-label);
       text-transform: uppercase;
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       margin-bottom: var(--space-sm);
     }
 
@@ -1512,7 +1525,7 @@
       gap: 8px;
       padding: var(--btn-padding-y) var(--btn-padding-x);
       background-color: var(--color-dark);
-      border-radius: 100px;
+      border-radius: var(--radius-sm);
       font-family: var(--font-ui);
       font-weight: 400;
       font-size: 13px;
@@ -1540,7 +1553,7 @@
     .demo-kort {
       flex: 1;
       background: transparent;
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -1579,7 +1592,7 @@
       flex: 1;
       height: 14px;
       background: rgba(26,27,31,0.10);
-      border-radius: 4px;
+      border-radius: var(--radius-xs);
       margin-left: 6px;
     }
 
@@ -1650,7 +1663,7 @@
       flex-direction: column;
       align-items: center;
       background: #1A1B1F;
-      border-radius: 16px;
+      border-radius: var(--radius-lg);
       padding: 96px 64px;
     }
 
@@ -1668,7 +1681,7 @@
     }
 
     .prising-heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: clamp(32px, 4vw, 56px);
       color: #E7F3F1;
@@ -1689,7 +1702,7 @@
     .prising-kort {
       background: rgba(231,243,241,0.04);
       border: 1px solid rgba(231,243,241,0.1);
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       padding: var(--space-xl) var(--space-lg) var(--space-lg);
       display: flex;
       flex-direction: column;
@@ -1708,7 +1721,7 @@
       right: var(--space-lg);
       padding: 4px 12px;
       background: rgba(231,243,241,0.1);
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       font-family: var(--font-ui);
       font-size: var(--type-card-label);
       font-weight: 500;
@@ -1718,7 +1731,7 @@
     }
 
     .prising-kort__tittel {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: 18px;
       color: rgba(231,243,241,0.5);
@@ -1742,7 +1755,7 @@
     }
 
     .prising-kort__belop {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: clamp(40px, 5vw, 64px);
       color: #E7F3F1;
@@ -1751,14 +1764,14 @@
     }
 
     .prising-kort__valuta {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-weight: 300;
       font-size: 15px;
       color: rgba(231,243,241,0.45);
     }
 
     .prising-kort__desc {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-weight: 300;
       font-size: 15px;
       color: rgba(231,243,241,0.45);
@@ -1784,7 +1797,7 @@
       display: flex;
       align-items: flex-start;
       gap: var(--space-sm);
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-weight: 300;
       font-size: 14px;
       color: rgba(231,243,241,0.65);
@@ -1818,9 +1831,9 @@
       align-items: center;
       justify-content: center;
       height: 48px;
-      border-radius: 999px !important;
+      border-radius: var(--radius-sm);
       background: #E7F3F1;
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-weight: 500;
       font-size: 15px;
       letter-spacing: 0;
@@ -1876,12 +1889,12 @@
       padding: 28px 72px;
       background-color: #E7F3F1;
       color: #1A1B1F;
-      font-family: 'Funnel Display', sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: clamp(28px, 4vw, 48px);
       letter-spacing: -0.02em;
       text-decoration: none;
-      border-radius: 100px;
+      border-radius: var(--radius-sm);
       position: relative;
       overflow: hidden;
       transition: color 0.3s ease, background 0.3s ease;
@@ -1963,7 +1976,7 @@
     }
 
     .footer-cta__heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 300;
       font-size: var(--type-h2);
       color: #E7F3F1;
@@ -2014,7 +2027,7 @@
       gap: var(--icon-gap);
       padding: var(--btn-padding-y) var(--btn-padding-x);
       background-color: #E7F3F1;
-      border-radius: 999px;
+      border-radius: var(--radius-sm);
       font-family: var(--font-ui);
       font-weight: 300;
       font-size: 14px;
@@ -2043,7 +2056,7 @@
     }
 
     .footer-cta__note {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: var(--type-caption);
       color: rgba(231,243,241,0.35);
       letter-spacing: var(--ls-footer-contact);
@@ -2058,7 +2071,7 @@
     }
 
     .footer-brand__wordmark {
-      font-family: 'Funnel Display', sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: 22px;
       color: #E7F3F1;
@@ -2067,7 +2080,7 @@
     }
 
     .footer-brand__tagline {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-weight: 300;
       font-size: var(--type-body);
       color: rgba(231,243,241,0.75);
@@ -2114,7 +2127,7 @@
     }
 
     .footer-col__label {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: var(--type-caption);
       font-weight: 500;
       letter-spacing: var(--ls-footer-cat);
@@ -2131,7 +2144,7 @@
     }
 
     .footer-col__list a {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-weight: 300;
       font-size: var(--type-body);
       color: rgba(231,243,241,0.85);
@@ -2152,7 +2165,7 @@
     }
 
     .footer-bottom__copy {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: var(--type-caption);
       letter-spacing: var(--ls-article-date);
       color: rgba(231,243,241,0.5);
@@ -2164,7 +2177,7 @@
     }
 
     .footer-bottom__links a {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: var(--type-caption);
       letter-spacing: var(--ls-article-date);
       color: rgba(231,243,241,0.5);
@@ -2300,18 +2313,18 @@
     }
     .popup-brand-dot { display: none; }
     .popup-left-heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: 20px; font-weight: 300; line-height: 1.2;
       letter-spacing: -0.02em; color: #ffffff; margin-bottom: 12px;
     }
     .popup-left-sub {
-      font-family: 'Instrument Sans', Helvetica, sans-serif;
+      font-family: var(--font-ui);
       font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.32);
     }
     .popup-trust { display: flex; flex-direction: column; gap: 14px; }
     .popup-trust-item {
       display: flex; align-items: center; gap: 10px;
-      font-family: 'Instrument Sans', Helvetica, sans-serif;
+      font-family: var(--font-ui);
       font-size: 12px; color: rgba(255,255,255,0.42); letter-spacing: 0.01em;
     }
     .popup-trust-item svg { flex-shrink: 0; }
@@ -2330,12 +2343,12 @@
     }
     .popup-close:hover { background: rgba(255,255,255,0.13); color: rgba(255,255,255,0.8); }
     .popup-right-heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: 22px; font-weight: 300; letter-spacing: -0.025em;
       color: #ffffff; margin-bottom: 6px; line-height: 1.1;
     }
     .popup-right-sub {
-      font-family: 'Instrument Sans', Helvetica, sans-serif;
+      font-family: var(--font-ui);
       font-size: 13px; color: rgba(255,255,255,0.32);
       line-height: 1.6; margin-bottom: 28px;
     }
@@ -2343,7 +2356,7 @@
     .popup-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
     .popup-field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 22px; }
     .popup-field label {
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: var(--font-ui);
       font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.38);
       letter-spacing: 0.12em; text-transform: uppercase;
     }
@@ -2351,7 +2364,7 @@
       width: 100%; background: transparent; border: none;
       border-bottom: 1px solid rgba(255,255,255,0.45); border-radius: 0;
       padding: 0 0 10px; height: 40px;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: 14px; font-weight: 300; color: #ffffff;
       outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;
       -webkit-appearance: none;
@@ -2369,8 +2382,8 @@
     }
     .popup-submit {
       width: auto; align-self: flex-start; height: 42px; padding: 0 24px;
-      background: #ffffff; color: #0f1013; border: none; border-radius: 999px;
-      font-family: 'Instrument Sans', sans-serif; font-size: 13px; font-weight: 500;
+      background: #ffffff; color: #0f1013; border: none; border-radius: var(--radius-sm);
+      font-family: var(--font-ui); font-size: 13px; font-weight: 500;
       cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
       transition: background 0.15s, transform 0.15s, box-shadow 0.15s; margin-top: 4px;
     }
@@ -2386,7 +2399,7 @@
     .popup-contact-link {
       display: flex; align-items: center; gap: 6px;
       font-size: 12px; color: rgba(255,255,255,0.32);
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: var(--font-ui);
       text-decoration: none; transition: color 0.2s;
     }
     .popup-contact-link:hover { color: rgba(255,255,255,0.65); }
@@ -2398,11 +2411,11 @@
       justify-content: center; margin-bottom: 16px;
     }
     .popup-success h3 {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: 22px; font-weight: 300; color: #ffffff;
       margin-bottom: 8px; letter-spacing: -0.02em;
     }
-    .popup-success p { font-family: 'Instrument Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.38); }
+    .popup-success p { font-family: var(--font-ui); font-size: 13px; color: rgba(255,255,255,0.38); }
 
     @media (max-width: 640px) {
       .popup-left { display: none; }
@@ -2414,19 +2427,19 @@
     .seksjon-inkludert {
       width: 100%;
       background-color: transparent;
-      padding: 0 24px;
+      padding: 0 24px 80px;
     }
 
     .inkludert__card {
       width: 100%;
       background-color: #1A1B1F;
-      border-radius: 8px;
+      border-radius: var(--radius-lg);
       padding: 96px 64px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       column-gap: 24px;
       row-gap: 0;
-      align-items: start;
+      align-items: stretch;
       overflow: hidden;
       position: relative;
     }
@@ -2435,6 +2448,7 @@
       grid-column: 1 / 6;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       position: relative;
       z-index: 2;
     }
@@ -2447,12 +2461,6 @@
       position: relative;
       z-index: 2;
       align-self: center;
-    }
-
-    .inkludert__card > .inkludert__cta-row {
-      grid-column: 1 / 6;
-      position: relative;
-      z-index: 2;
     }
 
     .inkludert__illus-frame {
@@ -2499,7 +2507,7 @@
     }
 
     .illus-pill__label {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: 16px;
       font-weight: 400;
       color: #E7F3F1;
@@ -2595,7 +2603,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-neue);
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.08em;
@@ -2605,13 +2613,13 @@
     }
 
     .inkludert__heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: clamp(32px, 4vw, 48px);
       line-height: 1.07;
       letter-spacing: -0.03em;
       color: #E7F3F1;
-      margin-bottom: 32px;
+      margin-bottom: 20px;
     }
 
     .inkludert__items {
@@ -2643,7 +2651,7 @@
     }
 
     .inkludert__item-title {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: 18px;
       font-weight: 400;
       letter-spacing: -0.01em;
@@ -2652,7 +2660,7 @@
     }
 
     .inkludert__item-desc {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-weight: 300;
       font-size: 17px;
       line-height: 1.6;
@@ -2663,7 +2671,8 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-top: 24px;
+      padding-top: 32px;
+      margin-top: auto;
     }
 
     .inkludert__btn-primary {
@@ -2673,8 +2682,8 @@
       align-items: center;
       gap: 7px;
       background-color: #E7F3F1;
-      border-radius: 999px;
-      font-family: 'Hanken Grotesk', sans-serif;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-neue);
       font-size: 14px;
       font-weight: 500;
       letter-spacing: 0;
@@ -2696,8 +2705,8 @@
       padding: 0 22px;
       display: inline-flex;
       align-items: center;
-      border-radius: 999px;
-      font-family: 'Hanken Grotesk', sans-serif;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-neue);
       font-size: 14px;
       font-weight: 500;
       letter-spacing: 0;
@@ -2759,7 +2768,7 @@
     .porto-nav__btn svg { width: 14px; height: 14px; }
     .porto-nav__btn svg path { stroke: #000; fill: none; stroke-width: 2; }
     .porto-heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: clamp(28px, 3.5vw, 48px);
       font-weight: 400;
       letter-spacing: -0.03em;
@@ -2792,7 +2801,7 @@
       width: 380px;
       scroll-snap-align: start;
       background: #e4e6e9;
-      border-radius: 6px;
+      border-radius: var(--radius-sm);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -2807,7 +2816,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 6px;
+      border-radius: var(--radius-sm);
       padding: 1px;
       background: linear-gradient(to bottom, rgba(26,27,31,0.22) 0%, rgba(26,27,31,0.18) 100%);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -2822,7 +2831,7 @@
       flex: none;
       height: 420px;
       margin: 0 12px 0;
-      border-radius: 4px;
+      border-radius: var(--radius-xs);
       background-size: cover;
       background-position: center top;
       position: relative;
@@ -2857,7 +2866,7 @@
       flex-shrink: 0;
       padding: 6px 12px;
       border: 1px solid rgba(26,27,31,0.4);
-      border-radius: 6px;
+      border-radius: var(--radius-sm);
       font-family: var(--font-ui);
       font-size: 11px;
       font-weight: 500;
@@ -2879,7 +2888,7 @@
       text-transform: uppercase;
       color: rgba(15,17,23,0.45);
       background: rgba(15,17,23,0.06);
-      border-radius: 4px;
+      border-radius: var(--radius-xs);
       padding: 4px 8px;
       margin-bottom: 10px;
       width: fit-content;
@@ -2892,7 +2901,7 @@
       line-height: 1;
     }
     .porto-kort__navn {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-neue);
       font-size: 22px;
       font-weight: 400;
       letter-spacing: -0.02em;
@@ -2907,7 +2916,7 @@
       margin-bottom: 12px;
     }
     .porto-kort__desc {
-      font-family: 'Instrument Sans', sans-serif;
+      font-family: var(--font-ui);
       font-size: 13px;
       font-weight: 300;
       line-height: 1.45;
@@ -2922,7 +2931,7 @@
       flex: 1;
       aspect-ratio: 1 / 1;
       background: #ebebeb;
-      border-radius: 4px;
+      border-radius: var(--radius-xs);
       overflow: hidden;
       min-width: 0;
     }
@@ -2961,7 +2970,7 @@
     .boks {
       flex: 0 0 540px;
       scroll-snap-align: start;
-      border-radius: 6px;
+      border-radius: var(--radius-sm);
       min-height: 580px;
       overflow: hidden;
       display: flex;
@@ -2980,7 +2989,7 @@
       gap: 10px;
     }
     .boks__tag {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-neue);
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.08em;
@@ -2988,7 +2997,7 @@
       color: #9ca3af;
     }
     .boks__tittel {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: 22px;
       font-weight: 400;
       line-height: 1.2;
@@ -2996,7 +3005,7 @@
       color: #1A1B1F;
     }
     .boks__desc {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: 14px;
       font-weight: 300;
       line-height: 1.6;
@@ -3004,13 +3013,13 @@
       margin: 0;
     }
     .boks__btn {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: 13px;
       font-weight: 500;
       color: #1A1B1F;
       background: transparent;
       border: 1px solid rgba(26,27,31,0.4);
-      border-radius: 6px;
+      border-radius: var(--radius-sm);
       padding: 8px 16px;
       text-decoration: none;
       display: inline-flex;
@@ -3023,7 +3032,7 @@
     .boks__image {
       flex: 1;
       margin: 0 12px 12px;
-      border-radius: 4px;
+      border-radius: var(--radius-xs);
       overflow: hidden;
       position: relative;
       background: #303b3d;
@@ -3039,7 +3048,7 @@
       transform-origin: center;
     }
     .porto-intro__heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: clamp(28px, 3.5vw, 48px);
       font-weight: 400;
       letter-spacing: -0.03em;
@@ -3127,7 +3136,7 @@
     .bransjelib__card {
       flex: 1;
       background-color: var(--bg-2);
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       min-height: 402px;
     }
 
@@ -3136,7 +3145,7 @@
       min-height: 829px;
       flex-shrink: 0;
       width: 390px;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
     }
 
     /* ── BRANSJELIB KORTINNHOLD ─────────────── */
@@ -3209,7 +3218,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 4px;
+      border-radius: var(--radius-sm);
       background: rgba(20,20,18,0.10);
       pointer-events: none;
     }
@@ -3294,14 +3303,17 @@
       margin-bottom: 10px;
     }
 
-    /* ── CAMBER desktop-only ── */
-    @media (min-width: 769px) {
-      .konv__left h2,
-      .inkludert__heading,
-      .service-heading {
-        font-family: 'Camber', sans-serif !important;
-      }
+    .konv__wrap {
+      width: 100%;
+      padding: 0 24px 80px;
+      background: transparent;
+      box-sizing: border-box;
     }
+
+    .konv__inner {
+      border-radius: var(--radius-lg);
+    }
+
 
     /* ═══════════════════════════════════════════
        MOBIL — MAX 768px
@@ -3333,7 +3345,6 @@
         text-align: center;
         font-size: 20px;
         color: rgba(15,17,23,0.85);
-        margin-bottom: 20px;
       }
 
       .hero__cta-row {
@@ -3368,7 +3379,7 @@
         display: block;
         height: 300px;
         margin-top: 0;
-        border-radius: 6px 6px 0 0;
+        border-radius: var(--radius-sm) var(--radius-sm) 0 0;
       }
 
       .hero-slide--4 {
@@ -3402,6 +3413,10 @@
         display: block;
       }
 
+      .hvl__intro {
+        grid-column: unset;
+      }
+
       .hva-vi-leverer .section-text {
         font-size: 17px;
       }
@@ -3429,16 +3444,16 @@
         font-size: 16px;
       }
 
-      /* ── NETTSIDE SOM KONVERTERER ── (desktop Camber override settes utenfor denne querien) */
+      /* ── NETTSIDE SOM KONVERTERER ── */
       .konv__wrap {
-        padding: 40px 12px 32px !important;
-        box-sizing: border-box !important;
+        padding: 0 12px 48px;
       }
 
       .konv__inner {
         height: auto !important;
         flex-direction: column !important;
         box-sizing: border-box !important;
+        border-radius: var(--radius-md);
       }
 
       .konv__left {
@@ -3451,7 +3466,6 @@
       .konv__left h2 {
         font-size: 28px !important;
         font-weight: 400 !important;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
       }
 
       .konv__right {
@@ -3563,7 +3577,7 @@
       }
 
       .inkludert__card {
-        border-radius: 12px;
+        border-radius: var(--radius-md);
         padding: 48px 24px;
         display: flex;
         flex-direction: column;
@@ -3652,7 +3666,7 @@
 
       .service__card {
         padding: 36px 24px;
-        border-radius: 12px;
+        border-radius: var(--radius-md);
       }
 
       .service-left {
@@ -3667,7 +3681,7 @@
         grid-column: 1 / -1;
         position: relative;
         margin: 0 -24px -36px -24px;
-        border-radius: 0 0 12px 12px;
+        border-radius: 0 0 var(--radius-md) var(--radius-md);
         min-height: 300px;
       }
 
@@ -3808,7 +3822,7 @@
         width: 100%;
         height: 220px;
         margin: 0 !important;
-        border-radius: 4px 4px 0 0;
+        border-radius: var(--radius-xs) var(--radius-xs) 0 0;
         order: -1;
       }
 
@@ -3849,7 +3863,7 @@
       }
 
       .popup-card {
-        border-radius: 16px;
+        border-radius: var(--radius-lg);
         max-height: 92vh;
         overflow-y: auto;
         width: 100%;
@@ -3886,10 +3900,14 @@
       /* ── TOM-BOKS (bilde + tekst side om side) ── */
       .seksjon-tom-boks {
         padding: 60px 12px;
+        display: flex;
+        flex-direction: column;
         gap: 12px;
       }
 
       .tom-boks {
+        grid-column: unset;
+        width: 100%;
         flex-direction: column;
         padding: 0;
         gap: 0;
@@ -3898,7 +3916,7 @@
       .tom-boks__bilde {
         width: 100%;
         height: 220px;
-        border-radius: 7px 7px 0 0;
+        border-radius: var(--radius-sm) var(--radius-sm) 0 0;
         overflow: hidden;
       }
 
@@ -3974,7 +3992,7 @@
     }
 
     .blogg__heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 400;
       font-size: clamp(28px, 2.8vw, 40px);
       color: var(--color-dark);
@@ -4016,7 +4034,7 @@
       overflow: hidden;
       flex-shrink: 0;
       margin-bottom: 20px;
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
     }
 
     .blogg-kort__bilde-inner {
@@ -4026,7 +4044,7 @@
     }
 
     .blogg-kort__tittel {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-weight: 500;
       font-size: clamp(18px, 1.6vw, 22px);
       color: var(--color-dark);
@@ -4036,7 +4054,7 @@
     }
 
     .blogg-kort__tekst {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: 16px;
       font-weight: 400;
       color: #000;
@@ -4084,11 +4102,11 @@
     <!-- 1. Stat -->
 
 
-    <!-- 2. Heading -->
-    <h1 class="hero__heading" data-animate="fade-up" data-hero data-delay="0.12">Flere kunder med ny nettside</h1>
-
-    <!-- 2b. Undertekst -->
-    <p class="hero__sub" data-animate="fade-up" data-hero data-delay="0.18">Vi bygger nettsider med bedre visuelle utrykk. Bygget for å konvertere flere nettbesøk til kunder.</p>
+    <!-- 2. Tekst-gruppe -->
+    <div class="hero__text">
+      <h1 class="hero__heading" data-animate="fade-up" data-hero data-delay="0.12">Flere kunder med ny nettside</h1>
+      <p class="hero__sub" data-animate="fade-up" data-hero data-delay="0.18">Vi bygger nettsider med bedre visuelle utrykk. Bygget for å konvertere flere nettbesøk til kunder.</p>
+    </div>
 
     <!-- 3. CTA -->
     <div class="hero__cta-row" data-animate="fade-up" data-hero data-delay="0.22">
@@ -4157,7 +4175,7 @@
       justify-content: center;
       align-items: center;
       gap: 8px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-neue);
       font-size: 16px;
       font-weight: 400;
       color: #1A1B1F;
@@ -4170,7 +4188,7 @@
     }
 
     .p2-heading {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: clamp(32px, 4vw, 56px);
       font-weight: 400;
       line-height: 1.07;
@@ -4185,11 +4203,11 @@
       padding: 14px 28px;
       background: #1A1B1F;
       color: #E7F3F1;
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-neue);
       font-size: 17px;
       font-weight: 300;
       text-decoration: none;
-      border-radius: 999px;
+      border-radius: var(--radius-sm);
     }
 
     .p2-rail-wrap {
@@ -4204,7 +4222,7 @@
     }
 
     .p2-boks {
-      border-radius: 6px;
+      border-radius: var(--radius-sm);
       min-height: 580px;
       overflow: hidden;
       display: flex;
@@ -4231,11 +4249,17 @@
       padding: 32px 32px 28px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 0;
+    }
+
+    .p2-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .p2-tag {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-neue);
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.08em;
@@ -4249,7 +4273,7 @@
       min-height: 0;
       background: linear-gradient(to bottom, #303b3d 0%, #475659 100%);
       margin: 12px 12px 0;
-      border-radius: 4px;
+      border-radius: var(--radius-xs);
       overflow: hidden;
     }
 
@@ -4271,7 +4295,7 @@
       position: absolute;
       top: 22%;
       left: 50%;
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
       transform: translate3d(-50%, 0, 0) scale(1.08);
       transform-origin: top center;
       width: 80% !important;
@@ -4291,7 +4315,7 @@
     }
 
     .p2-tittel {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-neue);
       font-size: 22px;
       font-weight: 400;
       line-height: 1.2;
@@ -4301,7 +4325,7 @@
     }
 
     .p2-desc {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: 14px;
       font-weight: 300;
       line-height: 1.6;
@@ -4310,17 +4334,18 @@
     }
 
     .p2-btn {
-      font-family: 'Hanken Grotesk', sans-serif;
+      font-family: var(--font-neue);
       font-size: 13px;
       font-weight: 500;
       color: #1A1B1F;
       background: transparent;
       border: 1px solid rgba(26,27,31,0.4);
-      border-radius: 6px;
+      border-radius: var(--radius-sm);
       padding: 8px 16px;
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
+      margin-top: 20px;
       align-items: center;
       gap: 6px;
       width: fit-content;
@@ -4360,7 +4385,7 @@
 
       .p2-boks {
         min-height: 400px;
-        border-radius: 6px;
+        border-radius: var(--radius-sm);
       }
 
       .p2-header {
@@ -4423,9 +4448,11 @@
               <img class="p2-hover" src="images/screencap-konsept-blank.jpg" alt="Hover">
             </div>
             <div class="p2-header">
-              <span class="p2-tag">VVS</span>
-              <p class="p2-tittel">Rørlegger nettside</p>
-              <p class="p2-desc">Nettside for rørlegger i Oslo, bygget for å ta imot henvendelser og synlig på Google.</p>
+              <div class="p2-text">
+                <span class="p2-tag">VVS</span>
+                <p class="p2-tittel">Rørlegger nettside</p>
+                <p class="p2-desc">Nettside for rørlegger i Oslo, bygget for å ta imot henvendelser og synlig på Google.</p>
+              </div>
               <a href="demo-rorlegger.html" target="_blank" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
           </div>
@@ -4437,9 +4464,11 @@
               <img class="p2-hover" src="images/screencap-konsept-nordbygg.jpg" alt="Hover">
             </div>
             <div class="p2-header">
-              <span class="p2-tag">Bygg</span>
-              <p class="p2-tittel">Byggherre nettside</p>
-              <p class="p2-desc">Profesjonell profil for et byggefirma, presenterer prosjekter og gjør det enkelt å ta kontakt.</p>
+              <div class="p2-text">
+                <span class="p2-tag">Bygg</span>
+                <p class="p2-tittel">Byggherre nettside</p>
+                <p class="p2-desc">Profesjonell profil for et byggefirma, presenterer prosjekter og gjør det enkelt å ta kontakt.</p>
+              </div>
             </div>
           </div>
 
@@ -4473,7 +4502,7 @@
   <section class="hva-vi-leverer">
   <div class="hvl__card">
 
-    <div style="grid-column: 2 / 12; text-align: center;">
+    <div class="hvl__intro">
       <div class="hvl-eyebrow" data-animate="fade-up">
         <span style="font-family: 'Material Symbols Outlined'; font-size: 15px; font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20; line-height: 1;">deployed_code</span>
         <span>Tjenester</span>
@@ -4512,6 +4541,217 @@
   </section>
 
 
+  <!-- NY SEKSJON: Design og utvikling — bullet + bilde -->
+  <section class="dou__wrap">
+    <div class="dou__card">
+
+      <!-- VENSTRE: col 1–6 -->
+      <div class="dou__left" style="grid-column: 1 / 7;">
+        <h2 class="dou__heading">Her er hva du får når du bygger nettside med oss:</h2>
+        <ul class="dou__list">
+          <li>Bygget fra bunnen av – eller modernisert fra der du er nå</li>
+          <li>Fast pris før vi starter – ingen timepris, ingen overraskelser</li>
+          <li>Design tilpasset din bransje og dine kunder</li>
+          <li>Du bestemmer innholdet – vi tar oss av det tekniske</li>
+          <li>Service etter leveranse: send bilder og tekst – vi publiserer</li>
+        </ul>
+        <a href="#" class="dou__cta" onclick="openContactPopup(); return false;">Få et utkast</a>
+      </div>
+
+      <!-- HØYRE: col 7–12 -->
+      <div class="dou__right" style="grid-column: 7 / 13;">
+        <div class="dou__img-wrap dou__img-wrap--back">
+          <img src="images/screencap-konsept-nordbygg.jpg" alt="Eksempel nettside Konstrukt" />
+        </div>
+        <div class="dou__img-wrap dou__img-wrap--front">
+          <img src="images/screencap-konsept-blank.jpg" alt="Eksempel nettside Oslo Rørlegger" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+    .dou__wrap {
+      width: 100%;
+      padding: 0 24px 80px;
+      box-sizing: border-box;
+    }
+    .dou__card {
+      width: 100%;
+      background: #1A1B1F;
+      border-radius: var(--radius-lg);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--grid-gutter);
+      overflow: hidden;
+      min-height: 480px;
+    }
+    .dou__left {
+      padding: 80px 0 80px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+    }
+    .dou__eyebrow {
+      font-family: var(--font-neue);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(220, 238, 234, 0.45);
+      margin: 0;
+    }
+    .dou__heading {
+      font-family: var(--font-neue);
+      font-size: clamp(24px, 2.2vw, 36px);
+      font-weight: 400;
+      -webkit-text-stroke: 0.4px #E7F3F1;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #E7F3F1;
+      margin: 0;
+    }
+    .dou__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .dou__list li {
+      font-family: var(--font-neue);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.5;
+      color: rgba(220, 238, 234, 0.8);
+      padding-left: 22px;
+      position: relative;
+    }
+    .dou__list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(220, 238, 234, 0.3);
+      font-weight: 300;
+    }
+    .dou__cta {
+      margin-top: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-neue);
+      font-size: 15px;
+      font-weight: 500;
+      color: #E7F3F1;
+      background: transparent;
+      text-decoration: none;
+      width: fit-content;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(220, 238, 234, 0.35);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .dou__cta:hover {
+      border-color: rgba(220, 238, 234, 0.7);
+      background: rgba(220, 238, 234, 0.06);
+    }
+    .dou__right {
+      position: relative;
+    }
+
+    /* Kort-wrapper */
+    .dou__img-wrap {
+      position: absolute;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+    }
+    .dou__img-wrap img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    /* Blur-overlay: starter 80% ned, progressiv blur ned til bunn */
+    .dou__img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 25%;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 70%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 70%);
+      pointer-events: none;
+    }
+
+    /* Mørk fade over bluren for å smelte inn i bakgrunnen */
+    .dou__img-wrap::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 28%;
+      background: linear-gradient(to bottom, transparent 0%, rgba(26,27,31,0.8) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Foran-kort: venstre, høyere opp, større */
+    .dou__img-wrap--front {
+      width: 58%;
+      top: 32px;
+      bottom: -40px;
+      left: 5%;
+      z-index: 2;
+    }
+
+    /* Bak-kort: høyre, litt lavere, litt smalere */
+    .dou__img-wrap--back {
+      width: 52%;
+      top: 56px;
+      bottom: -40px;
+      left: 42%;
+      z-index: 1;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .dou__card {
+        grid-template-columns: 1fr;
+        border-radius: var(--radius-md);
+      }
+      .dou__left {
+        grid-column: 1 / -1 !important;
+        padding: 48px 32px 32px;
+      }
+      .dou__right {
+        grid-column: 1 / -1 !important;
+        min-height: 320px;
+      }
+      .dou__img-wrap--front {
+        width: 55%;
+        top: 24px;
+        bottom: 0;
+        left: 4%;
+      }
+      .dou__img-wrap--back {
+        width: 50%;
+        top: 44px;
+        bottom: 0;
+        left: 40%;
+      }
+    }
+  </style>
+
 
   <!-- Delt SVG-gradient for inkludert-ikoner -->
   <svg width="0" height="0" style="position:absolute">
@@ -4526,49 +4766,49 @@
   </svg>
 
   <!-- SEKSJON NETTSIDE SOM KONVERTERER -->
-  <section class="konv__wrap" style="width:100%; padding:80px 24px 32px; background:transparent;">
-    <div class="konv__inner" style="width:100%; height:auto; border-radius:8px; overflow:hidden; background:#1A1B1F; display:flex; align-items:stretch;">
-      <div class="konv__left" style="flex:0 0 55%; padding:128px 64px; display:flex; flex-direction:column; justify-content:flex-start; gap:24px;">
-        <p style="font-family:'DM Sans',sans-serif; font-size:14px; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; color:rgba(220,238,234,0.5); margin:0; margin-bottom:-12px;">Nettside</p>
-        <h2 style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(36px,3.8vw,58px); font-weight:300; line-height:1.06; letter-spacing:-0.02em; color:#E7F3F1; margin:0;">En nettside som faktisk<br>f&#229;r folk til &#229; ta kontakt.</h2>
-        <p style="font-family:'Hanken Grotesk',sans-serif; font-size:17px; font-weight:300; line-height:1.6; color:#ffffff; margin:0; max-width:480px;">Vi bygger nettsider med tydelig struktur, riktige budskap og klare handlingsknapper &#8212; s&#229; bes&#248;kende blir til kunder.</p>
-        <a href="#" onclick="openContactPopup(); return false;" class="konv__cta" style="margin-top:8px; display:inline-flex; align-items:center; gap:8px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; color:#E7F3F1; background:transparent; text-decoration:none; width:fit-content; padding:12px 24px; border-radius:999px; border:1px solid rgba(220,238,234,0.4);">Se eksempler</a>
+  <section class="konv__wrap">
+    <div class="konv__inner" style="width:100%; height:auto; overflow:hidden; background:#1A1B1F; display:flex; align-items:stretch;">
+      <div class="konv__left" style="flex:0 0 55%; padding:128px 64px; display:flex; flex-direction:column; justify-content:flex-start; gap:20px;">
+        <p style="font-family:var(--font-neue); font-size:14px; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; color:rgba(220,238,234,0.5); margin:0; margin-bottom:-12px;">Nettside</p>
+        <h2 style="font-family:var(--font-neue); font-size:clamp(36px,3.8vw,58px); font-weight:300; line-height:1.06; letter-spacing:-0.02em; color:#E7F3F1; margin:0;">En nettside som faktisk<br>f&#229;r folk til &#229; ta kontakt.</h2>
+        <p style="font-family:var(--font-neue); font-size:17px; font-weight:300; line-height:1.6; color:#ffffff; margin:0; max-width:480px;">Vi bygger nettsider med tydelig struktur, riktige budskap og klare handlingsknapper &#8212; s&#229; bes&#248;kende blir til kunder.</p>
+        <a href="#" onclick="openContactPopup(); return false;" class="konv__cta" style="margin-top:32px; display:inline-flex; align-items:center; gap:8px; font-family:var(--font-neue); font-size:15px; font-weight:500; color:#E7F3F1; background:transparent; text-decoration:none; width:fit-content; padding:12px 24px; border-radius:8px; border:1px solid rgba(220,238,234,0.4);">Se eksempler</a>
       </div>
       <div class="konv__right" style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
         <div class="konv__card-wrap" style="position:relative; z-index:10; width:500px; display:flex; flex-direction:column; align-items:flex-start;">
           <div class="konv__badge" style="display:flex; align-items:stretch; border-radius:14px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.25); margin-bottom:-18px; margin-left:24px; position:relative; z-index:11;">
             <div style="background:#1A1B1F; padding:16px 18px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:8px; min-width:64px;">
               <span class="material-symbols-outlined" style="font-size:26px; color:#E7F3F1; font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20;">trending_up</span>
-              <span style="font-family:'DM Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#E7F3F1;">Resultat</span>
+              <span style="font-family:var(--font-neue); font-size:9px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#E7F3F1;">Resultat</span>
             </div>
             <div style="background:#E7F3F1; padding:16px 24px; display:flex; align-items:center;">
-              <span style="font-family:'Hanken Grotesk',sans-serif; font-size:17px; font-weight:600; color:#1A1B1F; line-height:1.3;">Nettsider som<br>faktisk konverterer</span>
+              <span style="font-family:var(--font-neue); font-size:17px; font-weight:600; color:#1A1B1F; line-height:1.3;">Nettsider som<br>faktisk konverterer</span>
             </div>
           </div>
           <div class="konv__glass" style="border-radius:28px; padding:10px; border:1px solid rgba(200,225,220,0.5); background:rgba(220,238,234,0.12); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 24px 64px rgba(0,0,0,0.3);">
             <div class="konv__stats-card" style="background:#ffffff; border-radius:18px; padding:44px 48px; width:500px; display:flex; flex-direction:column; gap:24px;">
-              <p style="font-family:'DM Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#9ca3af; margin:0;">Konverteringsrate</p>
+              <p style="font-family:var(--font-neue); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#9ca3af; margin:0;">Konverteringsrate</p>
               <div style="display:flex; flex-direction:column; gap:14px;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-family:'DM Sans',sans-serif; font-size:15px; color:#6b7280;">Gjennomsnittlig nettside</span>
-                  <span style="font-family:'Hanken Grotesk',sans-serif; font-size:16px; font-weight:700; color:#1A1B1F;">~1%</span>
+                  <span style="font-family:var(--font-neue); font-size:15px; color:#6b7280;">Gjennomsnittlig nettside</span>
+                  <span style="font-family:var(--font-neue); font-size:16px; font-weight:700; color:#1A1B1F;">~1%</span>
                 </div>
                 <div style="height:1px; background:#f3f4f6;"></div>
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-family:'DM Sans',sans-serif; font-size:15px; color:#6b7280;">Optimalisert nettside</span>
-                  <span style="font-family:'Hanken Grotesk',sans-serif; font-size:16px; font-weight:700; color:#1A1B1F;">3&#8211;5%</span>
+                  <span style="font-family:var(--font-neue); font-size:15px; color:#6b7280;">Optimalisert nettside</span>
+                  <span style="font-family:var(--font-neue); font-size:16px; font-weight:700; color:#1A1B1F;">3&#8211;5%</span>
                 </div>
                 <div style="height:1px; background:#f3f4f6;"></div>
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-family:'DM Sans',sans-serif; font-size:15px; color:#6b7280;">Dedikert landingsside</span>
-                  <span style="font-family:'Hanken Grotesk',sans-serif; font-size:16px; font-weight:700; color:#1A1B1F;">5%+</span>
+                  <span style="font-family:var(--font-neue); font-size:15px; color:#6b7280;">Dedikert landingsside</span>
+                  <span style="font-family:var(--font-neue); font-size:16px; font-weight:700; color:#1A1B1F;">5%+</span>
                 </div>
               </div>
               <div style="border-top:1px solid #f3f4f6; padding-top:14px; display:flex; align-items:center; gap:8px;">
-                <span style="font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#9ca3af;">Kilde</span>
+                <span style="font-family:var(--font-neue); font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#9ca3af;">Kilde</span>
                 <span style="height:12px; width:1px; background:#e5e7eb;"></span>
-                <span style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:500; color:#374151; background:#f9fafb; border:1px solid #e5e7eb; border-radius:3px; padding:2px 7px;">Unbounce</span>
-                <span style="font-family:'Hanken Grotesk',sans-serif; font-size:11px; font-weight:500; color:#374151; background:#f9fafb; border:1px solid #e5e7eb; border-radius:3px; padding:2px 7px;">HubSpot</span>
+                <span style="font-family:var(--font-neue); font-size:11px; font-weight:500; color:#374151; background:#f9fafb; border:1px solid #e5e7eb; border-radius:3px; padding:2px 7px;">Unbounce</span>
+                <span style="font-family:var(--font-neue); font-size:11px; font-weight:500; color:#374151; background:#f9fafb; border:1px solid #e5e7eb; border-radius:3px; padding:2px 7px;">HubSpot</span>
               </div>
             </div>
           </div>
@@ -4624,6 +4864,10 @@
           <p class="inkludert__item-desc">Du får en fast kontaktperson, ikke en ticketkø. Vi svarer raskt og hjelper deg med alt fra tekstendringer til større oppdateringer.</p>
         </div>
       </div>
+
+      <div class="inkludert__cta-row" data-animate="fade-up" data-delay="0.3">
+        <a href="#" class="dou__cta" onclick="openContactPopup(); return false;">Kontakt oss</a>
+      </div>
     </div>
 
     <div class="inkludert__right">
@@ -4673,37 +4917,37 @@
             <div style="position:absolute;left:40px;top:81px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">manage_search</span></div>
-                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">SEO</span></div>
+                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">SEO</span></div>
               </div>
             </div>
             <div style="position:absolute;left:193px;top:40px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">speed</span></div>
-                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Hastighet</span></div>
+                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Hastighet</span></div>
               </div>
             </div>
             <div style="position:absolute;left:346px;top:81px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">build</span></div>
-                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Drift</span></div>
+                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Drift</span></div>
               </div>
             </div>
             <div style="position:absolute;left:40px;top:320px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">support_agent</span></div>
-                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Service</span></div>
+                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Service</span></div>
               </div>
             </div>
             <div style="position:absolute;left:193px;top:367px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">dns</span></div>
-                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Domene</span></div>
+                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Domene</span></div>
               </div>
             </div>
             <div style="position:absolute;left:346px;top:320px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:#32353A;border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">smartphone</span></div>
-                <div style="text-align:center;"><span style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Mobil</span></div>
+                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Mobil</span></div>
               </div>
             </div>
 
@@ -4712,10 +4956,6 @@
       </div>
     </div>
 
-    <div class="inkludert__cta-row" data-animate="fade-up" data-delay="0.3">
-      <a href="#" class="inkludert__btn-primary" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Kontakt oss</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
-      <a href="#priser" class="inkludert__btn-ghost">Se priser</a>
-    </div>
   </div>
   </section>
 
@@ -4760,7 +5000,7 @@
       </div>
     </div>
     <div class="tom-boks">
-      <div class="tom-boks__bilde"><svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="display:block;width:100%;height:100%;"><defs><style>.wf-bar{transform-box:fill-box;transform-origin:left center;animation:wfGrow 3s ease-in-out forwards}.wf-r1{animation-delay:.1s}.wf-r2{animation-delay:.22s}.wf-r3{animation-delay:.36s}@keyframes wfGrow{0%,2%{transform:scaleX(0)}70%,100%{transform:scaleX(1)}}</style></defs><rect width="240" height="240" fill="#f0efed" rx="4"/><text id="spd-num" x="120" y="118" font-family="'DM Sans',sans-serif" font-size="72" font-weight="500" fill="#111" text-anchor="middle" letter-spacing="-0.04em">6.4s</text><text x="120" y="140" font-family="'DM Sans',sans-serif" font-size="11" font-weight="400" fill="#bbb" text-anchor="middle" letter-spacing="0.05em">LASTETID</text><line x1="20" y1="142" x2="220" y2="142" stroke="#dddcda" stroke-width="1"/><rect class="wf-bar wf-r1" x="20" y="154" width="30" height="9" rx="2" fill="#111" opacity="0.75"/><rect class="wf-bar wf-r2" x="24" y="172" width="96" height="9" rx="2" fill="#111" opacity="0.35"/><rect class="wf-bar wf-r3" x="28" y="190" width="152" height="9" rx="2" fill="#111" opacity="0.15"/><line x1="20" y1="212" x2="220" y2="212" stroke="#dddcda" stroke-width="1"/><text x="20" y="226" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#ccc">0ms</text><text x="220" y="226" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#ccc" text-anchor="end">1000ms</text><script>(function(){var el=document.getElementById('spd-num');if(!el)return;function run(){var cur=64;function tick(){el.textContent=(cur/10).toFixed(1)+'s';if(cur>8){cur--;setTimeout(tick,55);}}tick();}run();})();</script></svg></div>
+      <div class="tom-boks__bilde"><svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="display:block;width:100%;height:100%;"><defs><style>.wf-bar{transform-box:fill-box;transform-origin:left center;animation:wfGrow 3s ease-in-out forwards}.wf-r1{animation-delay:.1s}.wf-r2{animation-delay:.22s}.wf-r3{animation-delay:.36s}@keyframes wfGrow{0%,2%{transform:scaleX(0)}70%,100%{transform:scaleX(1)}}</style></defs><rect width="240" height="240" fill="#f0efed" rx="4"/><text id="spd-num" x="120" y="118" font-family="var(--font-neue)" font-size="72" font-weight="500" fill="#111" text-anchor="middle" letter-spacing="-0.04em">6.4s</text><text x="120" y="140" font-family="var(--font-neue)" font-size="11" font-weight="400" fill="#bbb" text-anchor="middle" letter-spacing="0.05em">LASTETID</text><line x1="20" y1="142" x2="220" y2="142" stroke="#dddcda" stroke-width="1"/><rect class="wf-bar wf-r1" x="20" y="154" width="30" height="9" rx="2" fill="#111" opacity="0.75"/><rect class="wf-bar wf-r2" x="24" y="172" width="96" height="9" rx="2" fill="#111" opacity="0.35"/><rect class="wf-bar wf-r3" x="28" y="190" width="152" height="9" rx="2" fill="#111" opacity="0.15"/><line x1="20" y1="212" x2="220" y2="212" stroke="#dddcda" stroke-width="1"/><text x="20" y="226" font-family="var(--font-neue)" font-size="8.5" fill="#ccc">0ms</text><text x="220" y="226" font-family="var(--font-neue)" font-size="8.5" fill="#ccc" text-anchor="end">1000ms</text><script>(function(){var el=document.getElementById('spd-num');if(!el)return;function run(){var cur=64;function tick(){el.textContent=(cur/10).toFixed(1)+'s';if(cur>8){cur--;setTimeout(tick,55);}}tick();}run();})();</script></svg></div>
       <div class="tom-boks__innhold">
         <p class="tom-boks__label">Hastighet</p>
         <p class="tom-boks__undertekst">En treg nettside koster deg kunder. Vi bygger med hastighet i fokus — optimaliserte bilder, ren kode og rask lastetid som også gir deg bedre plassering i Google.</p>
@@ -5006,8 +5246,8 @@
             <rect width="640" height="400" fill="url(#bg1)"/>
             <circle cx="480" cy="80" r="180" fill="#2d5a4e" opacity="0.35"/>
             <circle cx="160" cy="320" r="140" fill="#1a3d34" opacity="0.25"/>
-            <text x="48" y="210" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="52" font-weight="500" fill="rgba(255,255,255,0.12)" letter-spacing="-0.03em">Google</text>
-            <text x="48" y="272" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="52" font-weight="500" fill="rgba(255,255,255,0.07)" letter-spacing="-0.03em">Maps</text>
+            <text x="48" y="210" font-family="var(--font-neue)" font-size="52" font-weight="500" fill="rgba(255,255,255,0.12)" letter-spacing="-0.03em">Google</text>
+            <text x="48" y="272" font-family="var(--font-neue)" font-size="52" font-weight="500" fill="rgba(255,255,255,0.07)" letter-spacing="-0.03em">Maps</text>
           </svg>
         </div>
         <h3 class="blogg-kort__tittel">Slik får du flere henvendelser direkte fra Google Maps</h3>
@@ -5672,12 +5912,12 @@
   </script>
 
   <!-- Cookie-banner -->
-  <div id="cookie-banner" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:99999;width:calc(100% - 48px);max-width:680px;background:#fff;border-radius:0;box-shadow:0 8px 40px rgba(0,0,0,0.14),0 0 0 1px rgba(0,0,0,0.07);padding:20px 24px;font-family:'Instrument Sans',sans-serif;font-size:0.875rem;line-height:1.5;color:#111;">
+  <div id="cookie-banner" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:99999;width:calc(100% - 48px);max-width:680px;background:#fff;border-radius:0;box-shadow:0 8px 40px rgba(0,0,0,0.14),0 0 0 1px rgba(0,0,0,0.07);padding:20px 24px;font-family:var(--font-ui);font-size:0.875rem;line-height:1.5;color:#111;">
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;">
       <p style="flex:1;min-width:200px;margin:0;color:#444;">Vi bruker informasjonskapsler for å analysere trafikken vår og forbedre nettstedet. <a href="personvern.html" style="color:#111;text-decoration:underline;font-weight:500;">Les mer</a>.</p>
       <div style="display:flex;gap:8px;flex-shrink:0;">
-        <button id="cookie-reject" style="background:transparent;border:1px solid rgba(0,0,0,0.18);color:#444;padding:9px 16px;border-radius:4px;cursor:pointer;font-size:0.8125rem;font-family:inherit;">Avvis unødvendige</button>
-        <button id="cookie-accept" style="background:#1f2118;border:none;color:#fff;padding:9px 20px;border-radius:4px;cursor:pointer;font-size:0.8125rem;font-weight:500;font-family:inherit;letter-spacing:0.01em;">Godta alle</button>
+        <button id="cookie-reject" style="background:transparent;border:1px solid rgba(0,0,0,0.18);color:#444;padding:9px 16px;border-radius:var(--radius-xs);cursor:pointer;font-size:0.8125rem;font-family:inherit;">Avvis unødvendige</button>
+        <button id="cookie-accept" style="background:#1f2118;border:none;color:#fff;padding:9px 20px;border-radius:var(--radius-xs);cursor:pointer;font-size:0.8125rem;font-weight:500;font-family:inherit;letter-spacing:0.01em;">Godta alle</button>
       </div>
     </div>
   </div>
