@@ -21,7 +21,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@300;400;500&family=Sora:wght@300;400&family=DM+Sans:wght@400&family=Chakra+Petch:wght@500&family=Funnel+Display:wght@300;400;500&family=Hanken+Grotesk:wght@300;400;500&family=Geist:wght@400;500;600&display=fallback" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre&family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@300;400;500&family=Sora:wght@300;400&family=DM+Sans:wght@300;400&family=Chakra+Petch:wght@500&family=Funnel+Display:wght@300;400;500&family=Hanken+Grotesk:wght@300;400;500&display=fallback" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,200,0,0" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -34,17 +34,31 @@
       font-weight: 400;
       font-display: swap;
     }
+    @font-face {
+      font-family: 'Helvetica Neue';
+      src: url('fonts/HelveticaNeueRoman.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Helvetica Neue';
+      src: url('fonts/HelveticaNeueLight.otf') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
   </style>
   <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
     html { overflow-y: scroll; overflow-x: clip; scroll-behavior: smooth; }
-    body { font-family: var(--font-ui); }
+    body { font-family: var(--font-ui); background-color: var(--bg-0); }
 
     /* ── 12-col grid ─────────────────────────────────── */
     .container {
       max-width: 100%;
       margin: 0 auto;
-      padding: 0 48px;
+      padding: 0 24px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       column-gap: 24px;
@@ -62,7 +76,7 @@
     }
 
     /* ── TOPPBANNER ──────────────────────────── */
-    .mg-nav { top: 37px !important; }
+    .mg-nav { top: 0 !important; }
 
     .top-banner {
       position: fixed;
@@ -88,9 +102,9 @@
 
     /* ── HERO ─────────────────────────────────── */
     .hero {
-      background: #ffffff;
+      background: transparent;
       width: 100%;
-      padding: 185px 48px 0;
+      padding: 185px 24px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -118,7 +132,7 @@
     }
 
     .hero__heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 400;
       font-size: clamp(56px, 7.5vw, 104px);
       line-height: 1.02;
@@ -131,7 +145,7 @@
     .hero__sub {
       font-family: var(--font-ui);
       font-size: 22px;
-      font-weight: 400;
+      font-weight: 300;
       color: rgba(26,27,31,0.85);
       max-width: 560px;
       line-height: 1.55;
@@ -145,7 +159,7 @@
     .hero__search-bar {
       display: inline-flex;
       align-items: center;
-      background: rgba(220,238,234,0.5);
+      background: rgba(255,255,255,0.88);
       border: 1px solid rgba(66,85,100,0.12);
       box-shadow: 0 2px 16px rgba(66,73,100,0.10);
       border-radius: 999px;
@@ -154,7 +168,7 @@
     }
 
     .hero__search-input {
-      background: #ffffff;
+      background: transparent;
       border: none;
       outline: none;
       border-radius: 999px;
@@ -170,14 +184,17 @@
     }
 
     .hero__cta-btn {
-      background: #34373F;
-      color: #DCEEEA;
+      display: inline-flex;
+      align-items: center;
+      background: #1A1B1F;
+      color: #E7F3F1;
       border: none;
       border-radius: 999px;
-      padding: 14px 36px;
-      font-family: var(--font-ui);
-      font-size: 16px;
-      font-weight: 600;
+      padding: 14px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
       cursor: pointer;
       white-space: nowrap;
     }
@@ -197,7 +214,6 @@
     /* ── GLOBAL KNAPP-STIL — radius + font + farge ── */
     .hero .cta-btn,
     .hero .scroll-hint,
-    .hero__cta-btn,
     .hva-vi-leverer .section-btn,
     .demoer-cta,
     .faq-cta,
@@ -333,7 +349,7 @@
       border-radius: 6px;
       font-family: var(--font-ui);
       font-weight: 500;
-      color: #222222;
+      color: var(--color-dark);
       font-size: 13px;
       letter-spacing: 0;
       text-decoration: none;
@@ -351,13 +367,13 @@
 
     .hero-slider {
       display: flex;
-      width: 300%;
+      width: 400%;
       height: 100%;
       transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .hero-slide {
-      width: 33.333%;
+      width: 25%;
       height: 100%;
       background-size: cover;
       background-repeat: no-repeat;
@@ -406,7 +422,7 @@
     }
 
     .hero-slider-btn:hover {
-      background: #ffffff;
+      background: transparent;
       transform: translateY(-50%) scale(1.08);
     }
 
@@ -455,21 +471,21 @@
     }
 
     .hero-dot.active {
-      background: #ffffff;
+      background: transparent;
       transform: scale(1.25);
     }
 
     /* ── SEKSJON SERVICE ─────────────────────── */
     .seksjon-service {
       width: 100%;
-      background-color: #ffffff;
-      padding: 32px 48px 0;
+      background-color: transparent;
+      padding: 32px 24px 0;
     }
 
     .service__card {
       width: 100%;
       background-color: #1A1B1F;
-      border-radius: 16px;
+      border-radius: 8px;
       padding: 96px 64px;
     }
 
@@ -479,7 +495,7 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 0;
-      padding-right: 48px;
+      padding-right: 24px;
     }
 
     .service-eyebrow {
@@ -494,8 +510,8 @@
     }
 
     .service-heading {
-      font-family: 'Geist', sans-serif;
-      font-weight: 500;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 400;
       font-size: clamp(28px, 3.5vw, 42px);
       color: #E7F3F1;
       line-height: 1.07;
@@ -569,7 +585,7 @@
       background: none;
       border-radius: 0;
       padding: 0;
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 400;
       font-size: 17px;
       color: #E7F3F1;
@@ -627,7 +643,7 @@
 
     /* WA-style header */
     .wa-header {
-      background: #ffffff;
+      background: transparent;
       padding: 44px 14px 10px;
       display: flex;
       align-items: center;
@@ -638,7 +654,7 @@
 
     .wa-back {
       font-size: 18px;
-      color: #30332f;
+      color: var(--color-dark);
       line-height: 1;
       flex-shrink: 0;
     }
@@ -681,7 +697,7 @@
       flex-direction: column;
       justify-content: flex-start;
       gap: 4px;
-      background: #f5f5f5;
+      background: var(--surface-light);
     }
 
     .wa-timestamp-center {
@@ -730,7 +746,7 @@
       display: flex;
       align-items: center;
       gap: 9px;
-      background: #ffffff;
+      background: transparent;
       border-radius: 12px;
       padding: 8px 11px;
       max-width: 78%;
@@ -807,7 +823,7 @@
       align-items: center;
       padding: 8px 12px 20px;
       gap: 8px;
-      background: #ffffff;
+      background: transparent;
       border-top: 1px solid #ebebeb;
       flex-shrink: 0;
     }
@@ -878,7 +894,7 @@
     .seksjon-faq {
       width: 100%;
       background-color: var(--bg-2);
-      padding: 96px 48px;
+      padding: 96px 24px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       column-gap: 24px;
@@ -913,7 +929,7 @@
     }
 
     .faq-heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 400;
       font-size: clamp(32px, 3.5vw, 48px);
       color: var(--color-dark);
@@ -957,7 +973,7 @@
     }
 
     .faq-item {
-      background: #E7F3F1;
+      background: #ffffff;
       border-radius: 10px;
       overflow: hidden;
     }
@@ -1016,8 +1032,8 @@
     /* ── SEKSJON BRANSJER ────────────────────── */
     .seksjon-tom-boks {
       width: 100%;
-      background-color: #ffffff;
-      padding: 96px 48px;
+      background-color: transparent;
+      padding: 96px 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1026,7 +1042,8 @@
     .tom-boks {
       width: 100%;
       max-width: 860px;
-      background: linear-gradient(to bottom right, #f4f4f4, #f8f8f8 55%, #fafafa);
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.07);
       border-radius: 8px 8px 12px 12px;
       display: flex;
       flex-direction: row;
@@ -1060,7 +1077,7 @@
       pointer-events: none;
     }
     .tom-boks:hover {
-      background: #f9f9f8;
+      background: #fafafa;
     }
     .tom-boks__bilde {
       width: 240px;
@@ -1085,7 +1102,7 @@
       margin-top: 12px;
     }
     .tom-boks__label {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 32px;
       font-weight: 500;
       color: #1A1B1F;
@@ -1096,14 +1113,14 @@
     .seksjon-bransjer {
       width: 100%;
       background-color: var(--bg-3);
-      padding: 96px 48px;
+      padding: 96px 24px;
       display: flex;
       flex-direction: column;
       gap: 0;
     }
 
     .seksjon-bransjer__heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 400;
       font-size: clamp(28px, 3.5vw, 42px);
       color: #080808;
@@ -1218,8 +1235,8 @@
     }
 
     .card-title {
-      font-family: 'Geist', sans-serif;
-      font-weight: 400;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 300;
       font-size: 22px;
       color: var(--color-dark);
       line-height: 1.15;
@@ -1237,15 +1254,15 @@
 
     /* ── HVA VI LEVERER ───────────────────────── */
     .hva-vi-leverer {
-      background-color: #ffffff;
-      padding: 0 48px;
+      background-color: transparent;
+      padding: 0 24px;
       box-sizing: border-box;
       width: 100%;
     }
 
     .hvl__card {
       width: 100%;
-      background-color: #ffffff;
+      background-color: transparent;
       border-radius: 16px;
       padding: 96px 64px;
       display: grid;
@@ -1268,7 +1285,7 @@
     }
 
     .hva-vi-leverer .section-heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: clamp(32px, 4vw, 56px);
       font-weight: 400;
       line-height: 1.07;
@@ -1277,11 +1294,11 @@
     }
 
     .hva-vi-leverer .section-text {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 1.6;
-      color: rgba(26,27,31,0.65);
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(26,27,31,0.8);
       margin-top: var(--space-sm);
       max-width: 640px;
       margin-left: auto;
@@ -1291,17 +1308,15 @@
     .hva-vi-leverer .section-btn {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: var(--btn-padding-y) var(--btn-padding-x);
-      background-color: #1A1B1F;
-      border-radius: 0;
-      font-family: var(--font-ui);
-      font-weight: 500;
-      color: #ffffff;
-      font-size: 13px;
-      letter-spacing: 0;
+      padding: 14px 28px;
+      background: #1A1B1F;
+      color: #E7F3F1 !important;
+      border-radius: 999px !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 17px !important;
+      font-weight: 300 !important;
       text-decoration: none;
-      margin-top: var(--space-lg);   /* 24px — ny handling */
+      margin-top: 24px;
     }
 
     .hva-vi-leverer .cards {
@@ -1309,12 +1324,14 @@
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-sm);
       margin-top: 40px;
+      margin-left: -64px;
+      margin-right: -64px;
     }
 
     .hva-vi-leverer .card {
       background: #ffffff;
       border: none;
-      border-radius: 8px 8px 12px 12px;
+      border-radius: 4px 4px 6px 6px;
       padding: var(--card-padding) var(--card-padding) var(--space-sm) var(--card-padding);
       display: block;
       overflow: visible;
@@ -1324,17 +1341,7 @@
     }
 
     .hva-vi-leverer .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 8px 8px 12px 12px;
-      padding: 1px;
-      background: linear-gradient(to bottom, rgba(26,27,31,0.22) 0%, rgba(26,27,31,0.18) 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+      display: none;
     }
 
     .card__deco {
@@ -1371,8 +1378,9 @@
       font-weight: 500;
       letter-spacing: var(--ls-card-label);
       text-transform: uppercase;
-      color: rgba(26,27,31,0.45);
-      background: rgba(26,27,31,0.05);
+      color: rgba(26,27,31,0.65);
+      background: transparent;
+      border: 1px solid rgba(26,27,31,0.45);
       transition: background 0.25s ease, color 0.25s ease;
       border-radius: 4px;
       padding: 4px 8px;
@@ -1391,7 +1399,7 @@
     }
 
     .hva-vi-leverer .card-title {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 26px;
       font-weight: 500;
       letter-spacing: -0.03em;
@@ -1412,7 +1420,7 @@
       font-size: 18px;
       font-weight: 300;
       line-height: 1.7;
-      color: rgba(26,27,31,0.65);
+      color: rgba(26,27,31,0.8);
     }
 
     /* ── DEMOER ──────────────────────────────── */
@@ -1439,7 +1447,7 @@
       align-items: center;
       padding: 5px 14px;
       background: var(--color-dark);
-      color: #cfdeca;
+      color: var(--color-sage);
       font-family: var(--font-ui);
       font-size: var(--type-card-label);
       font-weight: 500;
@@ -1502,7 +1510,7 @@
 
     .demo-kort {
       flex: 1;
-      background: #ffffff;
+      background: transparent;
       border-radius: 8px;
       overflow: hidden;
       display: flex;
@@ -1604,8 +1612,8 @@
     /* ── PRISING ─────────────────────────────── */
     .seksjon-prising {
       width: 100%;
-      background-color: #ffffff;
-      padding: 0 48px;
+      background-color: transparent;
+      padding: 0 24px;
     }
 
     .prising-inner {
@@ -1631,7 +1639,7 @@
     }
 
     .prising-heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 400;
       font-size: clamp(32px, 4vw, 56px);
       color: #E7F3F1;
@@ -1681,7 +1689,7 @@
     }
 
     .prising-kort__tittel {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 400;
       font-size: 18px;
       color: rgba(231,243,241,0.5);
@@ -1705,7 +1713,7 @@
     }
 
     .prising-kort__belop {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 400;
       font-size: clamp(40px, 5vw, 64px);
       color: #E7F3F1;
@@ -1828,7 +1836,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 80px 48px;
+      padding: 80px 24px;
       border-bottom: 1px solid rgba(231,243,241,0.08);
     }
 
@@ -1926,7 +1934,7 @@
     }
 
     .footer-cta__heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 300;
       font-size: var(--type-h2);
       color: #E7F3F1;
@@ -2141,9 +2149,12 @@
 
     /* — Primærknapper hover — ren svart, ingen gradient */
     .hero .cta-btn:hover,
-    .hva-vi-leverer .section-btn:hover,
     .demoer-cta:hover,
     .popup-submit:hover {
+      background-color: #1a1a1a !important;
+      opacity: 1;
+    }
+    .hva-vi-leverer .section-btn:hover {
       background-color: #1a1a1a !important;
       opacity: 1;
     }
@@ -2169,7 +2180,7 @@
       background-position: left center;
       background-color: transparent;
       color: #ffffff;
-      border-color: #222222;
+      border-color: var(--color-dark);
     }
 
     /* ── TOUCH: deaktiver background-position transitions ────────────────
@@ -2251,7 +2262,7 @@
     /* Left panel */
     .popup-left {
       flex: 0 0 300px;
-      background: #1e1b18;
+      background: #1A1B1F;
       padding: 52px 40px;
       display: flex;
       flex-direction: column;
@@ -2260,7 +2271,7 @@
     .popup-left-top { }
     .popup-brand-dot { display: none; }
     .popup-left-heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 28px; font-weight: 400;
       line-height: 1.15; letter-spacing: -0.02em;
       color: #ffffff;
@@ -2288,8 +2299,8 @@
     /* Right panel */
     .popup-right {
       flex: 1;
-      background: #ffffff;
-      padding: 48px 48px 44px;
+      background: transparent;
+      padding: 48px 24px 44px;
       position: relative;
     }
     .popup-close {
@@ -2305,7 +2316,7 @@
     }
     .popup-close:hover { background: #e6e6e6; color: #111; }
     .popup-right-heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 26px; font-weight: 400;
       letter-spacing: -0.02em; color: #17181c;
       margin-bottom: 4px;
@@ -2340,7 +2351,7 @@
     .popup-input:focus,
     .popup-textarea:focus {
       border-color: var(--color-dark);
-      background: #ffffff;
+      background: transparent;
       box-shadow: 0 0 0 3px rgba(48,51,47,0.07);
     }
     .popup-submit {
@@ -2384,7 +2395,7 @@
       margin-bottom: 20px;
     }
     .popup-success h3 {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 24px; font-weight: 400;
       color: #17181c; margin-bottom: 8px;
     }
@@ -2401,14 +2412,14 @@
     /* ── SEKSJON INKLUDERT I LEVERANSEN ──────── */
     .seksjon-inkludert {
       width: 100%;
-      background-color: #ffffff;
-      padding: 0 48px;
+      background-color: transparent;
+      padding: 0 24px;
     }
 
     .inkludert__card {
       width: 100%;
-      background-color: #26272B;
-      border-radius: 16px;
+      background-color: #1A1B1F;
+      border-radius: 8px;
       padding: 96px 64px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -2569,14 +2580,14 @@
       position: absolute;
       inset: 0;
       backdrop-filter: blur(1em);
-      background-image: radial-gradient(circle at 50% 50%, transparent 0, transparent 2px, #26272B 2px);
+      background-image: radial-gradient(circle at 50% 50%, transparent 0, transparent 2px, #1A1B1F 2px);
       background-size: 8px 8px;
     }
 
     .falling-fade {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, #26272B 0%, transparent 30%);
+      background: linear-gradient(to bottom, #1A1B1F 0%, transparent 30%);
     }
 
     .inkludert__eyebrow {
@@ -2593,7 +2604,7 @@
     }
 
     .inkludert__heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 400;
       font-size: clamp(32px, 4vw, 48px);
       line-height: 1.07;
@@ -2631,7 +2642,7 @@
     }
 
     .inkludert__item-title {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 18px;
       font-weight: 400;
       letter-spacing: -0.01em;
@@ -2707,13 +2718,13 @@
 
     /* ── PORTEFØLJE ───────────────────────────── */
     .seksjon-portefolje {
-      background: #ffffff;
-      padding: 80px 48px;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      column-gap: 24px;
-      row-gap: 48px;
-      overflow-x: clip;
+      background: transparent;
+      padding: 80px 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      overflow: visible;
     }
     .porto-intro {
       grid-column: 1 / 12;
@@ -2747,7 +2758,7 @@
     .porto-nav__btn svg { width: 14px; height: 14px; }
     .porto-nav__btn svg path { stroke: #000; fill: none; stroke-width: 2; }
     .porto-heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: clamp(28px, 3.5vw, 48px);
       font-weight: 400;
       letter-spacing: -0.03em;
@@ -2768,7 +2779,7 @@
       margin-left: -24px;
       margin-right: -24px;
       display: flex;
-      gap: 16px;
+      gap: 12px;
       overflow-x: scroll;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
@@ -2779,7 +2790,7 @@
       flex-shrink: 0;
       width: 380px;
       scroll-snap-align: start;
-      background: #efefef;
+      background: #e4e6e9;
       border-radius: 6px;
       overflow: hidden;
       display: flex;
@@ -2809,11 +2820,13 @@
     .porto-kort__bilde {
       flex: none;
       height: 420px;
-      margin: 0 16px 0;
+      margin: 0 12px 0;
       border-radius: 4px;
       background-size: cover;
       background-position: center top;
       position: relative;
+      transform: scale(1.35);
+      transform-origin: center top;
     }
     .porto-kort__ikon {
       position: absolute;
@@ -2842,8 +2855,8 @@
       gap: 6px;
       flex-shrink: 0;
       padding: 6px 12px;
-      border: 1.5px solid rgba(15,17,23,0.25);
-      border-radius: 4px;
+      border: 1px solid rgba(26,27,31,0.4);
+      border-radius: 6px;
       font-family: var(--font-ui);
       font-size: 11px;
       font-weight: 500;
@@ -2928,6 +2941,111 @@
     }
     .porto-kort__pil svg {
       fill: #fff;
+    }
+
+    /* ── BOKS-RAIL (portefølje ny stil) ─────── */
+    .boks-rail {
+      width: 100vw;
+      margin-left: -24px;
+      display: flex;
+      gap: 12px;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 24px;
+      box-sizing: border-box;
+    }
+    .boks-rail::-webkit-scrollbar { display: none; }
+    .boks {
+      flex: 0 0 540px;
+      scroll-snap-align: start;
+      border-radius: 6px;
+      min-height: 580px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #e4e6e9 !important;
+      position: relative;
+    }
+    .boks--peek {
+      -webkit-mask-image: linear-gradient(to right, black 30%, transparent 90%);
+      mask-image: linear-gradient(to right, black 30%, transparent 90%);
+    }
+    .boks__header {
+      padding: 32px 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .boks__tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+    .boks__tittel {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #1A1B1F;
+    }
+    .boks__desc {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: #1A1B1F;
+      margin: 0;
+    }
+    .boks__btn {
+      font-family: 'Hanken Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #1A1B1F;
+      background: transparent;
+      border: 1px solid rgba(26,27,31,0.4);
+      border-radius: 6px;
+      padding: 8px 16px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .boks__btn:hover { background: rgba(26,27,31,0.06); }
+    .boks__image {
+      flex: 1;
+      margin: 0 12px 12px;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      background: #303b3d;
+    }
+    .boks__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+      transform: scale(1.35);
+      transform-origin: center;
+    }
+    .porto-intro__heading {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.07;
+      color: #1A1B1F;
+      margin-top: 12px;
+      margin-bottom: 12px;
     }
 
     /* ── SEKSJON BRANSJEBIBLIOTEK ─────────────── */
@@ -3196,7 +3314,7 @@
         flex-direction: column;
         align-items: center;
         padding: 140px 12px 0;
-        background: #ffffff;
+        background: transparent;
       }
 
       .hero__stat { display: none; }
@@ -3239,14 +3357,9 @@
 
       .hero__cta-btn {
         width: auto;
-        min-height: 52px;
-        font-size: 16px;
-        padding: 14px 20px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: #1E281D;
-        color: #ffffff;
       }
 
 
@@ -3266,11 +3379,11 @@
       }
 
       #heroSlider {
-        width: 200%;
+        width: 300%;
       }
 
       #heroSlider .hero-slide {
-        width: 50%;
+        width: 33.333%;
       }
 
       .hero .hero-side-box {
@@ -3301,6 +3414,8 @@
         display: flex;
         flex-direction: column;
         margin-top: 32px;
+        margin-left: 0;
+        margin-right: 0;
         gap: 16px;
       }
 
@@ -3335,7 +3450,7 @@
       .konv__left h2 {
         font-size: 28px !important;
         font-weight: 400 !important;
-        font-family: 'Geist', sans-serif !important;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
       }
 
       .konv__right {
@@ -3858,7 +3973,7 @@
     }
 
     .blogg__heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 400;
       font-size: clamp(28px, 2.8vw, 40px);
       color: var(--color-dark);
@@ -3910,7 +4025,7 @@
     }
 
     .blogg-kort__tittel {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 500;
       font-size: clamp(18px, 1.6vw, 22px);
       color: var(--color-dark);
@@ -3962,11 +4077,6 @@
 </head>
 <body>
 
-  <!-- TOPPBANNER -->
-  <div class="top-banner">
-    <strong>Gratis utkast</strong> &nbsp;— Vi lager et uforpliktende utkast til din nye nettside. Helt gratis.
-  </div>
-
   <!-- HERO -->
   <section class="hero">
 
@@ -3983,7 +4093,7 @@
     <div class="hero__cta-row" data-animate="fade-up" data-hero data-delay="0.22">
       <div class="hero__search-bar">
         <input class="hero__search-input" type="url" placeholder="Din nettside-URL" autocomplete="url" />
-        <button class="hero__cta-btn" onclick="openContactPopup(); return false;">Få et utkast</button>
+        <a href="#" class="hero__cta-btn" onclick="openContactPopup(); return false;">Få et utkast</a>
       </div>
     </div>
 
@@ -4017,14 +4127,14 @@
       --p2-pad: 48px;
       --p2-gap: 24px;
       --p2-col: calc((100vw - 96px - 264px) / 12);
-      --p2-box-w: calc(var(--p2-col) * 4 + var(--p2-gap) * 3);
+      --p2-box-w: calc(var(--p2-col) * 5 + var(--p2-gap) * 4);
     }
 
     .p2-section {
       width: 100%;
       overflow-x: clip;
       padding: 120px 0;
-      background: #ffffff;
+      background: transparent;
     }
 
     .p2-container {
@@ -4037,7 +4147,7 @@
 
     .p2-intro {
       grid-column: 3 / 11;
-      margin-bottom: 20px;
+      margin-bottom: 56px;
       text-align: center;
     }
 
@@ -4059,7 +4169,7 @@
     }
 
     .p2-heading {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: clamp(32px, 4vw, 56px);
       font-weight: 400;
       line-height: 1.07;
@@ -4075,8 +4185,8 @@
       background: #1A1B1F;
       color: #E7F3F1;
       font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
+      font-size: 17px;
+      font-weight: 300;
       text-decoration: none;
       border-radius: 999px;
     }
@@ -4086,48 +4196,24 @@
       position: relative;
     }
 
-    .p2-rail-wrap::after {
-      display: none;
-    }
-
     .p2-rail {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: var(--p2-gap);
-      overflow-x: auto;
-      overflow-y: visible;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      cursor: grab;
-      padding: 4px 0 16px;
     }
-
-    .p2-rail::-webkit-scrollbar { display: none; }
-    .p2-rail:active { cursor: grabbing; }
 
     .p2-boks {
-      flex: 0 0 var(--p2-box-w);
-      border-radius: 16px;
-      min-height: 640px;
+      border-radius: 6px;
+      min-height: 580px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      background: #ffffff;
+      background: #e4e6e9;
       position: relative;
     }
 
     .p2-boks::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      padding: 1px;
-      background: linear-gradient(to bottom, rgba(26,27,31,0.22) 0%, rgba(26,27,31,0.08) 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      z-index: 1;
+      display: none;
     }
 
     .p2-boks--peek {
@@ -4161,8 +4247,8 @@
       flex: 1;
       min-height: 0;
       background: linear-gradient(to bottom, #303b3d 0%, #475659 100%);
-      margin: 0 12px 12px;
-      border-radius: 10px;
+      margin: 12px 12px 0;
+      border-radius: 4px;
       overflow: hidden;
     }
 
@@ -4204,7 +4290,7 @@
     }
 
     .p2-tittel {
-      font-family: 'Geist', sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 22px;
       font-weight: 400;
       line-height: 1.2;
@@ -4226,10 +4312,10 @@
       font-family: 'Hanken Grotesk', sans-serif;
       font-size: 13px;
       font-weight: 500;
-      color: #4B5563;
+      color: #1A1B1F;
       background: transparent;
-      border: 1px solid #E5E7EB;
-      border-radius: 999px;
+      border: 1px solid rgba(26,27,31,0.4);
+      border-radius: 6px;
       padding: 8px 16px;
       cursor: pointer;
       text-decoration: none;
@@ -4241,7 +4327,7 @@
       transition: background 0.2s ease, border-color 0.2s ease;
     }
 
-    .p2-btn:hover { background: #F3F4F6; }
+    .p2-btn:hover { background: rgba(26,27,31,0.06); }
 
     .p2-link { position: absolute; inset: 0; z-index: 1; }
 
@@ -4267,13 +4353,13 @@
         margin-top: 16px;
       }
 
-      .p2-boks {
-        min-height: 400px;
-        border-radius: 12px;
+      .p2-rail {
+        grid-template-columns: 1fr;
       }
 
-      .p2-boks::before {
-        border-radius: 12px;
+      .p2-boks {
+        min-height: 400px;
+        border-radius: 6px;
       }
 
       .p2-header {
@@ -4330,60 +4416,32 @@
         <div class="p2-rail">
 
           <div class="p2-boks">
+            <div class="p2-inner">
+              <a href="demo-rorlegger.html" target="_blank" class="p2-link"></a>
+              <img class="p2-base" src="images/mockup-rorlegger.webp" alt="Rørlegger nettside">
+              <img class="p2-hover" src="images/screencap-konsept-blank.jpg" alt="Hover">
+            </div>
             <div class="p2-header">
               <span class="p2-tag">VVS</span>
               <p class="p2-tittel">Rørlegger nettside</p>
               <p class="p2-desc">Nettside for rørlegger i Oslo, bygget for å ta imot henvendelser og synlig på Google.</p>
               <a href="demo-rorlegger.html" target="_blank" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
-            <div class="p2-inner">
-              <a href="demo-rorlegger.html" target="_blank" class="p2-link"></a>
-              <img class="p2-base" src="images/mockup-rorlegger.webp" alt="Rørlegger nettside">
-              <img class="p2-hover" src="images/screencap-konsept-blank.jpg" alt="Hover">
-            </div>
           </div>
 
           <div class="p2-boks">
-            <div class="p2-header">
-              <span class="p2-tag">Bygg</span>
-              <p class="p2-tittel">Byggherre nettside</p>
-              <p class="p2-desc">Profesjonell profil for et byggefirma, presenterer prosjekter og gjør det enkelt å ta kontakt.</p>
-              <a href="bibliotek.html" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
             <div class="p2-inner">
               <a href="bibliotek.html" class="p2-link"></a>
               <img class="p2-base" src="images/macbook-nordbygg.webp" alt="Byggherre nettside">
               <img class="p2-hover" src="images/screencap-konsept-nordbygg.jpg" alt="Hover">
             </div>
-          </div>
-
-          <div class="p2-boks">
             <div class="p2-header">
-              <span class="p2-tag">Håndverk</span>
-              <p class="p2-tittel">Snekkerfirma nettside</p>
-              <p class="p2-desc">Tjenesteside for et lokalt snekkerfirma, med prosjektgalleri og enkel kontaktflyt.</p>
-              <a href="bibliotek.html" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
-            <div class="p2-inner">
-              <a href="bibliotek.html" class="p2-link"></a>
-              <img class="p2-base" src="images/mockup-macbook-air-betong-tomrer-oslo.webp" alt="Snekkerfirma nettside">
-              <img class="p2-hover" src="images/nettside-skjerm-tomrer-oslo-mork.jpg" alt="Hover">
+              <span class="p2-tag">Bygg</span>
+              <p class="p2-tittel">Byggherre nettside</p>
+              <p class="p2-desc">Profesjonell profil for et byggefirma, presenterer prosjekter og gjør det enkelt å ta kontakt.</p>
             </div>
           </div>
 
-          <div class="p2-boks">
-            <div class="p2-header">
-              <span class="p2-tag">Håndverk</span>
-              <p class="p2-tittel">Snekker nettside</p>
-              <p class="p2-desc">Enkel og effektiv nettside for snekker, fokus på tilbud, referanser og rask respons.</p>
-              <a href="bibliotek.html" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
-            <div class="p2-inner">
-              <a href="bibliotek.html" class="p2-link"></a>
-              <img class="p2-base" src="images/mockup-rorlegger.webp" alt="Snekker nettside">
-              <img class="p2-hover" src="images/screencap-konsept-blank.jpg" alt="Hover">
-            </div>
-          </div>
 
         </div>
       </div>
@@ -4426,7 +4484,7 @@
         prosessen er den samme: enkel, rask og uten krav til teknisk kunnskap fra din side.
       </p>
 
-      <a href="#" class="section-btn" data-animate="fade-up" data-delay="0.2" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Få et utkast</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
+      <a href="#" class="section-btn" data-animate="fade-up" data-delay="0.2" onclick="openContactPopup(); return false;">Få et utkast</a>
     </div>
 
     <div class="cards" style="grid-column: 1 / -1;" data-animate="stagger" data-stagger="0.13">
@@ -4434,118 +4492,24 @@
           <p class="card-label"><span class="card-icon">design_services</span>Design og utvikling</p>
           <div class="card-title">Ny eller oppdatert nettside</div>
           <div class="card-desc">Vi bygger en nettside fra bunnen av, eller gir den du allerede har et moderne design. Du bestemmer hva du vil ha – vi tar oss av resten.</div>
-          <span class="card__deco">interests</span>
         </div>
 
         <div class="card">
           <p class="card-label"><span class="card-icon">price_check</span>Prising</p>
           <div class="card-title">Fast pris, ingen overraskelser</div>
           <div class="card-desc">Du vet hva du betaler før vi starter. Ingen timepris, ingen skjulte kostnader og ingen lange bindingstider.</div>
-          <span class="card__deco">universal_currency</span>
         </div>
 
         <div class="card">
           <p class="card-label"><span class="card-icon">support_agent</span>Support</p>
           <div class="card-title">Inkl. service etter leveranse</div>
           <div class="card-desc">Gjennomført et nytt prosjekt? Send oss bilder og tekst – så legger vi det ut for deg. Du trenger ikke gjøre noe teknisk selv.</div>
-          <span class="card__deco">volunteer_activism</span>
         </div>
       </div>
 
   </div>
   </section>
 
-  <!-- TOM SEKSJON -->
-  <!-- PORTEFØLJE-SEKSJON -->
-  <section class="seksjon-portefolje" style="display:none;">
-    <div class="porto-intro" data-animate="fade-up">
-      <div class="porto-intro__left">
-        <div class="hvl-eyebrow">
-          <span style="font-family: 'Material Symbols Outlined'; font-size: 15px; font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20; line-height: 1;">auto_awesome</span>
-          <span>Portefølje</span>
-        </div>
-        <h2 class="porto-heading"><span style="color: rgba(0,0,0,0.45);">Et</span> <span style="color: #0d2218;">utvalg konsepter</span> <span style="color: rgba(0,0,0,0.45);">vi har laget<br>for ulike bransjer.</span></h2>
-        <a href="bibliotek.html" class="inkludert__btn-primary" style="margin-top: 24px; border-radius: 999px !important;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Se bransjebiblioteket</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
-      </div>
-      <div class="porto-nav">
-        <button class="porto-nav__btn" onclick="portoScroll(-1)" aria-label="Forrige">
-          <svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg>
-        </button>
-        <button class="porto-nav__btn" onclick="portoScroll(1)" aria-label="Neste">
-          <svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <div class="porto-grid" data-lazy-anim="stagger" data-stagger="0.15">
-
-      <!-- Kort 1 -->
-      <a href="demo-rorlegger.html" target="_blank" class="porto-kort">
-        <div class="porto-kort__footer">
-          <div class="porto-kort__tittelrad">
-            <p class="porto-kort__navn">Oslo Rørlegger AS</p>
-            <span class="porto-kort__cta">Se nettsiden <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8L8 2M8 2H3M8 2v5"/></svg></span>
-          </div>
-          <p class="porto-kort__desc">Et konsept for en rørleggerbedrift i Oslo. Designet for å konvertere besøkende til leads med tydelig CTA, rask lasting og et uttrykk som bygger tillit fra første sekund.</p>
-        </div>
-        <div class="porto-kort__bilde" style="overflow:hidden;">
-          <img data-src="images/mockup-rorlegger.webp" src="" style="width:100%; height:100%; object-fit:cover; object-position:top; transform:scale(1.15) translateY(2%); display:block;" decoding="async">
-        </div>
-        <div class="porto-kort__squares">
-          <div class="porto-kort__square" style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:8px; background:#071629; overflow:hidden; padding:20px;">
-            <span style="font-family:'Material Symbols Outlined'; font-size:26px; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 24; line-height:1; color:rgba(255,255,255,0.9);">water_pump</span>
-            <p style="font-family:'DM Sans',sans-serif; font-size:22px; font-weight:400; color:#ffffff; letter-spacing:-0.02em; line-height:1.15; text-align:center; white-space:nowrap;">Oslo Rørlegger</p>
-          </div>
-          <div class="porto-kort__square" data-bg="images/gemini-handverker-smilende-bygningsplass.webp" style="background-size: cover; background-position: center;"></div>
-        </div>
-      </a>
-
-      <!-- Kort 2 -->
-      <a href="#" class="porto-kort">
-        <div class="porto-kort__footer">
-          <div class="porto-kort__tittelrad">
-            <p class="porto-kort__navn">Konstrukt</p>
-            <span class="porto-kort__cta">Se nettsiden <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8L8 2M8 2H3M8 2v5"/></svg></span>
-          </div>
-          <p class="porto-kort__desc">Et konsept for en snekker og byggbedrift. Fokus på prosjektpresentasjon og troverdighet med et rent, profesjonelt design som speiler kvaliteten på håndverket.</p>
-        </div>
-        <div class="porto-kort__bilde" style="overflow:hidden;">
-          <img data-src="images/macbook-nordbygg.webp" src="" style="width:100%; height:100%; object-fit:cover; object-position:top; transform:scale(1.15) translateY(2%); display:block;" decoding="async">
-        </div>
-        <div class="porto-kort__squares">
-          <div class="porto-kort__square" style="display:flex; flex-direction:row; align-items:center; justify-content:center; gap:8px; background:#1e1e1e; overflow:hidden; padding:20px;">
-            <svg width="26" height="26" viewBox="0 0 417 418" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M263.037 417L381.537 203.5L327.537 8.5L98.5366 417H263.037Z" fill="rgba(255,255,255,0.9)"/>
-              <path d="M150.037 0.5L31.5366 214L85.5366 409L314.537 0.5H150.037Z" fill="rgba(255,255,255,0.9)"/>
-              <path d="M57.0649 0.5L0.536621 102.416L26.2963 195.5L135.537 0.5H57.0649Z" fill="rgba(255,255,255,0.9)"/>
-              <path d="M359.008 417.5L415.537 315.584L389.777 222.5L280.537 417.5H359.008Z" fill="rgba(255,255,255,0.9)"/>
-            </svg>
-            <p style="font-family:'Chakra Petch',sans-serif; font-size:22px; font-weight:500; color:#ffffff; letter-spacing:0; line-height:1.15; text-align:center; white-space:nowrap;">Konstrukt</p>
-          </div>
-          <div class="porto-kort__square" data-bg="images/nordbygg-hero-naeringsbygg.webp" style="background-size: cover; background-position: center;"></div>
-        </div>
-      </a>
-
-      <!-- Kort 3 -->
-      <a href="#" class="porto-kort">
-        <div class="porto-kort__footer">
-          <div class="porto-kort__tittelrad">
-            <p class="porto-kort__navn">Berge Tre & Bygg</p>
-            <span class="porto-kort__cta">Se nettsiden <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8L8 2M8 2H3M8 2v5"/></svg></span>
-          </div>
-          <p class="porto-kort__desc">Et eksempel på hvordan en nettside for et snekker- og tømmerfirma kan presentere tjenester, tilbygg og rehabiliteringsprosjekter.</p>
-        </div>
-        <div class="porto-kort__bilde" style="overflow:hidden;">
-          <img data-src="images/mockup-macbook-air-betong-tomrer-oslo.webp" src="" style="width:100%; height:100%; object-fit:cover; object-position:top; transform:scale(1.15) translateY(2%); display:block;" decoding="async">
-        </div>
-        <div class="porto-kort__squares">
-          <div class="porto-kort__square"></div>
-          <div class="porto-kort__square"></div>
-        </div>
-      </a>
-
-    </div>
-  </section>
 
 
   <!-- Delt SVG-gradient for inkludert-ikoner -->
@@ -4561,27 +4525,27 @@
   </svg>
 
   <!-- SEKSJON NETTSIDE SOM KONVERTERER -->
-  <section class="konv__wrap" style="width:100%; padding:80px 48px 32px; background:#ffffff;">
-    <div class="konv__inner" style="width:100%; height:auto; border-radius:16px; overflow:hidden; background:#1A1B1F; display:flex; align-items:stretch;">
+  <section class="konv__wrap" style="width:100%; padding:80px 24px 32px; background:transparent;">
+    <div class="konv__inner" style="width:100%; height:auto; border-radius:8px; overflow:hidden; background:#1A1B1F; display:flex; align-items:stretch;">
       <div class="konv__left" style="flex:0 0 55%; padding:128px 64px; display:flex; flex-direction:column; justify-content:flex-start; gap:24px;">
         <p style="font-family:'DM Sans',sans-serif; font-size:14px; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; color:rgba(220,238,234,0.5); margin:0; margin-bottom:-12px;">Nettside</p>
-        <h2 style="font-family:'Geist',sans-serif; font-size:clamp(36px,3.8vw,58px); font-weight:400; line-height:1.06; letter-spacing:-0.02em; color:#E7F3F1; margin:0;">En nettside som faktisk<br>f&#229;r folk til &#229; ta kontakt.</h2>
+        <h2 style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:clamp(36px,3.8vw,58px); font-weight:300; line-height:1.06; letter-spacing:-0.02em; color:#E7F3F1; margin:0;">En nettside som faktisk<br>f&#229;r folk til &#229; ta kontakt.</h2>
         <p style="font-family:'Hanken Grotesk',sans-serif; font-size:17px; font-weight:300; line-height:1.6; color:#ffffff; margin:0; max-width:480px;">Vi bygger nettsider med tydelig struktur, riktige budskap og klare handlingsknapper &#8212; s&#229; bes&#248;kende blir til kunder.</p>
         <a href="#kontakt" class="konv__cta" style="margin-top:8px; display:inline-flex; align-items:center; gap:8px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; color:#E7F3F1; background:transparent; text-decoration:none; width:fit-content; padding:12px 24px; border-radius:999px; border:1px solid rgba(220,238,234,0.4);">Se eksempler</a>
       </div>
       <div class="konv__right" style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-        <div class="konv__card-wrap" style="position:relative; z-index:10; width:400px; display:flex; flex-direction:column; align-items:flex-start;">
+        <div class="konv__card-wrap" style="position:relative; z-index:10; width:500px; display:flex; flex-direction:column; align-items:flex-start;">
           <div class="konv__badge" style="display:flex; align-items:stretch; border-radius:14px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.25); margin-bottom:-18px; margin-left:24px; position:relative; z-index:11;">
-            <div style="background:#1A1B1F; padding:14px 16px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:8px; min-width:58px;">
-              <span class="material-symbols-outlined" style="font-size:22px; color:#E7F3F1; font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20;">trending_up</span>
+            <div style="background:#1A1B1F; padding:16px 18px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:8px; min-width:64px;">
+              <span class="material-symbols-outlined" style="font-size:26px; color:#E7F3F1; font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20;">trending_up</span>
               <span style="font-family:'DM Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#E7F3F1;">Resultat</span>
             </div>
-            <div style="background:#E7F3F1; padding:14px 20px; display:flex; align-items:center;">
-              <span style="font-family:'Hanken Grotesk',sans-serif; font-size:15px; font-weight:600; color:#1A1B1F; line-height:1.3;">Nettsider som<br>faktisk konverterer</span>
+            <div style="background:#E7F3F1; padding:16px 24px; display:flex; align-items:center;">
+              <span style="font-family:'Hanken Grotesk',sans-serif; font-size:17px; font-weight:600; color:#1A1B1F; line-height:1.3;">Nettsider som<br>faktisk konverterer</span>
             </div>
           </div>
           <div class="konv__glass" style="border-radius:28px; padding:10px; border:1px solid rgba(200,225,220,0.5); background:rgba(220,238,234,0.12); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 24px 64px rgba(0,0,0,0.3);">
-            <div class="konv__stats-card" style="background:#ffffff; border-radius:20px; padding:36px 40px; width:400px; display:flex; flex-direction:column; gap:20px;">
+            <div class="konv__stats-card" style="background:#ffffff; border-radius:18px; padding:44px 48px; width:500px; display:flex; flex-direction:column; gap:24px;">
               <p style="font-family:'DM Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#9ca3af; margin:0;">Konverteringsrate</p>
               <div style="display:flex; flex-direction:column; gap:14px;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -4803,6 +4767,7 @@
     </div>
   </section>
 
+
   <!-- SEKSJON FAQ -->
   <section class="seksjon-faq">
 
@@ -4870,8 +4835,6 @@
         <span style="font-family:'Material Symbols Outlined'; font-size:15px; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 20; line-height:1;">payments</span>
         <span>Pris</span>
       </div>
-      <h2 class="prising-heading">Et nytt oppdrag betaler for nettsiden din</h2>
-
       <div class="prising-grid">
 
         <!-- Utkast -->
@@ -5035,15 +4998,15 @@
           <svg class="blogg-kort__bilde-inner" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#1e1b18"/>
+                <stop offset="0%" style="stop-color:#1A1B1F"/>
                 <stop offset="100%" style="stop-color:#3a3530"/>
               </linearGradient>
             </defs>
             <rect width="640" height="400" fill="url(#bg1)"/>
             <circle cx="480" cy="80" r="180" fill="#2d5a4e" opacity="0.35"/>
             <circle cx="160" cy="320" r="140" fill="#1a3d34" opacity="0.25"/>
-            <text x="48" y="210" font-family="'Geist',sans-serif" font-size="52" font-weight="500" fill="rgba(255,255,255,0.12)" letter-spacing="-0.03em">Google</text>
-            <text x="48" y="272" font-family="'Geist',sans-serif" font-size="52" font-weight="500" fill="rgba(255,255,255,0.07)" letter-spacing="-0.03em">Maps</text>
+            <text x="48" y="210" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="52" font-weight="500" fill="rgba(255,255,255,0.12)" letter-spacing="-0.03em">Google</text>
+            <text x="48" y="272" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="52" font-weight="500" fill="rgba(255,255,255,0.07)" letter-spacing="-0.03em">Maps</text>
           </svg>
         </div>
         <h3 class="blogg-kort__tittel">Slik får du flere henvendelser direkte fra Google Maps</h3>
@@ -5054,61 +5017,6 @@
         </div>
       </article>
 
-      <!-- Kort 2 -->
-      <article class="blogg-kort" data-animate="fade-up" data-delay="0.1">
-        <div class="blogg-kort__bilde">
-          <svg class="blogg-kort__bilde-inner" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#f0ede8"/>
-                <stop offset="100%" style="stop-color:#e2ddd6"/>
-              </linearGradient>
-            </defs>
-            <rect width="640" height="400" fill="url(#bg2)"/>
-            <rect x="60" y="70" width="220" height="160" rx="6" fill="white" opacity="0.85"/>
-            <rect x="76" y="92" width="70" height="9" rx="2" fill="#1e1b18" opacity="0.18"/>
-            <rect x="76" y="111" width="168" height="6" rx="2" fill="#1e1b18" opacity="0.1"/>
-            <rect x="76" y="125" width="140" height="6" rx="2" fill="#1e1b18" opacity="0.07"/>
-            <rect x="76" y="139" width="155" height="6" rx="2" fill="#1e1b18" opacity="0.07"/>
-            <rect x="76" y="173" width="88" height="28" rx="3" fill="#1e1b18" opacity="0.88"/>
-            <rect x="320" y="100" width="260" height="210" rx="6" fill="white" opacity="0.7"/>
-            <rect x="336" y="120" width="90" height="9" rx="2" fill="#1e1b18" opacity="0.14"/>
-            <rect x="336" y="139" width="220" height="5" rx="2" fill="#1e1b18" opacity="0.07"/>
-            <rect x="336" y="152" width="185" height="5" rx="2" fill="#1e1b18" opacity="0.05"/>
-          </svg>
-        </div>
-        <h3 class="blogg-kort__tittel">Hva koster en profesjonell nettside for håndverkere i 2025?</h3>
-        <p class="blogg-kort__tekst">Fra 3 000 til 150 000 kroner — prisene varierer enormt. Vi bryter ned hva du faktisk betaler for, og hva som er verdt pengene.</p>
-        <div class="blogg-kort__tags">
-          <span class="blogg-kort__tag">Nettsider</span>
-          <span class="blogg-kort__tag">Guide</span>
-        </div>
-      </article>
-
-      <!-- Kort 3 -->
-      <article class="blogg-kort" data-animate="fade-up" data-delay="0.2">
-        <div class="blogg-kort__bilde">
-          <svg class="blogg-kort__bilde-inner" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <linearGradient id="bg3" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#2d4a3e"/>
-                <stop offset="100%" style="stop-color:#1a3028"/>
-              </linearGradient>
-            </defs>
-            <rect width="640" height="400" fill="url(#bg3)"/>
-            <circle cx="320" cy="200" r="260" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="80"/>
-            <text x="50" y="240" font-family="'Geist',sans-serif" font-size="160" font-weight="600" fill="rgba(255,255,255,0.06)" letter-spacing="-0.04em">5</text>
-            <rect x="48" y="280" width="3" height="48" fill="#6abfaa" opacity="0.6"/>
-            <text x="60" y="302" font-family="'Instrument Sans',sans-serif" font-size="13" fill="rgba(255,255,255,0.45)" letter-spacing="0.08em">MARKEDSFØRING</text>
-          </svg>
-        </div>
-        <h3 class="blogg-kort__tittel">5 grunner til at håndverksbedrifter mister kunder uten nettside</h3>
-        <p class="blogg-kort__tekst">Anbefalinger fra fornøyde kunder er bra — men hva skjer når potensielle kunder ikke finner deg på nett? Vi ser på hva bedrifter faktisk taper.</p>
-        <div class="blogg-kort__tags">
-          <span class="blogg-kort__tag">Markedsføring</span>
-          <span class="blogg-kort__tag">Artikkel</span>
-        </div>
-      </article>
 
     </div>
   </section>
