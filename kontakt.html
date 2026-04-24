@@ -12,6 +12,23 @@
   <meta property="og:title" content="Kontakt oss — Få en gratis nettside | Mediegruppen" />
   <meta property="og:description" content="Ta kontakt og få et gratis utkast til din nye nettside. Svar innen én arbeidsdag." />
   <meta property="og:image" content="https://mediegruppen.no/images/og-image.jpg" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1438440671412379');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1438440671412379&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -463,7 +480,7 @@
 
     <div class="form-header">
       <h1>Fortell oss om bedriften din.</h1>
-      <p>Vi ser etter 5 bedrifter som vil ha ny nettside — gratis. Fyll ut skjemaet så tar vi kontakt.</p>
+      <p>Vi ser etter 2 bedrifter som vil ha ny nettside — gratis. Fyll ut skjemaet så tar vi kontakt.</p>
     </div>
 
     <form id="kontaktskjema" novalidate>
@@ -617,6 +634,7 @@
       btn.style.color = '#ff6b6b';
       btn.disabled = false;
     } else {
+      if (typeof fbq !== 'undefined') fbq('track', 'Lead');
       document.getElementById('kontaktskjema').style.display = 'none';
       document.querySelector('.form-header').style.display = 'none';
       document.querySelector('.form-divider').style.display = 'none';

@@ -63,11 +63,19 @@
   --type-lead:       20px;   /* Intro-avsnitt under heading               */
   --type-body:       16px;   /* Standard brødtekst                        */
 
-  /* UI — Inter
+  /* UI — Instrument Sans
      Alt som er knapper, nav, labels, hints. */
-  --type-label:      14px;   /* Nav, knapp-tekst, kort-titler. w: 500    */
-  --type-caption:    12px;   /* Liten hjelpetekst, fotnoter. w: 400      */
-  --type-card-label: 10px;   /* Knapp-tekst uppercase, kort-label. w: 500 */
+  --type-ui:         13px;   /* Standard UI: nav, tags, knapp-tekst, badges  */
+  --type-label:      14px;   /* Knapp-tekst, CTA, form-labels. w: 500        */
+  --type-caption:    12px;   /* Liten hjelpetekst, fotnoter. w: 400          */
+  --type-card-label: 10px;   /* Knapp-tekst uppercase, kort-label. w: 500    */
+
+  /* TYPOGRAFI — Font-weight
+     ------------------------------------------ */
+  --fw-regular:   400;   /* Brødtekst, body                        */
+  --fw-medium:    500;   /* UI-labels, knapper, nav                */
+  --fw-semibold:  600;   /* Sub-headings, kortitler                */
+  --fw-bold:      700;   /* Primære headings                       */
 
   /* TYPOGRAFI — Letter-spacing
      ------------------------------------------ */
@@ -75,16 +83,17 @@
   --ls-h1:       -0.025em;
   --ls-h2:       -0.02em;
   --ls-body:      0em;
-  --ls-caps:      0.05em;   /* Versaler / labels i caps */
-  --ls-card-btn:  0.2em;    /* Knapp-tekst uppercase tracking            */
-  --ls-card-label: 0.2em;   /* Badge/label uppercase tracking            */
+  --ls-caps:      0.1em;    /* Uppercase labels og overlines — alltid positiv */
+  --ls-card-btn:  0.2em;    /* Knapp-tekst uppercase tracking                 */
+  --ls-card-label: 0.2em;   /* Badge/label uppercase tracking                 */
 
   /* TYPOGRAFI — Line-height
      ------------------------------------------ */
   --lh-display:   1.05;
-  --lh-heading:   1.1;
-  --lh-body:      1.65;
-  --lh-ui:        1.4;
+  --lh-heading:   1.1;    /* Store display-headings (48px+)  */
+  --lh-subhead:   1.2;    /* Mellomstore headings (24–36px)  */
+  --lh-body:      1.55;   /* Brødtekst — over WCAG 1.5 min   */
+  --lh-ui:        1.25;   /* Labels, knapper, nav             */
 
   /* RADIUS
      Skala med 6 nivåer. Velg etter element-type, ikke pixel-verdi.
