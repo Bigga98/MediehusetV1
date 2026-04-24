@@ -619,6 +619,14 @@
       melding,
     ].filter(Boolean).join('\n');
 
+    const emailData = new FormData();
+    emailData.append('name', navn);
+    emailData.append('email', epost);
+    emailData.append('message', fullMessage);
+    emailData.append('_subject', 'Ny kontaktforespørsel fra ' + navn);
+    emailData.append('_captcha', 'false');
+    fetch('https://formsubmit.co/ajax/birbra.bb@gmail.com', { method: 'POST', body: emailData });
+
     const { error } = await sb.from('leads').insert([{
       name:         navn,
       email:        epost,
