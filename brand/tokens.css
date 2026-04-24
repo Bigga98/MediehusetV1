@@ -72,6 +72,9 @@
 
   /* TYPOGRAFI — Font-weight
      ------------------------------------------ */
+  --fw-light:     300;   /* Lys tekst, sekundær body               */
+  --text-stroke:       0.4px; /* Ultratynn kontur — skarpere headings på mørk bg  */
+  --text-stroke-body:  0.2px; /* Halvparten — brødtekst på mørk bg               */
   --fw-regular:   400;   /* Brødtekst, body                        */
   --fw-medium:    500;   /* UI-labels, knapper, nav                */
   --fw-semibold:  600;   /* Sub-headings, kortitler                */
@@ -83,6 +86,7 @@
   --ls-h1:       -0.025em;
   --ls-h2:       -0.02em;
   --ls-body:      0em;
+  --ls-list:      0.005em;  /* Korte skanbare linjer på mørk bakgrunn         */
   --ls-caps:      0.1em;    /* Uppercase labels og overlines — alltid positiv */
   --ls-card-btn:  0.2em;    /* Knapp-tekst uppercase tracking                 */
   --ls-card-label: 0.2em;   /* Badge/label uppercase tracking                 */
@@ -92,6 +96,7 @@
   --lh-display:   1.05;
   --lh-heading:   1.1;    /* Store display-headings (48px+)  */
   --lh-subhead:   1.2;    /* Mellomstore headings (24–36px)  */
+  --lh-list:      1.4;    /* Korte skanbare linjer, fordel-lister             */
   --lh-body:      1.55;   /* Brødtekst — over WCAG 1.5 min   */
   --lh-ui:        1.25;   /* Labels, knapper, nav             */
 
@@ -109,6 +114,7 @@
      ------------------------------------------ */
   --color-dark:        #30332f;   /* Brand primær — tekst, knapper, mørk bakgrunn */
   --color-light:       #f0efec;   /* Lys tekst/element på mørk bakgrunn           */
+  --color-text-dark:   #E7F3F1;   /* Primær tekstfarge på mørke seksjoner         */
   --color-sage:        #cfdeca;   /* Sage grønn — aksenttekst på mørk             */
   --color-mid:         #928e87;   /* Varm midtgrå — sekundær tekst                */
   --color-white:       #ffffff;

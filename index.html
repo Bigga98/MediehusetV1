@@ -527,7 +527,8 @@
     .seksjon-service {
       width: 100%;
       background-color: transparent;
-      padding: 0 24px 0;
+      padding: 0 24px 80px;
+      box-sizing: border-box;
     }
 
     .service__card {
@@ -550,30 +551,32 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-family: var(--font-ui);
-      font-size: 16px;
-      font-weight: 400;
+      font-family: var(--font-neue);
+      font-size: var(--type-label);
+      font-weight: var(--fw-regular);
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
       color: rgba(231,243,241,0.5);
       margin-bottom: 16px;
     }
 
     .service-heading {
       font-family: var(--font-neue);
-      font-weight: 400;
-      font-size: clamp(28px, 3.5vw, 42px);
-      color: #E7F3F1;
-      line-height: 1.07;
-      letter-spacing: -0.03em;
+      font-weight: var(--fw-regular);
+      font-size: clamp(28px, 3vw, 48px);
+      color: var(--color-text-dark);
+      line-height: var(--lh-subhead);
+      letter-spacing: var(--ls-h2);
+      -webkit-text-stroke: var(--text-stroke) var(--color-text-dark);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-optical-sizing: auto;
       max-width: 580px;
       margin-bottom: 16px;
     }
 
     .service-lead {
-      font-family: var(--font-neue);
-      font-weight: 300;
-      font-size: 17px;
-      color: #ffffff;
-      line-height: 1.6;
       max-width: 480px;
       margin-bottom: 40px;
     }
@@ -633,30 +636,19 @@
       background: none;
       border-radius: 0;
       padding: 0;
-      font-family: var(--font-neue);
-      font-weight: 400;
-      font-size: 17px;
-      color: #E7F3F1;
-      line-height: 1.2;
-      letter-spacing: -0.01em;
       display: flex;
       align-items: center;
       gap: 14px;
     }
 
     .service-info-box::before {
-      content: 'check';
-      font-family: 'Material Symbols Outlined';
-      font-size: 16px;
-      font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 20;
-      color: #26272B;
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
-      border-radius: 50%;
-      background: #8a9e8a;
-      text-align: center;
-      line-height: 36px;
+      content: '';
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='1' y='1' width='14' height='14' rx='3' fill='none' stroke='%23E7F3F1' stroke-width='1.5'/><polyline points='3.5,8 6.5,11 12.5,5' fill='none' stroke='%23E7F3F1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+      background-size: contain;
+      background-repeat: no-repeat;
     }
 
     .phone-mockup {
@@ -2432,6 +2424,7 @@
       width: 100%;
       background-color: transparent;
       padding: 0 24px 80px;
+      box-sizing: border-box;
     }
 
     .inkludert__card {
@@ -2512,10 +2505,13 @@
 
     .illus-pill__label {
       font-family: var(--font-neue);
-      font-size: 16px;
-      font-weight: 400;
-      color: #E7F3F1;
-      letter-spacing: -0.01em;
+      font-size: var(--type-body);
+      font-weight: var(--fw-regular);
+      color: var(--color-text-dark);
+      letter-spacing: var(--ls-list);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-optical-sizing: auto;
     }
 
     .falling-overlay {
@@ -2603,26 +2599,18 @@
       background: linear-gradient(to bottom, #1A1B1F 0%, transparent 30%);
     }
 
-    .inkludert__eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-neue);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(231,243,241,0.6);
-      margin-bottom: 12px;
-    }
-
     .inkludert__heading {
       font-family: var(--font-neue);
-      font-weight: 400;
-      font-size: clamp(32px, 4vw, 48px);
-      line-height: 1.07;
-      letter-spacing: -0.03em;
-      color: #E7F3F1;
+      font-weight: var(--fw-regular);
+      font-size: clamp(28px, 3vw, 48px);
+      line-height: var(--lh-subhead);
+      letter-spacing: var(--ls-h2);
+      color: var(--color-text-dark);
+      -webkit-text-stroke: var(--text-stroke) var(--color-text-dark);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-optical-sizing: auto;
       margin-bottom: 20px;
     }
 
@@ -2647,29 +2635,29 @@
 
     .inkludert__icon {
       font-family: 'Material Symbols Outlined';
-      font-size: 18px;
+      font-size: var(--type-lead);
       font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20;
       line-height: 1;
-      color: rgba(231,243,241,0.45);
+      color: var(--color-text-dark);
+      opacity: 0.45;
       flex-shrink: 0;
     }
 
     .inkludert__item-title {
       font-family: var(--font-neue);
-      font-size: 18px;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      color: #E7F3F1;
-      line-height: 1.2;
+      font-size: var(--type-lead);
+      font-weight: var(--fw-regular);
+      letter-spacing: var(--ls-h2);
+      color: var(--color-text-dark);
+      line-height: var(--lh-subhead);
+      -webkit-text-stroke: var(--text-stroke) var(--color-text-dark);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-optical-sizing: auto;
     }
 
-    .inkludert__item-desc {
-      font-family: var(--font-neue);
-      font-weight: 300;
-      font-size: 17px;
-      line-height: 1.6;
-      color: rgba(231,243,241,0.72);
-    }
+    .inkludert__item-desc {}
 
     .inkludert__cta-row {
       display: flex;
@@ -3588,8 +3576,8 @@
       }
 
       .inkludert__heading {
-        font-size: 28px;
-        font-weight: 400;
+        font-size: clamp(28px, 3vw, 48px);
+        font-weight: var(--fw-regular);
       }
 
       .inkludert__illus {
@@ -3643,7 +3631,7 @@
       }
 
       .service-heading {
-        font-weight: 400;
+        font-weight: var(--fw-regular);
       }
 
       .service-grid {
@@ -3671,7 +3659,7 @@
       }
 
       .service-info-box {
-        font-size: 15px;
+        font-size: var(--type-body);
       }
 
       .service-image {
@@ -4544,13 +4532,13 @@
 
       <!-- VENSTRE: col 1–6 -->
       <div class="dou__left" style="grid-column: 1 / 7;">
-        <h2 class="dou__heading">Her er hva du får når du bygger nettside med oss:</h2>
+        <h2 class="dou__heading">Her er hva du får når du bygger nettside med oss</h2>
         <ul class="dou__list">
-          <li>Bygget fra bunnen av – eller modernisert fra der du er nå</li>
-          <li>Fast pris før vi starter – ingen timepris, ingen overraskelser</li>
-          <li>Design tilpasset din bransje og dine kunder</li>
-          <li>Du bestemmer innholdet – vi tar oss av det tekniske</li>
-          <li>Service etter leveranse: send bilder og tekst – vi publiserer</li>
+          <li class="dark-body">Bygget fra bunnen av <span class="dim">– eller modernisert fra der du er nå</span></li>
+          <li class="dark-body">Fast pris før vi starter <span class="dim">– ingen timepris, ingen overraskelser</span></li>
+          <li class="dark-body">Design tilpasset din bransje og dine kunder</li>
+          <li class="dark-body">Du bestemmer innholdet <span class="dim">– vi tar oss av det tekniske</span></li>
+          <li class="dark-body">Service etter leveranse: send bilder og tekst <span class="dim">– vi publiserer</span></li>
         </ul>
         <a href="#" class="dou__cta" onclick="openContactPopup(); return false;">Få et utkast</a>
       </div>
@@ -4569,6 +4557,20 @@
   </section>
 
   <style>
+    .dark-body {
+      font-family: var(--font-neue);
+      font-size: var(--type-body);
+      font-weight: var(--fw-light);
+      line-height: var(--lh-list);
+      letter-spacing: var(--ls-list);
+      color: var(--color-text-dark);
+      -webkit-text-stroke: var(--text-stroke-body) var(--color-text-dark);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-optical-sizing: auto;
+    }
+
     .dou__wrap {
       width: 100%;
       padding: 0 24px 80px;
@@ -4602,12 +4604,16 @@
     }
     .dou__heading {
       font-family: var(--font-neue);
-      font-size: clamp(24px, 2.2vw, 36px);
+      font-size: clamp(28px, 3vw, 48px);
       font-weight: var(--fw-regular);
-      -webkit-text-stroke: 0.4px #E7F3F1;
+      -webkit-text-stroke: var(--text-stroke) var(--color-text-dark);
       line-height: var(--lh-subhead);
       letter-spacing: var(--ls-h2);
-      color: #E7F3F1;
+      color: var(--color-text-dark);
+      font-optical-sizing: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
       margin: 0;
     }
     .dou__list {
@@ -4619,20 +4625,20 @@
       gap: 14px;
     }
     .dou__list li {
-      font-family: var(--font-neue);
-      font-size: var(--type-body);
-      font-weight: var(--fw-regular);
-      line-height: var(--lh-body);
-      color: rgba(220, 238, 234, 0.8);
-      padding-left: 22px;
+      padding-left: 26px;
       position: relative;
     }
+    .dou__list li .dim { opacity: 0.5; }
     .dou__list li::before {
-      content: '—';
+      content: '';
       position: absolute;
       left: 0;
-      color: rgba(220, 238, 234, 0.3);
-      font-weight: var(--fw-regular);
+      top: 3px;
+      width: 16px;
+      height: 16px;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='1' y='1' width='14' height='14' rx='3' fill='none' stroke='%23E7F3F1' stroke-width='1.5'/><polyline points='3.5,8 6.5,11 12.5,5' fill='none' stroke='%23E7F3F1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+      background-size: contain;
+      background-repeat: no-repeat;
     }
     .dou__cta {
       margin-top: 32px;
@@ -4642,11 +4648,11 @@
       font-family: var(--font-neue);
       font-size: var(--type-label);
       font-weight: var(--fw-medium);
-      color: #E7F3F1;
+      color: var(--color-text-dark);
       background: transparent;
       text-decoration: none;
       width: fit-content;
-      padding: 12px 24px;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
       border-radius: var(--radius-sm);
       border: 1px solid rgba(220, 238, 234, 0.35);
       transition: border-color 0.2s, background 0.2s;
@@ -4722,6 +4728,9 @@
     }
 
     @media (max-width: 768px) {
+      .dou__wrap {
+        padding: 0 12px 80px;
+      }
       .dou__card {
         grid-template-columns: 1fr;
         border-radius: var(--radius-md);
@@ -4766,10 +4775,9 @@
   <section class="konv__wrap">
     <div class="konv__inner" style="width:100%; height:auto; overflow:hidden; background:#1A1B1F; display:flex; align-items:stretch;">
       <div class="konv__left" style="flex:0 0 55%; padding:128px 64px; display:flex; flex-direction:column; justify-content:flex-start; gap:20px;">
-        <p style="font-family:var(--font-neue); font-size:14px; font-weight:400; letter-spacing:0.1em; text-transform:uppercase; color:rgba(220,238,234,0.5); margin:0; margin-bottom:-12px;">Nettside</p>
-        <h2 style="font-family:var(--font-neue); font-size:clamp(36px,3.8vw,58px); font-weight:300; line-height:1.06; letter-spacing:-0.02em; color:#E7F3F1; margin:0;">En nettside som faktisk<br>f&#229;r folk til &#229; ta kontakt.</h2>
-        <p style="font-family:var(--font-neue); font-size:17px; font-weight:300; line-height:1.6; color:#ffffff; margin:0; max-width:480px;">Vi bygger nettsider med tydelig struktur, riktige budskap og klare handlingsknapper &#8212; s&#229; bes&#248;kende blir til kunder.</p>
-        <a href="#" onclick="openContactPopup(); return false;" class="konv__cta" style="margin-top:32px; display:inline-flex; align-items:center; gap:8px; font-family:var(--font-neue); font-size:15px; font-weight:500; color:#E7F3F1; background:transparent; text-decoration:none; width:fit-content; padding:12px 24px; border-radius:8px; border:1px solid rgba(220,238,234,0.4);">Se eksempler</a>
+        <h2 style="font-family:var(--font-neue); font-size:clamp(28px,3vw,48px); font-weight:var(--fw-regular); line-height:var(--lh-subhead); letter-spacing:var(--ls-h2); color:var(--color-text-dark); margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility; font-optical-sizing:auto; -webkit-text-stroke:var(--text-stroke) var(--color-text-dark);">En nettside som faktisk<br>f&#229;r folk til &#229; ta kontakt.</h2>
+        <p class="dark-body" style="margin:0; max-width:480px;">Vi bygger nettsider med tydelig struktur, riktige budskap og klare handlingsknapper &#8212; s&#229; bes&#248;kende blir til kunder.</p>
+        <a href="#" onclick="openContactPopup(); return false;" class="konv__cta" style="margin-top:32px; display:inline-flex; align-items:center; gap:8px; font-family:var(--font-neue); font-size:var(--type-label); font-weight:var(--fw-medium); color:var(--color-text-dark); background:transparent; text-decoration:none; width:fit-content; padding:var(--btn-padding-y) var(--btn-padding-x); border-radius:var(--radius-sm); border:1px solid rgba(220,238,234,0.4);">Se eksempler</a>
       </div>
       <div class="konv__right" style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
         <div class="konv__card-wrap" style="position:relative; z-index:10; width:500px; display:flex; flex-direction:column; align-items:flex-start;">
@@ -4825,10 +4833,6 @@
       <div class="falling-fade"></div>
     </div>
     <div class="inkludert__left">
-      <div class="inkludert__eyebrow" style="margin-bottom:16px;">
-        <span style="font-family: 'Material Symbols Outlined'; font-size: 15px; font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20; line-height: 1;">workspace_premium</span>
-        <span>Inkludert i leveransen</span>
-      </div>
       <h2 class="inkludert__heading" data-animate="fade-up" data-delay="0.08">Alt du trenger på ett sted</h2>
 
       <div class="inkludert__items" data-animate="stagger" data-stagger="0.1" data-delay="0.15">
@@ -4837,28 +4841,28 @@
             <span class="inkludert__icon">travel_explore</span>
             <h3 class="inkludert__item-title">SEO-optimalisering</h3>
           </div>
-          <p class="inkludert__item-desc">Nettsiden din bygges for å rangere i Google med riktig struktur, metadata og innhold fra dag én.</p>
+          <p class="inkludert__item-desc dark-body">Nettsiden din bygges for å rangere i Google med riktig struktur, metadata og innhold fra dag én.</p>
         </div>
         <div class="inkludert__item">
           <div class="inkludert__item-header">
             <span class="inkludert__icon">speed</span>
             <h3 class="inkludert__item-title">Google-hastighet</h3>
           </div>
-          <p class="inkludert__item-desc">Vi optimaliserer for PageSpeed og Core Web Vitals slik at Google rangerer deg høyere og besøkende ikke forlater siden.</p>
+          <p class="inkludert__item-desc dark-body">Vi optimaliserer for PageSpeed og Core Web Vitals slik at Google rangerer deg høyere og besøkende ikke forlater siden.</p>
         </div>
         <div class="inkludert__item">
           <div class="inkludert__item-header">
             <span class="inkludert__icon">build</span>
             <h3 class="inkludert__item-title">Drift og vedlikehold</h3>
           </div>
-          <p class="inkludert__item-desc">Vi holder nettsiden oppdatert, sikker og i gang uten at du trenger å løfte en finger. Alt fra oppdateringer til backup håndteres av oss.</p>
+          <p class="inkludert__item-desc dark-body">Vi holder nettsiden oppdatert, sikker og i gang uten at du trenger å løfte en finger. Alt fra oppdateringer til backup håndteres av oss.</p>
         </div>
         <div class="inkludert__item">
           <div class="inkludert__item-header">
             <span class="inkludert__icon">support_agent</span>
             <h3 class="inkludert__item-title">Personlig service</h3>
           </div>
-          <p class="inkludert__item-desc">Du får en fast kontaktperson, ikke en ticketkø. Vi svarer raskt og hjelper deg med alt fra tekstendringer til større oppdateringer.</p>
+          <p class="inkludert__item-desc dark-body">Du får en fast kontaktperson, ikke en ticketkø. Vi svarer raskt og hjelper deg med alt fra tekstendringer til større oppdateringer.</p>
         </div>
       </div>
 
@@ -4961,16 +4965,12 @@
   <div class="service__card">
     <div class="service-grid">
       <div class="service-left" data-animate="stagger" data-stagger="0.1">
-        <div class="service-eyebrow">
-          <span style="font-family:'Material Symbols Outlined'; font-size:15px; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 20; line-height:1;">build_circle</span>
-          <span>Service</span>
-        </div>
         <h2 class="service-heading">Behov for å oppdatere nettsiden senere?</h2>
-        <p class="service-lead">En nettside er aldri helt ferdig. Ting endrer seg, nye tjenester, oppdaterte priser, sesongkampanjer, eller bare en tekst som bør justeres.</p>
+        <p class="service-lead dark-body">En nettside er aldri helt ferdig. Ting endrer seg, nye tjenester, oppdaterte priser, sesongkampanjer, eller bare en tekst som bør justeres.</p>
         <div class="service-info-boxes">
-          <div class="service-info-box">Send oss en melding</div>
-          <div class="service-info-box">Ingen ekstra kostnader for oppdateringen</div>
-          <div class="service-info-box">Inkludert i domenehostingen</div>
+          <div class="service-info-box dark-body">Send oss en melding</div>
+          <div class="service-info-box dark-body">Ingen ekstra kostnader for oppdateringen</div>
+          <div class="service-info-box dark-body">Inkludert i domenehostingen</div>
         </div>
       </div>
       <div class="service-image" data-animate="fade-up" data-delay="0.15">
