@@ -382,9 +382,9 @@
       const hero = document.querySelector('.hero');
       const heroH = hero ? hero.offsetHeight : window.innerHeight;
       const progress = Math.min(scrollY / heroH, 1);
-      const r = Math.round(220 + (255 - 220) * progress);
-      const g = Math.round(238 + (255 - 238) * progress);
-      const b = Math.round(234 + (255 - 234) * progress);
+      const r = Math.round(247 + (255 - 247) * progress);
+      const g = Math.round(248 + (255 - 248) * progress);
+      const b = Math.round(250 + (255 - 250) * progress);
       nav.style.background = `rgb(${r},${g},${b})`;
     } else {
       nav.style.background = '';
