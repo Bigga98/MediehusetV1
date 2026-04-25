@@ -152,8 +152,8 @@
   --color-white-rgb:        255, 255, 255;
   --color-text-primary-rgb: 51, 30, 27;
   --color-dark-rgb:         51, 30, 27;
-  --color-text-muted:       #7a5148;   /* Sekundærtekst — avledet fra aksent            */
-  --color-text-hint:        #a88279;   /* Caption, placeholder, hint                    */
+  --color-text-muted:       #331e1b;   /* Sekundærtekst — samme som tittel              */
+  --color-text-hint:        #7a5148;   /* Caption, placeholder, hint                    */
   --color-mid:              #9e7468;   /* Varm mid-tone aksent                          */
   --color-border-light:     #ddd5cd;   /* Lette dividers og borders                     */
 
