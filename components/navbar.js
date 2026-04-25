@@ -34,7 +34,7 @@
       align-items: center;
       padding: 0 24px;
       z-index: var(--z-overlay);
-      background: rgba(247, 248, 250, 0.95);
+      background: rgba(246, 245, 242, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0,0,0,0.06);
       transition: background var(--transition-base), transform 0.4s cubic-bezier(0.25, 0, 0, 1);
@@ -43,7 +43,7 @@
       transform: translateY(-100%);
     }
     .mg-nav.scrolled {
-      background: rgba(247, 248, 250, 0.92);
+      background: rgba(246, 245, 242, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0,0,0,0.06);
     }
