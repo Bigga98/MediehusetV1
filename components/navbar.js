@@ -130,7 +130,7 @@
     }
     .mg-nav__links a.active::after {
       transform: scaleX(1);
-      background: rgba(48, 51, 47, 0.25);
+      background: rgba(var(--color-dark-rgb), 0.25);
     }
     .mg-nav__links a.meta {
       font-size: 11px;
@@ -159,7 +159,7 @@
     }
     .mg-nav__cta:hover {
       background: var(--color-ink);
-      color: #fff;
+      color: var(--color-white);
       border-color: var(--color-dark);
     }
     .mg-nav__hamburger {
@@ -482,7 +482,7 @@
       .popup-overlay.open .popup-card{transform:translateY(0) scale(1)}
       .popup-left{flex:0 0 260px;background:#0a0b0e;padding:44px 36px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid rgba(255,255,255,.06)}
       .popup-brand-dot{display:none}
-      .popup-left-heading{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;line-height:1.2;letter-spacing:-.02em;color:#fff;margin-bottom:12px}
+      .popup-left-heading{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;line-height:1.2;letter-spacing:-.02em;color:var(--color-white);margin-bottom:12px}
       .popup-left-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;line-height:1.7;color:rgba(255,255,255,.35)}
       .popup-trust{display:flex;flex-direction:column;gap:14px}
       .popup-trust-item{display:flex;align-items:center;gap:10px;font-family:'Instrument Sans',Helvetica,sans-serif;font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.01em}
@@ -490,19 +490,19 @@
       .popup-right{flex:1;background:var(--color-ui-dark);padding:44px 44px 40px;position:relative}
       .popup-close{position:absolute;top:16px;right:16px;width:28px;height:28px;background:rgba(255,255,255,.07);border:none;border-radius:50%;cursor:pointer;color:rgba(255,255,255,.4);font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background var(--transition-fast),color var(--transition-fast)}
       .popup-close:hover{background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)}
-      .popup-right-heading{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;letter-spacing:-.025em;color:#fff;margin-bottom:6px;line-height:1.1}
+      .popup-right-heading{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;letter-spacing:-.025em;color:var(--color-white);margin-bottom:6px;line-height:1.1}
       .popup-right-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,.35);margin-bottom:28px}
       .popup-form{display:flex;flex-direction:column;gap:0}
       .popup-form-row{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
       .popup-field{display:flex;flex-direction:column;gap:7px;margin-bottom:24px}
       .popup-field label{font-family:'Instrument Sans',sans-serif;font-size:10px;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase}
-      .popup-input,.popup-textarea{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.5);border-radius:0;padding:0 0 11px;height:40px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;font-weight:300;color:#fff;outline:none;transition:border-color var(--transition-base),box-shadow var(--transition-base);-webkit-appearance:none}
+      .popup-input,.popup-textarea{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.5);border-radius:0;padding:0 0 11px;height:40px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;font-weight:300;color:var(--color-white);outline:none;transition:border-color var(--transition-base),box-shadow var(--transition-base);-webkit-appearance:none}
       .popup-input::placeholder,.popup-textarea::placeholder{color:rgba(255,255,255,.28)}
       .popup-input:-webkit-autofill,.popup-input:-webkit-autofill:focus{-webkit-box-shadow:0 0 0 100px var(--color-ui-dark) inset;-webkit-text-fill-color:#fff}
       .popup-input:hover,.popup-textarea:hover{border-bottom-color:rgba(255,255,255,.65)}
-      .popup-input:focus,.popup-textarea:focus{border-bottom-color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.1)}
+      .popup-input:focus,.popup-textarea:focus{border-bottom-color:var(--color-white);box-shadow:0 1px 0 rgba(255,255,255,.1)}
       .popup-textarea{height:auto;padding:0 0 11px;min-height:72px;resize:none;line-height:1.6}
-      .popup-submit{width:auto;align-self:flex-start;height:42px;padding:0 24px;background:#fff;color:var(--color-ui-dark);border:none;border-radius:999px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background var(--transition-fast),transform var(--transition-fast),box-shadow var(--transition-fast);display:inline-flex;align-items:center;gap:8px;margin-top:4px}
+      .popup-submit{width:auto;align-self:flex-start;height:42px;padding:0 24px;background:var(--color-white);color:var(--color-ui-dark);border:none;border-radius:999px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background var(--transition-fast),transform var(--transition-fast),box-shadow var(--transition-fast);display:inline-flex;align-items:center;gap:8px;margin-top:4px}
       .popup-submit:hover{background:var(--surface-light);transform:translateY(-1px);box-shadow:var(--shadow-md)}
       .popup-submit:active{transform:translateY(0);box-shadow:none}
       .popup-submit svg{transition:transform var(--transition-base)}
@@ -512,7 +512,7 @@
       .popup-contact-link:hover{color:rgba(255,255,255,.7)}
       .popup-success{display:none;padding:24px 0}
       .popup-success-icon{width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px}
-      .popup-success h3{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;color:#fff;margin-bottom:8px;letter-spacing:-.02em}
+      .popup-success h3{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;color:var(--color-white);margin-bottom:8px;letter-spacing:-.02em}
       .popup-success p{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;color:rgba(255,255,255,.4);line-height:1.6}
       @media(max-width:640px){.popup-left{display:none}.popup-right{padding:36px 28px 32px}.popup-form-row{grid-template-columns:1fr}}
     `;

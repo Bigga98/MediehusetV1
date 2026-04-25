@@ -145,6 +145,12 @@
   --color-white:            #ffffff;   /* Ren hvit                                       */
   --color-text-dark:        var(--color-white);  /* Tekst på mørke seksjoner             */
   --color-text-primary:     #1A1B1F;   /* Primær tekst på lys bakgrunn                  */
+
+  /* RGB-kanaler — for opacity-varianter via rgba(var(--X-rgb), alpha)
+     ------------------------------------------ */
+  --color-white-rgb:        255, 255, 255;
+  --color-text-primary-rgb: 26, 27, 31;
+  --color-dark-rgb:         48, 51, 47;
   --color-text-muted:       #666666;   /* Sekundærtekst på lys bakgrunn                 */
   --color-text-hint:        #999999;   /* Caption, placeholder, hint                    */
   --color-mid:              #928e87;   /* Varm midtgrå — spesielle UI-elementer         */
