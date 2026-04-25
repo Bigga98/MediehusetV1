@@ -68,7 +68,7 @@
       padding: 5px 16px;
       background: rgba(0,0,0,0.06);
       border: 1px solid rgba(0,0,0,0.1);
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 500;
@@ -115,7 +115,7 @@
       align-items: center;
       gap: 7px;
       background: var(--bg-dark);
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       font-family: var(--font-ui);
       font-weight: 500;
       font-size: var(--type-label);
@@ -168,7 +168,7 @@
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 400;
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       margin-bottom: var(--space-lg);
     }
 
@@ -219,14 +219,14 @@
       height: 44px;
       padding: 0 24px;
       background: var(--color-dark);
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       font-family: var(--font-ui);
       font-weight: 500;
       font-size: var(--type-label);
       color: var(--color-white);
       text-decoration: none;
       transition: background-position var(--transition-base);
-      background-image: linear-gradient(120deg, var(--color-dark) 0%, var(--color-dark) 45%, #3d5038 75%, #253240 100%);
+      background-image: linear-gradient(120deg, var(--color-dark) 0%, var(--color-dark) 45%, var(--color-ui-dark) 75%, var(--color-ui-mid) 100%);
       background-size: 250% 100%;
       background-position: left center;
     }
@@ -437,7 +437,7 @@
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 400;
-      border-radius: 100px;
+      border-radius: var(--radius-full);
     }
     .prosess-heading {
       font-family: var(--font-heading);
@@ -543,7 +543,7 @@
       top: var(--space-lg); right: var(--space-lg);
       padding: 4px 12px;
       background: rgba(255,255,255,0.1);
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 500;
@@ -704,7 +704,7 @@
       gap: var(--icon-gap);
       padding: var(--btn-padding-y) var(--btn-padding-x);
       background: var(--color-light);
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       font-family: var(--font-ui);
       font-weight: 500;
       font-size: var(--type-label);
@@ -927,7 +927,7 @@
       color: var(--color-white); letter-spacing: 0.02em; cursor: pointer;
       transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast); margin-top: 2px;
     }
-    .popup-submit:hover { background: #1e2119; box-shadow: var(--shadow-sm); }
+    .popup-submit:hover { background: var(--color-ui-dark); box-shadow: var(--shadow-sm); }
     .popup-submit:active { transform: scale(0.98); }
     .popup-success {
       display: none; text-align: center; padding: 48px 0 24px;
@@ -1126,8 +1126,8 @@
           </div>
           <div class="ba-row" style="background:white; height:28px; box-shadow:var(--shadow-xs);"></div>
           <div style="display:flex; gap:5px;">
-            <div style="height:22px; flex:1; background:var(--color-dark); border-radius:100px;"></div>
-            <div style="height:22px; width:60px; border:1.5px solid var(--color-dark); border-radius:100px;"></div>
+            <div style="height:22px; flex:1; background:var(--color-dark); border-radius: var(--radius-full);"></div>
+            <div style="height:22px; width:60px; border:1.5px solid var(--color-dark); border-radius: var(--radius-full);"></div>
           </div>
         </div>
       </div>

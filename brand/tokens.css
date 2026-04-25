@@ -16,10 +16,13 @@
 
   /* KOMPONENT-INTERNT
      ------------------------------------------ */
-  --btn-padding-y:  12px;   /* Knapp topp/bunn     */
-  --btn-padding-x:  24px;   /* Knapp venstre/høyre */
-  --card-padding:   24px;   /* Kortinnhold alle sider */
-  --icon-gap:        6px;   /* Ikon → tekst */
+  --btn-height:     44px;   /* Standard knappehøyde                */
+  --btn-height-sm:  42px;   /* Kompakt knapp — popup, sekundær     */
+  --btn-padding-y:  12px;   /* Knapp topp/bunn                     */
+  --btn-padding-x:  24px;   /* Knapp venstre/høyre                 */
+  --btn-gap:         7px;   /* Mellom tekst og ikon i knapp        */
+  --card-padding:   24px;   /* Kortinnhold alle sider              */
+  --icon-gap:        6px;   /* Ikon → tekst                        */
 
   /* LAYOUT / GRID
      ------------------------------------------ */

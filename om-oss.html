@@ -62,7 +62,7 @@
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 400;
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       margin-bottom: var(--space-lg);
     }
 
@@ -92,13 +92,13 @@
       height: 44px;
       padding: 0 24px;
       background: var(--color-dark);
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       font-family: var(--font-ui);
       font-weight: 500;
       font-size: var(--type-label);
       color: var(--color-white);
       text-decoration: none;
-      background-image: linear-gradient(120deg, var(--color-dark) 0%, var(--color-dark) 45%, #3d5038 75%, #253240 100%);
+      background-image: linear-gradient(120deg, var(--color-dark) 0%, var(--color-dark) 45%, var(--color-ui-dark) 75%, var(--color-ui-mid) 100%);
       background-size: 250% 100%;
       background-position: left center;
       transition: background-position var(--transition-base);
@@ -164,7 +164,7 @@
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 400;
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       margin-bottom: var(--space-lg);
     }
 
@@ -258,7 +258,7 @@
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 400;
-      border-radius: 100px;
+      border-radius: var(--radius-full);
     }
 
     .verdier-heading {
@@ -340,7 +340,7 @@
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 400;
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       margin-bottom: var(--space-lg);
     }
 
@@ -500,7 +500,7 @@
       gap: var(--icon-gap);
       padding: var(--btn-padding-y) var(--btn-padding-x);
       background: #eef0f1;
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       font-family: var(--font-ui);
       font-weight: 500;
       font-size: var(--type-label);
@@ -719,7 +719,7 @@
       color: var(--color-white); letter-spacing: 0.02em; cursor: pointer;
       transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast); margin-top: 2px;
     }
-    .popup-submit:hover { background: #1e2119; box-shadow: var(--shadow-sm); }
+    .popup-submit:hover { background: var(--color-ui-dark); box-shadow: var(--shadow-sm); }
     .popup-submit:active { transform: scale(0.98); }
     .popup-success {
       display: none; text-align: center; padding: 48px 0 24px;

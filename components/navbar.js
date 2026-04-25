@@ -147,7 +147,7 @@
     .mg-nav__cta {
       margin-left: var(--space-lg, 24px);
       padding: 10px 20px;
-      border-radius: 100px;
+      border-radius: var(--radius-full);
       border: 1px solid var(--color-ink);
       font-family: 'Instrument Sans', Helvetica, sans-serif;
       font-weight: 500;
@@ -502,7 +502,7 @@
       .popup-input:hover,.popup-textarea:hover{border-bottom-color:rgba(255,255,255,.65)}
       .popup-input:focus,.popup-textarea:focus{border-bottom-color:var(--color-white);box-shadow:0 1px 0 rgba(255,255,255,.1)}
       .popup-textarea{height:auto;padding:0 0 11px;min-height:72px;resize:none;line-height:1.6}
-      .popup-submit{width:auto;align-self:flex-start;height:42px;padding:0 24px;background:var(--color-white);color:var(--color-ui-dark);border:none;border-radius:999px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background var(--transition-fast),transform var(--transition-fast),box-shadow var(--transition-fast);display:inline-flex;align-items:center;gap:8px;margin-top:4px}
+      .popup-submit{width:auto;align-self:flex-start;height: var(--btn-height-sm);padding: 0 var(--btn-padding-x);background:var(--color-white);color:var(--color-ui-dark);border:none;border-radius: var(--radius-full);font-family:var(--font-ui);font-size: var(--type-ui);font-weight:500;cursor:pointer;transition:background var(--transition-fast),transform var(--transition-fast),box-shadow var(--transition-fast);display:inline-flex;align-items:center;gap:8px;margin-top:4px}
       .popup-submit:hover{background:var(--surface-light);transform:translateY(-1px);box-shadow:var(--shadow-md)}
       .popup-submit:active{transform:translateY(0);box-shadow:none}
       .popup-submit svg{transition:transform var(--transition-base)}

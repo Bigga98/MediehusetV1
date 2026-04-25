@@ -180,12 +180,14 @@
       margin-bottom: 40px;
     }
 
+    .hero-break { display: none; }
+
     .hero__heading {
       font-family: var(--font-neue);
-      font-weight: 400;
-      font-size: clamp(56px, 7.5vw, 104px);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
+      font-weight: 800;
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
       color: var(--color-text-primary);
       max-width: 780px;
       margin-bottom: 0;
@@ -193,7 +195,7 @@
 
     .hero__sub {
       font-family: var(--font-ui);
-      font-size: 22px;
+      font-size: 17px;
       font-weight: 300;
       color: rgba(var(--color-text-primary-rgb),0.85);
       max-width: 560px;
@@ -205,44 +207,17 @@
       margin-bottom: 48px;
     }
 
-    .hero__search-bar {
-      display: inline-flex;
-      align-items: center;
-      background: rgba(255,255,255,0.88);
-      border: 1px solid rgba(66,85,100,0.12);
-      box-shadow: var(--shadow-sm);
-      border-radius: 999px;
-      padding: 6px;
-      gap: 10px;
-    }
-
-    .hero__search-input {
-      background: transparent;
-      border: none;
-      outline: none;
-      border-radius: 999px;
-      padding: 14px 28px;
-      font-family: var(--font-ui);
-      font-size: 16px;
-      color: var(--color-ui-mid);
-      width: 280px;
-    }
-
-    .hero__search-input::placeholder {
-      color: rgba(52,55,63,0.55);
-    }
-
-    .hero__cta-btn {
+.hero__cta-btn {
       display: inline-flex;
       align-items: center;
       background: var(--bg-cards);
       color: var(--color-text-dark);
       border: none;
-      border-radius: 999px;
+      border-radius: var(--radius-sm);
       padding: 14px 28px;
       font-family: var(--font-neue);
-      font-size: 15px;
-      font-weight: 500;
+      font-size: 17px;
+      font-weight: 300;
       text-decoration: none;
       cursor: pointer;
       white-space: nowrap;
@@ -283,7 +258,7 @@
     .hero .cta-btn,
     .hva-vi-leverer .section-btn,
     .demoer-cta {
-      background-color: #000000 !important;
+      background-color: var(--color-dark);
     }
 
     /* CTA-knapp: font-ui (Instrument Sans), 500, 10px, ls 0.2em, uppercase */
@@ -2492,7 +2467,7 @@
       gap: 14px;
       width: fit-content;
       padding: 14px 20px;
-      border-radius: 999px;
+      border-radius: var(--radius-full);
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.04);
     }
@@ -3248,18 +3223,28 @@
 
       .hero__stat { display: none; }
 
+      .hero__text {
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
       .hero__heading {
         width: 100%;
-        font-size: clamp(44px, 13vw, 64px);
+        font-size: clamp(34px, 10vw, 50px);
         text-align: center;
         letter-spacing: -0.02em;
-        line-height: 1.07;
+        line-height: 1.12;
         max-width: 100%;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        hyphens: manual;
       }
+
+      .hero-break { display: inline; }
 
       .hero__sub {
         text-align: center;
-        font-size: 20px;
+        font-size: 17px;
         color: var(--color-text-muted);
       }
 
@@ -3270,20 +3255,7 @@
         justify-content: center;
       }
 
-      .hero__search-bar {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .hero__search-input {
-        width: 0;
-        flex: 1;
-        min-width: 0;
-        padding: 14px 16px;
-        font-size: 16px;
-      }
-
-      .hero__cta-btn {
+.hero__cta-btn {
         width: auto;
         display: inline-flex;
         align-items: center;
@@ -4020,16 +3992,13 @@
 
     <!-- 2. Tekst-gruppe -->
     <div class="hero__text">
-      <h1 class="hero__heading" data-animate="fade-up" data-hero data-delay="0.12">Flere kunder med ny nettside</h1>
-      <p class="hero__sub" data-animate="fade-up" data-hero data-delay="0.18">Vi bygger nettsider med bedre visuelle utrykk. Bygget for å konvertere flere nettbesøk til kunder.</p>
+      <h1 class="hero__heading" data-animate="fade-up" data-hero data-delay="0.12">Konverterings<span class="hero-break">-<br></span>optimaliserte nettsider for norske bedrifter</h1>
+      <p class="hero__sub" data-animate="fade-up" data-hero data-delay="0.18">Vi finner budskapet som treffer kundene dine, og bygger ferdig nettside på 1–2 uker. Fastpris, ingen overraskelser.</p>
     </div>
 
     <!-- 3. CTA -->
     <div class="hero__cta-row" data-animate="fade-up" data-hero data-delay="0.22">
-      <div class="hero__search-bar">
-        <input class="hero__search-input" type="url" placeholder="Din nettside-URL" autocomplete="url" />
-        <a href="#" class="hero__cta-btn" onclick="openContactPopup(); return false;">Få et utkast</a>
-      </div>
+      <a href="#" class="hero__cta-btn" onclick="openContactPopup(); return false;">Få et utkast</a>
     </div>
 
     <!-- 4. Produktmockup -->
@@ -4283,7 +4252,7 @@
 
       .p2-intro {
         grid-column: 1 / -1;
-        text-align: left;
+        text-align: center;
         margin-bottom: 20px;
       }
 
@@ -4350,7 +4319,7 @@
           <span class="material-symbols-outlined">auto_awesome</span>
           Portefølje
         </p>
-        <h2 class="p2-heading">Et utvalg konsepter vi har laget<br>for ulike bransjer.</h2>
+        <h2 class="p2-heading">Et utvalg konsepter vi har laget for ulike bransjer.</h2>
         <a href="bibliotek.html" class="p2-cta">Se bransjebibliotek</a>
       </div>
 
