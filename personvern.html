@@ -60,13 +60,13 @@
       transform: translateY(-100%);
     }
 
-    .navbar.scrolled .logo { color: #17181c; }
+    .navbar.scrolled .logo { color: var(--color-ui-dark); }
     .navbar.scrolled .nav-links a { color: rgba(23,24,28,0.50); }
     .navbar.scrolled .nav-links a::after { background: rgba(23,24,28,0.40); }
     .navbar.scrolled .nav-links a:hover { color: rgba(23,24,28,0.90); }
     .navbar.scrolled .nav-links a[aria-current="page"] { color: rgba(23,24,28,0.90); }
     .navbar.scrolled .nav-links a[aria-current="page"]::after { background: rgba(23,24,28,0.30); }
-    .navbar.scrolled .cta { background: #17181c; color: #ffffff; }
+    .navbar.scrolled .cta { background: var(--color-ui-dark); color: #ffffff; }
     .navbar.scrolled .cta:hover { background: rgba(23,24,28,0.82); }
 
     .navbar .logo {
@@ -161,7 +161,7 @@
       font-weight: 500;
       font-size: 13px;
       letter-spacing: 0.01em;
-      color: #17181c;
+      color: var(--color-ui-dark);
       background: #ffffff;
       border: none;
       border-radius: 100px;
@@ -179,7 +179,7 @@
       width: 100%;
       min-width: 1440px;
       height: 540px;
-      background-color: #17181c;
+      background-color: var(--color-ui-dark);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -230,7 +230,7 @@
     .pv {
       width: 100%;
       min-width: 1440px;
-      background: #efede9;
+      background: var(--bg-2);
       padding: 80px 80px 100px;
     }
 
@@ -263,7 +263,7 @@
       font-family: 'Raleway', sans-serif;
       font-size: 24px;
       font-weight: 600;
-      color: #17191b;
+      color: var(--color-ui-dark);
       margin-bottom: 16px;
     }
 
@@ -272,7 +272,7 @@
       font-size: 16px;
       font-weight: 400;
       line-height: 1.7;
-      color: #444;
+      color: var(--color-text-muted);
     }
 
     .pv__body p + p { margin-top: 12px; }
@@ -289,20 +289,20 @@
 
     .pv__body strong {
       font-weight: 500;
-      color: #17191b;
+      color: var(--color-ui-dark);
     }
 
     .pv__body a {
-      color: #17191b;
+      color: var(--color-ui-dark);
       text-decoration: underline;
       text-underline-offset: 2px;
     }
 
-    .pv__body a:hover { color: #444; }
+    .pv__body a:hover { color: var(--color-text-muted); }
 
     /* ── FOOTER ── */
     .footer {
-      background: #17191b;
+      background: var(--color-ui-dark);
       width: 100%;
     }
 

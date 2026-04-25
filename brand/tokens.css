@@ -61,6 +61,7 @@
   /* Body — Instrument Sans, 400
      Brødtekst og intro-avsnitt. */
   --type-lead:       20px;   /* Intro-avsnitt under heading               */
+  --type-h3:         26px;   /* Korttitler og komponentheadings           */
   --type-body:       16px;   /* Standard brødtekst                        */
 
   /* UI — Instrument Sans
@@ -112,22 +113,32 @@
 
   /* FARGER
      ------------------------------------------ */
-  --color-dark:        #30332f;   /* Brand primær — tekst, knapper, mørk bakgrunn */
-  --color-light:       #f0efec;   /* Lys tekst/element på mørk bakgrunn           */
-  --color-text-dark:   #E7F3F1;   /* Primær tekstfarge på mørke seksjoner         */
-  --color-sage:        #cfdeca;   /* Sage grønn — aksenttekst på mørk             */
+  --color-dark:             #30332f;              /* Brand primær — tekst, knapper, mørk bakgrunn  */
+  --color-light:            #f0efec;              /* Lys tekst/element på mørk bakgrunn            */
+  --color-text-dark:        #ffffff;              /* Tekst på mørke seksjoner — ren hvit            */
+  --color-text-primary:     #1A1B1F;              /* Primær tekst på lys bakgrunn                  */
+  --color-text-secondary:   var(--color-text-primary);  /* Alias — kan differensieres senere       */
+  --color-text-muted:       #666666;              /* Sekundærtekst på lys bakgrunn                 */
+  --color-text-hint:        #999999;              /* Caption, placeholder, hint                    */
   --color-mid:         #928e87;   /* Varm midtgrå — sekundær tekst                */
   --color-white:       #ffffff;
   --color-border:      #1a1816;
+  --color-border-light: #ebebeb;  /* Lette dividers og borders                    */
+
+  /* MØRK UI-SKALA — tre nivåer for komponenter og interaksjon
+     Skiller seg fra --color-dark (varm brandfarge) ved å være kjøligere og skarpere.
+     ------------------------------------------ */
+  --color-ui-dark:  #17181c;   /* Skarp near-black — navbar CTA, popup bg, form-areas   */
+  --color-ui-mid:   #32353a;   /* Mid-dark surface — navbar scrolled, illustrasjons-bg   */
+  --color-ink:      #111111;   /* Base text/stroke — nav-lenker, hamburger, hover-border */
 
   /* BAKGRUNNER — 4 lyse nivåer + 2 mørke
      Lyse nivåer er varme nøytrale (beige/lin undertone fra #f5f4f1).
      Bruk i rekkefølge for å skape rytme mellom seksjoner.
      ------------------------------------------ */
-  --bg-0:       #f7f8fa;   /* Hero                                       */
-  --bg-1:       #f7f8fa;   /* Primærflate seksjoner                      */
-  --bg-2:       #f4f5f7;   /* Sekundærflate/Demoer                       */
-  --bg-3:       #f4f5f7;   /* Bransjer                                   */
+  --bg-0:       #f7f8fa;   /* Hero og primærseksjoner                    */
+  --bg-2:       #f4f5f7;   /* Sekundærflate, demoer og bransjer          */
+  --bg-cards:   #1A1B1F;   /* Mørke kort og seksjoner                    */
   --bg-dark:    #1e1b18;   /* Varm mørkbrun-svart — Prising             */
   --bg-footer:  #2c2926;   /* Varm footer                               */
 
@@ -141,7 +152,7 @@
 
   /* Beholdt for bakoverkompatibilitet — peker på nytt system */
   --color-bg-hero:     var(--bg-0);
-  --color-bg-section:  var(--bg-1);
+  --color-bg-section:  var(--bg-0);
   --color-bg-dark:     var(--bg-2);
 
 }

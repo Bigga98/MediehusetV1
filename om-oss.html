@@ -58,7 +58,7 @@
       align-items: center;
       padding: 5px 14px;
       background: var(--color-dark);
-      color: #cfdeca;
+      color: var(--color-white);
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 400;
@@ -79,7 +79,7 @@
     .omoss-hero__sub {
       font-family: var(--font-body);
       font-size: var(--type-lead);
-      color: #555;
+      color: var(--color-text-muted);
       line-height: var(--lh-body);
       max-width: 480px;
       margin-bottom: var(--space-xl);
@@ -98,7 +98,7 @@
       font-size: var(--type-label);
       color: #fff;
       text-decoration: none;
-      background-image: linear-gradient(120deg, #30332f 0%, #30332f 45%, #3d5038 75%, #253240 100%);
+      background-image: linear-gradient(120deg, var(--color-dark) 0%, var(--color-dark) 45%, #3d5038 75%, #253240 100%);
       background-size: 250% 100%;
       background-position: left center;
       transition: background-position 0.4s ease;
@@ -139,14 +139,14 @@
     .omoss-hero__stat-label {
       font-family: var(--font-body);
       font-size: var(--type-body);
-      color: #777;
+      color: var(--color-text-muted);
       line-height: var(--lh-body);
     }
 
     /* ── STORY SEKSJON ──────────────────────── */
     .omoss-story {
       width: 1440px;
-      background: var(--bg-1);
+      background: var(--bg-0);
       padding: 96px var(--grid-margin);
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -160,7 +160,7 @@
       display: inline-flex;
       padding: 5px 14px;
       background: var(--color-dark);
-      color: #cfdeca;
+      color: var(--color-white);
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 400;
@@ -181,7 +181,7 @@
     .story-body {
       font-family: var(--font-body);
       font-size: var(--type-body);
-      color: #555;
+      color: var(--color-text-muted);
       line-height: var(--lh-body);
     }
 
@@ -215,7 +215,7 @@
 
     .story-highlight__icon svg {
       width: 18px; height: 18px;
-      stroke: #cfdeca; fill: none;
+      stroke: var(--color-white); fill: none;
       stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
     }
 
@@ -230,7 +230,7 @@
     .story-highlight__desc {
       font-family: var(--font-body);
       font-size: var(--type-label);
-      color: #777;
+      color: var(--color-text-muted);
       line-height: var(--lh-body);
     }
 
@@ -254,7 +254,7 @@
       display: inline-flex;
       padding: 5px 14px;
       background: var(--color-dark);
-      color: #cfdeca;
+      color: var(--color-white);
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 400;
@@ -273,7 +273,7 @@
     .verdier-sub {
       font-family: var(--font-body);
       font-size: var(--type-body);
-      color: #666;
+      color: var(--color-text-muted);
       line-height: var(--lh-body);
       max-width: 440px;
     }
@@ -315,7 +315,7 @@
     .verdi-kort__desc {
       font-family: var(--font-body);
       font-size: var(--type-body);
-      color: #666;
+      color: var(--color-text-muted);
       line-height: var(--lh-body);
     }
 
@@ -336,7 +336,7 @@
       display: inline-flex;
       padding: 5px 14px;
       background: var(--color-dark);
-      color: #cfdeca;
+      color: var(--color-white);
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 400;
@@ -357,13 +357,13 @@
     .fokus-body {
       font-family: var(--font-body);
       font-size: var(--type-body);
-      color: #555;
+      color: var(--color-text-muted);
       line-height: var(--lh-body);
       margin-bottom: var(--space-xl);
     }
 
     .fokus-quote {
-      background: var(--bg-1);
+      background: var(--bg-0);
       border-radius: 12px;
       padding: var(--space-xl);
       position: relative;
@@ -401,7 +401,7 @@
       gap: var(--space-md);
       align-items: flex-start;
       padding: var(--space-lg);
-      background: var(--bg-1);
+      background: var(--bg-0);
       border-radius: 12px;
     }
 
@@ -415,7 +415,7 @@
 
     .fokus-punkt__icon svg {
       width: 16px; height: 16px;
-      stroke: #cfdeca; fill: none;
+      stroke: var(--color-white); fill: none;
       stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
     }
 
@@ -430,7 +430,7 @@
     .fokus-punkt__desc {
       font-family: var(--font-body);
       font-size: var(--type-label);
-      color: #777;
+      color: var(--color-text-muted);
       line-height: var(--lh-body);
     }
 
@@ -469,21 +469,21 @@
       max-width: 660px;
       position: relative;
     }
-    .footer-cta__heading em { font-style: italic; color: #9da89a; }
+    .footer-cta__heading em { font-style: italic; color: var(--color-white); }
     .footer-cta__eyebrow {
       display: block;
       font-family: var(--font-ui);
       font-size: 11px; font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #6e7a6b;
+      color: var(--color-white);
       margin-bottom: 20px;
     }
     .footer-cta__eyebrow::before {
       content: '';
       display: inline-block;
       width: 24px; height: 1px;
-      background: #6e7a6b;
+      background: var(--color-white);
       vertical-align: middle;
       margin-right: 10px; margin-bottom: 1px;
     }
@@ -519,7 +519,7 @@
     .footer-cta__note {
       font-family: var(--font-ui);
       font-size: var(--type-caption);
-      color: #6e7270;
+      color: var(--color-white);
       letter-spacing: var(--ls-caps);
       text-transform: uppercase;
     }
@@ -533,13 +533,13 @@
       font-family: var(--font-heading);
       font-weight: 500;
       font-size: 22px;
-      color: #d8dbd6;
+      color: var(--color-white);
       letter-spacing: -0.01em;
     }
     .footer-brand__tagline {
       font-family: var(--font-body);
       font-size: var(--type-label);
-      color: #777b77;
+      color: var(--color-white);
       line-height: var(--lh-body);
       max-width: 260px;
       margin-top: var(--space-sm);
@@ -565,13 +565,13 @@
       stroke: #909590; fill: none; stroke-width: 1.8;
       transition: stroke 0.2s;
     }
-    .social-link:hover svg { stroke: #c0c5be; }
+    .social-link:hover svg { stroke: var(--color-white); }
     .footer-col__label {
       font-family: var(--font-ui);
       font-size: 11px; font-weight: 500;
       letter-spacing: var(--ls-caps);
       text-transform: uppercase;
-      color: #7a7d76;
+      color: var(--color-white);
       margin-bottom: var(--space-md);
     }
     .footer-col__list {
@@ -581,11 +581,11 @@
     .footer-col__list a {
       font-family: var(--font-body);
       font-size: var(--type-label);
-      color: #868891;
+      color: var(--color-white);
       text-decoration: none;
       transition: color 0.15s;
     }
-    .footer-col__list a:hover { color: #d3d7d8; }
+    .footer-col__list a:hover { color: var(--color-white); }
     .footer-bottom {
       padding: var(--space-md) var(--grid-margin);
       border-top: 1px solid rgba(255,255,255,0.07);
@@ -594,17 +594,17 @@
     .footer-bottom__copy {
       font-family: var(--font-ui);
       font-size: var(--type-caption);
-      color: #6a6d68;
+      color: var(--color-white);
     }
     .footer-bottom__links { display: flex; gap: var(--space-lg); }
     .footer-bottom__links a {
       font-family: var(--font-ui);
       font-size: var(--type-caption);
-      color: #6a6d68;
+      color: var(--color-white);
       text-decoration: none;
       transition: color 0.15s;
     }
-    .footer-bottom__links a:hover { color: #a0a4a0; }
+    .footer-bottom__links a:hover { color: var(--color-white); }
 
     /* ── POPUP ──────────────────────────────── */
     .popup-overlay {
@@ -682,26 +682,26 @@
       position: absolute; top: 14px; right: 14px;
       width: 30px; height: 30px;
       background: #f2f2f2; border: none; border-radius: 50%;
-      cursor: pointer; color: #777; font-size: 17px; line-height: 1;
+      cursor: pointer; color: var(--color-text-muted); font-size: 17px; line-height: 1;
       display: flex; align-items: center; justify-content: center;
       transition: background 0.15s, color 0.15s;
     }
-    .popup-close:hover { background: #e6e6e6; color: #111; }
+    .popup-close:hover { background: var(--color-border-light); color: var(--color-ink); }
     .popup-right-heading {
       font-family: var(--font-heading);
       font-size: 26px; font-weight: 600;
-      letter-spacing: -0.01em; color: #17181c; margin-bottom: 4px;
+      letter-spacing: -0.01em; color: var(--color-ui-dark); margin-bottom: 4px;
     }
     .popup-right-sub {
       font-family: var(--font-ui);
-      font-size: 13px; color: #999; margin-bottom: 26px;
+      font-size: 13px; color: var(--color-text-hint); margin-bottom: 26px;
     }
     .popup-form { display: flex; flex-direction: column; gap: 11px; }
     .popup-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
     .popup-input, .popup-textarea {
       width: 100%; padding: 0 14px; height: 44px;
       background: #f7f7f7; border: 1.5px solid transparent; border-radius: 10px;
-      font-family: var(--font-ui); font-size: 14px; color: #17181c;
+      font-family: var(--font-ui); font-size: 14px; color: var(--color-ui-dark);
       outline: none;
       transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
     }
@@ -726,15 +726,15 @@
     }
     .popup-success-icon {
       width: 56px; height: 56px;
-      background: #f0fdf4; border-radius: 50%;
+      background: var(--bg-2); border-radius: 50%;
       display: inline-flex; align-items: center; justify-content: center;
       margin-bottom: 20px;
     }
     .popup-success h3 {
       font-family: var(--font-heading);
-      font-size: 24px; font-weight: 600; color: #17181c; margin-bottom: 8px;
+      font-size: 24px; font-weight: 600; color: var(--color-ui-dark); margin-bottom: 8px;
     }
-    .popup-success p { font-family: var(--font-ui); font-size: 14px; color: #999; }
+    .popup-success p { font-family: var(--font-ui); font-size: 14px; color: var(--color-text-hint); }
     @media (max-width: 600px) {
       .popup-left { display: none; }
       .popup-right { padding: 36px 24px 32px; }
