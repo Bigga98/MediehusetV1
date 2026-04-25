@@ -54,7 +54,7 @@
       font-weight: 600;
       font-size: 16px;
       letter-spacing: 0.1em;
-      color: #141414;
+      color: var(--color-ink);
       text-decoration: none;
       margin-right: auto;
     }
@@ -136,7 +136,7 @@
       font-size: 11px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: #bbb;
+      color: var(--color-text-hint);
       border-left: 1px solid var(--color-text-hint);
       padding-left: 16px;
       margin-left: -12px;
@@ -152,7 +152,7 @@
       font-family: 'Instrument Sans', Helvetica, sans-serif;
       font-weight: 500;
       font-size: 14px;
-      color: #0c0c0c;
+      color: var(--color-ink);
       text-decoration: none;
       white-space: nowrap;
       transition: background var(--transition-fast), color var(--transition-fast);
@@ -223,7 +223,7 @@
       border-bottom: none;
     }
     .mg-nav__drawer a.active {
-      color: #2D5A73;
+      color: var(--color-dark);
     }
     .mg-nav__drawer a.meta {
       font-size: 14px;
@@ -480,7 +480,7 @@
       .popup-backdrop{position:absolute;inset:0;background:rgba(8,9,11,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
       .popup-card{position:relative;z-index: var(--z-base);display:flex;max-width:780px;width:100%;overflow:hidden;border-radius:4px;box-shadow:var(--shadow-xl);transform:translateY(24px) scale(.97);transition:transform var(--transition-spring)}
       .popup-overlay.open .popup-card{transform:translateY(0) scale(1)}
-      .popup-left{flex:0 0 260px;background:#0a0b0e;padding:44px 36px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid rgba(255,255,255,.06)}
+      .popup-left{flex:0 0 260px;background:var(--color-ui-dark);padding:44px 36px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid rgba(255,255,255,.06)}
       .popup-brand-dot{display:none}
       .popup-left-heading{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;line-height:1.2;letter-spacing:-.02em;color:var(--color-white);margin-bottom:12px}
       .popup-left-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;line-height:1.7;color:rgba(255,255,255,.35)}

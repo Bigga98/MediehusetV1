@@ -463,7 +463,7 @@
       font-family: var(--font-heading);
       font-weight: 500;
       font-size: 58px;
-      color: #eef0f1;
+      color: var(--bg-2);
       line-height: var(--lh-heading);
       letter-spacing: var(--ls-h2);
       max-width: 660px;
@@ -499,7 +499,7 @@
       align-items: center;
       gap: var(--icon-gap);
       padding: var(--btn-padding-y) var(--btn-padding-x);
-      background: #eef0f1;
+      background: var(--bg-2);
       border-radius: var(--radius-full);
       font-family: var(--font-ui);
       font-weight: 500;
@@ -562,7 +562,7 @@
     }
     .social-link svg {
       width: 13px; height: 13px;
-      stroke: #909590; fill: none; stroke-width: 1.8;
+      stroke: var(--color-mid); fill: none; stroke-width: 1.8;
       transition: stroke var(--transition-base);
     }
     .social-link:hover svg { stroke: var(--color-white); }
@@ -681,7 +681,7 @@
     .popup-close {
       position: absolute; top: 14px; right: 14px;
       width: 30px; height: 30px;
-      background: #f2f2f2; border: none; border-radius: 50%;
+      background: var(--surface-light); border: none; border-radius: 50%;
       cursor: pointer; color: var(--color-text-muted); font-size: 17px; line-height: 1;
       display: flex; align-items: center; justify-content: center;
       transition: background var(--transition-fast), color var(--transition-fast);
@@ -700,13 +700,13 @@
     .popup-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
     .popup-input, .popup-textarea {
       width: 100%; padding: 0 14px; height: 44px;
-      background: #f7f7f7; border: 1.5px solid transparent; border-radius: 10px;
+      background: var(--bg-0); border: 1.5px solid transparent; border-radius: 10px;
       font-family: var(--font-ui); font-size: 14px; color: var(--color-ui-dark);
       outline: none;
       transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
     }
     .popup-textarea { height: auto; padding: 12px 14px; min-height: 110px; resize: none; }
-    .popup-input::placeholder, .popup-textarea::placeholder { color: #bbb; }
+    .popup-input::placeholder, .popup-textarea::placeholder { color: var(--color-text-hint); }
     .popup-input:focus, .popup-textarea:focus {
       border-color: var(--color-dark);
       background: var(--color-white);

@@ -258,7 +258,7 @@
       box-shadow: var(--shadow-lg);
     }
     .browser-bar {
-      background: #f0f0f0;
+      background: var(--surface-light);
       padding: 9px 12px;
       display: flex;
       align-items: center;
@@ -270,7 +270,7 @@
     .browser-dot:nth-child(3) { background: #28c840; }
     .browser-url {
       flex: 1; height: 16px;
-      background: #e2e2e2;
+      background: var(--color-border-light);
       border-radius: 4px;
       margin-left: 8px;
     }
@@ -547,7 +547,7 @@
       font-family: var(--font-ui);
       font-size: var(--type-caption);
       font-weight: 500;
-      color: #b0bcc8;
+      color: var(--color-text-hint);
       letter-spacing: var(--ls-caps);
       text-transform: uppercase;
     }
@@ -768,7 +768,7 @@
     }
     .social-link svg {
       width: 13px; height: 13px;
-      stroke: #909590; fill: none; stroke-width: 1.8;
+      stroke: var(--color-mid); fill: none; stroke-width: 1.8;
       transition: stroke var(--transition-base);
     }
     .social-link:hover svg { stroke: var(--color-white); }
@@ -889,7 +889,7 @@
     .popup-close {
       position: absolute; top: 14px; right: 14px;
       width: 30px; height: 30px;
-      background: #f2f2f2; border: none; border-radius: 50%;
+      background: var(--surface-light); border: none; border-radius: 50%;
       cursor: pointer; color: var(--color-text-muted); font-size: 17px; line-height: 1;
       display: flex; align-items: center; justify-content: center;
       transition: background var(--transition-fast), color var(--transition-fast);
@@ -908,13 +908,13 @@
     .popup-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
     .popup-input, .popup-textarea {
       width: 100%; padding: 0 14px; height: 44px;
-      background: #f7f7f7; border: 1.5px solid transparent; border-radius: 10px;
+      background: var(--bg-0); border: 1.5px solid transparent; border-radius: 10px;
       font-family: var(--font-ui); font-size: 14px; color: var(--color-ui-dark);
       outline: none;
       transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
     }
     .popup-textarea { height: auto; padding: 12px 14px; min-height: 110px; resize: none; }
-    .popup-input::placeholder, .popup-textarea::placeholder { color: #bbb; }
+    .popup-input::placeholder, .popup-textarea::placeholder { color: var(--color-text-hint); }
     .popup-input:focus, .popup-textarea:focus {
       border-color: var(--color-dark);
       background: var(--color-white);
@@ -1108,7 +1108,7 @@
           <div class="ba-label ba-label--before">Før</div>
           <div class="ba-row" style="background:var(--color-border-light); height:26px;"></div>
           <div class="ba-row" style="background:var(--color-border-light); height:56px;"></div>
-          <div class="ba-row" style="background:#e4e4e4; height:18px; width:70%;"></div>
+          <div class="ba-row" style="background:var(--color-border-light); height:18px; width:70%;"></div>
           <div class="ba-row" style="background:var(--color-border-light); height:18px; width:85%;"></div>
           <div class="ba-row" style="background:var(--color-border-light); height:36px;"></div>
           <div class="ba-row" style="background:var(--color-border-light); height:22px; width:60%;"></div>

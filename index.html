@@ -1138,7 +1138,7 @@
       font-family: var(--font-neue);
       font-weight: 400;
       font-size: clamp(28px, 3.5vw, 42px);
-      color: #080808;
+      color: var(--color-ink);
       line-height: 1.07;
       letter-spacing: -0.03em;
       max-width: 580px;
@@ -2268,7 +2268,7 @@
     .popup-overlay.open .popup-card { transform: translateY(0) scale(1); }
 
     .popup-left {
-      flex: 0 0 360px; background: #0a0b0e;
+      flex: 0 0 360px; background: var(--color-ui-dark);
       position: relative; overflow: hidden;
       border-right: 1px solid rgba(255,255,255,0.06);
     }
@@ -2671,7 +2671,7 @@
       font-weight: 400;
       letter-spacing: -0.03em;
       line-height: 1.07;
-      color: #000000;
+      color: var(--color-ink);
       margin-top: var(--space-sm);
       margin-bottom: var(--space-sm);
     }
@@ -2710,8 +2710,8 @@
       border-radius: var(--radius-sm);
       padding: 1px;
       background: linear-gradient(to bottom, rgba(var(--color-text-primary-rgb),0.22) 0%, rgba(var(--color-text-primary-rgb),0.18) 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box, linear-gradient(var(--color-white) 0 0);
+      mask: linear-gradient(var(--color-white) 0 0) content-box, linear-gradient(var(--color-white) 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       pointer-events: none;
@@ -2885,7 +2885,7 @@
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #9ca3af;
+      color: var(--color-text-hint);
     }
     .boks__tittel {
       font-family: var(--font-neue);
@@ -4149,7 +4149,7 @@
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #9ca3af;
+      color: var(--color-text-hint);
     }
 
     .p2-inner {
@@ -4692,28 +4692,28 @@
           </div>
           <div class="konv__glass" style="border-radius:28px; padding:10px; border:1px solid rgba(200,225,220,0.5); background:rgba(255,255,255,0.12); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:var(--shadow-lg);">
             <div class="konv__stats-card" style="background:var(--color-white); border-radius:18px; padding:44px 48px; width:500px; display:flex; flex-direction:column; gap:24px;">
-              <p style="font-family:var(--font-neue); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#9ca3af; margin:0;">Konverteringsrate</p>
+              <p style="font-family:var(--font-neue); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text-hint); margin:0;">Konverteringsrate</p>
               <div style="display:flex; flex-direction:column; gap:14px;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-family:var(--font-neue); font-size:15px; color:#6b7280;">Gjennomsnittlig nettside</span>
+                  <span style="font-family:var(--font-neue); font-size:15px; color:var(--color-text-hint);">Gjennomsnittlig nettside</span>
                   <span style="font-family:var(--font-neue); font-size:16px; font-weight:700; color:var(--color-text-primary);">~1%</span>
                 </div>
-                <div style="height:1px; background:#f3f4f6;"></div>
+                <div style="height:1px; background:var(--bg-0);"></div>
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-family:var(--font-neue); font-size:15px; color:#6b7280;">Optimalisert nettside</span>
+                  <span style="font-family:var(--font-neue); font-size:15px; color:var(--color-text-hint);">Optimalisert nettside</span>
                   <span style="font-family:var(--font-neue); font-size:16px; font-weight:700; color:var(--color-text-primary);">3&#8211;5%</span>
                 </div>
-                <div style="height:1px; background:#f3f4f6;"></div>
+                <div style="height:1px; background:var(--bg-0);"></div>
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-family:var(--font-neue); font-size:15px; color:#6b7280;">Dedikert landingsside</span>
+                  <span style="font-family:var(--font-neue); font-size:15px; color:var(--color-text-hint);">Dedikert landingsside</span>
                   <span style="font-family:var(--font-neue); font-size:16px; font-weight:700; color:var(--color-text-primary);">5%+</span>
                 </div>
               </div>
-              <div style="border-top:1px solid #f3f4f6; padding-top:14px; display:flex; align-items:center; gap:8px;">
-                <span style="font-family:var(--font-neue); font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#9ca3af;">Kilde</span>
-                <span style="height:12px; width:1px; background:#e5e7eb;"></span>
-                <span style="font-family:var(--font-neue); font-size:11px; font-weight:500; color:#374151; background:#f9fafb; border:1px solid #e5e7eb; border-radius:3px; padding:2px 7px;">Unbounce</span>
-                <span style="font-family:var(--font-neue); font-size:11px; font-weight:500; color:#374151; background:#f9fafb; border:1px solid #e5e7eb; border-radius:3px; padding:2px 7px;">HubSpot</span>
+              <div style="border-top:1px solid var(--bg-0); padding-top:14px; display:flex; align-items:center; gap:8px;">
+                <span style="font-family:var(--font-neue); font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-text-hint);">Kilde</span>
+                <span style="height:12px; width:1px; background:var(--color-border-light);"></span>
+                <span style="font-family:var(--font-neue); font-size:11px; font-weight:500; color:var(--color-text-muted); background:var(--bg-0); border:1px solid var(--color-border-light); border-radius:3px; padding:2px 7px;">Unbounce</span>
+                <span style="font-family:var(--font-neue); font-size:11px; font-weight:500; color:var(--color-text-muted); background:var(--bg-0); border:1px solid var(--color-border-light); border-radius:3px; padding:2px 7px;">HubSpot</span>
               </div>
             </div>
           </div>
