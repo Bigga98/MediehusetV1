@@ -250,8 +250,8 @@
         border-bottom: none;
       }
       .mg-nav.scrolled {
-        background: rgba(255, 255, 255, 0.96);
-        border-bottom: 1px solid rgba(0,0,0,0.06);
+        background: var(--color-white);
+        border-bottom: 1px solid var(--color-border-light);
       }
       .mg-nav__drawer {
         top: 60px;
