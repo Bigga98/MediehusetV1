@@ -113,17 +113,15 @@
 
   /* FARGER
      ------------------------------------------ */
-  --color-dark:             #30332f;              /* Brand primær — tekst, knapper, mørk bakgrunn  */
-  --color-light:            #f0efec;              /* Lys tekst/element på mørk bakgrunn            */
-  --color-text-dark:        #ffffff;              /* Tekst på mørke seksjoner — ren hvit            */
-  --color-text-primary:     #1A1B1F;              /* Primær tekst på lys bakgrunn                  */
-  --color-text-secondary:   var(--color-text-primary);  /* Alias — kan differensieres senere       */
-  --color-text-muted:       #666666;              /* Sekundærtekst på lys bakgrunn                 */
-  --color-text-hint:        #999999;              /* Caption, placeholder, hint                    */
-  --color-mid:         #928e87;   /* Varm midtgrå — sekundær tekst                */
-  --color-white:       #ffffff;
-  --color-border:      #1a1816;
-  --color-border-light: #ebebeb;  /* Lette dividers og borders                    */
+  --color-dark:             #30332f;   /* Brand primær — tekst, knapper, mørk bakgrunn  */
+  --color-light:            #f0efec;   /* Varm lys — tekst/elementer på mørk bakgrunn   */
+  --color-white:            #ffffff;   /* Ren hvit                                       */
+  --color-text-dark:        var(--color-white);  /* Tekst på mørke seksjoner             */
+  --color-text-primary:     #1A1B1F;   /* Primær tekst på lys bakgrunn                  */
+  --color-text-muted:       #666666;   /* Sekundærtekst på lys bakgrunn                 */
+  --color-text-hint:        #999999;   /* Caption, placeholder, hint                    */
+  --color-mid:              #928e87;   /* Varm midtgrå — spesielle UI-elementer         */
+  --color-border-light:     #ebebeb;   /* Lette dividers og borders                     */
 
   /* MØRK UI-SKALA — tre nivåer for komponenter og interaksjon
      Skiller seg fra --color-dark (varm brandfarge) ved å være kjøligere og skarpere.
@@ -150,9 +148,5 @@
   --surface-dark:     #252525;   /* Kort på bg-dark                      */
   --surface-dark-hi:  #2e2e2e;   /* Fremhevet kort på bg-dark            */
 
-  /* Beholdt for bakoverkompatibilitet — peker på nytt system */
-  --color-bg-hero:     var(--bg-0);
-  --color-bg-section:  var(--bg-0);
-  --color-bg-dark:     var(--bg-2);
 
 }
