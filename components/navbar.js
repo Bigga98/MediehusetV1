@@ -376,29 +376,11 @@
   let lastScrollY = window.scrollY;
   let ticking = false;
 
-  function updateNavBg(scrollY) {
-    const isMobile = window.innerWidth <= 1024;
-    if (isMobile) {
-      const hero = document.querySelector('.hero');
-      const heroH = hero ? hero.offsetHeight : window.innerHeight;
-      const progress = Math.min(scrollY / heroH, 1);
-      const r = Math.round(247 + (255 - 247) * progress);
-      const g = Math.round(248 + (255 - 248) * progress);
-      const b = Math.round(250 + (255 - 250) * progress);
-      nav.style.background = `rgb(${r},${g},${b})`;
-    } else {
-      nav.style.background = '';
-    }
-  }
-
-  updateNavBg(window.scrollY);
-
   window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(() => {
         const currentScrollY = window.scrollY;
         nav.classList.toggle('scrolled', currentScrollY > 20);
-        updateNavBg(currentScrollY);
 
         if (currentScrollY > lastScrollY && currentScrollY > 80) {
           nav.classList.add('nav-hidden');
