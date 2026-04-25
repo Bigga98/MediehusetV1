@@ -140,46 +140,42 @@
 
   /* FARGER
      ------------------------------------------ */
-  --color-dark:             #30332f;   /* Brand primær — tekst, knapper, mørk bakgrunn  */
-  --color-light:            #f0efec;   /* Varm lys — tekst/elementer på mørk bakgrunn   */
+  --color-dark:             #331e1b;   /* Brand primær — tekst, knapper, mørk bakgrunn  */
+  --color-accent:           #9e7468;   /* Terrakotta aksent — mid-tone fra paletten     */
+  --color-light:            #faf8f5;   /* Varm lys — tekst/elementer på mørk bakgrunn   */
   --color-white:            #ffffff;   /* Ren hvit                                       */
   --color-text-dark:        var(--color-white);  /* Tekst på mørke seksjoner             */
-  --color-text-primary:     #1A1B1F;   /* Primær tekst på lys bakgrunn                  */
+  --color-text-primary:     #331e1b;   /* Primær tekst på lys bakgrunn                  */
 
   /* RGB-kanaler — for opacity-varianter via rgba(var(--X-rgb), alpha)
      ------------------------------------------ */
   --color-white-rgb:        255, 255, 255;
-  --color-text-primary-rgb: 26, 27, 31;
-  --color-dark-rgb:         48, 51, 47;
-  --color-text-muted:       #666666;   /* Sekundærtekst på lys bakgrunn                 */
-  --color-text-hint:        #999999;   /* Caption, placeholder, hint                    */
-  --color-mid:              #928e87;   /* Varm midtgrå — spesielle UI-elementer         */
-  --color-border-light:     #ebebeb;   /* Lette dividers og borders                     */
+  --color-text-primary-rgb: 51, 30, 27;
+  --color-dark-rgb:         51, 30, 27;
+  --color-text-muted:       #7a5148;   /* Sekundærtekst — avledet fra aksent            */
+  --color-text-hint:        #a88279;   /* Caption, placeholder, hint                    */
+  --color-mid:              #9e7468;   /* Varm mid-tone aksent                          */
+  --color-border-light:     #ddd5cd;   /* Lette dividers og borders                     */
 
   /* MØRK UI-SKALA — tre nivåer for komponenter og interaksjon
-     Skiller seg fra --color-dark (varm brandfarge) ved å være kjøligere og skarpere.
      ------------------------------------------ */
-  --color-ui-dark:  #17181c;   /* Skarp near-black — navbar CTA, popup bg, form-areas   */
-  --color-ui-mid:   #32353a;   /* Mid-dark surface — navbar scrolled, illustrasjons-bg   */
-  --color-ink:      #111111;   /* Base text/stroke — nav-lenker, hamburger, hover-border */
+  --color-ui-dark:  #271614;   /* Skarp near-black — navbar CTA, popup bg, form-areas   */
+  --color-ui-mid:   #3d2420;   /* Mid-dark surface — navbar scrolled, illustrasjons-bg   */
+  --color-ink:      #1a0f0d;   /* Base text/stroke — nav-lenker, hamburger, hover-border */
 
-  /* BAKGRUNNER — 4 lyse nivåer + 2 mørke
-     Lyse nivåer er varme nøytrale (beige/lin undertone fra #f5f4f1).
-     Bruk i rekkefølge for å skape rytme mellom seksjoner.
+  /* BAKGRUNNER
      ------------------------------------------ */
-  --bg-0:       #f7f8fa;   /* Hero og primærseksjoner                    */
-  --bg-2:       #f4f5f7;   /* Sekundærflate, demoer og bransjer          */
-  --bg-cards:   #1A1B1F;   /* Mørke kort og seksjoner                    */
-  --bg-dark:    #1e1b18;   /* Varm mørkbrun-svart — Prising             */
-  --bg-footer:  #2c2926;   /* Varm footer                               */
+  --bg-0:       #faf8f5;   /* Hero og primærseksjoner                    */
+  --bg-2:       #e9e2dc;   /* Sekundærflate, demoer og bransjer          */
+  --bg-cards:   #331e1b;   /* Mørke kort og seksjoner                    */
+  --bg-dark:    #271614;   /* Varm mørkbrun-svart — Prising             */
+  --bg-footer:  #1a0f0d;   /* Varm footer                               */
 
   /* Surface-farger (kort/bokser oppå seksjoner)
-     Lyse seksjoner: --surface-light = nøytral lys grå på hvit bg
-     Mørke seksjoner: --surface-dark / --surface-dark-hi = litt lysere enn bg
      ------------------------------------------ */
-  --surface-light:    #f4f4f4;   /* Kort på hvit bakgrunn                 */
-  --surface-dark:     #252525;   /* Kort på bg-dark                      */
-  --surface-dark-hi:  #2e2e2e;   /* Fremhevet kort på bg-dark            */
+  --surface-light:    #e9e2dc;   /* Kort på lys bakgrunn                  */
+  --surface-dark:     #3d2420;   /* Kort på bg-dark                      */
+  --surface-dark-hi:  #472c28;   /* Fremhevet kort på bg-dark            */
 
 
 }
