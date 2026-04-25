@@ -101,14 +101,14 @@
       background-image: linear-gradient(120deg, var(--color-dark) 0%, var(--color-dark) 45%, #3d5038 75%, #253240 100%);
       background-size: 250% 100%;
       background-position: left center;
-      transition: background-position 0.4s ease;
+      transition: background-position var(--transition-base);
     }
     .omoss-hero__cta:hover { background-position: right center; }
     .omoss-hero__cta svg {
       width: 13px; height: 13px;
       stroke: currentColor; fill: none;
       stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
-      transition: transform 0.18s;
+      transition: transform var(--transition-fast);
     }
     .omoss-hero__cta:hover svg { transform: translateX(3px); }
 
@@ -506,14 +506,14 @@
       font-size: var(--type-label);
       color: var(--color-dark);
       text-decoration: none;
-      transition: background 0.18s, transform 0.18s;
+      transition: background var(--transition-fast), transform var(--transition-fast);
       white-space: nowrap;
     }
     .footer-cta__btn:hover { background: #fff; transform: translateY(-1px); }
     .footer-cta__btn svg {
       width: 13px; height: 13px;
       stroke: currentColor; fill: none; stroke-width: 2;
-      transition: transform 0.18s;
+      transition: transform var(--transition-fast);
     }
     .footer-cta__btn:hover svg { transform: translate(2px, -2px); }
     .footer-cta__note {
@@ -553,7 +553,7 @@
       border: 1px solid rgba(255,255,255,0.14);
       display: flex; align-items: center; justify-content: center;
       text-decoration: none;
-      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      transition: border-color var(--transition-base), background var(--transition-base), transform var(--transition-base);
     }
     .social-link:hover {
       border-color: rgba(255,255,255,0.38);
@@ -563,7 +563,7 @@
     .social-link svg {
       width: 13px; height: 13px;
       stroke: #909590; fill: none; stroke-width: 1.8;
-      transition: stroke 0.2s;
+      transition: stroke var(--transition-base);
     }
     .social-link:hover svg { stroke: var(--color-white); }
     .footer-col__label {
@@ -583,7 +583,7 @@
       font-size: var(--type-label);
       color: var(--color-white);
       text-decoration: none;
-      transition: color 0.15s;
+      transition: color var(--transition-fast);
     }
     .footer-col__list a:hover { color: var(--color-white); }
     .footer-bottom {
@@ -602,17 +602,17 @@
       font-size: var(--type-caption);
       color: var(--color-white);
       text-decoration: none;
-      transition: color 0.15s;
+      transition: color var(--transition-fast);
     }
     .footer-bottom__links a:hover { color: var(--color-white); }
 
     /* ── POPUP ──────────────────────────────── */
     .popup-overlay {
-      position: fixed; inset: 0; z-index: 9999;
+      position: fixed; inset: 0; z-index: var(--z-toast);
       display: flex; align-items: center; justify-content: center;
       padding: 24px;
       opacity: 0; visibility: hidden;
-      transition: opacity 0.35s ease, visibility 0.35s ease;
+      transition: opacity var(--transition-slow), visibility var(--transition-slow);
     }
     .popup-overlay.open { opacity: 1; visibility: visible; }
     .popup-backdrop {
@@ -622,12 +622,12 @@
       -webkit-backdrop-filter: blur(6px);
     }
     .popup-card {
-      position: relative; z-index: 1;
+      position: relative; z-index: var(--z-base);
       display: flex; max-width: 860px; width: 100%;
       border-radius: 24px; overflow: hidden;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.06);
+      box-shadow: var(--shadow-xl);
       transform: translateY(20px) scale(0.96);
-      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+      transition: transform var(--transition-spring);
     }
     .popup-overlay.open .popup-card { transform: translateY(0) scale(1); }
     .popup-left {
@@ -649,7 +649,7 @@
       width: 180px; height: 180px;
       border-radius: 50%; background: rgba(255,255,255,0.03);
     }
-    .popup-left-top { position: relative; z-index: 1; }
+    .popup-left-top { position: relative; z-index: var(--z-base); }
     .popup-brand-dot {
       width: 36px; height: 36px;
       background: rgba(255,255,255,0.1);
@@ -667,7 +667,7 @@
       font-size: 13px; line-height: 1.65;
       color: rgba(255,255,255,0.5);
     }
-    .popup-trust { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; }
+    .popup-trust { position: relative; z-index: var(--z-base); display: flex; flex-direction: column; gap: 12px; }
     .popup-trust-item {
       display: flex; align-items: center; gap: 10px;
       font-family: var(--font-ui); font-size: 13px;
@@ -684,7 +684,7 @@
       background: #f2f2f2; border: none; border-radius: 50%;
       cursor: pointer; color: var(--color-text-muted); font-size: 17px; line-height: 1;
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.15s, color 0.15s;
+      transition: background var(--transition-fast), color var(--transition-fast);
     }
     .popup-close:hover { background: var(--color-border-light); color: var(--color-ink); }
     .popup-right-heading {
@@ -703,23 +703,23 @@
       background: #f7f7f7; border: 1.5px solid transparent; border-radius: 10px;
       font-family: var(--font-ui); font-size: 14px; color: var(--color-ui-dark);
       outline: none;
-      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+      transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
     }
     .popup-textarea { height: auto; padding: 12px 14px; min-height: 110px; resize: none; }
     .popup-input::placeholder, .popup-textarea::placeholder { color: #bbb; }
     .popup-input:focus, .popup-textarea:focus {
       border-color: var(--color-dark);
       background: #fff;
-      box-shadow: 0 0 0 3px rgba(48,51,47,0.07);
+      box-shadow: var(--shadow-focus);
     }
     .popup-submit {
       width: 100%; height: 48px;
       background: var(--color-dark); border: none; border-radius: 12px;
       font-family: var(--font-ui); font-size: 14px; font-weight: 500;
       color: #fff; letter-spacing: 0.02em; cursor: pointer;
-      transition: background 0.15s, transform 0.15s, box-shadow 0.15s; margin-top: 2px;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast); margin-top: 2px;
     }
-    .popup-submit:hover { background: #1e2119; box-shadow: 0 4px 16px rgba(48,51,47,0.2); }
+    .popup-submit:hover { background: #1e2119; box-shadow: var(--shadow-sm); }
     .popup-submit:active { transform: scale(0.98); }
     .popup-success {
       display: none; text-align: center; padding: 48px 0 24px;

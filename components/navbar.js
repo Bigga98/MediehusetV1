@@ -33,11 +33,11 @@
       display: flex;
       align-items: center;
       padding: 0 24px;
-      z-index: 1000;
+      z-index: var(--z-overlay);
       background: rgba(247, 248, 250, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0,0,0,0.06);
-      transition: background 0.2s, transform 0.4s cubic-bezier(0.25, 0, 0, 1);
+      transition: background var(--transition-base), transform 0.4s cubic-bezier(0.25, 0, 0, 1);
     }
     .mg-nav.nav-hidden {
       transform: translateY(-100%);
@@ -104,7 +104,7 @@
       text-decoration: none;
       position: relative;
       padding-bottom: 2px;
-      transition: color 0.25s ease;
+      transition: color var(--transition-base);
     }
     .mg-nav__links a::after {
       content: '';
@@ -116,7 +116,7 @@
       background: rgba(34, 34, 34, 0.85);
       transform: scaleX(0);
       transform-origin: var(--underline-origin, left) center;
-      transition: transform 0.25s ease;
+      transition: transform var(--transition-base);
     }
     .mg-nav__links a:hover {
       color: var(--color-dark);
@@ -155,7 +155,7 @@
       color: #0c0c0c;
       text-decoration: none;
       white-space: nowrap;
-      transition: background 0.15s, color 0.15s;
+      transition: background var(--transition-fast), color var(--transition-fast);
     }
     .mg-nav__cta:hover {
       background: var(--color-ink);
@@ -180,7 +180,7 @@
       height: 1.5px;
       background: var(--color-ink);
       border-radius: 2px;
-      transition: transform 0.25s, opacity 0.2s;
+      transition: transform var(--transition-base), opacity var(--transition-base);
     }
     .mg-nav__hamburger.open span:nth-child(1) {
       transform: translateY(6.5px) rotate(45deg);
@@ -203,7 +203,7 @@
       flex-direction: column;
       padding: 8px 20px 24px;
       gap: 0;
-      z-index: 999;
+      z-index: var(--z-overlay);
     }
     .mg-nav__drawer.open {
       display: flex;
@@ -493,10 +493,10 @@
 
     const popupStyle = document.createElement('style');
     popupStyle.textContent = `
-      .popup-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+      .popup-overlay{position:fixed;inset:0;z-index: var(--z-toast);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity var(--transition-base),visibility var(--transition-base)}
       .popup-overlay.open{opacity:1;visibility:visible}
       .popup-backdrop{position:absolute;inset:0;background:rgba(8,9,11,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-      .popup-card{position:relative;z-index:1;display:flex;max-width:780px;width:100%;overflow:hidden;border-radius:4px;box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.07);transform:translateY(24px) scale(.97);transition:transform .45s cubic-bezier(.22,1,.36,1)}
+      .popup-card{position:relative;z-index: var(--z-base);display:flex;max-width:780px;width:100%;overflow:hidden;border-radius:4px;box-shadow:var(--shadow-xl);transform:translateY(24px) scale(.97);transition:transform var(--transition-spring)}
       .popup-overlay.open .popup-card{transform:translateY(0) scale(1)}
       .popup-left{flex:0 0 260px;background:#0a0b0e;padding:44px 36px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid rgba(255,255,255,.06)}
       .popup-brand-dot{display:none}
@@ -506,7 +506,7 @@
       .popup-trust-item{display:flex;align-items:center;gap:10px;font-family:'Instrument Sans',Helvetica,sans-serif;font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.01em}
       .popup-trust-item svg{flex-shrink:0;opacity:.6}
       .popup-right{flex:1;background:var(--color-ui-dark);padding:44px 44px 40px;position:relative}
-      .popup-close{position:absolute;top:16px;right:16px;width:28px;height:28px;background:rgba(255,255,255,.07);border:none;border-radius:50%;cursor:pointer;color:rgba(255,255,255,.4);font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
+      .popup-close{position:absolute;top:16px;right:16px;width:28px;height:28px;background:rgba(255,255,255,.07);border:none;border-radius:50%;cursor:pointer;color:rgba(255,255,255,.4);font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background var(--transition-fast),color var(--transition-fast)}
       .popup-close:hover{background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)}
       .popup-right-heading{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;letter-spacing:-.025em;color:#fff;margin-bottom:6px;line-height:1.1}
       .popup-right-sub{font-family:'Instrument Sans',Helvetica,sans-serif;font-size:13px;line-height:1.6;color:rgba(255,255,255,.35);margin-bottom:28px}
@@ -514,19 +514,19 @@
       .popup-form-row{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
       .popup-field{display:flex;flex-direction:column;gap:7px;margin-bottom:24px}
       .popup-field label{font-family:'Instrument Sans',sans-serif;font-size:10px;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase}
-      .popup-input,.popup-textarea{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.5);border-radius:0;padding:0 0 11px;height:40px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;font-weight:300;color:#fff;outline:none;transition:border-color .2s ease,box-shadow .2s ease;-webkit-appearance:none}
+      .popup-input,.popup-textarea{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.5);border-radius:0;padding:0 0 11px;height:40px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;font-weight:300;color:#fff;outline:none;transition:border-color var(--transition-base),box-shadow var(--transition-base);-webkit-appearance:none}
       .popup-input::placeholder,.popup-textarea::placeholder{color:rgba(255,255,255,.28)}
       .popup-input:-webkit-autofill,.popup-input:-webkit-autofill:focus{-webkit-box-shadow:0 0 0 100px var(--color-ui-dark) inset;-webkit-text-fill-color:#fff}
       .popup-input:hover,.popup-textarea:hover{border-bottom-color:rgba(255,255,255,.65)}
       .popup-input:focus,.popup-textarea:focus{border-bottom-color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.1)}
       .popup-textarea{height:auto;padding:0 0 11px;min-height:72px;resize:none;line-height:1.6}
-      .popup-submit{width:auto;align-self:flex-start;height:42px;padding:0 24px;background:#fff;color:var(--color-ui-dark);border:none;border-radius:999px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s,transform .15s,box-shadow .15s;display:inline-flex;align-items:center;gap:8px;margin-top:4px}
-      .popup-submit:hover{background:var(--surface-light);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.4)}
+      .popup-submit{width:auto;align-self:flex-start;height:42px;padding:0 24px;background:#fff;color:var(--color-ui-dark);border:none;border-radius:999px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:background var(--transition-fast),transform var(--transition-fast),box-shadow var(--transition-fast);display:inline-flex;align-items:center;gap:8px;margin-top:4px}
+      .popup-submit:hover{background:var(--surface-light);transform:translateY(-1px);box-shadow:var(--shadow-md)}
       .popup-submit:active{transform:translateY(0);box-shadow:none}
-      .popup-submit svg{transition:transform .2s ease}
+      .popup-submit svg{transition:transform var(--transition-base)}
       .popup-submit:hover svg{transform:translateX(3px)}
       .popup-contact-links{display:flex;gap:20px;margin-top:18px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.06);padding-top:16px}
-      .popup-contact-link{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s;font-family:'Instrument Sans',sans-serif}
+      .popup-contact-link{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color var(--transition-base);font-family:'Instrument Sans',sans-serif}
       .popup-contact-link:hover{color:rgba(255,255,255,.7)}
       .popup-success{display:none;padding:24px 0}
       .popup-success-icon{width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px}

@@ -47,8 +47,8 @@
       display: flex;
       align-items: center;
       padding: 0 80px;
-      z-index: 100;
-      transition: background 0.35s ease, border-bottom 0.35s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: var(--z-sticky);
+      transition: background var(--transition-slow), border-bottom var(--transition-slow), transform var(--transition-spring);
     }
 
     .navbar.scrolled {
@@ -93,7 +93,7 @@
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform var(--transition-reveal);
     }
 
     .navbar .logo:hover .logo-flip-inner {
@@ -130,7 +130,7 @@
       color: rgba(255,255,255,0.55);
       position: relative;
       padding-bottom: 2px;
-      transition: color 0.25s ease;
+      transition: color var(--transition-base);
       --underline-origin: left;
     }
 
@@ -144,7 +144,7 @@
       background: rgba(255,255,255,0.50);
       transform: scaleX(0);
       transform-origin: var(--underline-origin) center;
-      transition: transform 0.25s ease;
+      transition: transform var(--transition-base);
     }
 
     .navbar .nav-links a:hover { color: rgba(255,255,255,0.92); }
@@ -168,7 +168,7 @@
       padding: 10px 22px;
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.2s ease, opacity 0.2s ease;
+      transition: background var(--transition-base), opacity var(--transition-base);
     }
 
     .navbar .cta:hover { background: rgba(255,255,255,0.88); }
@@ -365,7 +365,7 @@
       font-weight: 400;
       color: rgba(255,255,255,0.6);
       text-decoration: none;
-      transition: color 0.15s ease;
+      transition: color var(--transition-fast);
     }
 
     .footer__links a:hover { color: #ffffff; }
@@ -398,7 +398,7 @@
       font-weight: 400;
       color: rgba(255,255,255,0.3);
       text-decoration: none;
-      transition: color 0.15s ease;
+      transition: color var(--transition-fast);
     }
 
     .footer__legal a:hover { color: rgba(255,255,255,0.6); }

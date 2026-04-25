@@ -124,7 +124,7 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1001;
+      z-index: var(--z-modal);
       width: 100%;
       background: #424964;
       padding: 10px 24px;
@@ -210,7 +210,7 @@
       align-items: center;
       background: rgba(255,255,255,0.88);
       border: 1px solid rgba(66,85,100,0.12);
-      box-shadow: 0 2px 16px rgba(66,73,100,0.10);
+      box-shadow: var(--shadow-sm);
       border-radius: 999px;
       padding: 6px;
       gap: 10px;
@@ -317,7 +317,7 @@
     .btn-ar {
       fill: currentColor;
       flex-shrink: 0;
-      transition: transform 0.35s cubic-bezier(0.0, 0, 0.2, 1), opacity 0.25s ease;
+      transition: transform var(--transition-slow) cubic-bezier(0.0, 0, 0.2, 1), opacity var(--transition-base);
     }
 
     .hva-vi-leverer .section-btn:hover .btn-ar,
@@ -337,7 +337,7 @@
       align-items: center;
       transform: translateX(-32px) translateY(-50%);
       opacity: 0;
-      transition: transform 0.35s cubic-bezier(0.0, 0, 0.2, 1), opacity 0.3s ease;
+      transition: transform var(--transition-slow) cubic-bezier(0.0, 0, 0.2, 1), opacity var(--transition-base);
     }
 
     .hva-vi-leverer .section-btn:hover .btn-al,
@@ -356,7 +356,7 @@
       margin-right: 0;
       top: auto;
       left: auto;
-      transition: max-width 0.35s cubic-bezier(0.0, 0, 0.2, 1),
+      transition: max-width var(--transition-slow) cubic-bezier(0.0, 0, 0.2, 1),
                   opacity 0.3s ease,
                   margin-right 0.35s cubic-bezier(0.0, 0, 0.2, 1);
     }
@@ -369,7 +369,7 @@
     /* Tekst — dytter til høyre */
     .btn-text {
       display: inline-block;
-      transition: transform 0.35s cubic-bezier(0.0, 0, 0.2, 1);
+      transition: transform var(--transition-slow) cubic-bezier(0.0, 0, 0.2, 1);
     }
 
     .hva-vi-leverer .section-btn:hover .btn-text,
@@ -409,7 +409,7 @@
       position: absolute;
       inset: 0;
       background: rgba(20,20,18,0.12);
-      z-index: 1;
+      z-index: var(--z-base);
       pointer-events: none;
     }
 
@@ -417,7 +417,7 @@
       display: flex;
       width: 400%;
       height: 100%;
-      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform var(--transition-reveal);
     }
 
     .hero-slide {
@@ -464,9 +464,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.14);
-      transition: background 0.15s, transform 0.15s;
-      z-index: 2;
+      box-shadow: var(--shadow-sm);
+      transition: background var(--transition-fast), transform var(--transition-fast);
+      z-index: var(--z-base);
     }
 
     .hero-slider-btn:hover {
@@ -494,7 +494,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      z-index: 2;
+      z-index: var(--z-base);
     }
 
     .hero-slider-dots .hero-slider-btn {
@@ -502,7 +502,7 @@
       transform: none;
       width: 28px;
       height: 28px;
-      box-shadow: 0 1px 8px rgba(0,0,0,0.18);
+      box-shadow: var(--shadow-sm);
     }
 
     .hero-slider-dots .hero-slider-btn:hover {
@@ -515,7 +515,7 @@
       border-radius: 50%;
       background: rgba(255,255,255,0.5);
       cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
+      transition: background var(--transition-base), transform var(--transition-base);
     }
 
     .hero-dot.active {
@@ -657,7 +657,7 @@
       background: var(--bg-2);
       border-radius: 44px;
       border: 2px solid var(--color-ui-dark);
-      box-shadow: 0 32px 80px rgba(0,0,0,0.18);
+      box-shadow: var(--shadow-lg);
       position: relative;
       pointer-events: none;
       user-select: none;
@@ -678,7 +678,7 @@
       height: 24px;
       background: var(--color-ui-dark);
       border-radius: 20px;
-      z-index: 10;
+      z-index: var(--z-raised);
     }
 
     /* WA-style header */
@@ -827,7 +827,7 @@
     .wa-timestamp-center {
       opacity: 0;
       transform: translateY(-4px);
-      transition: opacity 0.28s ease, transform 0.28s ease;
+      transition: opacity var(--transition-base), transform var(--transition-base);
     }
     .wa-row.visible,
     .wa-timestamp-center.visible {
@@ -999,7 +999,7 @@
       background-color: var(--color-dark);
       position: relative;
       overflow: hidden;
-      transition: background 0.15s;
+      transition: background var(--transition-fast);
     }
 
     .faq-cta:hover { background: var(--color-ui-mid); }
@@ -1040,7 +1040,7 @@
       font-weight: 300;
       font-size: 20px;
       color: var(--color-mid);
-      transition: transform 0.2s;
+      transition: transform var(--transition-base);
       flex-shrink: 0;
       margin-left: var(--space-lg);
     }
@@ -1059,7 +1059,7 @@
       max-height: 0;
       overflow: hidden;
       opacity: 0;
-      transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+      transition: max-height var(--transition-slow),
                   opacity 0.3s ease 0.05s;
     }
 
@@ -1091,7 +1091,7 @@
       gap: 24px;
       position: relative;
       overflow: hidden;
-      transition: background 0.25s ease;
+      transition: background var(--transition-base);
     }
     .tom-boks::before {
       content: '';
@@ -1189,7 +1189,7 @@
       color: var(--color-dark);
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.15s, color 0.15s;
+      transition: background var(--transition-fast), color var(--transition-fast);
     }
 
     .bransjer-demo-btn svg {
@@ -1385,7 +1385,7 @@
       display: block;
       overflow: visible;
       min-height: 380px;
-      transition: background 0.25s ease;
+      transition: background var(--transition-base);
       position: relative;
     }
 
@@ -1404,7 +1404,7 @@
       color: rgba(26,27,31,0.07);
       pointer-events: none;
       user-select: none;
-      transition: color 0.25s ease;
+      transition: color var(--transition-base);
     }
 
     .hva-vi-leverer .card:hover .card__deco {
@@ -1430,7 +1430,7 @@
       color: rgba(26,27,31,0.65);
       background: transparent;
       border: 1px solid rgba(26,27,31,0.45);
-      transition: background 0.25s ease, color 0.25s ease;
+      transition: background var(--transition-base), color var(--transition-base);
       border-radius: var(--radius-xs);
       padding: 4px 8px;
       margin-bottom: var(--space-sm);
@@ -1543,7 +1543,7 @@
       letter-spacing: 0;
       color: var(--color-white);
       text-decoration: none;
-      transition: opacity 0.15s;
+      transition: opacity var(--transition-fast);
     }
 
     .demoer-cta:hover { opacity: 0.85; }
@@ -1569,7 +1569,7 @@
       display: flex;
       flex-direction: column;
       text-decoration: none;
-      transition: transform 0.18s, box-shadow 0.18s;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
       position: relative;
       border-top: 1.5px solid rgba(26,27,31,0.38);
       border-left: 1.5px solid rgba(26,27,31,0.22);
@@ -1579,7 +1579,7 @@
 
     .demo-kort:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+      box-shadow: var(--shadow-md);
     }
 
     .demo-kort__browser {
@@ -1843,7 +1843,7 @@
       letter-spacing: 0;
       color: var(--color-text-primary);
       text-decoration: none;
-      transition: background 0.15s, color 0.15s;
+      transition: background var(--transition-fast), color var(--transition-fast);
       gap: 8px;
       overflow: hidden;
       position: relative;
@@ -1901,7 +1901,7 @@
       border-radius: var(--radius-sm);
       position: relative;
       overflow: hidden;
-      transition: color 0.3s ease, background 0.3s ease;
+      transition: color var(--transition-base), background var(--transition-base);
     }
 
     .footer-kontakt-btn:hover {
@@ -1911,20 +1911,20 @@
 
     .footer-kontakt-btn-text {
       position: relative;
-      z-index: 1;
-      transition: transform 0.4s cubic-bezier(0.0, 0, 0.2, 1);
+      z-index: var(--z-base);
+      transition: transform var(--transition-spring);
     }
 
     /* Høyre pil — i layout (holder bredden), glir ut på hover */
     .fkb-arrow-right {
       position: relative;
-      z-index: 1;
+      z-index: var(--z-base);
       display: inline-flex;
       align-items: center;
       margin-left: 20px;
       margin-top: 9px;
       color: var(--color-text-primary);
-      transition: transform 0.4s cubic-bezier(0.0, 0, 0.2, 1), opacity 0.3s ease;
+      transition: transform var(--transition-spring), opacity var(--transition-base);
     }
 
     .footer-kontakt-btn:hover .fkb-arrow-right {
@@ -1937,14 +1937,14 @@
       position: absolute;
       left: 72px;
       top: 50%;
-      z-index: 1;
+      z-index: var(--z-base);
       display: inline-flex;
       align-items: center;
       margin-top: 4px;
       color: var(--color-text-primary);
       transform: translateX(-80px) translateY(-50%);
       opacity: 0;
-      transition: transform 0.4s cubic-bezier(0.0, 0, 0.2, 1), opacity 0.35s ease;
+      transition: transform var(--transition-spring), opacity var(--transition-slow);
     }
 
     .footer-kontakt-btn:hover .fkb-arrow-left {
@@ -2038,7 +2038,7 @@
       letter-spacing: 0;
       color: var(--color-text-primary);
       text-decoration: none;
-      transition: background 0.18s, transform 0.18s;
+      transition: background var(--transition-fast), transform var(--transition-fast);
       white-space: nowrap;
     }
 
@@ -2052,7 +2052,7 @@
       height: 13px;
       fill: var(--color-text-primary);
       stroke: none;
-      transition: transform 0.18s;
+      transition: transform var(--transition-fast);
     }
 
     .footer-cta__btn:hover svg {
@@ -2108,7 +2108,7 @@
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      transition: border-color var(--transition-base), background var(--transition-base), transform var(--transition-base);
     }
 
     .social-link:hover {
@@ -2123,7 +2123,7 @@
       stroke: rgba(231,243,241,0.5);
       fill: none;
       stroke-width: 1.8;
-      transition: stroke 0.2s;
+      transition: stroke var(--transition-base);
     }
 
     .social-link:hover svg {
@@ -2153,7 +2153,7 @@
       font-size: var(--type-body);
       color: rgba(231,243,241,0.85);
       text-decoration: none;
-      transition: color 0.15s;
+      transition: color var(--transition-fast);
     }
 
     .footer-col__list a:hover {
@@ -2186,7 +2186,7 @@
       letter-spacing: var(--ls-article-date);
       color: rgba(231,243,241,0.5);
       text-decoration: none;
-      transition: color 0.15s;
+      transition: color var(--transition-fast);
     }
 
     .footer-bottom__links a:hover {
@@ -2209,7 +2209,7 @@
 
     /* — Sekundærknapper (outline / border) — */
     .bransjer-demo-btn {
-      transition: background-position 0.4s cubic-bezier(0.25, 0, 0, 1), color 0.3s cubic-bezier(0.25, 0, 0, 1), border-color 0.4s cubic-bezier(0.25, 0, 0, 1);
+      transition: background-position var(--transition-spring), color var(--transition-base) cubic-bezier(0.25, 0, 0, 1), border-color var(--transition-spring);
       background-image: linear-gradient(
         120deg,
         var(--color-ink) 0%,
@@ -2272,10 +2272,10 @@
 
     /* ── KONTAKT POPUP ── */
     .popup-overlay {
-      position: fixed; inset: 0; z-index: 9999;
+      position: fixed; inset: 0; z-index: var(--z-toast);
       display: flex; align-items: center; justify-content: center;
       padding: 20px; opacity: 0; visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+      transition: opacity var(--transition-base), visibility var(--transition-base);
     }
     .popup-overlay.open { opacity: 1; visibility: visible; }
     .popup-backdrop {
@@ -2284,11 +2284,11 @@
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     }
     .popup-card {
-      position: relative; z-index: 1; display: flex;
+      position: relative; z-index: var(--z-base); display: flex;
       max-width: 880px; width: 100%; overflow: hidden; border-radius: 4px;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-xl);
       transform: translateY(24px) scale(0.97);
-      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+      transition: transform var(--transition-spring);
     }
     .popup-overlay.open .popup-card { transform: translateY(0) scale(1); }
 
@@ -2308,10 +2308,10 @@
     .popup-left-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(8,9,11,0.92) 0%, rgba(8,9,11,0.3) 60%, transparent 100%);
-      z-index: 1;
+      z-index: var(--z-base);
     }
     .popup-left-content {
-      position: relative; z-index: 2;
+      position: relative; z-index: var(--z-base);
       height: 100%; padding: 44px 32px;
       display: flex; flex-direction: column; justify-content: space-between;
     }
@@ -2343,7 +2343,7 @@
       background: rgba(255,255,255,0.07); border: none; border-radius: 50%;
       cursor: pointer; color: rgba(255,255,255,0.38); font-size: 16px;
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.15s, color 0.15s;
+      transition: background var(--transition-fast), color var(--transition-fast);
     }
     .popup-close:hover { background: rgba(255,255,255,0.13); color: rgba(255,255,255,0.8); }
     .popup-right-heading {
@@ -2370,7 +2370,7 @@
       padding: 0 0 10px; height: 40px;
       font-family: var(--font-neue);
       font-size: 14px; font-weight: 300; color: #ffffff;
-      outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none; transition: border-color var(--transition-base), box-shadow var(--transition-base);
       -webkit-appearance: none;
     }
     .popup-input:-webkit-autofill, .popup-input:-webkit-autofill:focus {
@@ -2389,11 +2389,11 @@
       background: #ffffff; color: var(--color-ui-dark); border: none; border-radius: var(--radius-sm);
       font-family: var(--font-ui); font-size: 13px; font-weight: 500;
       cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
-      transition: background 0.15s, transform 0.15s, box-shadow 0.15s; margin-top: 4px;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast); margin-top: 4px;
     }
-    .popup-submit:hover { background: var(--surface-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+    .popup-submit:hover { background: var(--surface-light); transform: translateY(-1px); box-shadow: var(--shadow-md); }
     .popup-submit:active { transform: translateY(0); box-shadow: none; }
-    .popup-submit svg { transition: transform 0.2s ease; }
+    .popup-submit svg { transition: transform var(--transition-base); }
     .popup-submit:hover svg { transform: translateX(3px); }
 
     .popup-contact-links {
@@ -2404,7 +2404,7 @@
       display: flex; align-items: center; gap: 6px;
       font-size: 12px; color: rgba(255,255,255,0.32);
       font-family: var(--font-ui);
-      text-decoration: none; transition: color 0.2s;
+      text-decoration: none; transition: color var(--transition-base);
     }
     .popup-contact-link:hover { color: rgba(255,255,255,0.65); }
 
@@ -2455,7 +2455,7 @@
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-      z-index: 2;
+      z-index: var(--z-base);
     }
 
     .inkludert__right {
@@ -2464,7 +2464,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      z-index: 2;
+      z-index: var(--z-base);
       align-self: center;
     }
 
@@ -2473,7 +2473,7 @@
       padding: 10px;
       border: 1px solid rgba(200,225,220,0.5);
       background: rgba(220,238,234,0.12);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+      box-shadow: var(--shadow-lg);
       width: 100%;
     }
 
@@ -2526,7 +2526,7 @@
       position: absolute;
       left: 0; right: 0; bottom: 0;
       height: 55%;
-      z-index: 1;
+      z-index: var(--z-base);
       pointer-events: none;
     }
 
@@ -2718,7 +2718,7 @@
       background-image: linear-gradient(120deg, rgba(231,243,241,0.12) 0%, rgba(231,243,241,0.12) 55%, transparent 55%, transparent 100%);
       background-size: 250% 100%;
       background-position: right center;
-      transition: background-position 0.4s cubic-bezier(0.25, 0, 0, 1), color 0.3s cubic-bezier(0.25, 0, 0, 1);
+      transition: background-position var(--transition-spring), color var(--transition-base) cubic-bezier(0.25, 0, 0, 1);
     }
 
     .inkludert__btn-ghost:hover {
@@ -2762,7 +2762,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color var(--transition-base), background var(--transition-base);
     }
     .porto-nav__btn:hover { background: #fff; border-color: var(--color-ink); }
     .porto-nav__btn svg { width: 14px; height: 14px; }
@@ -2801,7 +2801,7 @@
       text-decoration: none;
       color: inherit;
       min-height: 800px;
-      transition: opacity 0.3s;
+      transition: opacity var(--transition-base);
       position: relative;
     }
 
@@ -2817,7 +2817,7 @@
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       pointer-events: none;
-      z-index: 1;
+      z-index: var(--z-base);
     }
     .porto-kort.dim { opacity: 0.18; }
     .porto-kort__bilde {
@@ -2866,7 +2866,7 @@
       color: rgba(15,17,23,0.7);
       text-decoration: none;
       white-space: nowrap;
-      transition: border-color 0.2s, color 0.2s;
+      transition: border-color var(--transition-base), color var(--transition-base);
     }
     .porto-kort__cta:hover { border-color: var(--color-ink); color: var(--color-ink); }
     .porto-kort__cta svg { width: 10px; height: 10px; }
@@ -3019,7 +3019,7 @@
       align-items: center;
       gap: 6px;
       width: fit-content;
-      transition: background 0.2s ease, border-color 0.2s ease;
+      transition: background var(--transition-base), border-color var(--transition-base);
     }
     .boks__btn:hover { background: rgba(26,27,31,0.06); }
     .boks__image {
@@ -3108,7 +3108,7 @@
       letter-spacing: 0;
       color: #ffffff;
       text-decoration: none;
-      transition: opacity 0.15s;
+      transition: opacity var(--transition-fast);
     }
 
     .bransjelib__cta:hover { opacity: 0.82; }
@@ -3156,7 +3156,7 @@
     .bransjelib__card-bottom {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      z-index: 1;
+      z-index: var(--z-base);
       padding: 22px 22px 24px;
       display: flex;
       flex-direction: column;
@@ -3220,7 +3220,7 @@
     .bransjelib__card-link {
       position: absolute;
       inset: 0;
-      z-index: 2;
+      z-index: var(--z-base);
     }
 
     .bransjelib__btn {
@@ -3241,10 +3241,10 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      z-index: 3;
+      z-index: var(--z-base);
       pointer-events: none;
       flex-shrink: 0;
-      transition: background-position 0.4s cubic-bezier(0.25, 0, 0, 1), border-color 0.3s;
+      transition: background-position var(--transition-spring), border-color var(--transition-base);
     }
 
     .bransjelib__card--bransje:hover .bransjelib__btn,
@@ -3275,7 +3275,7 @@
       inset: 0;
       background-size: cover;
       transform: translateZ(0);
-      transition: transform 0.5s cubic-bezier(0.25, 0, 0, 1), opacity 0.4s;
+      transition: transform var(--transition-spring), opacity 0.4s;
       will-change: transform;
     }
 
@@ -4004,7 +4004,7 @@
       text-decoration: none;
       padding-bottom: 4px;
       border-bottom: 1px solid currentColor;
-      transition: opacity 0.15s;
+      transition: opacity var(--transition-fast);
       white-space: nowrap;
     }
 
@@ -4278,7 +4278,7 @@
       display: block;
       position: absolute;
       inset: 0;
-      transition: opacity 0.6s ease;
+      transition: opacity var(--transition-slow);
       will-change: opacity;
     }
 
@@ -4298,7 +4298,7 @@
       object-position: top;
       display: block;
       opacity: 0;
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition: opacity var(--transition-slow), transform var(--transition-slow);
       will-change: opacity, transform;
     }
 
@@ -4343,12 +4343,12 @@
       gap: 6px;
       width: fit-content;
       margin-top: 4px;
-      transition: background 0.2s ease, border-color 0.2s ease;
+      transition: background var(--transition-base), border-color var(--transition-base);
     }
 
     .p2-btn:hover { background: rgba(26,27,31,0.06); }
 
-    .p2-link { position: absolute; inset: 0; z-index: 1; }
+    .p2-link { position: absolute; inset: 0; z-index: var(--z-base); }
 
     @media (max-width: 768px) {
       .p2-section {
@@ -4663,7 +4663,7 @@
       padding: var(--btn-padding-y) var(--btn-padding-x);
       border-radius: var(--radius-sm);
       border: 1px solid rgba(220, 238, 234, 0.35);
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color var(--transition-base), background var(--transition-base);
     }
     .dou__cta:hover {
       border-color: rgba(220, 238, 234, 0.7);
@@ -4678,7 +4678,7 @@
       position: absolute;
       border-radius: var(--radius-md);
       overflow: hidden;
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+      box-shadow: var(--shadow-xl);
     }
     .dou__img-wrap img {
       display: block;
@@ -4713,7 +4713,7 @@
       height: 28%;
       background: linear-gradient(to bottom, transparent 0%, rgba(26,27,31,0.8) 100%);
       pointer-events: none;
-      z-index: 1;
+      z-index: var(--z-base);
     }
 
     /* Foran-kort: venstre, høyere opp, større */
@@ -4722,7 +4722,7 @@
       top: 32px;
       bottom: -40px;
       left: 5%;
-      z-index: 2;
+      z-index: var(--z-base);
     }
 
     /* Bak-kort: høyre, litt lavere, litt smalere */
@@ -4731,7 +4731,7 @@
       top: 56px;
       bottom: -40px;
       left: 42%;
-      z-index: 1;
+      z-index: var(--z-base);
       opacity: 0.9;
     }
 
@@ -4788,8 +4788,8 @@
         <a href="#" onclick="openContactPopup(); return false;" class="konv__cta" style="margin-top:32px; display:inline-flex; align-items:center; gap:8px; font-family:var(--font-neue); font-size:var(--type-label); font-weight:var(--fw-medium); color:var(--color-text-dark); background:transparent; text-decoration:none; width:fit-content; padding:var(--btn-padding-y) var(--btn-padding-x); border-radius:var(--radius-sm); border:1px solid rgba(220,238,234,0.4);">Se eksempler</a>
       </div>
       <div class="konv__right" style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-        <div class="konv__card-wrap" style="position:relative; z-index:10; width:500px; display:flex; flex-direction:column; align-items:flex-start;">
-          <div class="konv__badge" style="display:flex; align-items:stretch; border-radius:14px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.25); margin-bottom:-18px; margin-left:24px; position:relative; z-index:11;">
+        <div class="konv__card-wrap" style="position:relative; z-index: var(--z-raised); width:500px; display:flex; flex-direction:column; align-items:flex-start;">
+          <div class="konv__badge" style="display:flex; align-items:stretch; border-radius:14px; overflow:hidden; box-shadow:var(--shadow-md); margin-bottom:-18px; margin-left:24px; position:relative; z-index: var(--z-raised);">
             <div style="background:var(--bg-cards); padding:16px 18px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:8px; min-width:64px;">
               <span class="material-symbols-outlined" style="font-size:26px; color:var(--color-text-dark); font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20;">trending_up</span>
               <span style="font-family:var(--font-neue); font-size:9px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text-dark);">Resultat</span>
@@ -4798,7 +4798,7 @@
               <span style="font-family:var(--font-neue); font-size:17px; font-weight:600; color:var(--color-text-primary); line-height:1.3;">Nettsider som<br>faktisk konverterer</span>
             </div>
           </div>
-          <div class="konv__glass" style="border-radius:28px; padding:10px; border:1px solid rgba(200,225,220,0.5); background:rgba(220,238,234,0.12); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 24px 64px rgba(0,0,0,0.3);">
+          <div class="konv__glass" style="border-radius:28px; padding:10px; border:1px solid rgba(200,225,220,0.5); background:rgba(220,238,234,0.12); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:var(--shadow-lg);">
             <div class="konv__stats-card" style="background:#ffffff; border-radius:18px; padding:44px 48px; width:500px; display:flex; flex-direction:column; gap:24px;">
               <p style="font-family:var(--font-neue); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#9ca3af; margin:0;">Konverteringsrate</p>
               <div style="display:flex; flex-direction:column; gap:14px;">
@@ -4923,37 +4923,37 @@
             </div>
 
             <!-- Badges -->
-            <div style="position:absolute;left:40px;top:81px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+            <div style="position:absolute;left:40px;top:81px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">manage_search</span></div>
                 <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">SEO</span></div>
               </div>
             </div>
-            <div style="position:absolute;left:193px;top:40px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+            <div style="position:absolute;left:193px;top:40px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">speed</span></div>
                 <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Hastighet</span></div>
               </div>
             </div>
-            <div style="position:absolute;left:346px;top:81px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+            <div style="position:absolute;left:346px;top:81px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">build</span></div>
                 <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Drift</span></div>
               </div>
             </div>
-            <div style="position:absolute;left:40px;top:320px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+            <div style="position:absolute;left:40px;top:320px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">support_agent</span></div>
                 <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Service</span></div>
               </div>
             </div>
-            <div style="position:absolute;left:193px;top:367px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+            <div style="position:absolute;left:193px;top:367px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">dns</span></div>
                 <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Domene</span></div>
               </div>
             </div>
-            <div style="position:absolute;left:346px;top:320px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+            <div style="position:absolute;left:346px;top:320px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
               <div style="border-radius:18px;width:110px;background:rgba(22,23,27,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
                 <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:#fff;font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">smartphone</span></div>
                 <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:#fff;letter-spacing:0.04em;">Mobil</span></div>
@@ -5873,7 +5873,7 @@
   </script>
 
   <!-- Cookie-banner -->
-  <div id="cookie-banner" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:99999;width:calc(100% - 48px);max-width:680px;background:#fff;border-radius:0;box-shadow:0 8px 40px rgba(0,0,0,0.14),0 0 0 1px rgba(0,0,0,0.07);padding:20px 24px;font-family:var(--font-ui);font-size:0.875rem;line-height:1.5;color:var(--color-ink);">
+  <div id="cookie-banner" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index: var(--z-top);width:calc(100% - 48px);max-width:680px;background:#fff;border-radius:0;box-shadow:0 8px 40px rgba(0,0,0,0.14),0 0 0 1px rgba(0,0,0,0.07);padding:20px 24px;font-family:var(--font-ui);font-size:0.875rem;line-height:1.5;color:var(--color-ink);">
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;">
       <p style="flex:1;min-width:200px;margin:0;color:var(--color-text-muted);">Vi bruker informasjonskapsler for å analysere trafikken vår og forbedre nettstedet. <a href="personvern.html" style="color:var(--color-ink);text-decoration:underline;font-weight:500;">Les mer</a>.</p>
       <div style="display:flex;gap:8px;flex-shrink:0;">
