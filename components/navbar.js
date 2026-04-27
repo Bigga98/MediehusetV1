@@ -15,11 +15,10 @@
   document.head.appendChild(fontLink);
 
   const links = [
-    { label: 'Hjem',         href: root + 'index.html' },
-    { label: 'Tjenester',    href: root + 'tjenester.html' },
-    { label: 'Om oss',       href: root + 'om-oss.html' },
+    { label: 'Hjem',           href: root + 'index.html' },
+    { label: 'Tjenester',      href: root + 'tjenester.html' },
+    { label: 'Om oss',         href: root + 'om-oss.html' },
     { label: 'Nettside-demoer', href: root + 'bibliotek.html' },
-    // { label: 'Brand Guide',  href: root + 'brand/guide.html', meta: true },
   ];
 
   const current = location.pathname;
@@ -99,7 +98,8 @@
     .mg-nav__links a {
       font-family: 'DM Sans', sans-serif;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 13px;
+      text-transform: uppercase;
       color: var(--color-ink);
       text-decoration: none;
       position: relative;
