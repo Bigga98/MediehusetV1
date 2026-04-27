@@ -480,8 +480,7 @@
     <div class="form-divider"></div>
 
     <div class="form-header">
-      <h1>Fortell oss om bedriften din.</h1>
-      <p>Vi ser etter 2 bedrifter som vil ha ny nettside — gratis. Fyll ut skjemaet så tar vi kontakt.</p>
+      <h1>Vi ser etter 2 bedrifter som vil ha ny nettside, gratis. Fyll ut skjemaet så tar vi kontakt.</h1>
     </div>
 
     <form id="kontaktskjema" novalidate>
@@ -505,11 +504,6 @@
         <div class="form-field">
           <label for="telefon">Telefon</label>
           <input type="tel" id="telefon" name="telefon" placeholder="400 00 000" autocomplete="tel">
-        </div>
-
-        <div class="form-field full">
-          <label for="melding">Melding</label>
-          <textarea id="melding" name="melding" placeholder="Fortell litt om bedriften din og hva du ønsker å oppnå…"></textarea>
         </div>
 
       </div>
@@ -612,12 +606,9 @@
     const epost   = document.getElementById('epost').value.trim();
     const bedrift = document.getElementById('bedrift').value.trim();
     const telefon = document.getElementById('telefon').value.trim();
-    const melding = document.getElementById('melding').value.trim();
-
     const fullMessage = [
       bedrift  ? 'Bedrift: ' + bedrift   : '',
       telefon  ? 'Tlf: '    + telefon    : '',
-      melding,
     ].filter(Boolean).join('\n');
 
     const emailData = new FormData();
