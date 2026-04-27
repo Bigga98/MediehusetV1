@@ -456,7 +456,7 @@
       position: absolute;
       top: -80px; left: -60px;
       width: 520px; height: 420px;
-      background: radial-gradient(ellipse at center, rgba(120,140,100,0.12) 0%, transparent 68%);
+      background: radial-gradient(ellipse at center, rgba(var(--color-accent-rgb),0.12) 0%, transparent 68%);
       pointer-events: none;
     }
     .footer-cta__heading {
@@ -617,7 +617,7 @@
     .popup-overlay.open { opacity: 1; visibility: visible; }
     .popup-backdrop {
       position: absolute; inset: 0;
-      background: rgba(20,22,20,0.55);
+      background: rgba(var(--color-ink-rgb),0.55);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
     }

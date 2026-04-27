@@ -153,8 +153,12 @@
   /* RGB-kanaler — for opacity-varianter via rgba(var(--X-rgb), alpha)
      ------------------------------------------ */
   --color-white-rgb:        255, 255, 255;
-  --color-text-primary-rgb: 44, 36, 32;
-  --color-dark-rgb:         44, 36, 32;
+  --color-text-primary-rgb: 44, 36, 32;    /* #2c2420 */
+  --color-dark-rgb:         44, 36, 32;    /* #2c2420 */
+  --color-accent-rgb:       138, 126, 122; /* #8a7e7a */
+  --color-ui-dark-rgb:      32, 28, 25;    /* #201c19 */
+  --color-ink-rgb:          22, 18, 16;    /* #161210 */
+  --bg-0-rgb:               246, 245, 242; /* #f6f5f2 */
   --color-text-muted:       #2c2420;   /* Sekundærtekst — samme som tittel      */
   --color-text-hint:        #6e6460;   /* Caption, placeholder, hint            */
   --color-mid:              #8a7e7a;   /* Aksent — dempet varm grå-brun         */
