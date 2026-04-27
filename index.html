@@ -65,7 +65,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=fallback" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,200,0,0" rel="stylesheet">
-  <link rel="preload" as="image" href="images/hero-slide-new.jpg">
   <script>
     if (window.innerWidth > 1024) {
       document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"><\/script>');
@@ -185,11 +184,11 @@
     .hero__heading {
       font-family: var(--font-neue);
       font-weight: 800;
-      font-size: clamp(40px, 5vw, 72px);
+      font-size: clamp(40px, 4.5vw, 60px);
       line-height: 1.06;
       letter-spacing: -0.03em;
       color: var(--color-text-primary);
-      max-width: 780px;
+      max-width: 1100px;
       margin-bottom: 0;
     }
 
@@ -204,7 +203,82 @@
     }
 
     .hero__cta-row {
-      margin-bottom: 48px;
+      margin-bottom: 64px;
+    }
+
+    .hero__strip {
+      width: calc(100% + 48px);
+      margin-left: -24px;
+      margin-right: -24px;
+      height: 300px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .hero__strip-track {
+      display: flex;
+      gap: 4px;
+      height: 100%;
+      width: max-content;
+      animation: hero-strip-scroll 38s linear infinite;
+      will-change: transform;
+    }
+
+    .hero__strip:hover .hero__strip-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes hero-strip-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero__strip-track { animation: none; }
+    }
+
+    .hero__strip-item {
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-sm);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform-origin: center center;
+    }
+
+    .hero__strip:hover .hero__strip-item {
+      transform: scale(0.92);
+    }
+
+    .hero__strip-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero__strip-item img {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+
+    .hero__strip-label {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      font-family: var(--font-ui);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.88);
+      z-index: 2;
     }
 
 .hero__cta-btn {
@@ -225,14 +299,6 @@
 
     .hero__cta-btn:hover {
       background: var(--color-ui-dark);
-    }
-
-    .hero__mockup {
-      width: 100%;
-      height: 540px;
-      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-      overflow: hidden;
-      position: relative;
     }
 
     /* ── GLOBAL KNAPP-STIL — radius + font + farge ── */
@@ -377,125 +443,6 @@
       letter-spacing: 0;
       text-decoration: none;
       cursor: pointer;
-    }
-
-    .hero__mockup::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(var(--color-ink-rgb),0.12);
-      z-index: var(--z-base);
-      pointer-events: none;
-    }
-
-    .hero-slider {
-      display: flex;
-      width: 400%;
-      height: 100%;
-      transition: transform var(--transition-reveal);
-    }
-
-    .hero-slide {
-      width: 25%;
-      height: 100%;
-      background-size: cover;
-      background-repeat: no-repeat;
-      flex-shrink: 0;
-    }
-
-    .hero-slide--0 {
-      background-image: url('images/hero-slide-new.jpg');
-      background-position: center center;
-      position: relative;
-    }
-
-
-    .hero-slide--1 {
-      background-image: url('images/macbook-rugged-stone.webp');
-      background-position: center center;
-    }
-
-    .hero-slide--2 {
-      background-image: url('images/macbook-konkret.webp');
-      background-position: center center;
-    }
-
-    .hero-slide--4 {
-      background-image: url('images/mockup-macbook-air-grovstein-nordbygg.webp');
-      background-position: center center;
-    }
-
-
-    .hero-slider-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.9);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--shadow-sm);
-      transition: background var(--transition-fast), transform var(--transition-fast);
-      z-index: var(--z-base);
-    }
-
-    .hero-slider-btn:hover {
-      background: transparent;
-      transform: translateY(-50%) scale(1.08);
-    }
-
-    .hero-slider-btn svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--color-dark);
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-
-
-    .hero-slider-dots {
-      position: absolute;
-      bottom: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: var(--z-base);
-    }
-
-    .hero-slider-dots .hero-slider-btn {
-      position: static;
-      transform: none;
-      width: 28px;
-      height: 28px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .hero-slider-dots .hero-slider-btn:hover {
-      transform: scale(1.08);
-    }
-
-    .hero-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      cursor: pointer;
-      transition: background var(--transition-base), transform var(--transition-base);
-    }
-
-    .hero-dot.active {
-      background: transparent;
-      transform: scale(1.25);
     }
 
     /* ── SEKSJON SERVICE ─────────────────────── */
@@ -2223,7 +2170,6 @@
         .inkludert__btn-primary,
         .bransjelib__btn,
         .bransjelib__cta,
-        .hero-slider-btn,
         .tab
       ) {
         transition: none;
@@ -3243,6 +3189,13 @@
       .hero-break { display: inline; }
       .desktop-break { display: none; }
 
+      .hero__strip {
+        width: calc(100% + 24px);
+        margin-left: -12px;
+        margin-right: -12px;
+        height: 220px;
+      }
+
       .hero__sub {
         text-align: center;
         font-size: 17px;
@@ -3263,29 +3216,6 @@
         justify-content: center;
       }
 
-
-      .hero__mockup {
-        display: block;
-        height: 300px;
-        margin-top: 0;
-        border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-      }
-
-      .hero-slide--4 {
-        display: none;
-      }
-
-      .hero-dot--4 {
-        display: none;
-      }
-
-      #heroSlider {
-        width: 300%;
-      }
-
-      #heroSlider .hero-slide {
-        width: 33.333%;
-      }
 
       .hero .hero-side-box {
         display: none;
@@ -4002,25 +3932,50 @@
       <a href="#" class="hero__cta-btn" onclick="openContactPopup(); return false;">Få et utkast</a>
     </div>
 
-    <!-- 4. Produktmockup -->
-    <div class="hero__mockup" data-animate="fade-up" data-hero data-delay="0.35" data-y="30">
-      <div class="hero-slider" id="heroSlider">
-        <div class="hero-slide hero-slide--0"></div>
-        <div class="hero-slide hero-slide--1"></div>
-        <div class="hero-slide hero-slide--2"></div>
-        <div class="hero-slide hero-slide--4"></div>
-      </div>
-      <div class="hero-slider-dots">
-        <button class="hero-slider-btn hero-slider-prev" onclick="heroSlide(-1)" aria-label="Forrige">
-          <svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg>
-        </button>
-        <span class="hero-dot active" onclick="heroGoTo(0)"></span>
-        <span class="hero-dot" onclick="heroGoTo(1)"></span>
-        <span class="hero-dot" onclick="heroGoTo(2)"></span>
-        <span class="hero-dot hero-dot--4" onclick="heroGoTo(3)"></span>
-        <button class="hero-slider-btn hero-slider-next" onclick="heroSlide(1)" aria-label="Neste">
-          <svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg>
-        </button>
+    <!-- 4. Bildestrip -->
+    <div class="hero__strip" data-animate="fade-up" data-hero data-delay="0.32">
+      <div class="hero__strip-track">
+        <div class="hero__strip-item">
+          <span class="hero__strip-label">Eiendomsmegling</span>
+          <img src="images/hero-strip-1.jpg" alt="Eiendomsmegling Oslo">
+        </div>
+        <div class="hero__strip-item">
+          <span class="hero__strip-label">Eiendomsdrift</span>
+          <img src="images/hero-strip-2.jpg" alt="Eiendomsdrift">
+        </div>
+        <div class="hero__strip-item">
+          <span class="hero__strip-label">Bygg & anlegg</span>
+          <img src="images/hero-strip-3.jpg" alt="Bygg og anlegg">
+        </div>
+        <div class="hero__strip-item">
+          <span class="hero__strip-label">Entreprenør</span>
+          <img src="images/hero-strip-4.jpg" alt="Entreprenør">
+        </div>
+        <div class="hero__strip-item">
+          <span class="hero__strip-label">Rørlegger</span>
+          <img src="images/hero-strip-5.jpg" alt="Rørlegger">
+        </div>
+        <!-- Duplikater for sømløs løkke -->
+        <div class="hero__strip-item" aria-hidden="true">
+          <span class="hero__strip-label">Eiendomsmegling</span>
+          <img src="images/hero-strip-1.jpg" alt="">
+        </div>
+        <div class="hero__strip-item" aria-hidden="true">
+          <span class="hero__strip-label">Eiendomsdrift</span>
+          <img src="images/hero-strip-2.jpg" alt="">
+        </div>
+        <div class="hero__strip-item" aria-hidden="true">
+          <span class="hero__strip-label">Bygg & anlegg</span>
+          <img src="images/hero-strip-3.jpg" alt="">
+        </div>
+        <div class="hero__strip-item" aria-hidden="true">
+          <span class="hero__strip-label">Entreprenør</span>
+          <img src="images/hero-strip-4.jpg" alt="">
+        </div>
+        <div class="hero__strip-item" aria-hidden="true">
+          <span class="hero__strip-label">Rørlegger</span>
+          <img src="images/hero-strip-5.jpg" alt="">
+        </div>
       </div>
     </div>
 
@@ -5552,23 +5507,6 @@
       document.body.style.overflow = '';
     }
 
-    /* ── Hero slider ── */
-    var _heroIdx = 0;
-
-    function heroGetTotal() {
-      return Array.from(document.querySelectorAll('#heroSlider .hero-slide'))
-        .filter(function(s) { return getComputedStyle(s).display !== 'none'; }).length;
-    }
-
-    function heroUpdateUI() {
-      var total = heroGetTotal();
-      var pct = 100 / total;
-      document.getElementById('heroSlider').style.transform = 'translateX(-' + (_heroIdx * pct) + '%)';
-      document.querySelectorAll('.hero-dot').forEach(function(d, i) {
-        d.classList.toggle('active', i === _heroIdx);
-      });
-    }
-
     function initPortoKortWidth() {
       if (window.innerWidth <= 768) return;
       const section = document.querySelector('.seksjon-portefolje');
@@ -5606,16 +5544,6 @@
       const kort = grid.querySelector('.porto-kort');
       const kortWidth = kort.offsetWidth + 16;
       grid.scrollBy({ left: dir * kortWidth, behavior: 'smooth' });
-    }
-
-    function heroSlide(dir) {
-      _heroIdx = (_heroIdx + dir + heroGetTotal()) % heroGetTotal();
-      heroUpdateUI();
-    }
-
-    function heroGoTo(idx) {
-      _heroIdx = idx;
-      heroUpdateUI();
     }
 
     document.addEventListener('keydown', function(e) {
