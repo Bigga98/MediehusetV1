@@ -193,12 +193,12 @@
     }
 
     .hero__sub {
-      font-family: var(--font-ui);
-      font-size: 17px;
+      font-family: var(--font-neue);
+      font-size: 19px;
       font-weight: 300;
       color: rgba(var(--color-text-primary-rgb),0.85);
       max-width: 560px;
-      line-height: 1.55;
+      line-height: 1.65;
       margin-bottom: 0;
     }
 
@@ -266,6 +266,8 @@
       height: 100%;
       width: auto;
       display: block;
+      transform: scale(1.25);
+      transform-origin: center 35%;
     }
 
     .hero__strip-label {
@@ -3981,6 +3983,173 @@
 
   </section>
 
+  <!-- SEKSJON: ÉN PRIS HELE JOBBEN -->
+  <style>
+    .collage-item {
+      overflow: hidden;
+      border-radius: var(--radius-md);
+    }
+    .collage-item img {
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+    .collage-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .en-pris {
+      width: 100%;
+      padding: 80px var(--grid-margin);
+      box-sizing: border-box;
+      background: var(--bg-0);
+    }
+    .en-pris__box {
+      width: 100%;
+      background: var(--bg-2);
+      border-radius: var(--radius-lg);
+      padding: 56px var(--grid-margin);
+      display: flex;
+      align-items: center;
+      gap: 64px;
+    }
+    .en-pris__content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .en-pris__heading {
+      font-family: var(--font-neue);
+      font-weight: 800;
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      color: var(--color-text-primary);
+      margin: 0;
+    }
+    .en-pris__sub {
+      font-family: var(--font-neue);
+      font-weight: 300;
+      font-size: 19px;
+      line-height: 1.65;
+      color: var(--color-text-primary);
+      margin: 0;
+    }
+    .en-pris__list-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .en-pris__list-title {
+      font-family: var(--font-neue);
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1.2;
+      color: var(--color-text-primary);
+      margin: 0;
+    }
+    .en-pris__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .en-pris__list li {
+      font-family: var(--font-neue);
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--color-text-primary);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .en-pris__check {
+      margin-top: 1px;
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: var(--color-dark);
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .en-pris__collage {
+      flex: 0 0 55%;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .en-pris__col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .en-pris {
+        padding: 48px 12px;
+      }
+      .en-pris__box {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 32px 20px;
+        gap: 32px;
+      }
+      .en-pris__collage {
+        display: none;
+      }
+      .en-pris__sub {
+        font-size: 17px;
+      }
+      .en-pris__list li {
+        font-size: 16px;
+      }
+    }
+  </style>
+
+  <section class="en-pris">
+    <div class="en-pris__box">
+
+      <div class="en-pris__content">
+        <h2 class="en-pris__heading">Én pris. Hele jobben.</h2>
+        <p class="en-pris__sub">Du vet hva du betaler før vi starter. Du trenger ikke å lære deg WordPress, jakte etter en utvikler, eller oppdage at SEO og drift koster ekstra. Vi gjør hele jobben — og fortsetter å gjøre den etter lansering.</p>
+        <div class="en-pris__list-group">
+          <p class="en-pris__list-title">Det inkluderer:</p>
+          <ul class="en-pris__list">
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ny nettside fra bunnen, eller redesign av den du har</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fast pris før vi starter — ingen timepris, ingen bindingstid</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Design og struktur tilpasset bransjen og kundene dine</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SEO og Google-hastighet bygget inn fra dag én</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Drift, vedlikehold og oppdateringer håndtert av oss</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fast kontaktperson — send bilder og tekst, vi publiserer</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fast kontaktperson — ikke en ticketkø</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="en-pris__collage">
+        <div class="en-pris__col" style="margin-top:24px;">
+          <div class="collage-item" style="aspect-ratio:4/5;"><img src="images/hero-strip-2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
+          <div class="collage-item" style="aspect-ratio:4/5;"><img src="images/hero-strip-1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
+        </div>
+        <div class="en-pris__col" style="margin-top:80px;">
+          <div class="collage-item" style="aspect-ratio:4/5;"><img src="images/hero-strip-3.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"></div>
+          <div class="collage-item" style="aspect-ratio:4/5;"><img src="images/hero-strip-v2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
+        </div>
+        <div class="en-pris__col" style="margin-top:-20px;">
+          <div class="collage-item" style="aspect-ratio:4/5;"><img src="images/hero-strip-4.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"></div>
+          <div class="collage-item" style="aspect-ratio:4/5;"><img src="images/hero-strip-5.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- PORTEFØLJE-SEKSJON -->
   <style>
     :root {
@@ -4340,7 +4509,7 @@
   </script>
 
   <!-- HVA VI LEVERER -->
-  <section class="hva-vi-leverer">
+  <section class="hva-vi-leverer" style="display:none;">
   <div class="hvl__card">
 
     <div class="hvl__intro">
@@ -4383,7 +4552,7 @@
 
 
   <!-- NY SEKSJON: Design og utvikling — bullet + bilde -->
-  <section class="dou__wrap">
+  <section class="dou__wrap" style="display:none;">
     <div class="dou__card">
 
       <!-- VENSTRE: col 1–6 -->
