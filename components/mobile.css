@@ -17,6 +17,40 @@
 }
 
 /* ══════════════════════════════════════════════════════
+   0. GLOBAL — forhindre horisontal scroll
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+
+  /* Gronn-seksjon full-bredde-triks */
+  .gronn-seksjon {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  /* Hero strip */
+  .hero__strip {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Porto grid negative margin */
+  .porto-grid {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Bransjelib negative margin */
+  .seksjon-bransjelib {
+    overflow: hidden !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
    1. HERO — CTA-boks og strip
    ══════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
