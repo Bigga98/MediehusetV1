@@ -6187,9 +6187,10 @@
   <script>
   (function () {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        window.matchMedia('(max-width: 768px)').matches) {
       document.querySelectorAll('#s2-badge,#s2-sub,#s2-image,.s2-item,.s2-line-inner')
-        .forEach(el => gsap.set(el, { opacity: 1, y: 0, clearProps: 'all' }));
+        .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
       return;
     }
 
