@@ -1,0 +1,91 @@
+/* ── Mediegruppen Navbar — felles stil for alle sider ── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+.mg-nav__logo .mg-logo-svg { display: none; }
+.mg-nav__logo::after {
+  content: 'Mediegruppen';
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #222222;
+  letter-spacing: -0.01em;
+}
+
+.mg-nav, .mg-nav.scrolled {
+  background: rgba(248,248,248,0.95) !important;
+  border-bottom: none !important;
+}
+.mg-nav {
+  display: grid !important;
+  grid-template-columns: 1fr auto 1fr !important;
+  align-items: center !important;
+}
+.mg-nav__logo { grid-column: 1; }
+.mg-nav__links { grid-column: 2; margin-left: 0 !important; justify-self: center; gap: 0 !important; }
+.mg-nav__cta  { grid-column: 3; justify-self: end; }
+
+.mg-nav__links a {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 14px 20px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+  color: #1B1F27 !important;
+  text-decoration: none !important;
+  position: relative !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  transition: color 0s !important;
+  z-index: 0 !important;
+}
+.mg-nav__links a::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 2px !important;
+  background: #f0f0f0 !important;
+  border-radius: 4px !important;
+  z-index: -1 !important;
+  transition: background 0.2s, border-radius 0s 0.2s !important;
+}
+.mg-nav__links a::after { display: none !important; }
+.mg-nav__links a:hover::before {
+  background: #1B1F27 !important;
+  border-radius: 50px !important;
+  transition: background 0.2s, border-radius 0s !important;
+}
+.mg-nav__links a:hover { color: #ffffff !important; }
+.mg-nav__links a.active::before { background: #1B1F27 !important; border-radius: 50px !important; }
+.mg-nav__links a.active { color: #ffffff !important; }
+.mg-nav__links:has(a:not(.active):hover) a.active::before {
+  background: #f0f0f0 !important;
+  border-radius: 4px !important;
+  transition: background 0.2s, border-radius 0s 0.2s !important;
+}
+.mg-nav__links:has(a:not(.active):hover) a.active { color: #1B1F27 !important; }
+.mg-nav__links a .nav-label { display: inline-block; position: relative; z-index: 1; }
+@keyframes v2-nav-enter { 0% { transform: scale(1.17); } 100% { transform: scale(1); } }
+@keyframes v2-nav-exit  { 0% { transform: scale(0.83); } 100% { transform: scale(1); } }
+.mg-nav__links a.nav-entering .nav-label { animation: v2-nav-enter 0.28s cubic-bezier(0.4,0,0.2,1) forwards; }
+.mg-nav__links a.nav-exiting  .nav-label { animation: v2-nav-exit  0.28s cubic-bezier(0.4,0,0.2,1) forwards; }
+
+.mg-nav__cta {
+  background: transparent !important;
+  border: 1.5px solid #1B1F27 !important;
+  color: #1B1F27 !important;
+  border-radius: 50px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 8px 16px !important;
+  transition: background 0.2s, color 0.2s !important;
+}
+.mg-nav__cta:hover {
+  background: #1B1F27 !important;
+  color: #ffffff !important;
+}
+
+.mg-nav { top: 0 !important; }

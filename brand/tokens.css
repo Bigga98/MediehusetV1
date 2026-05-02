@@ -1,0 +1,188 @@
+/* ─────────────────────────────────────────────
+   Mediegruppen — Design Tokens
+   Spacing system: 6pt base scale
+───────────────────────────────────────────── */
+
+:root {
+
+  /* SPACING
+     Base: 6pt. Alle verdier er multipler av 6.
+     ------------------------------------------ */
+  --space-xs:  6px;   /* Micro — ikon→tekst, indre badge-padding         */
+  --space-sm: 12px;   /* SM    — label→input, tittel→brødtekst i kort     */
+  --space-md: 18px;   /* MD    — kortinnhold padding, mellom komponenter   */
+  --space-lg: 24px;   /* LG    — gutter, seksjon-intern avstand            */
+  --space-xl: 48px;   /* XL    — mellom seksjoner, heading-blokk           */
+
+  /* KOMPONENT-INTERNT
+     ------------------------------------------ */
+  --btn-height:     44px;   /* Standard knappehøyde                */
+  --btn-height-sm:  42px;   /* Kompakt knapp — popup, sekundær     */
+  --btn-padding-y:  12px;   /* Knapp topp/bunn                     */
+  --btn-padding-x:  24px;   /* Knapp venstre/høyre                 */
+  --btn-gap:         7px;   /* Mellom tekst og ikon i knapp        */
+  --card-padding:   24px;   /* Kortinnhold alle sider              */
+  --icon-gap:        6px;   /* Ikon → tekst                        */
+
+  /* LAYOUT / GRID
+     ------------------------------------------ */
+  --grid-columns:     12;
+  --grid-margin:       48px;  /* Venstre + høyre sidemargin — innhold starter kol. 2 */
+  --grid-gutter:      24px;   /* Mellom kolonner */
+  --content-width: 1344px;    /* 1440 - 2×48 */
+
+  /* SEKSJON-NIVÅ
+     ------------------------------------------ */
+  --section-padding-y: 48px;   /* Topp/bunn i seksjon               */
+  --section-gap:       48px;   /* Mellom seksjoner                   */
+
+  /* KOMPONENT-HIERARKI — spacing mellom elementer i en seksjon
+     Prinsipp: jo tettere semantisk tilknytning, jo mindre gap.
+     ------------------------------------------ */
+  --gap-heading-body:  12px;   /* Heading → undertekst  (--space-sm) */
+  --gap-body-cta:      24px;   /* Undertekst → knapp    (--space-lg) */
+  --gap-cta-content:   48px;   /* Knapp → innhold/kort  (--space-xl) */
+
+  /* TYPOGRAFI — Font families
+     ------------------------------------------ */
+  --font-neue:    'Helvetica Neue', Helvetica, Arial, sans-serif; /* Store headings, display */
+  --font-heading: "Cormorant Garamond", Georgia, serif;            /* Seksjon-headings, 400 */
+  --font-body:    "Instrument Sans", Helvetica, sans-serif;
+  --font-ui:      "Instrument Sans", Helvetica, sans-serif;
+
+  /* TYPOGRAFI — Størrelsesskala
+     Ankerpunkt: --type-h2 = 48px (seksjon-heading)
+     Ratio oppover ~×1.33, nedover praktiske web-verdier
+     ------------------------------------------ */
+
+  /* Display — Helvetica Neue, 400
+     Kun til store headings via var(--font-neue). */
+  --type-display:    90px;   /* Hero-heading eneste                      */
+  --type-h1:         64px;   /* Stor seksjon-heading (campaign, splash)  */
+  --type-h2:         48px;   /* Standard seksjon-heading ← ankerpunkt    */
+
+  /* Body — Instrument Sans, 400
+     Brødtekst og intro-avsnitt. */
+  --type-lead:       20px;   /* Intro-avsnitt under heading               */
+  --type-h3:         26px;   /* Korttitler og komponentheadings           */
+  --type-body:       16px;   /* Standard brødtekst                        */
+
+  /* UI — Instrument Sans
+     Alt som er knapper, nav, labels, hints. */
+  --type-ui:         13px;   /* Standard UI: nav, tags, knapp-tekst, badges  */
+  --type-label:      14px;   /* Knapp-tekst, CTA, form-labels. w: 500        */
+  --type-caption:    12px;   /* Liten hjelpetekst, fotnoter. w: 400          */
+  --type-card-label: 10px;   /* Knapp-tekst uppercase, kort-label. w: 500    */
+
+  /* TYPOGRAFI — Font-weight
+     ------------------------------------------ */
+  --fw-light:     300;   /* Lys tekst, sekundær body               */
+  --text-stroke:       0.4px; /* Ultratynn kontur — skarpere headings på mørk bg  */
+  --text-stroke-body:  0.2px; /* Halvparten — brødtekst på mørk bg               */
+  --fw-regular:   400;   /* Brødtekst, body                        */
+  --fw-medium:    500;   /* UI-labels, knapper, nav                */
+  --fw-semibold:  600;   /* Sub-headings, kortitler                */
+  --fw-bold:      700;   /* Primære headings                       */
+
+  /* TYPOGRAFI — Letter-spacing
+     ------------------------------------------ */
+  --ls-display:  -0.03em;
+  --ls-h1:       -0.025em;
+  --ls-h2:       -0.02em;
+  --ls-body:      0em;
+  --ls-list:      0.005em;  /* Korte skanbare linjer på mørk bakgrunn         */
+  --ls-caps:      0.1em;    /* Uppercase labels og overlines — alltid positiv */
+  --ls-card-btn:  0.2em;    /* Knapp-tekst uppercase tracking                 */
+  --ls-card-label: 0.2em;   /* Badge/label uppercase tracking                 */
+
+  /* TYPOGRAFI — Line-height
+     ------------------------------------------ */
+  --lh-display:   1.05;
+  --lh-heading:   1.1;    /* Store display-headings (48px+)  */
+  --lh-subhead:   1.2;    /* Mellomstore headings (24–36px)  */
+  --lh-list:      1.4;    /* Korte skanbare linjer, fordel-lister             */
+  --lh-body:      1.55;   /* Brødtekst — over WCAG 1.5 min   */
+  --lh-ui:        1.25;   /* Labels, knapper, nav             */
+
+  /* RADIUS
+     Skala med 6 nivåer. Velg etter element-type, ikke pixel-verdi.
+     ------------------------------------------ */
+  --radius-xs:    4px;    /* Micro: tags, labels, bilde-insets, mini-labels  */
+  --radius-sm:    8px;    /* Base: alle knapper, input-felt, standard kort    */
+  --radius-md:   12px;    /* Komponenter: FAQ, info-bokser, medium-kort       */
+  --radius-lg:   16px;    /* Seksjoner: store kort, bilderammer, blokker      */
+  --radius-xl:   24px;    /* Containere: store feature-wrappers               */
+  --radius-full: 9999px;  /* Pill: kun badges og kategori-tags                */
+
+  /* SKYGGER — 5 nivåer + focus-ring
+     ------------------------------------------ */
+  --shadow-xs:    0 1px 4px rgba(0,0,0,0.06);                                         /* Subtil — kort på lys bakgrunn     */
+  --shadow-sm:    0 4px 16px rgba(0,0,0,0.12);                                         /* Liten — knapper, dropdowns        */
+  --shadow-md:    0 8px 24px rgba(0,0,0,0.14);                                         /* Medium — popups, tooltips         */
+  --shadow-lg:    0 24px 64px rgba(0,0,0,0.24);                                        /* Stor — modaler, drawers           */
+  --shadow-xl:    0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);     /* Dramatisk — hero-elementer        */
+  --shadow-focus: 0 0 0 3px rgba(48,51,47,0.07);                                       /* Focus-ring                        */
+
+  /* TRANSITIONS — 4 variasjoner
+     ------------------------------------------ */
+  --transition-fast:   0.15s ease;                            /* Hover-states, farger              */
+  --transition-base:   0.2s ease;                             /* Standard interaksjon              */
+  --transition-slow:   0.35s ease;                            /* Overlay, reveal                   */
+  --transition-spring: 0.4s cubic-bezier(0.22, 1, 0.36, 1);  /* Fjærende UI-bevegelser            */
+  --transition-reveal: 0.55s cubic-bezier(0.4, 0, 0.2, 1);   /* Innholds-animasjon                */
+
+  /* Z-INDEX — 7 semantiske lag
+     ------------------------------------------ */
+  --z-base:    1;      /* Innad i seksjoner, lokalt stacking      */
+  --z-raised:  10;     /* Lett løftet — kort, tooltip-trigger     */
+  --z-sticky:  100;    /* Sticky/fixed nav                        */
+  --z-overlay: 1000;   /* Overlay, drawer-bakgrunn                */
+  --z-modal:   1001;   /* Modal-innhold over overlay              */
+  --z-toast:   9999;   /* Varsler, cookie-banner                  */
+  --z-top:     99999;  /* Absolutt topp                           */
+
+  /* FARGER
+     ------------------------------------------ */
+  --color-dark:             #2c2420;   /* Brand primær — varm mørk kull         */
+  --color-accent:           #8a7e7a;   /* Dempet varm grå-brun aksent           */
+  --color-light:            #f6f5f2;   /* Varm lys — tekst/elementer på mørk bg */
+  --color-white:            #ffffff;   /* Ren hvit                               */
+  --color-text-dark:        var(--color-white);  /* Tekst på mørke seksjoner     */
+  --color-text-primary:     #2c2420;   /* Primær tekst på lys bakgrunn          */
+
+  /* RGB-kanaler — for opacity-varianter via rgba(var(--X-rgb), alpha)
+     ------------------------------------------ */
+  --color-white-rgb:        255, 255, 255;
+  --color-text-primary-rgb: 44, 36, 32;    /* #2c2420 */
+  --color-dark-rgb:         44, 36, 32;    /* #2c2420 */
+  --color-accent-rgb:       138, 126, 122; /* #8a7e7a */
+  --color-ui-dark-rgb:      32, 28, 25;    /* #201c19 */
+  --color-ink-rgb:          22, 18, 16;    /* #161210 */
+  --bg-0-rgb:               246, 245, 242; /* #f6f5f2 */
+  --color-text-muted:       #2c2420;   /* Sekundærtekst — samme som tittel      */
+  --color-text-hint:        #6e6460;   /* Caption, placeholder, hint            */
+  --color-mid:              #8a7e7a;   /* Aksent — dempet varm grå-brun         */
+  --color-border-light:     #d8d0c8;   /* Lette dividers og borders             */
+
+  /* MØRK UI-SKALA
+     ------------------------------------------ */
+  --color-ui-dark:  #201c19;   /* Skarp near-black — navbar CTA, popup bg, form-areas   */
+  --color-ui-mid:   #342c28;   /* Mid-dark surface — navbar scrolled, illustrasjons-bg   */
+  --color-ink:      #161210;   /* Base text/stroke — nav-lenker, hamburger, hover-border */
+
+  /* BAKGRUNNER
+     ------------------------------------------ */
+  --bg-0:       #f6f5f2;   /* Hero og primærseksjoner                    */
+  --bg-2:       #e4ddd7;   /* Sekundærflate, demoer og bransjer          */
+  --bg-cards:   #1a0f0d;   /* Mørke kort og seksjoner                    */
+  --bg-dark:    #201c19;   /* Prising                                    */
+  --bg-footer:  #161210;   /* Footer                                     */
+
+  /* Surface-farger
+     ------------------------------------------ */
+  --surface-light:    #e4ddd7;   /* Kort på lys bakgrunn                  */
+  --surface-dark:     #342c28;   /* Kort på bg-dark                      */
+  --surface-dark-hi:  #3c3330;   /* Fremhevet kort på bg-dark            */
+
+
+}

@@ -1,0 +1,402 @@
+/* ══════════════════════════════════════════════════════
+   Mediegruppen V2 — Mobil-system
+   Breakpoints: 768px (tablet/mobil), 480px (liten mobil)
+   System: 16px horisontal padding, single-col grid, skalert tekst
+   ══════════════════════════════════════════════════════ */
+
+/* ── VARIABLER FOR MOBIL ─────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --mob-pad-x: 16px;
+    --mob-pad-y: 64px;
+    --mob-gap: 16px;
+    --mob-body: 16px;
+    --mob-body-sm: 14px;
+    --mob-radius: 8px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   1. HERO — CTA-boks og strip
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Override !important grid-margin på hero */
+  .hero {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* CTA pill-boks med 280px hardkodet padding */
+  .hero > div[style*="padding:24px 280px"],
+  .hero > div[style*="padding: 24px 280px"] {
+    padding: 16px 16px !important;
+    width: calc(100% - 32px) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* CTA-tekst i hero-boks */
+  .hero > div[style*="padding:24px 280px"] span,
+  .hero > div[style*="padding: 24px 280px"] span {
+    font-size: 10px !important;
+    white-space: normal !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   2. OM OSS SEKSJON — 12-kolonne grid
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  #om-oss {
+    padding: var(--mob-pad-y) var(--mob-pad-x) !important;
+  }
+
+  #om-oss > div > div[style*="grid-template-columns:repeat(12"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+
+  #om-oss > div > div > div[style*="grid-column:1/8"],
+  #om-oss > div > div > div[style*="grid-column:9/13"] {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   3. S2 SEKSJON — "Alt inkludert" feature list
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Padding override — inline style bruker ingen mellomrom */
+  #s2 {
+    padding: var(--mob-pad-y) var(--mob-pad-x) !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  #s2-badge {
+    align-self: flex-start;
+  }
+
+  #s2-heading {
+    font-size: clamp(28px, 8vw, 40px) !important;
+    margin-bottom: 12px !important;
+    max-width: 100% !important;
+    text-align: left !important;
+  }
+
+  #s2-sub {
+    font-size: 16px !important;
+    max-width: 100% !important;
+    margin-bottom: 32px !important;
+    text-align: left !important;
+  }
+
+  /* 12-kolonne grid → flex enkeltkolonne */
+  #s2 > div[style*="grid"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Bilde — full bredde, fornuftig høyde */
+  #s2-image {
+    width: 100% !important;
+    grid-column: unset !important;
+    aspect-ratio: 16/9 !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Tekstkolonne — full bredde */
+  #s2 > div > div[style*="grid-column: 7"] {
+    width: 100% !important;
+    grid-column: unset !important;
+  }
+
+  /* Feature-items — inline block, naturlig tekstflyt */
+  .s2-item {
+    padding: 18px 0 !important;
+  }
+
+  .s2-item p {
+    display: block !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Prikk som inline element */
+  .s2-item p > span:first-child {
+    display: inline-block !important;
+    width: 7px !important;
+    height: 7px !important;
+    margin-right: 6px !important;
+    margin-bottom: 1px !important;
+    vertical-align: middle !important;
+  }
+
+  /* Grønn tittel — inline, litt tykkere */
+  .s2-item p > span[style*="color:#3a7d2c"] {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   4. MOCKUP-SEKSJON — 2-kolonne grid
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .mockup-boks__tittel {
+    font-size: 20px !important;
+  }
+
+  .mockup-boks__sub {
+    font-size: var(--mob-body-sm) !important;
+  }
+
+  section:has(.mockup-boks) {
+    padding: 48px var(--mob-pad-x) !important;
+  }
+
+  section:has(.mockup-boks) > div {
+    grid-template-columns: 1fr !important;
+    gap: var(--mob-gap) !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   5. MØK SEKSJON — "Alt du trenger" feature-bokser
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Seksjon — padding ned fra 160px */
+  .mork-seksjon {
+    padding: 64px var(--mob-pad-x) !important;
+  }
+
+  /* Intro-blokk */
+  .mork-seksjon [style*="margin-bottom:72px"] {
+    margin-bottom: 40px !important;
+    text-align: left !important;
+  }
+
+  .mork-seksjon [style*="margin-bottom:72px"] h2 {
+    font-size: clamp(24px, 7vw, 36px) !important;
+  }
+
+  .mork-seksjon [style*="margin-bottom:72px"] p {
+    font-size: 15px !important;
+    max-width: 100% !important;
+    margin: 0 0 20px !important;
+  }
+
+  /* Alle rader → enkeltkolonne, fjern negativ margin */
+  .mork-rad {
+    flex-direction: column !important;
+    margin-top: 0 !important;
+  }
+
+  /* Ytre boks-wrapper — full bredde, fjern clip-path, reset padding */
+  .mork-boks-ytre {
+    clip-path: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border-top: 1px solid rgba(255,255,255,0.35) !important;
+  }
+
+  /* Første boks i hver rad — ingen dobbel border */
+  .mork-rad:first-of-type .mork-boks-ytre:first-child {
+    border-top: none !important;
+  }
+
+  /* Indre boks — høyde auto, padding ned, clip-path av */
+  .mork-boks-inner {
+    height: auto !important;
+    min-height: unset !important;
+    padding: 28px 0 !important;
+    clip-path: none !important;
+    background: transparent !important;
+  }
+
+  /* Tomme bokser skjules */
+  .mork-boks-inner:not(:has(h3)):not(:has(p)):not(:has(span[style*="color:#c8e8b0"])) {
+    display: none !important;
+  }
+  .mork-boks-ytre:has(.mork-boks-inner:not(:has(h3)):not(:has(p)):not(:has(span[style*="color:#c8e8b0"]))) {
+    display: none !important;
+  }
+
+  /* Headings */
+  .mork-boks-inner h3 {
+    font-size: 22px !important;
+    min-height: unset !important;
+    margin-bottom: 10px !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Body-tekst */
+  .mork-boks-inner p {
+    font-size: 15px !important;
+    margin-bottom: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Bullet-item tekst */
+  .mork-boks-inner span[style*="font-size:18px"] {
+    font-size: 14px !important;
+  }
+
+  /* Bullet-items gap */
+  .mork-boks-inner [style*="flex-direction:column; gap:14px"] {
+    gap: 10px !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   6. GRONN-SEKSJON — bakgrunnsbilde CTA
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .gronn-seksjon {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 64px 16px 80px !important;
+    background-size: cover, cover !important;
+    background-position: center, center 20% !important;
+  }
+
+  .gronn-seksjon__heading {
+    font-size: clamp(26px, 7vw, 36px) !important;
+    max-width: 100% !important;
+    margin-bottom: 14px !important;
+  }
+
+  .gronn-seksjon__sub {
+    font-size: 15px !important;
+    max-width: 100% !important;
+    margin-bottom: 24px !important;
+  }
+
+  .gronn-seksjon__btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px 20px !important;
+    font-size: 13px !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   8. FAQ-SEKSJON
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .seksjon-faq {
+    padding: 64px 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 40px !important;
+  }
+
+  /* Override V2-kolonne-definisjonene */
+  .faq-left {
+    grid-column: unset !important;
+    grid-row: unset !important;
+    width: 100% !important;
+  }
+
+  .faq-list {
+    grid-column: unset !important;
+    grid-row: unset !important;
+    width: 100% !important;
+  }
+
+  .faq-heading {
+    font-size: clamp(26px, 7vw, 36px) !important;
+  }
+
+  .faq-subtext {
+    font-size: 15px !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   9. PRISSEKSJON — 3-kolonne grid
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  section#priser {
+    padding: var(--mob-pad-y) var(--mob-pad-x) !important;
+  }
+
+  section#priser > div:last-child {
+    grid-template-columns: 1fr !important;
+    gap: var(--mob-gap) !important;
+  }
+
+  .pris-btn {
+    font-size: 13px !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   7. GLOBAL BODY-TEKST SKALERING
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Uresponsive 20px body-tekst */
+  p[style*="font-size:20px"],
+  p[style*="font-size: 20px"] {
+    font-size: var(--mob-body) !important;
+  }
+
+  p[style*="font-size:19px"],
+  p[style*="font-size: 19px"] {
+    font-size: var(--mob-body) !important;
+  }
+
+  /* Seksjons-padding som ikke har egne queries */
+  section[style*="padding:120px 48px"] {
+    padding: var(--mob-pad-y) var(--mob-pad-x) !important;
+  }
+
+  section[style*="padding:80px 48px"] {
+    padding: 48px var(--mob-pad-x) !important;
+  }
+
+  /* Generelle grids med 2+ kolonner → single col */
+  div[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: var(--mob-gap) !important;
+  }
+
+  div[style*="grid-template-columns:3fr 6fr 3fr"] {
+    grid-template-columns: 1fr !important;
+    gap: var(--mob-gap) !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   8. LITEN MOBIL (under 480px)
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  :root {
+    --mob-pad-x: 12px;
+    --mob-pad-y: 48px;
+    --mob-body: 15px;
+  }
+
+  /* Hero heading enda litt mindre */
+  .hero__heading {
+    font-size: clamp(30px, 9vw, 44px) !important;
+  }
+
+  /* Hero sub */
+  .hero__sub .hero__line-inner {
+    font-size: 15px !important;
+  }
+
+  /* Bokser med mye padding */
+  div[style*="padding:72px 80px"],
+  div[style*="padding: 72px 80px"] {
+    padding: 32px var(--mob-pad-x) !important;
+  }
+}
