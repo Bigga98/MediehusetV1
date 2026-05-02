@@ -6296,25 +6296,10 @@
       return;
     }
 
-    /* Mobil — enkel CSS fade-in, ingen tung JS-tidslinje */
+    /* Mobil — vis alt umiddelbart, ingen animasjon */
     if (window.matchMedia('(max-width: 768px)').matches) {
-      const allEls = document.querySelectorAll('.hero__line-inner, .hero-badge, .hero__cta-row, .hero__strip');
-      allEls.forEach((el, i) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(12px)';
-        el.style.transition = `opacity 0.5s ease ${i * 0.08}s, transform 0.5s ease ${i * 0.08}s`;
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        }));
-      });
-      document.querySelectorAll('.hero__cta-row, .hero__strip').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transition = 'opacity 0.5s ease 0.4s';
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          el.style.opacity = '1';
-        }));
-      });
+      document.querySelectorAll('.hero__line-inner, .hero-badge, .hero__cta-row, .hero__strip')
+        .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
       return;
     }
 
