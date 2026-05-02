@@ -1,5 +1,5 @@
 /* ── Mediegruppen Navbar — felles stil for alle sider ── */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Mono:wght@400;700&display=swap');
 
 .mg-nav__logo .mg-logo-svg { display: none; }
 .mg-nav__logo::after {
@@ -28,10 +28,11 @@
   display: inline-flex !important;
   align-items: center !important;
   padding: 14px 20px !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.01em !important;
-  text-transform: none !important;
+  font-family: 'Space Mono', monospace !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
   color: #1B1F27 !important;
   text-decoration: none !important;
   position: relative !important;
