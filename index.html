@@ -201,8 +201,6 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 12px;
-      opacity: 0;
-      will-change: opacity;
     }
     .hero-cta-box.shimmer-active::after {
       content: '';
@@ -6298,7 +6296,7 @@
 
     /* Mobil — vis alt umiddelbart, ingen animasjon */
     if (window.matchMedia('(max-width: 768px)').matches) {
-      document.querySelectorAll('.hero__line-inner, .hero-badge, .hero__cta-row, .hero__strip')
+      document.querySelectorAll('.hero__line-inner, .hero-badge, .hero__cta-row, .hero__strip, .hero-cta-box__content')
         .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
       return;
     }
@@ -6324,6 +6322,10 @@
     const tl = gsap.timeline({
       onComplete: () => animEls.forEach(el => { el.style.willChange = 'auto'; })
     });
+
+    /* CTA-boks: skjul content via JS (ikke CSS) — fallback er synlig */
+    const ctaContent = document.querySelector('.hero-cta-box__content');
+    if (ctaContent) gsap.set(ctaContent, { opacity: 0 });
 
     /* Badge — fill → tekst → shimmer */
     const badgeFill = document.querySelector('.hero-badge__fill');
@@ -6381,9 +6383,8 @@
     });
 
     /* CTA-boks — fill → innhold → shimmer */
-    const ctaBox     = document.querySelector('.hero-cta-box');
-    const ctaFill    = document.querySelector('.hero-cta-box__fill');
-    const ctaContent = document.querySelector('.hero-cta-box__content');
+    const ctaBox  = document.querySelector('.hero-cta-box');
+    const ctaFill = document.querySelector('.hero-cta-box__fill');
 
     if (ctaBox && ctaFill && ctaContent) {
       tl.to(ctaFill,
