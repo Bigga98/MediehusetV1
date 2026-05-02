@@ -298,7 +298,6 @@
     gap: 40px !important;
   }
 
-  /* Override V2-kolonne-definisjonene */
   .faq-left {
     grid-column: unset !important;
     grid-row: unset !important;
@@ -317,6 +316,41 @@
 
   .faq-subtext {
     font-size: 15px !important;
+  }
+
+  /* Fjern boks-stil, vis alltid svar */
+  .faq-item {
+    background: transparent !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+    padding: 20px 0 !important;
+  }
+
+  .faq-item:last-child {
+    border-bottom: none !important;
+  }
+
+  .faq-question {
+    padding: 0 !important;
+    height: auto !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    font-family: 'Muli', sans-serif !important;
+    cursor: default !important;
+    pointer-events: none !important;
+    margin-bottom: 8px !important;
+  }
+
+  .faq-icon {
+    display: none !important;
+  }
+
+  .faq-answer {
+    max-height: none !important;
+    opacity: 1 !important;
+    padding: 0 !important;
+    font-size: 15px !important;
+    color: rgba(34,34,34,0.65) !important;
   }
 }
 
