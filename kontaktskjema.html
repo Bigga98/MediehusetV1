@@ -527,6 +527,7 @@
     const { error } = await sb.from('leads').insert([{
       name:         navn,
       email:        epost || null,
+      phone:        telefon || null,
       website:      bedrift || null,
       message:      nettside || null,
       service_type: 'Kampanje',
