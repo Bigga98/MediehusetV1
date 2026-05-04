@@ -2566,12 +2566,12 @@
     .popup-overlay.open { opacity: 1; visibility: visible; }
     .popup-backdrop {
       position: absolute; inset: 0;
-      background: rgba(6,7,9,0.75);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      background: rgba(6,7,9,0.25);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
     }
     .popup-card {
       position: relative; z-index: var(--z-base); display: flex;
-      max-width: 880px; width: 100%; overflow: hidden; border-radius: 4px;
+      max-width: 1000px; width: 100%; min-height: 620px; overflow: hidden; border-radius: 4px;
       box-shadow: var(--shadow-xl);
       transform: translateY(24px) scale(0.97);
       transition: transform var(--transition-spring);
@@ -2579,12 +2579,11 @@
     .popup-overlay.open .popup-card { transform: translateY(0) scale(1); }
 
     .popup-left {
-      flex: 0 0 360px; background: var(--color-ui-dark);
+      flex: 0 0 500px; background: #f8f8f8;
       position: relative; overflow: hidden;
-      border-right: 1px solid rgba(255,255,255,0.06);
     }
     .popup-slide {
-      position: absolute; inset: 12px 0 12px 12px; overflow: hidden; border-radius: 4px 0 0 4px;
+      position: absolute; inset: 12px; overflow: hidden; border-radius: 4px;
     }
     .popup-slide img {
       width: 100%; height: 100%; object-fit: cover;
@@ -2592,9 +2591,7 @@
       will-change: transform, opacity; transform-origin: center center;
     }
     .popup-left-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(8,9,11,0.92) 0%, rgba(8,9,11,0.3) 60%, transparent 100%);
-      z-index: var(--z-base);
+      display: none;
     }
     .popup-left-content {
       position: relative; z-index: var(--z-base);
@@ -2622,7 +2619,13 @@
     .popup-right {
       flex: 1; background: #f8f8f8;
       padding: 44px 44px 40px; position: relative;
+      display: flex; flex-direction: column;
     }
+    #popupFormView {
+      display: flex; flex-direction: column; flex: 1;
+    }
+    .popup-form { flex: 1; }
+    .popup-contact-links { margin-top: auto; }
     .popup-close {
       position: absolute; top: 16px; right: 16px;
       width: 28px; height: 28px;
@@ -2633,9 +2636,9 @@
     }
     .popup-close:hover { background: rgba(0,0,0,0.1); color: rgba(34,34,34,0.8); }
     .popup-right-heading {
-      font-family: var(--font-neue);
-      font-size: 22px; font-weight: 300; letter-spacing: -0.025em;
-      color: #222222; margin-bottom: 6px; line-height: 1.1;
+      font-family: 'Muli', sans-serif;
+      font-size: 22px; font-weight: 600; letter-spacing: -0.02em;
+      color: #222222; margin-bottom: 28px; line-height: 1.1;
     }
     .popup-right-sub {
       font-family: var(--font-ui);
@@ -2647,52 +2650,53 @@
     .popup-field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 22px; }
     .popup-field label {
       font-family: var(--font-ui);
-      font-size: 10px; font-weight: 500; color: rgba(34,34,34,0.4);
+      font-size: 10px; font-weight: 500; color: rgba(34,34,34,0.75);
       letter-spacing: 0.12em; text-transform: uppercase;
     }
     .popup-input, .popup-textarea {
-      width: 100%; background: transparent; border: none;
-      border-bottom: 1px solid rgba(34,34,34,0.25); border-radius: 0;
-      padding: 0 0 10px; height: 40px;
+      width: 100%; background: #e4e6e9; border: none;
+      border-radius: 8px;
+      padding: 0 14px; height: 44px;
       font-family: var(--font-neue);
       font-size: 14px; font-weight: 300; color: #222222;
-      outline: none; transition: border-color var(--transition-base), box-shadow var(--transition-base);
+      outline: none; transition: background var(--transition-base);
       -webkit-appearance: none;
     }
     .popup-input:-webkit-autofill, .popup-input:-webkit-autofill:focus {
-      -webkit-box-shadow: 0 0 0 100px #f8f8f8 inset;
+      -webkit-box-shadow: 0 0 0 100px #e4e6e9 inset;
       -webkit-text-fill-color: #222222;
     }
-    .popup-textarea { height: auto; padding: 0 0 10px; min-height: 68px; resize: none; line-height: 1.6; }
-    .popup-input::placeholder, .popup-textarea::placeholder { color: rgba(34,34,34,0.35); }
-    .popup-input:hover, .popup-textarea:hover { border-bottom-color: rgba(34,34,34,0.45); }
-    .popup-input:focus, .popup-textarea:focus {
-      border-bottom-color: #222222;
-      box-shadow: 0 1px 0 rgba(34,34,34,0.1);
-    }
+    .popup-textarea { height: auto; padding: 12px 14px; min-height: 80px; resize: none; line-height: 1.6; }
+    .popup-input::placeholder, .popup-textarea::placeholder { color: rgba(34,34,34,0.5); }
+    .popup-input:hover, .popup-textarea:hover { background: #d8dadd; }
+    .popup-input:focus, .popup-textarea:focus { background: #d8dadd; }
     .popup-submit {
       width: auto; align-self: flex-start; height: 42px; padding: 0 24px;
-      background: #222222; color: #f8f8f8; border: none; border-radius: var(--radius-sm);
-      font-family: var(--font-ui); font-size: 13px; font-weight: 500;
+      background: #BFEC9C; color: #222222; border: none; border-radius: var(--radius-sm);
+      font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
       cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
       transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast); margin-top: 4px;
     }
-    .popup-submit:hover { background: #1a1a1a; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .popup-submit:hover { background: #B1E887; transform: translateY(-1px); box-shadow: var(--shadow-md); }
     .popup-submit:active { transform: translateY(0); box-shadow: none; }
     .popup-submit svg { transition: transform var(--transition-base); }
     .popup-submit:hover svg { transform: translateX(3px); }
 
     .popup-contact-links {
-      display: flex; gap: 20px; margin-top: 18px; flex-wrap: wrap;
-      border-top: 1px solid rgba(0,0,0,0.08); padding-top: 16px;
+      display: flex; gap: 10px; margin-top: auto; flex-wrap: wrap;
+      padding-top: 24px;
     }
     .popup-contact-link {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 12px; color: rgba(34,34,34,0.45);
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; color: rgba(34,34,34,0.8);
       font-family: var(--font-ui);
-      text-decoration: none; transition: color var(--transition-base);
+      text-decoration: none;
+      background: #e4e6e9; border-radius: 8px;
+      padding: 13px 20px;
+      transition: background var(--transition-base);
     }
-    .popup-contact-link:hover { color: rgba(34,34,34,0.8); }
+    .popup-contact-link:hover { background: #d8dadd; color: #222222; }
 
     .popup-success { display: none; padding: 20px 0; }
     .popup-success-icon {
@@ -4322,7 +4326,7 @@
         <span style="font-family:'Muli',sans-serif; font-size:14px; font-weight:600; color:#111111; letter-spacing:0.06em; text-transform:uppercase;">Se hvordan vi optimaliserer nettsiden din</span>
         <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
           <a href="#" onclick="openContactPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:#031618; color:#fff; font-family:'Space Mono',monospace; font-size:14px; font-weight:500; padding:14px 32px; border-radius:6px; text-decoration:none; white-space:nowrap; letter-spacing:0.06em; text-transform:uppercase;">Få et utkast <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M0 8V6H10L5.5 1.5L7 0L14 7L7 14L5.5 12.5L10 8H0Z" fill="white" transform="rotate(-45 7 7)"/></svg></a>
-          <a href="#" onclick="openContactPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:transparent; color:#111111; font-family:'Space Mono',monospace; font-size:14px; font-weight:500; padding:13px 28px; border-radius:6px; border:1.5px solid #111111; text-decoration:none; white-space:nowrap; letter-spacing:0.06em; text-transform:uppercase;">Ta kontakt</a>
+          <a href="#" onclick="openPrisPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:transparent; color:#111111; font-family:'Space Mono',monospace; font-size:14px; font-weight:500; padding:13px 28px; border-radius:6px; border:1.5px solid #111111; text-decoration:none; white-space:nowrap; letter-spacing:0.06em; text-transform:uppercase;">Se priser</a>
         </div>
       </div>
     </div>
@@ -4506,7 +4510,7 @@
       <!-- Boks 6: ingen kutt -->
       <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0;">
         <div class="mork-boks-inner" style="background:#111111; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
-          <span style="display:inline-flex; background:rgba(200,232,176,0.15); color:#c8e8b0; font-family:'Public Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:16px;">Synlighet</span>
+          <span style="display:inline-flex; background:rgba(200,232,176,0.15); color:#c8e8b0; font-family:'Public Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:16px;">Basishet</span>
           <h3 style="font-family:'Muli',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">SEO-optimalisert</h3>
           <div style="display:flex; flex-direction:column; gap:14px;">
             <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#c8e8b0; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Teknisk SEO fra dag én</span></div>
@@ -5768,56 +5772,105 @@
   <section id="priser" style="background:#f8f8f8; padding:120px 48px;">
     <div style="max-width:1344px; margin:0 auto;">
       <span style="display:inline-flex; align-items:center; background:#c8e8b0; color:#111111; font-family:'Muli',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:2px; margin-bottom:16px;">Priser</span>
-      <h2 style="font-family:'Muli',sans-serif; font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#111111; line-height:1.12; letter-spacing:-0.02em; margin:0 0 48px; -webkit-font-smoothing:antialiased;">Én pris. Alt inkludert.</h2>
+      <h2 style="font-family:'Muli',sans-serif; font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#111111; line-height:1.12; letter-spacing:-0.02em; margin:0 0 12px; -webkit-font-smoothing:antialiased;">Velg pakken som passer din bedrift</h2>
+      <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:rgba(0,0,0,0.55); margin:0 0 48px; line-height:1.6;">Alle pakker inkluderer gratis designutkast, ingen binding og levering på 1–2 uker.</p>
     </div>
     <div style="max-width:1344px; margin:0 auto; display:grid; grid-template-columns:3fr 6fr 3fr; gap:24px; align-items:stretch;">
 
-      <!-- Boks 1: smal, mørk -->
-      <div style="background:#efefef; border-radius:14px; padding:40px 36px; display:flex; flex-direction:column; gap:24px;">
+      <!-- Boks 1: Basis -->
+      <div style="background:#efefef; border-radius:14px; padding:40px 36px; display:flex; flex-direction:column; gap:20px;">
         <div style="height:28px;"></div>
         <div>
-          <p style="font-family:'Muli',sans-serif; font-size:18px; font-weight:600; color:#111111; margin:0 0 16px; min-height:32px; display:flex; align-items:center; -webkit-font-smoothing:antialiased;">Standard</p>
-          <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:6px; min-height:72px;">
-            <span style="font-family:'Muli',sans-serif; font-size:56px; font-weight:700; color:#111111; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">14 900</span>
+          <p style="font-family:'Muli',sans-serif; font-size:18px; font-weight:600; color:#111111; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Basis</p>
+          <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.45); margin:0 0 16px;">For deg som trenger en profesjonell nettside raskt og uten komplikasjoner.</p>
+          <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:4px;">
+            <span style="font-family:'Muli',sans-serif; font-size:48px; font-weight:700; color:#111111; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">4 900</span>
+            <span style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(0,0,0,0.4);">kr</span>
+            <span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:rgba(0,0,0,0.3); text-decoration:line-through; white-space:nowrap;">9 000 kr</span>
           </div>
-          <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
-          <span style="background:#fff083; color:#111111; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; padding:3px 10px; border-radius:4px;">Spar 2 000 kr</span>
+          <p style="font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
+          <span style="background:#fff083; color:#111111; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; padding:3px 10px; border-radius:4px;">Spar 4 100 kr</span>
         </div>
-        <p style="font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:rgba(0,0,0,0.55); margin:0; line-height:1.6;">For deg som ønsker en profesjonell nettside og kommer i gang raskt.</p>
-        <button class="pris-btn" onclick="openContactPopup(); return false;"><span>Kom i gang</span></button>
+        <ul style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.6); line-height:1.7; list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+          <li>✓ Inntil 5 sider</li>
+          <li>✓ Mobiloptimalisert design</li>
+          <li>✓ Kontaktskjema og kart</li>
+          <li>✓ SEO-grunnoppsett</li>
+          <li>✓ Hosting inkludert (1 år)</li>
+          <li>✓ Gratis utkast før du bestemmer deg</li>
+        </ul>
+        <button class="pris-btn" onclick="openContactPopup(); return false;" style="margin-top:auto;"><span>Start med Basis</span></button>
+        <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.35); text-align:center; margin:0;">Ingen binding · Svar innen én arbeidsdag</p>
       </div>
 
-      <!-- Boks 2: bred, mørk, anbefalt -->
-      <div style="background:#efefef; border-radius:14px; padding:40px 44px; display:flex; flex-direction:column; gap:24px;">
-        <span style="display:inline-flex; width:fit-content; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.5); letter-spacing:0.1em; text-transform:uppercase; border:1px solid rgba(0,0,0,0.2); padding:3px 10px; border-radius:4px; height:28px; align-items:center;">Anbefalt</span>
+      <!-- Boks 2: Vekst -->
+      <div style="background:#efefef; border-radius:14px; padding:40px 44px; display:flex; flex-direction:column; gap:20px;">
+        <span style="display:inline-flex; width:fit-content; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.5); letter-spacing:0.1em; text-transform:uppercase; border:1px solid rgba(0,0,0,0.2); padding:3px 10px; border-radius:4px; height:28px; align-items:center;">Mest valgt</span>
         <div>
-          <p style="font-family:'Muli',sans-serif; font-size:18px; font-weight:600; color:#111111; margin:0 0 16px; min-height:32px; display:flex; align-items:center; -webkit-font-smoothing:antialiased;">Vekst</p>
-          <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:6px; min-height:72px;">
-            <span style="font-family:'Muli',sans-serif; font-size:56px; font-weight:700; color:#111111; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">24 900</span>
+          <p style="font-family:'Muli',sans-serif; font-size:18px; font-weight:600; color:#111111; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Vekst</p>
+          <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.45); margin:0 0 16px;">For bedrifter som vil ha en nettside som faktisk bringer inn kunder.</p>
+          <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:4px;">
+            <span style="font-family:'Muli',sans-serif; font-size:48px; font-weight:700; color:#111111; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">24 900</span>
+            <span style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(0,0,0,0.4);">kr</span>
           </div>
-          <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
-          <span style="background:#fff083; color:#111111; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; padding:3px 10px; border-radius:4px;">Spar 4 000 kr</span>
+          <p style="font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
         </div>
-        <p style="font-family:'Inter',sans-serif; font-size:15px; font-weight:300; color:rgba(0,0,0,0.55); margin:0; line-height:1.6;">Den komplette pakken for bedrifter som vil ha en nettside som faktisk genererer kunder.</p>
-        <button class="pris-btn" onclick="openContactPopup(); return false;"><span>Kom i gang</span></button>
+        <ul style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.6); line-height:1.7; list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+          <li>✓ Alt i Basis +</li>
+          <li>✓ Inntil 10 sider</li>
+          <li>✓ Avansert SEO og Google-optimalisering</li>
+          <li>✓ Google My Business-oppsett</li>
+          <li>✓ Hastighetsoptimalisering</li>
+          <li>✓ Prioritert support</li>
+        </ul>
+        <button class="pris-btn" onclick="openContactPopup(); return false;" style="margin-top:auto;"><span>Velg Vekst</span></button>
+        <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.35); text-align:center; margin:0;">Ingen binding · Svar innen én arbeidsdag</p>
       </div>
 
-      <!-- Boks 3: smal, lys -->
-      <div style="background:#efefef; border-radius:14px; padding:40px 36px; display:flex; flex-direction:column; gap:24px;">
+      <!-- Boks 3: Skreddersydd -->
+      <div style="background:#efefef; border-radius:14px; padding:40px 36px; display:flex; flex-direction:column; gap:20px;">
         <div style="height:28px;"></div>
         <div>
-          <p style="font-family:'Muli',sans-serif; font-size:18px; font-weight:600; color:#111111; margin:0 0 16px; min-height:32px; display:flex; align-items:center; -webkit-font-smoothing:antialiased;">Enterprise</p>
-          <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:6px; min-height:72px;">
-            <span style="font-family:'Muli',sans-serif; font-size:56px; font-weight:700; color:#111111; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">78 900</span>
+          <p style="font-family:'Muli',sans-serif; font-size:18px; font-weight:600; color:#111111; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Skreddersydd</p>
+          <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.45); margin:0 0 16px;">For ambisiøse bedrifter som vil ha full kontroll og prioritert oppfølging.</p>
+          <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:4px;">
+            <span style="font-family:'Muli',sans-serif; font-size:48px; font-weight:700; color:#111111; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">78 900</span>
+            <span style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(0,0,0,0.4);">kr</span>
           </div>
-          <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
-          <span style="background:#fff083; color:#111111; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; padding:3px 10px; border-radius:4px;">Spar 10 000 kr</span>
+          <p style="font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
         </div>
-        <p style="font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:rgba(0,0,0,0.55); margin:0; line-height:1.6;">For ambisiøse bedrifter som vil ha full pakke med prioritert service.</p>
-        <button class="pris-btn" onclick="openContactPopup(); return false;"><span>Kom i gang</span></button>
+        <ul style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.6); line-height:1.7; list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+          <li>✓ Alt i Vekst +</li>
+          <li>✓ Skreddersydd design fra bunnen</li>
+          <li>✓ Nettbutikk eller bookingsystem</li>
+          <li>✓ Månedlig rapportering</li>
+          <li>✓ Dedikert kontaktperson</li>
+          <li>✓ Konverteringsoptimalisering</li>
+        </ul>
+        <button class="pris-btn" onclick="openContactPopup(); return false;" style="margin-top:auto;"><span>Ta en prat</span></button>
+        <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.35); text-align:center; margin:0;">Ingen binding · Svar innen én arbeidsdag</p>
       </div>
 
     </div>
+
+    <!-- Gratis utkast-boks -->
+    <div style="max-width:1344px; margin:24px auto 0; background:#c8e8b0; border-radius:14px; padding:48px 56px; display:flex; align-items:center; justify-content:space-between; gap:48px;">
+      <div style="flex:1;">
+        <p style="font-family:'Muli',sans-serif; font-size:26px; font-weight:600; color:#111111; margin:0 0 10px; line-height:1.2; -webkit-font-smoothing:antialiased;">Se nettsiden din på 72 timer — gratis</p>
+        <p style="font-family:'Inter',sans-serif; font-size:15px; font-weight:300; color:rgba(0,0,0,0.6); margin:0 0 20px; line-height:1.6;">Vi lager et skreddersydd utkast til din bransje uten kostnad og uten forpliktelse.</p>
+        <div style="display:flex; gap:24px; flex-wrap:wrap;">
+          <span style="font-family:'Inter',sans-serif; font-size:13px; color:rgba(0,0,0,0.65);">✓ Visuell skisse (desktop + mobil)</span>
+          <span style="font-family:'Inter',sans-serif; font-size:13px; color:rgba(0,0,0,0.65);">✓ Forslag til innholdsstruktur</span>
+          <span style="font-family:'Inter',sans-serif; font-size:13px; color:rgba(0,0,0,0.65);">✓ SEO-grunnlag inkludert</span>
+          <span style="font-family:'Inter',sans-serif; font-size:13px; color:rgba(0,0,0,0.65);">✓ Gratis gjennomgang med vårt team</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:10px; flex-shrink:0;">
+        <button onclick="openContactPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:#111111; color:#fff; font-family:'Space Mono',monospace; font-size:12px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:14px 28px; border-radius:8px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.18s;">Ja, jeg vil ha mitt gratis utkast</button>
+        <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.45); margin:0;">Ingen forpliktelse · Ingen faktura · Verdi: 4 500 kr</p>
+      </div>
+    </div>
+
     </div>
   </section>
 
@@ -6527,27 +6580,6 @@
         <div class="popup-slide" id="popup-slide-0"><img src="images/kontakt-slide-1.jpeg" alt=""></div>
         <div class="popup-slide" id="popup-slide-1"><img src="images/kontakt-slide-2.jpeg" alt=""></div>
         <div class="popup-slide" id="popup-slide-2"><img src="images/kontakt-slide-3.jpeg" alt=""></div>
-        <div class="popup-left-overlay"></div>
-        <div class="popup-left-content">
-          <div class="popup-left-top">
-            <p class="popup-left-heading">La oss ta en prat om nettsiden din</p>
-            <p class="popup-left-sub">Vi hjelper deg med å få en nettside som faktisk gjør jobben — og som du er stolt av.</p>
-          </div>
-          <div class="popup-trust">
-            <div class="popup-trust-item">
-              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Svar innen én arbeidsdag
-            </div>
-            <div class="popup-trust-item">
-              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Ingen bindingstid
-            </div>
-            <div class="popup-trust-item">
-              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,11 12,3" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Fast pris — ingen overraskelser
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Høyre panel -->
@@ -6556,7 +6588,6 @@
 
         <div id="popupFormView">
           <h2 class="popup-right-heading">Send oss en melding</h2>
-          <p class="popup-right-sub">Vi tar kontakt innen én arbeidsdag.</p>
           <form class="popup-form" id="popupForm" onsubmit="submitPopupForm(event)">
             <div class="popup-form-row">
               <div class="popup-field">
@@ -6568,15 +6599,21 @@
                 <input class="popup-input" type="email" name="email" placeholder="ola@bedrift.no" required />
               </div>
             </div>
-            <div class="popup-field">
-              <label>Bedrift / Nettside</label>
-              <input class="popup-input" type="text" name="company" placeholder="Bedrift AS" />
+            <div class="popup-form-row">
+              <div class="popup-field">
+                <label>Bedrift / Nettside</label>
+                <input class="popup-input" type="text" name="company" placeholder="Bedrift AS" />
+              </div>
+              <div class="popup-field">
+                <label>Telefon</label>
+                <input class="popup-input" type="tel" name="phone" placeholder="+47 000 00 000" />
+              </div>
             </div>
             <div class="popup-field">
               <label>Melding</label>
               <textarea class="popup-textarea" name="message" placeholder="Hva kan vi hjelpe med?"></textarea>
             </div>
-            <button class="popup-submit" type="submit">Send melding <svg viewBox="0 0 15 15" fill="none" width="13" height="13"><path d="M2 7.5h11M8.5 3l4.5 4.5L8.5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="popup-submit" type="submit">Gratis Utkast <svg viewBox="0 0 15 15" fill="none" width="13" height="13"><path d="M2 7.5h11M8.5 3l4.5 4.5L8.5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           </form>
           <div class="popup-contact-links">
             <a href="tel:+4748118680" class="popup-contact-link">
@@ -6651,12 +6688,14 @@
 
     function openContactPopup() {
       document.getElementById('kontaktPopup').classList.add('open');
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
       if (window._initPopupSlider) window._initPopupSlider();
     }
 
     function closeContactPopup() {
       document.getElementById('kontaktPopup').classList.remove('open');
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     }
 
@@ -6955,6 +6994,191 @@
       const pos = sessionStorage.getItem('scrollPos');
       if (pos) { window.scrollTo(0, parseInt(pos)); sessionStorage.removeItem('scrollPos'); }
     });
+  </script>
+
+  <!-- PRISPOPUP -->
+  <style>
+    .prispopup-overlay {
+      position: fixed; inset: 0; z-index: var(--z-toast);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; opacity: 0; visibility: hidden;
+      transition: opacity var(--transition-base), visibility var(--transition-base);
+    }
+    .prispopup-overlay.open { opacity: 1; visibility: visible; }
+    .prispopup-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(6,7,9,0.25);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    }
+    .prispopup-card {
+      position: relative; z-index: var(--z-base);
+      background: #f8f8f8; border-radius: 20px;
+      box-shadow: var(--shadow-xl);
+      padding: 56px;
+      max-width: 1200px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      transform: translateY(24px) scale(0.97);
+      transition: transform var(--transition-spring);
+    }
+    .prispopup-overlay.open .prispopup-card { transform: translateY(0) scale(1); }
+    .prispopup-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 28px; height: 28px;
+      background: rgba(0,0,0,0.06); border: none; border-radius: 50%;
+      cursor: pointer; color: rgba(34,34,34,0.4); font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition-fast), color var(--transition-fast);
+    }
+    .prispopup-close:hover { background: rgba(0,0,0,0.1); color: rgba(34,34,34,0.8); }
+    .prispopup-heading {
+      font-family: 'Muli', sans-serif; font-size: 28px; font-weight: 600;
+      color: #111111; letter-spacing: -0.02em; margin-bottom: 32px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .prispopup-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    }
+    .prispopup-boks {
+      background: #e4e6e9; border-radius: 12px;
+      padding: 32px 28px; display: flex; flex-direction: column; gap: 16px;
+    }
+    .prispopup-boks__badge {
+      display: inline-flex; width: fit-content;
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+      color: rgba(0,0,0,0.5); letter-spacing: 0.1em; text-transform: uppercase;
+      border: 1px solid rgba(0,0,0,0.2); padding: 3px 10px; border-radius: 4px;
+    }
+    .prispopup-boks__tittel {
+      font-family: 'Muli', sans-serif; font-size: 18px; font-weight: 600;
+      color: #111111; margin: 0; -webkit-font-smoothing: antialiased;
+    }
+    .prispopup-boks__pris {
+      font-family: 'Muli', sans-serif; font-size: 48px; font-weight: 700;
+      color: #111111; line-height: 1; -webkit-font-smoothing: antialiased;
+    }
+    .prispopup-boks__note {
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 300;
+      color: rgba(0,0,0,0.4); margin: -8px 0 0;
+    }
+    .prispopup-boks__spar {
+      display: inline-flex; width: fit-content;
+      background: #fff083; color: #111111;
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500;
+      padding: 3px 10px; border-radius: 4px;
+    }
+    .prispopup-boks__tekst {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300;
+      color: rgba(0,0,0,0.55); line-height: 1.6; flex: 1;
+    }
+    .prispopup-boks__btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #BFEC9C; color: #222222; border: none; border-radius: 8px;
+      font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 12px 20px; cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+    .prispopup-boks__btn:hover { background: #B1E887; }
+  </style>
+
+  <div class="prispopup-overlay" id="prisPopup">
+    <div class="prispopup-backdrop" onclick="closePrisPopup()"></div>
+    <div class="prispopup-card">
+      <button class="prispopup-close" onclick="closePrisPopup()">&times;</button>
+      <p class="prispopup-heading">Velg pakken som passer din bedrift</p>
+      <p style="font-family:'Inter',sans-serif; font-size:15px; font-weight:300; color:rgba(0,0,0,0.5); margin:-16px 0 32px; line-height:1.6;">Alle pakker inkluderer gratis designutkast, ingen binding og levering på 1–2 uker.</p>
+      <div class="prispopup-grid">
+
+        <div class="prispopup-boks">
+          <div style="height:24px;"></div>
+          <p class="prispopup-boks__tittel">Basis</p>
+          <p class="prispopup-boks__tekst" style="margin-top:-8px;">For deg som trenger en profesjonell nettside raskt og uten komplikasjoner.</p>
+          <div class="prispopup-boks__pris">4 900 <span style="font-size:16px; font-weight:400; color:rgba(0,0,0,0.4);">kr</span> <span style="font-size:18px; font-weight:300; color:rgba(0,0,0,0.3); text-decoration:line-through;">9 000 kr</span></div>
+          <p class="prispopup-boks__note">Engangsbeløp</p>
+          <span class="prispopup-boks__spar">Spar 4 100 kr</span>
+          <ul style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.6); line-height:1.8; list-style:none; padding:0; margin:0; flex:1;">
+            <li>✓ Inntil 5 sider</li>
+            <li>✓ Mobiloptimalisert design</li>
+            <li>✓ Kontaktskjema og kart</li>
+            <li>✓ SEO-grunnoppsett</li>
+            <li>✓ Hosting inkludert (1 år)</li>
+            <li>✓ Gratis utkast</li>
+          </ul>
+          <button class="prispopup-boks__btn" onclick="closePrisPopup(); openContactPopup();">Start med Basis</button>
+          <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.35); text-align:center; margin:0;">Ingen binding</p>
+        </div>
+
+        <div class="prispopup-boks">
+          <span class="prispopup-boks__badge">Mest valgt</span>
+          <p class="prispopup-boks__tittel">Vekst</p>
+          <p class="prispopup-boks__tekst" style="margin-top:-8px;">For bedrifter som vil ha en nettside som faktisk bringer inn kunder.</p>
+          <div class="prispopup-boks__pris">24 900 <span style="font-size:16px; font-weight:400; color:rgba(0,0,0,0.4);">kr</span></div>
+          <p class="prispopup-boks__note">Engangsbeløp</p>
+          <ul style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.6); line-height:1.8; list-style:none; padding:0; margin:0; flex:1;">
+            <li>✓ Alt i Basis +</li>
+            <li>✓ Inntil 10 sider</li>
+            <li>✓ Avansert SEO og Google-optimalisering</li>
+            <li>✓ Google My Business-oppsett</li>
+            <li>✓ Hastighetsoptimalisering</li>
+            <li>✓ Prioritert support</li>
+          </ul>
+          <button class="prispopup-boks__btn" onclick="closePrisPopup(); openContactPopup();">Velg Vekst</button>
+          <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.35); text-align:center; margin:0;">Ingen binding</p>
+        </div>
+
+        <div class="prispopup-boks">
+          <div style="height:24px;"></div>
+          <p class="prispopup-boks__tittel">Skreddersydd</p>
+          <p class="prispopup-boks__tekst" style="margin-top:-8px;">For ambisiøse bedrifter som vil ha full kontroll og prioritert oppfølging.</p>
+          <div class="prispopup-boks__pris">78 900 <span style="font-size:16px; font-weight:400; color:rgba(0,0,0,0.4);">kr</span></div>
+          <p class="prispopup-boks__note">Engangsbeløp</p>
+          <ul style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.6); line-height:1.8; list-style:none; padding:0; margin:0; flex:1;">
+            <li>✓ Alt i Vekst +</li>
+            <li>✓ Skreddersydd design fra bunnen</li>
+            <li>✓ Nettbutikk eller bookingsystem</li>
+            <li>✓ Månedlig rapportering</li>
+            <li>✓ Dedikert kontaktperson</li>
+            <li>✓ Konverteringsoptimalisering</li>
+          </ul>
+          <button class="prispopup-boks__btn" onclick="closePrisPopup(); openContactPopup();">Ta en prat</button>
+          <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.35); text-align:center; margin:0;">Ingen binding</p>
+        </div>
+
+      </div>
+
+      <!-- Gratis utkast-boks -->
+      <div style="margin-top:20px; background:#c8e8b0; border-radius:14px; padding:36px 44px; display:flex; align-items:center; justify-content:space-between; gap:40px;">
+        <div style="flex:1;">
+          <p style="font-family:'Muli',sans-serif; font-size:22px; font-weight:600; color:#111111; margin:0 0 8px; line-height:1.2; -webkit-font-smoothing:antialiased;">Se nettsiden din på 72 timer — gratis</p>
+          <p style="font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:rgba(0,0,0,0.6); margin:0 0 16px; line-height:1.6;">Vi lager et skreddersydd utkast til din bransje uten kostnad og uten forpliktelse.</p>
+          <div style="display:flex; gap:20px; flex-wrap:wrap;">
+            <span style="font-family:'Inter',sans-serif; font-size:12px; color:rgba(0,0,0,0.65);">✓ Visuell skisse (desktop + mobil)</span>
+            <span style="font-family:'Inter',sans-serif; font-size:12px; color:rgba(0,0,0,0.65);">✓ Forslag til innholdsstruktur</span>
+            <span style="font-family:'Inter',sans-serif; font-size:12px; color:rgba(0,0,0,0.65);">✓ SEO-grunnlag inkludert</span>
+            <span style="font-family:'Inter',sans-serif; font-size:12px; color:rgba(0,0,0,0.65);">✓ Gratis gjennomgang med vårt team</span>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px; flex-shrink:0;">
+          <button onclick="closePrisPopup(); openContactPopup();" style="display:inline-flex; align-items:center; gap:8px; background:#111111; color:#fff; font-family:'Space Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:12px 24px; border-radius:8px; border:none; cursor:pointer; white-space:nowrap;">Ja, jeg vil ha mitt gratis utkast</button>
+          <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.45); margin:0;">Ingen forpliktelse · Ingen faktura · Verdi: 4 500 kr</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function openPrisPopup() {
+      document.getElementById('prisPopup').classList.add('open');
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+    function closePrisPopup() {
+      document.getElementById('prisPopup').classList.remove('open');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePrisPopup(); });
   </script>
 </body>
 </html>
