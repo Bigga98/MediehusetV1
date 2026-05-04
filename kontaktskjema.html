@@ -519,17 +519,18 @@
     const emailData = new FormData();
     emailData.append('name', navn);
     emailData.append('email', epost || 'ukjent@kontaktskjema.no');
-    emailData.append('message', `Bedrift: ${bedrift}\nTlf: ${telefon}\nNettside: ${nettside}`);
-    emailData.append('_subject', 'Ny leads fra annonse — ' + navn);
+    emailData.append('message', `Domene: ${bedrift}\nTlf: ${telefon}\nKommentar: ${nettside}`);
+    emailData.append('_subject', 'Ny leads fra kampanje-2 — ' + navn);
     emailData.append('_captcha', 'false');
     fetch('https://formsubmit.co/ajax/birbra.bb@gmail.com', { method: 'POST', body: emailData });
 
     const { error } = await sb.from('leads').insert([{
       name:         navn,
       email:        epost || null,
-      message:      `Bedrift: ${bedrift}\nTlf: ${telefon}\nNettside: ${nettside}`,
-      service_type: 'Annonse',
-      source:       'kontaktskjema.html',
+      website:      bedrift || null,
+      message:      nettside || null,
+      service_type: 'Kampanje',
+      source:       'kampanje-2',
     }]);
 
     if (error) {
