@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gratis nettside-utkast | Mediegruppen</title>
+  <link rel="stylesheet" href="brand/tokens.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600&family=Muli:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Helvetica Neue';
+      src: url('fonts/HelveticaNeueRoman.otf') format('opentype');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Helvetica Neue';
+      src: url('fonts/HelveticaNeueLight.otf') format('opentype');
+      font-weight: 300;
+    }
+    @font-face {
+      font-family: 'Helvetica Neue';
+      src: local('Helvetica Neue Bold'), local('HelveticaNeue-Bold'), local('Helvetica-Bold');
+      font-weight: 700 900;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { min-height: 100%; }
+
+    /* ─── Page grid ─── */
+    .page {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 12px;
+      padding-right: 12px;
+      background: #f7f7f5;
+      align-items: start;
+    }
+
+    /* ─── Left: image sticky, bleeds to edge ─── */
+    .img-col {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .img-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* ─── Right: form (scrolls naturally) ─── */
+    .form-col {
+      display: flex;
+      flex-direction: column;
+      padding-top: 20vh;
+    }
+
+    .form-section {
+      padding: 0 calc(100% / 7);
+    }
+
+    .form-inner {
+      width: 100%;
+    }
+
+    .info-section {
+      padding: 0 calc(100% / 7) 100px;
+    }
+
+    /* Logo */
+    .logo {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #111;
+      letter-spacing: 0.04em;
+      margin-bottom: 40px;
+    }
+
+    .form-sub {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #888;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    /* Heading */
+    .form-heading {
+      font-family: 'Muli', sans-serif;
+      font-weight: 600;
+      font-size: clamp(24px, 2.4vw, 36px);
+      color: #111;
+      letter-spacing: -0.03em;
+      line-height: 1.06;
+      margin-bottom: 28px;
+    }
+
+    /* Form fields */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.full {
+      margin-bottom: 10px;
+    }
+
+    .field.full input {
+      height: 80px;
+      align-items: flex-start;
+      padding-top: 14px;
+    }
+
+    .field label {
+      display: none;
+    }
+
+    .field input {
+      background: #efefed;
+      border: none;
+      border-radius: 10px;
+      padding: 16px 16px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: #000;
+      outline: none;
+      transition: background 0.2s;
+      width: 100%;
+    }
+
+    .field input::placeholder {
+      color: #333;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .field input:focus { background: #dfdfe1; }
+
+    .field textarea {
+      background: #efefed;
+      border: none;
+      border-radius: 10px;
+      padding: 16px 16px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: #000;
+      outline: none;
+      transition: background 0.2s;
+      width: 100%;
+      resize: none;
+      min-height: 80px;
+    }
+    .field textarea::placeholder {
+      color: #666;
+      font-size: 13px;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+    .field textarea:focus { background: #dfdfe1; }
+
+    /* Disclaimer */
+    .disclaimer {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 11px;
+      color: #bbb;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* CTA button */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 48px;
+      padding: 0 28px;
+      background: #70CC84;
+      color: #111;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+      margin-bottom: 36px;
+    }
+
+    .btn-cta:active { transform: translateY(0); }
+
+    .btn-cta svg {
+      width: 13px;
+      height: 13px;
+      transition: transform 0.2s;
+    }
+
+    .btn-cta:hover svg { transform: translateX(3px); }
+
+    /* Info card */
+    .info-card {
+      background: #efefed;
+      border-radius: 12px;
+      padding: 28px 28px 28px 28px;
+    }
+
+    .info-card-heading {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      font-size: 28px;
+      color: #111;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .info-card-body {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 17px;
+      color: #222;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .info-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .info-item-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #2d6a2d;
+      flex-shrink: 0;
+    }
+
+    .info-divider {
+      display: none;
+    }
+
+    .qa-item {
+      margin-bottom: 48px;
+    }
+
+    .qa-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .qa-question {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: #111;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .qa-answer {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 17px;
+      color: #111;
+      line-height: 1.65;
+    }
+
+    /* Success */
+    .form-success {
+      display: none;
+      flex-direction: column;
+      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-success h2 {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      font-size: 32px;
+      color: #111;
+      letter-spacing: -0.025em;
+      margin-bottom: 8px;
+    }
+
+    .form-success p {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    .btn-bibliotek {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 44px;
+      padding: 0 22px;
+      background: #111;
+      color: #fff;
+      border-radius: 12px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .btn-bibliotek:hover { opacity: 0.8; }
+
+    .btn-bibliotek svg { transition: transform 0.2s; }
+    .btn-bibliotek:hover svg { transform: translateX(3px); }
+
+    /* ─── MOBIL ─── */
+    @media (max-width: 768px) {
+      .page {
+        grid-template-columns: 1fr;
+        padding-right: 0;
+        gap: 0;
+      }
+
+      .img-col {
+        position: relative;
+        height: 240px;
+        width: 100%;
+      }
+
+      .form-col {
+        padding-top: 48px;
+      }
+
+      .form-section {
+        padding: 0 24px;
+      }
+
+      .info-section {
+        padding: 48px 24px 80px;
+      }
+
+      .form-heading {
+        font-size: clamp(28px, 7vw, 36px);
+      }
+
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-cta {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .qa-question {
+        font-size: 22px;
+      }
+
+      .qa-answer {
+        font-size: 15px;
+      }
+
+      .info-card-heading {
+        font-size: 22px;
+      }
+
+      .info-card-body {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Left: single image, bleeds to left edge -->
+  <div class="img-col">
+    <img src="images/hand-phone-mockup.webp" alt="">
+  </div>
+
+  <!-- Right: form + Q&A -->
+  <div class="form-col">
+
+    <div class="form-section">
+      <div class="form-inner">
+
+        <h1 class="form-heading">Vi ser gjennom nettsiden din og lager et forbedret utkast</h1>
+
+        <form id="skjema" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="navn">Navn</label>
+              <input type="text" id="navn" name="navn" placeholder="Navn" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="bedrift">Domene</label>
+              <input type="text" id="bedrift" name="bedrift" placeholder="Domene" autocomplete="organization">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="telefon">Telefon</label>
+              <input type="tel" id="telefon" name="telefon" placeholder="Telefon" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="epost">E-post</label>
+              <input type="email" id="epost" name="epost" placeholder="E-post" autocomplete="email">
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="nettside">Kommentar</label>
+            <textarea id="nettside" name="nettside" placeholder="Noe du vil legge til?"></textarea>
+          </div>
+
+          <p class="disclaimer">Vi sender ikke spam. Kun ett utkast, ingen forpliktelser.</p>
+
+          <button type="submit" class="btn-cta">
+            Ja, jeg ønsker et gratis utkast
+            <svg width="12" height="12" viewBox="0 0 2336 2457" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1924 1324.5H0V1109L1924 1106L949.5 156.5L1106 0L2335.5 1227.5L1126.5 2457L961 2293.5L1924 1324.5Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <h2>Vi tar kontakt innen én arbeidsdag.</h2>
+          <p>Mens du venter, se hva vi har bygget for andre.</p>
+          <a href="../MEDIEGRUPPEN-NETTSIDE-V2/index.html" class="btn-bibliotek">
+            Se eksempler
+            <svg width="12" height="12" viewBox="0 0 2336 2457" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1924 1324.5H0V1109L1924 1106L949.5 156.5L1106 0L2335.5 1227.5L1126.5 2457L961 2293.5L1924 1324.5Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-card">
+        <div class="qa-item">
+          <p class="qa-question">Hva er gratis?</p>
+          <p class="qa-answer">Vi lager et ferdig nettside-utkast tilpasset din bedrift. Design, tekst og struktur. Uten at du betaler noe.</p>
+        </div>
+        <div class="qa-item">
+          <p class="qa-question">Hva skjer etter at jeg fyller ut?</p>
+          <p class="qa-answer">Vi ser på nettsiden din og sender deg et konkret forslag innen én arbeidsdag.</p>
+        </div>
+        <div class="qa-item">
+          <p class="qa-question">Må jeg ha nettside fra før?</p>
+          <p class="qa-answer">Nei. Vi lager utkast både for bedrifter som starter fra null og de som vil bytte.</p>
+        </div>
+        <div class="qa-item">
+          <p class="qa-question">Hva koster det å gå videre?</p>
+          <p class="qa-answer">Fast månedspris, ingen bindingstid. Du får all info før du bestemmer deg.</p>
+        </div>
+        <div class="qa-item">
+          <p class="qa-question">Passer dette for min bedrift?</p>
+          <p class="qa-answer">Vi hjelper håndverkere, fagfolk og lokale bedrifter som vil ha en nettside som faktisk gir dem kunder. Har du en bedrift med en fysisk tjeneste, som rørlegger, snekker, elektriker eller frisør, er vi rett valg. Vi kjenner bransjen, og vi vet hva som fungerer.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+  const SB_URL = 'https://seevzkxodkvgiffanacg.supabase.co';
+  const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNlZXZ6a3hvZGt2Z2lmZmFuYWNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDUzODksImV4cCI6MjA4NTk4MTM4OX0.bGUpZQk1xDSVrinv9YzaeZHHHJyhKpf_54ywZyHWt6g';
+  const sb = window.supabase.createClient(SB_URL, SB_KEY);
+
+  document.getElementById('skjema').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-cta');
+    btn.textContent = 'Sender…';
+    btn.disabled = true;
+
+    const navn     = document.getElementById('navn').value.trim();
+    const bedrift  = document.getElementById('bedrift').value.trim();
+    const telefon  = document.getElementById('telefon').value.trim();
+    const epost    = document.getElementById('epost').value.trim();
+    const nettside = document.getElementById('nettside').value.trim();
+
+    const emailData = new FormData();
+    emailData.append('name', navn);
+    emailData.append('email', epost || 'ukjent@kontaktskjema.no');
+    emailData.append('message', `Bedrift: ${bedrift}\nTlf: ${telefon}\nNettside: ${nettside}`);
+    emailData.append('_subject', 'Ny leads fra annonse — ' + navn);
+    emailData.append('_captcha', 'false');
+    fetch('https://formsubmit.co/ajax/birbra.bb@gmail.com', { method: 'POST', body: emailData });
+
+    const { error } = await sb.from('leads').insert([{
+      name:         navn,
+      email:        epost || null,
+      message:      `Bedrift: ${bedrift}\nTlf: ${telefon}\nNettside: ${nettside}`,
+      service_type: 'Annonse',
+      source:       'kontaktskjema.html',
+    }]);
+
+    if (error) {
+      btn.textContent = 'Noe gikk galt — prøv igjen';
+      btn.style.background = 'rgba(180,50,50,0.9)';
+      btn.disabled = false;
+    } else {
+      document.getElementById('skjema').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'flex';
+    }
+  });
+</script>
+
+</body>
+</html>
