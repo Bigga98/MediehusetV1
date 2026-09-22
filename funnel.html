@@ -424,39 +424,61 @@
     car.addEventListener('pointercancel', up);
   })();
 
-  /* ============ scroll-glid med appens easing ============ */
-  function bezier(x1, y1, x2, y2) {
-    function A(a1, a2) { return 1 - 3 * a2 + 3 * a1; }
-    function B(a1, a2) { return 3 * a2 - 6 * a1; }
-    function C(a1) { return 3 * a1; }
-    function calc(t, a1, a2) { return ((A(a1, a2) * t + B(a1, a2)) * t + C(a1)) * t; }
-    function slope(t, a1, a2) { return 3 * A(a1, a2) * t * t + 2 * B(a1, a2) * t + C(a1); }
-    return function (x) {
-      var t = x;
-      for (var i = 0; i < 5; i++) {
-        var s = slope(t, x1, x2);
-        if (s === 0) break;
-        t -= (calc(t, x1, x2) - x) / s;
-      }
-      return calc(t, y1, y2);
-    };
-  }
-  var easeApp = bezier(0.16, 1, 0.3, 1);
-  var glideId = 0;
+  /* ============ glid med appens kurve — på GPU-en ============
+     Siden scroller ikke under glidningen: hele kolonnen flyttes med en
+     transform (kompositoren — aldri hovedtråden), og i det den lander
+     byttes det lydløst til ekte scrollposisjon i samme frame. Den gamle
+     JS-scrollen krevde ledig hovedtråd i hvert eneste millisekund. */
+  var glideCommit = null;
   function glideTo(targetY, dur) {
     dur = dur || 420;
-    var id = ++glideId;
-    var startY = window.scrollY;
+    if (glideCommit) glideCommit(); // gjør ferdig et evt. pågående glid først
     var maxY = document.documentElement.scrollHeight - window.innerHeight;
     targetY = Math.max(0, Math.min(targetY, maxY));
-    if (Math.abs(targetY - startY) < 8) return;
-    var t0 = performance.now();
-    (function tick(now) {
-      if (id !== glideId) return;
-      var t = Math.min((now - t0) / dur, 1);
-      window.scrollTo(0, startY + (targetY - startY) * easeApp(t));
-      if (t < 1) requestAnimationFrame(tick);
-    })(performance.now());
+    var startY = window.scrollY;
+    var delta = targetY - startY;
+    if (Math.abs(delta) < 8) return;
+
+    var el = stageEl;
+    el.style.transition = 'none';
+    el.style.transform = 'translateY(0px)';
+    void el.offsetWidth; // commit startverdien
+    el.style.transition = 'transform ' + dur + 'ms cubic-bezier(0.16, 1, 0.3, 1)';
+    el.style.transform = 'translateY(' + (-delta) + 'px)';
+    void getComputedStyle(el).transform; // start transition-klokka NÅ, ikke ved neste frame
+
+    var fallback = setTimeout(function () { commit(false); }, dur + 80);
+    function onEnd(e) { if (e.target === el && e.propertyName === 'transform') commit(true); }
+    // rører brukeren siden (finger/hjul/ekte scroll-event — transformen lager
+    // ingen), eller fanen gjemmes: frys glidet der det er, native tar over
+    function onUser() { commit(false); }
+    el.addEventListener('transitionend', onEnd);
+    window.addEventListener('touchstart', onUser, { passive: true });
+    window.addEventListener('wheel', onUser, { passive: true });
+    window.addEventListener('scroll', onUser, { passive: true });
+    document.addEventListener('visibilitychange', onUser);
+
+    function commit(finished) {
+      if (glideCommit !== commit) return;
+      glideCommit = null;
+      clearTimeout(fallback);
+      el.removeEventListener('transitionend', onEnd);
+      window.removeEventListener('touchstart', onUser);
+      window.removeEventListener('wheel', onUser);
+      window.removeEventListener('scroll', onUser);
+      document.removeEventListener('visibilitychange', onUser);
+      var moved = delta; // hele veien ved naturlig slutt
+      if (!finished) {
+        try {
+          var t = getComputedStyle(el).transform;
+          moved = (t && t !== 'none') ? -(new DOMMatrixReadOnly(t)).m42 : 0;
+        } catch (err) { moved = 0; }
+      }
+      el.style.transition = ''; // .stage har ingen CSS-transition å falle tilbake til
+      el.style.transform = '';
+      window.scrollTo(0, startY + moved); // samme piksler — bare ekte scroll nå
+    }
+    glideCommit = commit;
   }
 
   /* ============ bygg spørsmålene ============ */
