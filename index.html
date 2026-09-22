@@ -63,7 +63,7 @@
   <!-- End Meta Pixel Code -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&family=Muli:wght@400;600&family=Public+Sans:wght@400;500&family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,200,0,0" rel="stylesheet">
   <script>
     if (window.innerWidth > 1024) {
@@ -98,23 +98,23 @@
     .faq-eyebrow {
       display: inline-flex !important;
       width: fit-content !important;
-      background: #c8e8b0 !important;
-      color: #111111 !important;
-      font-family: 'Muli', sans-serif !important;
+      background: #e7e5e0 !important;
+      color: #262823 !important;
+      font-family: 'Inter', sans-serif !important;
       font-size: 12px !important;
       font-weight: 600 !important;
       letter-spacing: 0.06em !important;
       text-transform: uppercase !important;
       padding: 5px 12px !important;
-      border-radius: 2px !important;
+      border-radius: 6px !important;
       margin-bottom: 0 !important;
     }
     .faq-eyebrow span:first-child { display: none !important; }
     .faq-heading {
-      font-family: 'Muli', sans-serif !important;
+      font-family: 'Inter', sans-serif !important;
       font-weight: 600 !important;
       font-size: clamp(32px, 3.5vw, 52px) !important;
-      color: #111111 !important;
+      color: #262823 !important;
       line-height: 1.12 !important;
       letter-spacing: -0.02em !important;
       -webkit-font-smoothing: antialiased !important;
@@ -123,7 +123,7 @@
       font-family: 'Inter', sans-serif !important;
       font-size: 19px !important;
       font-weight: 300 !important;
-      color: #111111 !important;
+      color: #262823 !important;
       line-height: 1.6 !important;
       margin-top: 0 !important;
     }
@@ -166,8 +166,8 @@
     .hero-badge__fill {
       position: absolute;
       inset: 0;
-      background: #c8e8b0;
-      border-radius: 2px;
+      background: #e7e5e0;
+      border-radius: 6px;
       transform: scaleX(0);
       transform-origin: left center;
       will-change: transform;
@@ -242,9 +242,9 @@
     }
 
     /* V2 — hvit bakgrunn */
-    :root { --bg-0: #f8f8f8; --bg-1: #f8f8f8; }
-    body { background-color: #f8f8f8 !important; }
-    .mg-nav, .mg-nav.scrolled { background: rgba(248,248,248,0.95) !important; border-bottom: none !important; }
+    :root { --bg-0: #efeeec; --bg-1: #efeeec; }
+    body { background-color: #efeeec !important; }
+    .mg-nav, .mg-nav.scrolled { background: rgba(239,238,236,0.95) !important; border-bottom: none !important; }
     .mg-nav {
       display: grid !important;
       grid-template-columns: 1fr auto 1fr !important;
@@ -325,9 +325,9 @@
       color: #ffffff !important;
     }
 
-    /* V2 — Muli lastes fra Google Fonts (woff2, bedre hinting enn lokal TTF) */
+    /* V2 — Inter lastes fra Google Fonts (woff2, bedre hinting enn lokal TTF) */
     .hero__cta-btn {
-      font-family: 'Space Mono', monospace !important;
+      font-family: 'Inter', monospace !important;
       background: #031618 !important;
       color: #ffffff !important;
       display: inline-flex !important;
@@ -361,9 +361,9 @@
       animation: v2-arrow-exit-enter 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
     .hero__heading {
-      font-family: 'Muli', sans-serif !important;
+      font-family: 'Inter', sans-serif !important;
       font-weight: 600 !important;
-      color: #111111 !important;
+      color: #262823 !important;
       text-align: left !important;
       line-height: 1.18 !important;
       -webkit-font-smoothing: antialiased !important;
@@ -388,20 +388,6 @@
     }
   </style>
   <style>
-    @font-face {
-      font-family: 'Helvetica Neue';
-      src: url('fonts/HelveticaNeueRoman.otf') format('opentype');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Helvetica Neue';
-      src: url('fonts/HelveticaNeueLight.otf') format('opentype');
-      font-weight: 300;
-      font-style: normal;
-      font-display: swap;
-    }
   </style>
   <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -902,7 +888,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      font-family: -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif;
+      font-family: -apple-system, "SF Pro Text", "Instrument Sans", sans-serif;
     }
 
     /* Dynamic island */
@@ -1171,7 +1157,7 @@
     /* ── SEKSJON FAQ ─────────────────────────── */
     .seksjon-faq {
       width: 100%;
-      background-color: #f8f8f8;
+      background-color: #efeeec;
       padding: 96px 24px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -2112,7 +2098,7 @@
     /* ── FOOTER ──────────────────────────────── */
     .site-footer {
       width: 100%;
-      background-color: #f8f8f8;
+      background-color: #efeeec;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -2124,7 +2110,7 @@
     .site-footer .footer-body,
     .site-footer .footer-bottom { border-color: rgba(0,0,0,0.08) !important; }
     .site-footer .footer-cta__heading,
-    .site-footer .footer-brand__wordmark { color: #111111 !important; }
+    .site-footer .footer-brand__wordmark { color: #262823 !important; }
     .site-footer .footer-cta__eyebrow,
     .site-footer .footer-cta__note,
     .site-footer .footer-brand__tagline,
@@ -2132,14 +2118,14 @@
     .site-footer .footer-cta__eyebrow::before { background: rgba(34,34,34,0.3) !important; }
     .site-footer .footer-col__label { color: rgba(34,34,34,0.45) !important; border-bottom-color: rgba(0,0,0,0.08) !important; }
     .site-footer .footer-col__list a,
-    .site-footer .footer-col__list a .f-text { color: #111111 !important; }
-    .site-footer .footer-col__list a:hover .f-text { color: #111111 !important; }
-    .site-footer .footer-col__list .f-arrow svg path { fill: #111111 !important; }
+    .site-footer .footer-col__list a .f-text { color: #262823 !important; }
+    .site-footer .footer-col__list a:hover .f-text { color: #262823 !important; }
+    .site-footer .footer-col__list .f-arrow svg path { fill: #262823 !important; }
     .site-footer .footer-bottom__links a { color: rgba(34,34,34,0.5) !important; }
     .site-footer .footer-cta__btn,
-    .site-footer .footer-kontakt-btn { background: #111111 !important; color: #f8f8f8 !important; }
+    .site-footer .footer-kontakt-btn { background: #262823 !important; color: #efeeec !important; }
     .site-footer .footer-cta__btn svg,
-    .site-footer .footer-cta__btn:hover svg { fill: #f8f8f8 !important; }
+    .site-footer .footer-cta__btn:hover svg { fill: #efeeec !important; }
     .site-footer .footer-cta__heading em { color: rgba(34,34,34,0.4) !important; }
     .site-footer .footer-bottom__copy { color: rgba(34,34,34,0.4) !important; }
 
@@ -2396,7 +2382,7 @@
     }
 
     .footer-col__label {
-      font-family: 'Muli', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.12em;
@@ -2415,7 +2401,7 @@
     }
 
     .footer-col__list a {
-      font-family: 'Muli', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 500;
       font-size: 17px;
       color: #ffffff;
@@ -2439,7 +2425,7 @@
       transition: transform 300ms cubic-bezier(0.3, 0, 0, 1);
       flex-shrink: 0;
     }
-    .footer-col__list .f-arrow svg path { fill: #c8e8b0; }
+    .footer-col__list .f-arrow svg path { fill: #262823; }
     .footer-col__list .f-text {
       display: block;
       transition: transform 300ms cubic-bezier(0.3, 0, 0, 1), color 300ms;
@@ -2579,7 +2565,7 @@
     .popup-overlay.open .popup-card { transform: translateY(0) scale(1); }
 
     .popup-left {
-      flex: 0 0 500px; background: #f8f8f8;
+      flex: 0 0 500px; background: #efeeec;
       position: relative; overflow: hidden;
     }
     .popup-slide {
@@ -2617,7 +2603,7 @@
     .popup-trust-item svg { flex-shrink: 0; }
 
     .popup-right {
-      flex: 1; background: #f8f8f8;
+      flex: 1; background: #efeeec;
       padding: 44px 44px 40px; position: relative;
       display: flex; flex-direction: column;
     }
@@ -2636,9 +2622,9 @@
     }
     .popup-close:hover { background: rgba(0,0,0,0.1); color: rgba(34,34,34,0.8); }
     .popup-right-heading {
-      font-family: 'Muli', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 22px; font-weight: 600; letter-spacing: -0.02em;
-      color: #222222; margin-bottom: 28px; line-height: 1.1;
+      color: #262823; margin-bottom: 28px; line-height: 1.1;
     }
     .popup-right-sub {
       font-family: var(--font-ui);
@@ -2658,13 +2644,13 @@
       border-radius: 8px;
       padding: 0 14px; height: 44px;
       font-family: var(--font-neue);
-      font-size: 14px; font-weight: 300; color: #222222;
+      font-size: 14px; font-weight: 300; color: #262823;
       outline: none; transition: background var(--transition-base);
       -webkit-appearance: none;
     }
     .popup-input:-webkit-autofill, .popup-input:-webkit-autofill:focus {
       -webkit-box-shadow: 0 0 0 100px #e4e6e9 inset;
-      -webkit-text-fill-color: #222222;
+      -webkit-text-fill-color: #262823;
     }
     .popup-textarea { height: auto; padding: 12px 14px; min-height: 80px; resize: none; line-height: 1.6; }
     .popup-input::placeholder, .popup-textarea::placeholder { color: rgba(34,34,34,0.5); }
@@ -2672,13 +2658,13 @@
     .popup-input:focus, .popup-textarea:focus { background: #d8dadd; }
     .popup-submit {
       width: auto; align-self: flex-start; height: 42px; padding: 0 24px;
-      background: #BFEC9C; color: #222222; border: none; border-radius: var(--radius-sm);
-      font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 500;
+      background: #262823; color: #f7f6f4; border: none; border-radius: var(--radius-sm);
+      font-family: 'Inter', monospace; font-size: 12px; font-weight: 500;
       letter-spacing: 0.06em; text-transform: uppercase;
       cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
       transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast); margin-top: 4px;
     }
-    .popup-submit:hover { background: #B1E887; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .popup-submit:hover { background: #3a3b36; transform: translateY(-1px); box-shadow: var(--shadow-md); }
     .popup-submit:active { transform: translateY(0); box-shadow: none; }
     .popup-submit svg { transition: transform var(--transition-base); }
     .popup-submit:hover svg { transform: translateX(3px); }
@@ -2696,7 +2682,7 @@
       padding: 13px 20px;
       transition: background var(--transition-base);
     }
-    .popup-contact-link:hover { background: #d8dadd; color: #222222; }
+    .popup-contact-link:hover { background: #d8dadd; color: #262823; }
 
     .popup-success { display: none; padding: 20px 0; }
     .popup-success-icon {
@@ -2706,7 +2692,7 @@
     }
     .popup-success h3 {
       font-family: var(--font-neue);
-      font-size: 22px; font-weight: 300; color: #222222;
+      font-size: 22px; font-weight: 300; color: #262823;
       margin-bottom: 8px; letter-spacing: -0.02em;
     }
     .popup-success p { font-family: var(--font-ui); font-size: 13px; color: rgba(34,34,34,0.5); }
@@ -4281,17 +4267,6 @@
     }
 
   </style>
-  <style>
-    .mg-nav__logo .mg-logo-svg { display: none; }
-    .mg-nav__logo::after {
-      content: 'Mediegruppen';
-      font-family: 'DM Serif Display', serif;
-      font-size: 22px;
-      font-weight: 400;
-      color: #111111;
-      letter-spacing: -0.01em;
-    }
-  </style>
   <link rel="stylesheet" href="components/navbar.css">
   <link rel="stylesheet" href="components/mobile.css">
 </head>
@@ -4305,9 +4280,9 @@
 
     <!-- 2. Tekst-gruppe -->
     <div class="hero__text">
-      <span class="hero-badge" style="display:inline-flex; align-items:center; gap:6px; color:#111111; font-family:'Muli', sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:2px; margin-bottom:4px;">
+      <span class="hero-badge" style="display:inline-flex; align-items:center; gap:6px; color:#262823; font-family:'Inter', sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:6px; margin-bottom:4px;">
         <span class="hero-badge__fill" aria-hidden="true"></span>
-        <span class="hero-badge__text" style="font-family:font-family:'Muli',sans-serif; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Webdesign for Norden</span>
+        <span class="hero-badge__text" style="font-family:'Inter',sans-serif; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Webdesign for Norden</span>
       </span>
       <h1 class="hero__heading">
         <span class="hero__line-wrap"><span class="hero__line-inner">Konverteringsoptimaliserte</span></span>
@@ -4323,10 +4298,10 @@
     <div class="hero-cta-box" style="display:inline-flex; flex-direction:column; align-items:flex-start; border-radius:12px; padding:24px 280px 24px 18px; gap:12px; margin-bottom:64px;">
       <span class="hero-cta-box__fill" aria-hidden="true"></span>
       <div class="hero-cta-box__content">
-        <span style="font-family:'Muli',sans-serif; font-size:14px; font-weight:600; color:#111111; letter-spacing:0.06em; text-transform:uppercase;">Se hvordan vi optimaliserer nettsiden din</span>
+        <span style="font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:#262823; letter-spacing:0.06em; text-transform:uppercase;">Se hvordan vi optimaliserer nettsiden din</span>
         <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-          <a href="#" onclick="openContactPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:#031618; color:#fff; font-family:'Space Mono',monospace; font-size:14px; font-weight:500; padding:14px 32px; border-radius:6px; text-decoration:none; white-space:nowrap; letter-spacing:0.06em; text-transform:uppercase;">Få et utkast <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M0 8V6H10L5.5 1.5L7 0L14 7L7 14L5.5 12.5L10 8H0Z" fill="white" transform="rotate(-45 7 7)"/></svg></a>
-          <a href="#" onclick="openPrisPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:transparent; color:#111111; font-family:'Space Mono',monospace; font-size:14px; font-weight:500; padding:13px 28px; border-radius:6px; border:1.5px solid #111111; text-decoration:none; white-space:nowrap; letter-spacing:0.06em; text-transform:uppercase;">Se priser</a>
+          <a href="#" onclick="openContactPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:#031618; color:#fff; font-family:'Inter',monospace; font-size:14px; font-weight:500; padding:14px 32px; border-radius:6px; text-decoration:none; white-space:nowrap; letter-spacing:0.06em; text-transform:uppercase;">Få et utkast <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M0 8V6H10L5.5 1.5L7 0L14 7L7 14L5.5 12.5L10 8H0Z" fill="white" transform="rotate(-45 7 7)"/></svg></a>
+          <a href="#" onclick="openPrisPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:transparent; color:#262823; font-family:'Inter',monospace; font-size:14px; font-weight:500; padding:13px 28px; border-radius:6px; border:1.5px solid #262823; text-decoration:none; white-space:nowrap; letter-spacing:0.06em; text-transform:uppercase;">Se priser</a>
         </div>
       </div>
     </div>
@@ -4381,12 +4356,12 @@
     </div>
 
   <!-- NY SEKSJON V2 -->
-  <section id="s2" style="background: #f8f8f8; padding: 120px 48px; display:flex; flex-direction:column; align-items:center; text-align:center;">
-    <span id="s2-badge" style="display:inline-flex; align-items:center; background:#c8e8b0; color:#111111; font-family:'Muli',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:2px; margin-bottom:16px;">Alt inkludert</span>
-    <h2 id="s2-heading" style="font-family:'Muli',sans-serif; font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#111111; line-height:1.18; letter-spacing:-0.02em; margin:0 0 24px; max-width:800px; -webkit-font-smoothing:antialiased;">
+  <section id="s2" style="background: #efeeec; padding: 120px 48px; display:flex; flex-direction:column; align-items:center; text-align:center;">
+    <span id="s2-badge" style="display:inline-flex; align-items:center; background:#e7e5e0; color:#262823; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:6px; margin-bottom:16px;">Alt inkludert</span>
+    <h2 id="s2-heading" style="font-family:'Inter',sans-serif; font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#262823; line-height:1.18; letter-spacing:-0.02em; margin:0 0 24px; max-width:800px; -webkit-font-smoothing:antialiased;">
       <span class="s2-line-wrap"><span class="s2-line-inner">Vi forenkler prosessen</span></span>
     </h2>
-    <p id="s2-sub" style="font-family:'Public Sans', sans-serif; font-size:20px; font-weight:400; color:#1a1a1a; line-height:1.65; max-width:620px; margin:0 0 80px;">Du vet hva du betaler før vi starter. Du trenger ikke å lære deg WordPress, jakte etter en utvikler, eller oppdage at SEO og drift koster ekstra. Vi gjør hele jobben — og fortsetter å gjøre den etter lansering.</p>
+    <p id="s2-sub" style="font-family:'Inter', sans-serif; font-size:20px; font-weight:400; color:#1a1a1a; line-height:1.65; max-width:620px; margin:0 0 80px;">Du vet hva du betaler før vi starter. Du trenger ikke å lære deg WordPress, jakte etter en utvikler, eller oppdage at SEO og drift koster ekstra. Vi gjør hele jobben — og fortsetter å gjøre den etter lansering.</p>
     <div style="width:100%; max-width:1344px; display:grid; grid-template-columns:repeat(12, 1fr); gap:32px; align-items:start;">
       <div id="s2-image" style="grid-column: 1 / 7; aspect-ratio:5/4; border-radius:0; overflow:hidden;">
         <img src="iphone-mockup-ferdig.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
@@ -4394,22 +4369,22 @@
       <div style="grid-column: 7 / 13; display:flex; flex-direction:column; text-align:left;">
 
         <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8;">
-          <p style="font-family:'Public Sans',sans-serif; font-size:20px; font-weight:500; color:#222; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#4a9e35; border-radius:0; flex-shrink:0; display:inline-block;"></span><span style="color:#3a7d2c;">Ny nettside</span> fra bunnen, eller redesign av den du har</p>
+          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">Ny nettside</span> fra bunnen, eller redesign av den du har</p>
         </div>
         <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8;">
-          <p style="font-family:'Public Sans',sans-serif; font-size:20px; font-weight:500; color:#222; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#4a9e35; border-radius:0; flex-shrink:0; display:inline-block;"></span><span style="color:#3a7d2c;">Fast pris</span> før vi starter — ingen timepris, ingen bindingstid</p>
+          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">Fast pris</span> før vi starter — ingen timepris, ingen bindingstid</p>
         </div>
         <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8;">
-          <p style="font-family:'Public Sans',sans-serif; font-size:20px; font-weight:500; color:#222; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#4a9e35; border-radius:0; flex-shrink:0; display:inline-block;"></span><span style="color:#3a7d2c;">Design og struktur</span> tilpasset bransjen og kundene dine</p>
+          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">Design og struktur</span> tilpasset bransjen og kundene dine</p>
         </div>
         <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8;">
-          <p style="font-family:'Public Sans',sans-serif; font-size:20px; font-weight:500; color:#222; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#4a9e35; border-radius:0; flex-shrink:0; display:inline-block;"></span><span style="color:#3a7d2c;">SEO og Google-hastighet</span> bygget inn fra dag én</p>
+          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">SEO og Google-hastighet</span> bygget inn fra dag én</p>
         </div>
         <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8;">
-          <p style="font-family:'Public Sans',sans-serif; font-size:20px; font-weight:500; color:#222; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#4a9e35; border-radius:0; flex-shrink:0; display:inline-block;"></span><span style="color:#3a7d2c;">Drift, vedlikehold og oppdateringer</span> håndtert av oss</p>
+          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">Drift, vedlikehold og oppdateringer</span> håndtert av oss</p>
         </div>
         <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8; border-bottom:1px solid #d8d8d8;">
-          <p style="font-family:'Public Sans',sans-serif; font-size:20px; font-weight:500; color:#222; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#4a9e35; border-radius:0; flex-shrink:0; display:inline-block;"></span><span style="color:#3a7d2c;">Fast kontaktperson</span> — send bilder og tekst, vi publiserer</p>
+          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">Fast kontaktperson</span> — send bilder og tekst, vi publiserer</p>
         </div>
 
       </div>
@@ -4422,10 +4397,10 @@
     .mockup-boks img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.5); transform-origin: center center; }
     .mockup-wrapper { display: flex; flex-direction: column; gap: 14px; }
     .mockup-boks__tekst { }
-    .mockup-boks__tittel { font-family: 'Muli', sans-serif; font-size: 26px; font-weight: 600; color: #111111; margin: 0; }
-    .mockup-boks__sub { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; color: #111111; margin: 4px 0 0; }
+    .mockup-boks__tittel { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 600; color: #262823; margin: 0; }
+    .mockup-boks__sub { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; color: #262823; margin: 4px 0 0; }
   </style>
-  <section style="background:#f8f8f8; padding:80px 48px;">
+  <section style="background:#efeeec; padding:80px 48px;">
     <div style="max-width:1344px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start;">
 
       <!-- Boks 1 -->
@@ -4454,42 +4429,42 @@
   </section>
 
   <!-- MØRK SEKSJON -->
-  <section class="mork-seksjon" style="background:#111111; padding:160px 48px; display:flex; justify-content:center;">
+  <section class="mork-seksjon" style="background:#262823; padding:160px 48px; display:flex; justify-content:center;">
     <div style="width:100%; max-width:1344px; display:flex; flex-direction:column;">
 
       <!-- Intro over boksene -->
       <div style="text-align:center; margin-bottom:72px;">
-        <span style="font-family:'Public Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.38); display:block; margin-bottom:16px;">Hva vi leverer</span>
-        <h2 style="font-family:'Muli',sans-serif; font-weight:700; font-size:clamp(28px,3vw,44px); line-height:1.1; letter-spacing:-0.02em; color:#ffffff; margin:0 0 16px; -webkit-font-smoothing:antialiased;">Alt du trenger. Ingenting du ikke trenger.</h2>
-        <p style="font-family:'Muli',sans-serif; font-weight:400; font-size:18px; line-height:1.6; color:rgba(255,255,255,0.55); max-width:540px; margin:0 auto 32px;">Vi gjør hele jobben, fra design og utvikling til SEO og oppfølging etter lansering. Her er hva som er inkludert.</p>
-        <a href="/tjenester" style="display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border:1.5px solid rgba(255,255,255,0.3); border-radius:10px; font-family:'Muli',sans-serif; font-size:13px; font-weight:600; color:#ffffff; text-decoration:none; letter-spacing:0.02em;" onmouseover="this.style.borderColor='#c8e8b0';this.style.color='#c8e8b0'" onmouseout="this.style.borderColor='rgba(255,255,255,0.3)';this.style.color='#ffffff'">Se alle tjenestene <svg width="12" height="10" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
+        <span style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.38); display:block; margin-bottom:16px;">Hva vi leverer</span>
+        <h2 style="font-family:'Inter',sans-serif; font-weight:700; font-size:clamp(28px,3vw,44px); line-height:1.1; letter-spacing:-0.02em; color:#ffffff; margin:0 0 16px; -webkit-font-smoothing:antialiased;">Alt du trenger. Ingenting du ikke trenger.</h2>
+        <p style="font-family:'Inter',sans-serif; font-weight:400; font-size:18px; line-height:1.6; color:rgba(255,255,255,0.55); max-width:540px; margin:0 auto 32px;">Vi gjør hele jobben, fra design og utvikling til SEO og oppfølging etter lansering. Her er hva som er inkludert.</p>
+        <a href="/tjenester" style="display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border:1.5px solid rgba(255,255,255,0.3); border-radius:12px; font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:#ffffff; text-decoration:none; letter-spacing:0.02em;" onmouseover="this.style.borderColor='#e5edd7';this.style.color='#e5edd7'" onmouseout="this.style.borderColor='rgba(255,255,255,0.3)';this.style.color='#ffffff'">Se alle tjenestene <svg width="12" height="10" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
       </div>
 
     <div class="mork-rad" style="display:flex;">
       <!-- Boks 1: kutt kun topp-venstre -->
       <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px; clip-path: polygon(10px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 10px);">
-        <div class="mork-boks-inner" style="background:#111111; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(10px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 10px);">
-          <span style="display:inline-flex; background:rgba(200,232,176,0.15); color:#c8e8b0; font-family:'Public Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:16px;">Design</span>
-          <h3 style="font-family:'Muli',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Gjennomtenkt design</h3>
+        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(10px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 10px);">
+          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Design</span>
+          <h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Gjennomtenkt design</h3>
           <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; margin:0 0 28px; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility;">Struktur og utseende som er bygget rundt kundene dine — ikke en ferdig mal. Vi designer nettsider som ser profesjonelle ut, men som også er laget for å konvertere besøkende til kunder.</p>
           <div style="display:flex; flex-direction:column; gap:14px;">
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#c8e8b0; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Tilpasset din bransje og dine kunder</span></div>
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#c8e8b0; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Tydelig struktur og klare handlingsknapper</span></div>
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#c8e8b0; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Mobiloptimalisert fra dag én</span></div>
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Tilpasset din bransje og dine kunder</span></div>
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Tydelig struktur og klare handlingsknapper</span></div>
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Mobiloptimalisert fra dag én</span></div>
           </div>
         </div>
       </div>
       <!-- Boks 2: ingen kutt, men vi må matche høyde -->
       <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0;">
-        <div class="mork-boks-inner" style="background:#111111; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
-          <span style="display:inline-flex; background:rgba(200,232,176,0.15); color:#c8e8b0; font-family:'Public Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:16px;">Konvertering</span>
-          <h3 style="font-family:'Muli',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Konverteringsprinsipper fra <span style="color:#c8e8b0;">Unbounce & HubSpot</span></h3>
+        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
+          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Konvertering</span>
+          <h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Konverteringsprinsipper fra <span style="color:#e5edd7;">Unbounce & HubSpot</span></h3>
           <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; margin:0; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility;">Vi bygger nettsider etter de samme prinsippene verdens ledende konverteringseksperter anbefaler — struktur, hierarki og budskap som faktisk får besøkende til å handle.</p>
         </div>
       </div>
       <!-- Boks 3: kutt kun topp-høyre -->
       <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0; clip-path: polygon(0% 0%, calc(100% - 10px) 0%, 100% 10px, 100% 100%, 0% 100%);">
-        <div class="mork-boks-inner" style="background:#111111; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(0% 0%, calc(100% - 10px) 0%, 100% 10px, 100% 100%, 0% 100%);"></div>
+        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(0% 0%, calc(100% - 10px) 0%, 100% 10px, 100% 100%, 0% 100%);"></div>
       </div>
     </div>
 
@@ -4497,25 +4472,25 @@
     <div class="mork-rad" style="display:flex; margin-top:-1px;">
       <!-- Boks 4: ingen kutt -->
       <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px;">
-        <div class="mork-boks-inner" style="background:#111111; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;"></div>
+        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;"></div>
       </div>
       <!-- Boks 5: midten -->
       <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0;">
-        <div class="mork-boks-inner" style="background:#111111; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
-          <span style="display:inline-flex; background:rgba(200,232,176,0.15); color:#c8e8b0; font-family:'Public Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:16px;">Ytelse</span>
-<h3 style="font-family:'Muli',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Hastighet</h3>
+        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
+          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Ytelse</span>
+<h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Hastighet</h3>
           <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; margin:0; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility;">Vi optimaliserer for PageSpeed og Core Web Vitals slik at nettsiden laster raskt — for brukerne og for Google.</p>
         </div>
       </div>
       <!-- Boks 6: ingen kutt -->
       <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0;">
-        <div class="mork-boks-inner" style="background:#111111; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
-          <span style="display:inline-flex; background:rgba(200,232,176,0.15); color:#c8e8b0; font-family:'Public Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:16px;">Basishet</span>
-          <h3 style="font-family:'Muli',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">SEO-optimalisert</h3>
+        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
+          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Basishet</span>
+          <h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">SEO-optimalisert</h3>
           <div style="display:flex; flex-direction:column; gap:14px;">
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#c8e8b0; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Teknisk SEO fra dag én</span></div>
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#c8e8b0; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Lokal synlighet på Google Maps</span></div>
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#c8e8b0; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Strukturert metadata</span></div>
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Teknisk SEO fra dag én</span></div>
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Lokal synlighet på Google Maps</span></div>
+            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Strukturert metadata</span></div>
           </div>
         </div>
       </div>
@@ -4525,24 +4500,24 @@
     <div class="mork-rad" style="display:flex; margin-top:-1px;">
       <!-- Boks 7: kutt bunn-venstre -->
       <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10px 100%, 0% calc(100% - 10px));">
-        <div class="mork-boks-inner" style="background:#111111; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10px 100%, 0% calc(100% - 10px));">
-          <span style="display:inline-flex; background:rgba(200,232,176,0.15); color:#c8e8b0; font-family:'Public Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:16px;">Service</span>
-          <h3 style="font-family:'Muli',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Oppfølging etter lansering</h3>
+        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10px 100%, 0% calc(100% - 10px));">
+          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Service</span>
+          <h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Oppfølging etter lansering</h3>
           <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; margin:0 0 28px; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility;">Vi forsvinner ikke etter at nettsiden er live. Du har en fast kontaktperson som hjelper deg med alt fra tekstendringer til nye sider.</p>
-          <span style="display:inline-flex; align-items:center; gap:6px; color:#c8e8b0; font-family:'Inter',sans-serif; font-size:13px; font-weight:500; letter-spacing:0.04em;"><span style="width:6px; height:6px; background:#c8e8b0; display:inline-block;"></span>Inkludert i pakken</span>
+          <span style="display:inline-flex; align-items:center; gap:6px; color:#e5edd7; font-family:'Inter',sans-serif; font-size:13px; font-weight:500; letter-spacing:0.04em;"><span style="width:6px; height:6px; background:#e5edd7; display:inline-block;"></span>Inkludert i pakken</span>
         </div>
       </div>
       <!-- Boks 8: midten -->
       <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0;">
-        <div class="mork-boks-inner" style="background:#111111; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
-          <span style="display:inline-flex; background:rgba(200,232,176,0.15); color:#c8e8b0; font-family:'Public Sans',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:16px;">Analyse</span>
-          <h3 style="font-family:'Muli',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Målbarhet</h3>
+        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
+          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Analyse</span>
+          <h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Målbarhet</h3>
           <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; margin:0; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility;">Vi setter opp Google Analytics og Search Console slik at du alltid vet hva som fungerer — og hva som kan bli bedre.</p>
         </div>
       </div>
       <!-- Boks 9: kutt bunn-høyre -->
       <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0; clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%);">
-        <div class="mork-boks-inner" style="background:#111111; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%);"></div>
+        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%);"></div>
       </div>
     </div>
     </div>
@@ -4638,7 +4613,7 @@
       width: 26px;
       height: 26px;
       border-radius: 7px;
-      background: #c8e8b0;
+      background: #e5edd7;
       flex-shrink: 0;
       display: inline-flex;
       align-items: center;
@@ -4688,12 +4663,12 @@
         <div class="en-pris__list-group">
           <p class="en-pris__list-title">Det inkluderer:</p>
           <ul class="en-pris__list">
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#1a3a10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ny nettside fra bunnen, eller redesign av den du har</li>
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#1a3a10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fast pris før vi starter — ingen timepris, ingen bindingstid</li>
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#1a3a10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Design og struktur tilpasset bransjen og kundene dine</li>
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#1a3a10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SEO og Google-hastighet bygget inn fra dag én</li>
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#1a3a10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Drift, vedlikehold og oppdateringer håndtert av oss</li>
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#1a3a10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fast kontaktperson — send bilder og tekst, vi publiserer</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ny nettside fra bunnen, eller redesign av den du har</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fast pris før vi starter — ingen timepris, ingen bindingstid</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Design og struktur tilpasset bransjen og kundene dine</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SEO og Google-hastighet bygget inn fra dag én</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Drift, vedlikehold og oppdateringer håndtert av oss</li>
+            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fast kontaktperson — send bilder og tekst, vi publiserer</li>
             <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fast kontaktperson — ikke en ticketkø</li>
           </ul>
         </div>
@@ -4709,24 +4684,24 @@
   </section>
 
   <!-- OM OSS SEKSJON -->
-  <section id="om-oss" style="background:#f8f8f8; padding:120px 48px;">
+  <section id="om-oss" style="background:#efeeec; padding:120px 48px;">
     <div style="max-width:1344px; margin:0 auto;">
 
       <!-- Badge øverst -->
-      <span style="display:inline-flex; align-items:center; background:#e8b0bc; color:#111111; font-family:'Muli',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:2px; margin-bottom:32px;">Hvem er vi</span>
+      <span style="display:inline-flex; align-items:center; background:#e8b0bc; color:#262823; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:6px; margin-bottom:32px;">Hvem er vi</span>
 
       <!-- To-kolonne grid: overskrift venstre, tekst høyre — samme startlinje -->
       <div style="display:grid; grid-template-columns:repeat(12,1fr); gap:32px; align-items:start;">
 
         <div style="grid-column:1/8; grid-row:1; display:flex; flex-direction:column; gap:40px; align-items:flex-start;">
-          <h2 style="font-family:'Muli',sans-serif; font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#111111; line-height:1.12; letter-spacing:-0.02em; margin:0; padding:0; -webkit-font-smoothing:antialiased;">Vi bygger nettsider nordiske bedrifter er stolte av.</h2>
+          <h2 style="font-family:'Inter',sans-serif; font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#262823; line-height:1.12; letter-spacing:-0.02em; margin:0; padding:0; -webkit-font-smoothing:antialiased;">Vi bygger nettsider nordiske bedrifter er stolte av.</h2>
 
         </div>
 
         <div style="grid-column:9/13; grid-row:1; display:flex; flex-direction:column; gap:20px;">
-          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:700; color:#111111; line-height:1.6; margin:0; -webkit-font-smoothing:antialiased;">Mediegruppen er et lite, dedikert team som brenner for å hjelpe nordiske bedrifter å lykkes på nett.</p>
-          <p style="font-family:'Inter',sans-serif; font-size:19px; font-weight:300; color:#111111; line-height:1.7; margin:0;">Vi tror på åpenhet, faste priser og langvarige relasjoner. Hvert prosjekt behandles som om det var vårt eget — fordi resultatet ditt er vårt beste argument overfor neste kunde.</p>
-          <a href="#om-oss" style="display:inline-flex; align-items:center; gap:8px; margin-top:8px; font-family:'Muli',sans-serif; font-size:14px; font-weight:600; color:#111111; text-decoration:none; border-bottom:1px solid #111111; padding-bottom:2px; width:fit-content;">Verdier vi står for <span style="font-size:16px;">→</span></a>
+          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:700; color:#262823; line-height:1.6; margin:0; -webkit-font-smoothing:antialiased;">Mediegruppen er et lite, dedikert team som brenner for å hjelpe nordiske bedrifter å lykkes på nett.</p>
+          <p style="font-family:'Inter',sans-serif; font-size:19px; font-weight:300; color:#262823; line-height:1.7; margin:0;">Vi tror på åpenhet, faste priser og langvarige relasjoner. Hvert prosjekt behandles som om det var vårt eget — fordi resultatet ditt er vårt beste argument overfor neste kunde.</p>
+          <a href="#om-oss" style="display:inline-flex; align-items:center; gap:8px; margin-top:8px; font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:#262823; text-decoration:none; border-bottom:1px solid #262823; padding-bottom:2px; width:fit-content;">Verdier vi står for <span style="font-size:16px;">→</span></a>
         </div>
 
       </div>
@@ -4754,7 +4729,7 @@
       gap: 0;
     }
     .gronn-seksjon__heading {
-      font-family: 'Muli', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 600;
       font-size: clamp(28px, 3.5vw, 48px);
       line-height: 1.18;
@@ -4768,7 +4743,7 @@
       text-rendering: optimizeLegibility;
     }
     .gronn-seksjon__sub {
-      font-family: 'Muli', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 300;
       font-size: 18px;
       line-height: 1.6;
@@ -4784,8 +4759,8 @@
       margin-top: 12px;
       padding: 14px 28px;
       background: #ffffff;
-      color: #111111;
-      font-family: 'Muli', sans-serif;
+      color: #262823;
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
       font-weight: 600;
       letter-spacing: 0.04em;
@@ -4798,7 +4773,7 @@
     }
   </style>
   <section class="gronn-seksjon" style="background-image: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 30%, transparent 55%), url('macbook-mockup-ferdig.jpg'); background-size: cover, 140%; background-position: center, 2% 30%; background-repeat: no-repeat;">
-    <span style="display:inline-flex; align-items:center; background:#c8e8b0; color:#111111; font-family:'Muli',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:2px; margin-bottom:14px;">Helt gratis</span>
+    <span style="display:inline-flex; align-items:center; background:#e7e5e0; color:#262823; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:6px; margin-bottom:14px;">Helt gratis</span>
     <h2 class="gronn-seksjon__heading">Lurer du på hva du faktisk får?</h2>
     <p class="gronn-seksjon__sub">Vi setter opp et komplett nettside-utkast tilpasset din bransje — med pris og full oversikt over hva vi leverer. Helt gratis, ingen forpliktelser.</p>
     <a href="#" class="gronn-seksjon__btn" onclick="openContactPopup(); return false;">Se hvordan vi optimaliserer nettsiden din</a>
@@ -5746,8 +5721,8 @@
       background: transparent;
       border: 1px solid rgba(0,0,0,0.2);
       border-radius: 8px;
-      color: #111111;
-      font-family: 'Muli', sans-serif;
+      color: #262823;
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
@@ -5760,19 +5735,19 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: #111111;
+      background: #262823;
       transform: translateY(100%);
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .pris-btn:hover::before { transform: translateY(0); }
-    .pris-btn:hover { color: #f8f8f8; border-color: #111111; }
+    .pris-btn:hover { color: #efeeec; border-color: #262823; }
     .pris-btn span { position: relative; z-index: 1; }
   </style>
   <!-- NY PRISSEKSJON V2 -->
-  <section id="priser" style="background:#f8f8f8; padding:120px 48px;">
+  <section id="priser" style="background:#efeeec; padding:120px 48px;">
     <div style="max-width:1344px; margin:0 auto;">
-      <span style="display:inline-flex; align-items:center; background:#c8e8b0; color:#111111; font-family:'Muli',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:2px; margin-bottom:16px;">Priser</span>
-      <h2 style="font-family:'Muli',sans-serif; font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#111111; line-height:1.12; letter-spacing:-0.02em; margin:0 0 12px; -webkit-font-smoothing:antialiased;">Velg pakken som passer din bedrift</h2>
+      <span style="display:inline-flex; align-items:center; background:#e7e5e0; color:#262823; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:6px; margin-bottom:16px;">Priser</span>
+      <h2 style="font-family:'Inter',sans-serif; font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#262823; line-height:1.12; letter-spacing:-0.02em; margin:0 0 12px; -webkit-font-smoothing:antialiased;">Velg pakken som passer din bedrift</h2>
       <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:rgba(0,0,0,0.55); margin:0 0 48px; line-height:1.6;">Alle pakker inkluderer gratis designutkast, ingen binding og levering på 1–2 uker.</p>
     </div>
     <div style="max-width:1344px; margin:0 auto; display:grid; grid-template-columns:3fr 6fr 3fr; gap:24px; align-items:stretch;">
@@ -5781,15 +5756,15 @@
       <div style="background:#efefef; border-radius:14px; padding:40px 36px; display:flex; flex-direction:column; gap:20px;">
         <div style="height:28px;"></div>
         <div>
-          <p style="font-family:'Muli',sans-serif; font-size:18px; font-weight:600; color:#111111; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Basis</p>
+          <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:600; color:#262823; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Basis</p>
           <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.45); margin:0 0 16px;">For deg som trenger en profesjonell nettside raskt og uten komplikasjoner.</p>
           <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:4px;">
-            <span style="font-family:'Muli',sans-serif; font-size:48px; font-weight:700; color:#111111; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">4 900</span>
+            <span style="font-family:'Inter',sans-serif; font-size:48px; font-weight:700; color:#262823; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">4 900</span>
             <span style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(0,0,0,0.4);">kr</span>
             <span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:rgba(0,0,0,0.3); text-decoration:line-through; white-space:nowrap;">9 000 kr</span>
           </div>
           <p style="font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
-          <span style="background:#fff083; color:#111111; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; padding:3px 10px; border-radius:4px;">Spar 4 100 kr</span>
+          <span style="background:#fff083; color:#262823; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; padding:3px 10px; border-radius:4px;">Spar 4 100 kr</span>
         </div>
         <ul style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.6); line-height:1.7; list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
           <li>✓ Inntil 5 sider</li>
@@ -5807,10 +5782,10 @@
       <div style="background:#efefef; border-radius:14px; padding:40px 44px; display:flex; flex-direction:column; gap:20px;">
         <span style="display:inline-flex; width:fit-content; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.5); letter-spacing:0.1em; text-transform:uppercase; border:1px solid rgba(0,0,0,0.2); padding:3px 10px; border-radius:4px; height:28px; align-items:center;">Mest valgt</span>
         <div>
-          <p style="font-family:'Muli',sans-serif; font-size:18px; font-weight:600; color:#111111; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Vekst</p>
+          <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:600; color:#262823; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Vekst</p>
           <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.45); margin:0 0 16px;">For bedrifter som vil ha en nettside som faktisk bringer inn kunder.</p>
           <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:4px;">
-            <span style="font-family:'Muli',sans-serif; font-size:48px; font-weight:700; color:#111111; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">24 900</span>
+            <span style="font-family:'Inter',sans-serif; font-size:48px; font-weight:700; color:#262823; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">24 900</span>
             <span style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(0,0,0,0.4);">kr</span>
           </div>
           <p style="font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
@@ -5831,10 +5806,10 @@
       <div style="background:#efefef; border-radius:14px; padding:40px 36px; display:flex; flex-direction:column; gap:20px;">
         <div style="height:28px;"></div>
         <div>
-          <p style="font-family:'Muli',sans-serif; font-size:18px; font-weight:600; color:#111111; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Skreddersydd</p>
+          <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:600; color:#262823; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Skreddersydd</p>
           <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.45); margin:0 0 16px;">For ambisiøse bedrifter som vil ha full kontroll og prioritert oppfølging.</p>
           <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:4px;">
-            <span style="font-family:'Muli',sans-serif; font-size:48px; font-weight:700; color:#111111; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">78 900</span>
+            <span style="font-family:'Inter',sans-serif; font-size:48px; font-weight:700; color:#262823; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">78 900</span>
             <span style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(0,0,0,0.4);">kr</span>
           </div>
           <p style="font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
@@ -5854,9 +5829,9 @@
     </div>
 
     <!-- Gratis utkast-boks -->
-    <div style="max-width:1344px; margin:24px auto 0; background:#c8e8b0; border-radius:14px; padding:48px 56px; display:flex; align-items:center; justify-content:space-between; gap:48px;">
+    <div style="max-width:1344px; margin:24px auto 0; background:#e5edd7; border-radius:14px; padding:48px 56px; display:flex; align-items:center; justify-content:space-between; gap:48px;">
       <div style="flex:1;">
-        <p style="font-family:'Muli',sans-serif; font-size:26px; font-weight:600; color:#111111; margin:0 0 10px; line-height:1.2; -webkit-font-smoothing:antialiased;">Se nettsiden din på 72 timer — gratis</p>
+        <p style="font-family:'Inter',sans-serif; font-size:26px; font-weight:600; color:#262823; margin:0 0 10px; line-height:1.2; -webkit-font-smoothing:antialiased;">Se nettsiden din på 72 timer — gratis</p>
         <p style="font-family:'Inter',sans-serif; font-size:15px; font-weight:300; color:rgba(0,0,0,0.6); margin:0 0 20px; line-height:1.6;">Vi lager et skreddersydd utkast til din bransje uten kostnad og uten forpliktelse.</p>
         <div style="display:flex; gap:24px; flex-wrap:wrap;">
           <span style="font-family:'Inter',sans-serif; font-size:13px; color:rgba(0,0,0,0.65);">✓ Visuell skisse (desktop + mobil)</span>
@@ -5866,7 +5841,7 @@
         </div>
       </div>
       <div style="display:flex; flex-direction:column; align-items:flex-end; gap:10px; flex-shrink:0;">
-        <button onclick="openContactPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:#111111; color:#fff; font-family:'Space Mono',monospace; font-size:12px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:14px 28px; border-radius:8px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.18s;">Ja, jeg vil ha mitt gratis utkast</button>
+        <button onclick="openContactPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:#262823; color:#fff; font-family:'Inter',monospace; font-size:12px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:14px 28px; border-radius:8px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.18s;">Ja, jeg vil ha mitt gratis utkast</button>
         <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.45); margin:0;">Ingen forpliktelse · Ingen faktura · Verdi: 4 500 kr</p>
       </div>
     </div>
@@ -7012,7 +6987,7 @@
     }
     .prispopup-card {
       position: relative; z-index: var(--z-base);
-      background: #f8f8f8; border-radius: 20px;
+      background: #efeeec; border-radius: 20px;
       box-shadow: var(--shadow-xl);
       padding: 56px;
       max-width: 1200px; width: 100%;
@@ -7031,8 +7006,8 @@
     }
     .prispopup-close:hover { background: rgba(0,0,0,0.1); color: rgba(34,34,34,0.8); }
     .prispopup-heading {
-      font-family: 'Muli', sans-serif; font-size: 28px; font-weight: 600;
-      color: #111111; letter-spacing: -0.02em; margin-bottom: 32px;
+      font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 600;
+      color: #262823; letter-spacing: -0.02em; margin-bottom: 32px;
       -webkit-font-smoothing: antialiased;
     }
     .prispopup-grid {
@@ -7049,12 +7024,12 @@
       border: 1px solid rgba(0,0,0,0.2); padding: 3px 10px; border-radius: 4px;
     }
     .prispopup-boks__tittel {
-      font-family: 'Muli', sans-serif; font-size: 18px; font-weight: 600;
-      color: #111111; margin: 0; -webkit-font-smoothing: antialiased;
+      font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 600;
+      color: #262823; margin: 0; -webkit-font-smoothing: antialiased;
     }
     .prispopup-boks__pris {
-      font-family: 'Muli', sans-serif; font-size: 48px; font-weight: 700;
-      color: #111111; line-height: 1; -webkit-font-smoothing: antialiased;
+      font-family: 'Inter', sans-serif; font-size: 48px; font-weight: 700;
+      color: #262823; line-height: 1; -webkit-font-smoothing: antialiased;
     }
     .prispopup-boks__note {
       font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 300;
@@ -7062,7 +7037,7 @@
     }
     .prispopup-boks__spar {
       display: inline-flex; width: fit-content;
-      background: #fff083; color: #111111;
+      background: #fff083; color: #262823;
       font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500;
       padding: 3px 10px; border-radius: 4px;
     }
@@ -7072,13 +7047,13 @@
     }
     .prispopup-boks__btn {
       display: inline-flex; align-items: center; justify-content: center;
-      background: #BFEC9C; color: #222222; border: none; border-radius: 8px;
-      font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 500;
+      background: #262823; color: #f7f6f4; border: none; border-radius: 8px;
+      font-family: 'Inter', monospace; font-size: 11px; font-weight: 500;
       letter-spacing: 0.06em; text-transform: uppercase;
       padding: 12px 20px; cursor: pointer;
       transition: background var(--transition-fast);
     }
-    .prispopup-boks__btn:hover { background: #B1E887; }
+    .prispopup-boks__btn:hover { background: #3a3b36; }
   </style>
 
   <div class="prispopup-overlay" id="prisPopup">
@@ -7147,9 +7122,9 @@
       </div>
 
       <!-- Gratis utkast-boks -->
-      <div style="margin-top:20px; background:#c8e8b0; border-radius:14px; padding:36px 44px; display:flex; align-items:center; justify-content:space-between; gap:40px;">
+      <div style="margin-top:20px; background:#e5edd7; border-radius:14px; padding:36px 44px; display:flex; align-items:center; justify-content:space-between; gap:40px;">
         <div style="flex:1;">
-          <p style="font-family:'Muli',sans-serif; font-size:22px; font-weight:600; color:#111111; margin:0 0 8px; line-height:1.2; -webkit-font-smoothing:antialiased;">Se nettsiden din på 72 timer — gratis</p>
+          <p style="font-family:'Inter',sans-serif; font-size:22px; font-weight:600; color:#262823; margin:0 0 8px; line-height:1.2; -webkit-font-smoothing:antialiased;">Se nettsiden din på 72 timer — gratis</p>
           <p style="font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:rgba(0,0,0,0.6); margin:0 0 16px; line-height:1.6;">Vi lager et skreddersydd utkast til din bransje uten kostnad og uten forpliktelse.</p>
           <div style="display:flex; gap:20px; flex-wrap:wrap;">
             <span style="font-family:'Inter',sans-serif; font-size:12px; color:rgba(0,0,0,0.65);">✓ Visuell skisse (desktop + mobil)</span>
@@ -7159,7 +7134,7 @@
           </div>
         </div>
         <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px; flex-shrink:0;">
-          <button onclick="closePrisPopup(); openContactPopup();" style="display:inline-flex; align-items:center; gap:8px; background:#111111; color:#fff; font-family:'Space Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:12px 24px; border-radius:8px; border:none; cursor:pointer; white-space:nowrap;">Ja, jeg vil ha mitt gratis utkast</button>
+          <button onclick="closePrisPopup(); openContactPopup();" style="display:inline-flex; align-items:center; gap:8px; background:#262823; color:#fff; font-family:'Inter',monospace; font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:12px 24px; border-radius:8px; border:none; cursor:pointer; white-space:nowrap;">Ja, jeg vil ha mitt gratis utkast</button>
           <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.45); margin:0;">Ingen forpliktelse · Ingen faktura · Verdi: 4 500 kr</p>
         </div>
       </div>

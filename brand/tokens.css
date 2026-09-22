@@ -45,17 +45,17 @@
 
   /* TYPOGRAFI — Font families
      ------------------------------------------ */
-  --font-neue:    'Helvetica Neue', Helvetica, Arial, sans-serif; /* Store headings, display */
-  --font-heading: "Cormorant Garamond", Georgia, serif;            /* Seksjon-headings, 400 */
-  --font-body:    "Instrument Sans", Helvetica, sans-serif;
-  --font-ui:      "Instrument Sans", Helvetica, sans-serif;
+  --font-neue:    'Instrument Sans', Helvetica, Arial, sans-serif; /* Store headings, display */
+  --font-heading: "Instrument Sans", Helvetica, sans-serif;            /* Seksjon-headings, 400 */
+  --font-body:    "Inter", Helvetica, sans-serif;
+  --font-ui:      "Inter", Helvetica, sans-serif;
 
   /* TYPOGRAFI — Størrelsesskala
      Ankerpunkt: --type-h2 = 48px (seksjon-heading)
      Ratio oppover ~×1.33, nedover praktiske web-verdier
      ------------------------------------------ */
 
-  /* Display — Helvetica Neue, 400
+  /* Display — Instrument Sans, 400
      Kun til store headings via var(--font-neue). */
   --type-display:    90px;   /* Hero-heading eneste                      */
   --type-h1:         64px;   /* Stor seksjon-heading (campaign, splash)  */
@@ -107,29 +107,29 @@
   /* RADIUS
      Skala med 6 nivåer. Velg etter element-type, ikke pixel-verdi.
      ------------------------------------------ */
-  --radius-xs:    4px;    /* Micro: tags, labels, bilde-insets, mini-labels  */
-  --radius-sm:    8px;    /* Base: alle knapper, input-felt, standard kort    */
-  --radius-md:   12px;    /* Komponenter: FAQ, info-bokser, medium-kort       */
+  --radius-xs:    6px;    /* Micro: tags, labels, bilde-insets, mini-labels  */
+  --radius-sm:   12px;    /* Base: alle knapper, input-felt, standard kort    */
+  --radius-md:   14px;    /* Komponenter: FAQ, info-bokser, medium-kort       */
   --radius-lg:   16px;    /* Seksjoner: store kort, bilderammer, blokker      */
-  --radius-xl:   24px;    /* Containere: store feature-wrappers               */
+  --radius-xl:   20px;    /* Containere: store feature-wrappers               */
   --radius-full: 9999px;  /* Pill: kun badges og kategori-tags                */
 
   /* SKYGGER — 5 nivåer + focus-ring
      ------------------------------------------ */
-  --shadow-xs:    0 1px 4px rgba(0,0,0,0.06);                                         /* Subtil — kort på lys bakgrunn     */
-  --shadow-sm:    0 4px 16px rgba(0,0,0,0.12);                                         /* Liten — knapper, dropdowns        */
-  --shadow-md:    0 8px 24px rgba(0,0,0,0.14);                                         /* Medium — popups, tooltips         */
-  --shadow-lg:    0 24px 64px rgba(0,0,0,0.24);                                        /* Stor — modaler, drawers           */
-  --shadow-xl:    0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);     /* Dramatisk — hero-elementer        */
-  --shadow-focus: 0 0 0 3px rgba(48,51,47,0.07);                                       /* Focus-ring                        */
+  --shadow-xs:    0 1px 4px rgba(20,20,18,0.05);                                         /* Subtil — kort på lys bakgrunn     */
+  --shadow-sm:    0 4px 14px rgba(20,20,18,0.08);                                         /* Liten — knapper, dropdowns        */
+  --shadow-md:    0 10px 28px rgba(20,20,18,0.12);                                         /* Medium — popups, tooltips         */
+  --shadow-lg:    0 24px 64px rgba(20,20,18,0.18);                                        /* Stor — modaler, drawers           */
+  --shadow-xl:    0 40px 100px rgba(20,20,18,0.35), 0 0 0 1px rgba(255,255,255,0.08);     /* Dramatisk — hero-elementer        */
+  --shadow-focus: 0 0 0 3px rgba(38,40,35,0.08);                                       /* Focus-ring                        */
 
   /* TRANSITIONS — 4 variasjoner
      ------------------------------------------ */
   --transition-fast:   0.15s ease;                            /* Hover-states, farger              */
   --transition-base:   0.2s ease;                             /* Standard interaksjon              */
   --transition-slow:   0.35s ease;                            /* Overlay, reveal                   */
-  --transition-spring: 0.4s cubic-bezier(0.22, 1, 0.36, 1);  /* Fjærende UI-bevegelser            */
-  --transition-reveal: 0.55s cubic-bezier(0.4, 0, 0.2, 1);   /* Innholds-animasjon                */
+  --transition-spring: 0.4s cubic-bezier(0.16, 1, 0.3, 1);  /* Fjærende UI-bevegelser            */
+  --transition-reveal: 0.55s cubic-bezier(0.16, 1, 0.3, 1);   /* Innholds-animasjon                */
 
   /* Z-INDEX — 7 semantiske lag
      ------------------------------------------ */
@@ -143,46 +143,46 @@
 
   /* FARGER
      ------------------------------------------ */
-  --color-dark:             #2c2420;   /* Brand primær — varm mørk kull         */
-  --color-accent:           #8a7e7a;   /* Dempet varm grå-brun aksent           */
-  --color-light:            #f6f5f2;   /* Varm lys — tekst/elementer på mørk bg */
+  --color-dark:             #262823;   /* Brand primær — varm mørk kull         */
+  --color-accent:           #656860;   /* Dempet varm grå-brun aksent           */
+  --color-light:            #f7f6f4;   /* Varm lys — tekst/elementer på mørk bg */
   --color-white:            #ffffff;   /* Ren hvit                               */
   --color-text-dark:        var(--color-white);  /* Tekst på mørke seksjoner     */
-  --color-text-primary:     #2c2420;   /* Primær tekst på lys bakgrunn          */
+  --color-text-primary:     #262823;   /* Primær tekst på lys bakgrunn          */
 
   /* RGB-kanaler — for opacity-varianter via rgba(var(--X-rgb), alpha)
      ------------------------------------------ */
   --color-white-rgb:        255, 255, 255;
-  --color-text-primary-rgb: 44, 36, 32;    /* #2c2420 */
-  --color-dark-rgb:         44, 36, 32;    /* #2c2420 */
-  --color-accent-rgb:       138, 126, 122; /* #8a7e7a */
-  --color-ui-dark-rgb:      32, 28, 25;    /* #201c19 */
-  --color-ink-rgb:          22, 18, 16;    /* #161210 */
-  --bg-0-rgb:               246, 245, 242; /* #f6f5f2 */
-  --color-text-muted:       #2c2420;   /* Sekundærtekst — samme som tittel      */
-  --color-text-hint:        #6e6460;   /* Caption, placeholder, hint            */
-  --color-mid:              #8a7e7a;   /* Aksent — dempet varm grå-brun         */
-  --color-border-light:     #d8d0c8;   /* Lette dividers og borders             */
+  --color-text-primary-rgb: 38, 40, 35;    /* #262823 */
+  --color-dark-rgb:         38, 40, 35;    /* #262823 */
+  --color-accent-rgb:       101, 104, 96; /* #656860 */
+  --color-ui-dark-rgb:      36, 33, 32;    /* #201c19 */
+  --color-ink-rgb:          17, 18, 18;    /* #111212 */
+  --bg-0-rgb:               239, 238, 236; /* #f6f5f2 */
+  --color-text-muted:       #656860;   /* Sekundærtekst — samme som tittel      */
+  --color-text-hint:        #9a9c94;   /* Caption, placeholder, hint            */
+  --color-mid:              #656860;   /* Aksent — dempet varm grå-brun         */
+  --color-border-light:     #d9d9d4;   /* Lette dividers og borders             */
 
   /* MØRK UI-SKALA
      ------------------------------------------ */
-  --color-ui-dark:  #201c19;   /* Skarp near-black — navbar CTA, popup bg, form-areas   */
-  --color-ui-mid:   #342c28;   /* Mid-dark surface — navbar scrolled, illustrasjons-bg   */
-  --color-ink:      #161210;   /* Base text/stroke — nav-lenker, hamburger, hover-border */
+  --color-ui-dark:  #242120;   /* Skarp near-black — navbar CTA, popup bg, form-areas   */
+  --color-ui-mid:   #33342f;   /* Mid-dark surface — navbar scrolled, illustrasjons-bg   */
+  --color-ink:      #111212;   /* Base text/stroke — nav-lenker, hamburger, hover-border */
 
   /* BAKGRUNNER
      ------------------------------------------ */
-  --bg-0:       #f6f5f2;   /* Hero og primærseksjoner                    */
-  --bg-2:       #e4ddd7;   /* Sekundærflate, demoer og bransjer          */
-  --bg-cards:   #1a0f0d;   /* Mørke kort og seksjoner                    */
-  --bg-dark:    #201c19;   /* Prising                                    */
-  --bg-footer:  #161210;   /* Footer                                     */
+  --bg-0:       #efeeec;   /* Hero og primærseksjoner                    */
+  --bg-2:       #e7e5e1;   /* Sekundærflate, demoer og bransjer          */
+  --bg-cards:   #111212;   /* Mørke kort og seksjoner                    */
+  --bg-dark:    #161716;   /* Prising                                    */
+  --bg-footer:  #111212;   /* Footer                                     */
 
   /* Surface-farger
      ------------------------------------------ */
-  --surface-light:    #e4ddd7;   /* Kort på lys bakgrunn                  */
-  --surface-dark:     #342c28;   /* Kort på bg-dark                      */
-  --surface-dark-hi:  #3c3330;   /* Fremhevet kort på bg-dark            */
+  --surface-light:    #f7f6f4;   /* Kort på lys bakgrunn                  */
+  --surface-dark:     #1f2121;   /* Kort på bg-dark                      */
+  --surface-dark-hi:  #262828;   /* Fremhevet kort på bg-dark            */
 
 
 }

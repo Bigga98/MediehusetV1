@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Mediegruppen – Analyse</title>
+  <meta name="description" content="Svar på fem korte spørsmål og se hva annonsene deres faktisk leverer.">
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1438440671412379');
+    fbq('track', 'PageView');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #efeeec;
+      --ink: #262823;
+      --sel-ink: #31332d;   /* valgt/besvart-flate */
+      --muted: #656860;
+      --place: #9a9c94;
+      --txt: #322e2e;
+      --green: #30a46c;
+      --track: #dedcd6;
+      --hairline: #eceae6;
+      --border: #d9d9d4;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --fold: cubic-bezier(0.42, 0, 0.58, 1); /* easeInEaseOut som i appen */
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: auto; }
+    body {
+      background: var(--bg);
+      font-family: 'Inter', Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* mobilkolonne — sentrert på desktop, full bredde på mobil */
+    .stage {
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 10px 16px 6px;
+      min-height: 100dvh;
+    }
+    #view { transition: opacity .18s ease-out; }
+    #view.out { opacity: 0; }
+
+    /* ---------- hero-karusell ---------- */
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      margin: 0 -10px 9px;
+      height: 331px;
+      scrollbar-width: none;
+      cursor: grab;
+    }
+    .carousel::-webkit-scrollbar { display: none; }
+    .carousel.dragging { scroll-snap-type: none; cursor: grabbing; }
+    .slide { flex: 0 0 100%; scroll-snap-align: center; }
+    .card {
+      position: relative; height: 100%; margin: 0 4px;
+      border-radius: 16px; overflow: hidden; background: #3f464d;
+    }
+    .card img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .glass {
+      position: absolute; inset: 0;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      background: rgba(11,11,11,0.2);
+    }
+    .m-mark { position: absolute; top: 15px; left: 14px; width: 28px; height: 20px; object-fit: contain; }
+    .hero-content { position: absolute; top: 92px; left: 11px; right: 11px; }
+    .hero-line {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 44px; line-height: 44px; letter-spacing: -0.88px;
+      font-weight: 500; color: #f9ffed;
+      display: flex; align-items: flex-end;
+    }
+    .hero-sub {
+      margin-top: 11px; font-size: 16px; line-height: 19px;
+      font-weight: 400; color: #e5edd7; max-width: 351px;
+    }
+    .slide-dark .card { background: #111212; display: flex; align-items: flex-end; justify-content: center; }
+    .slide-dark img.dash {
+      width: calc(100% - 32px); border-radius: 10px; margin-bottom: 16px; display: block;
+    }
+
+    /* odometer (200 % + resultattall) */
+    .odo { display: inline-flex; overflow: hidden; }
+    .odo .col { opacity: 0; transition: opacity .44s var(--ease); }
+    .odo .col.in { opacity: 1; }
+    .odo .strip { display: flex; flex-direction: column; }
+    .odo .strip.roll { transition: transform .8s var(--ease); }
+    .odo-italic { font-style: italic; font-weight: 600; }
+
+    /* ---------- progressbar ---------- */
+    .ptrack {
+      position: relative; height: 7px; border-radius: 12px;
+      background: var(--track); margin: 0 5px 24px;
+    }
+    .pthumb {
+      position: absolute; top: 1px; height: 5px; border-radius: 12px; background: #242120;
+    }
+
+    /* ---------- spørsmål ---------- */
+    .qblock { margin-bottom: 28px; transition: opacity .22s var(--fold), filter .22s var(--fold); }
+    .qblock.f1 { opacity: .75; filter: blur(3px); pointer-events: none; }
+    .qblock.f2 { opacity: .55; filter: blur(5px); pointer-events: none; }
+    .qblock.f3 { opacity: .4;  filter: blur(7px); pointer-events: none; }
+    .qtitle {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 18px; font-weight: 500; letter-spacing: -0.72px;
+      color: var(--ink); margin-bottom: 5px; line-height: 1.25;
+    }
+    .qicons { display: inline-flex; align-items: center; gap: 6px; }
+    .qicons svg { display: block; }
+
+    .opt {
+      display: flex; align-items: center; gap: 12px;
+      height: 58px; padding: 0 22px; margin-bottom: 8px;
+      background: #fff; border-radius: 14px;
+      font-size: 16px; font-weight: 500; color: var(--txt);
+      cursor: pointer; user-select: none; overflow: hidden;
+      transition: height .22s var(--fold), margin .22s var(--fold),
+                  border-radius .22s var(--fold), background .15s ease, padding .22s var(--fold);
+    }
+    .opts .opt:last-child { margin-bottom: 0; }
+    .opt .lbl { transition: font-size .22s var(--fold); }
+    .opt .ico { display: inline-flex; width: 18px; justify-content: center; }
+    .opt .dots { color: var(--muted); font-size: 18px; line-height: 1; margin-top: -2px; }
+    .opt .ck { margin-left: auto; opacity: 0; }
+    .opt.sel { background: var(--sel-ink); color: #fff; }
+    .opt.sel .dots { color: #fff; }
+    .opt.sel .ck { opacity: 1; animation: pop .28s cubic-bezier(.3, 1.6, .5, 1); }
+    @keyframes pop { from { transform: scale(.4); } }
+
+    /* hake/kryss tegnet som i appen (kantlinjer) */
+    .check {
+      width: 12px; height: 7px;
+      border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-2px); display: inline-block;
+    }
+    .cross { position: relative; width: 11px; height: 11px; display: inline-block; }
+    .cross i { position: absolute; left: 4.75px; top: -0.5px; width: 1.5px; height: 12px; background: var(--muted); }
+    .cross i:first-child { transform: rotate(45deg); }
+    .cross i:last-child { transform: rotate(-45deg); }
+
+    /* ja/nei */
+    .yn { display: flex; gap: 9px; }
+    .yn .opt { flex: 1; justify-content: center; padding: 0; gap: 8px; }
+    .yn .opt .ck { display: none; }
+    .yn .opt .ynic { display: inline-flex; }
+    .yn .opt .check { border-color: var(--muted); }
+    .yn .opt.sel .check { border-color: #fff; animation: pop .28s cubic-bezier(.3, 1.6, .5, 1); }
+    .yn .opt.sel .cross i { background: #fff; }
+    .qblock.answered .yn .opt.sel .check { border-color: var(--green); }
+    .qblock.answered .yn .opt.sel .cross i { background: var(--green); }
+
+    /* besvart liste: uvalgte folder seg, valgt blir kompakt B2-rad */
+    .qblock.answered:not(.editing) .opts .opt:not(.sel) { height: 0; margin-bottom: 0; }
+    .qblock.answered:not(.editing) .opts .opt.sel {
+      height: 44px; border-radius: 12px; margin-bottom: 0;
+    }
+    .qblock.answered:not(.editing) .opts .opt.sel .lbl { font-size: 15px; }
+    .qblock.answered .opts .opt.sel .ck .check { border-color: var(--green); }
+
+    /* ---------- footer ---------- */
+    .foot {
+      margin: 36px -10px 0; background: #f7f6f4; border-radius: 14px;
+      padding: 32px 26px 30px;
+    }
+    .foot img { width: 96px; height: 68px; object-fit: contain; display: block; margin-bottom: 36px; }
+    .foot p { font-size: 13px; line-height: 18px; color: var(--muted); font-weight: 400; margin-bottom: 12px; }
+    .foot p:last-child { margin-bottom: 0; }
+
+    /* ---------- resultat ---------- */
+    #result { display: none; }
+    .r-label { font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 8px; }
+    .r-hook {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 36px; line-height: 36px; letter-spacing: -0.72px;
+      font-weight: 500; color: #262323; margin-bottom: 14px;
+    }
+    .r-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 22px;
+    }
+    .r-card .rl { font-size: 14px; font-weight: 500; color: var(--muted); }
+    .r-num { display: flex; align-items: flex-end; margin-top: 4px; font-weight: 500; }
+    .r-num .odo { height: 41px; font-size: 34px; line-height: 41px; letter-spacing: -0.5px; color: var(--ink); font-variant-numeric: tabular-nums; }
+    .r-num .unit { font-size: 20px; line-height: 38px; color: var(--muted); margin-left: 2px; }
+    .r-div { height: 1px; background: var(--hairline); margin: 16px 0; }
+    .r-answers { font-size: 15px; line-height: 24px; color: var(--ink); white-space: pre-line; }
+    .btn {
+      display: flex; align-items: center; justify-content: center;
+      height: 56px; border-radius: 14px; background: var(--ink); color: #fff;
+      font-size: 17px; font-weight: 500; cursor: pointer; user-select: none; margin-top: 12px;
+      border: none; width: 100%; font-family: inherit;
+    }
+    .btn:active { opacity: .85; }
+
+    /* skjult switch for iOS-haptikk (Safari 17.4+) */
+    #hpt { position: fixed; opacity: 0; pointer-events: none; width: 1px; height: 1px; }
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="hpt" switch tabindex="-1" aria-hidden="true">
+
+  <div class="stage">
+    <div id="view">
+
+      <div id="quiz">
+        <div class="carousel" id="carousel">
+          <div class="slide">
+            <div class="card">
+              <img class="bg" id="heroImg" alt="">
+              <div class="glass"></div>
+              <img class="m-mark" src="images/funnel/logo-top.png" alt="Mediegruppen">
+              <div class="hero-content">
+                <div class="hero-line"><span id="heroOdo"></span><span>&nbsp;flere</span></div>
+                <div class="hero-line">Kunder.</div>
+                <div class="hero-line">Samme Budsjett</div>
+                <p class="hero-sub">På 90 dager kan du få 200% flere kunder med samme annonsebudsjett.</p>
+              </div>
+            </div>
+          </div>
+          <div class="slide slide-dark">
+            <div class="card"><img class="dash" src="images/funnel/ads-dashboard.png" alt="Kampanjeresultater fra Meta Annonseadministrator"></div>
+          </div>
+          <div class="slide slide-dark"><div class="card"></div></div>
+        </div>
+        <div class="ptrack" id="ptrack"><div class="pthumb" id="pthumb"></div></div>
+        <div id="flow"></div>
+      </div>
+
+      <div id="result">
+        <p class="r-label">Ferdig</p>
+        <h1 class="r-hook">Resultatsiden kommer her</h1>
+        <div class="r-card">
+          <p class="rl">Kostnad per henvendelse</p>
+          <div class="r-num"><span id="resOdo"></span><span class="unit">&nbsp;kr</span></div>
+          <div class="r-div"></div>
+          <div class="r-answers" id="resAnswers"></div>
+        </div>
+        <button class="btn" id="restart">Start på nytt</button>
+      </div>
+
+      <div class="foot">
+        <img src="images/funnel/logo-top.png" alt="Mediegruppen">
+        <p>© 2026 Mediegruppen. Alle rettigheter reservert &nbsp;•</p>
+        <p>Personvern &nbsp;•&nbsp; Vilkår &nbsp;•</p>
+        <p>Mediegruppen.no</p>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  /* ============ konstanter fra appen ============ */
+  var INK = '#262823', MUTED = '#656860', GREEN = '#30a46c';
+  var DEMO_RESULT = 1250; // demotall — byttes med ekte utregning
+
+  // kanal-glyfer fra Simple Icons (CC0)
+  var PATHS = {
+    meta: 'M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z',
+    google: 'M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z',
+    snapchat: 'M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z',
+    tiktok: 'M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z',
+  };
+  function iconSvg(name, size, color) {
+    if (name === 'dots') return '<span class="dots">⋯</span>';
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24"><path d="' + PATHS[name] + '" fill="' + color + '"/></svg>';
+  }
+
+  var STEPS = [
+    { q: 'Kjører dere betalte annonser?', type: 'yesno', opts: ['Ja', 'Nei'],
+      titleIcons: ['meta', 'google', 'snapchat', 'tiktok'] },
+    { q: 'Hvor annonserer dere i dag?', opts: ['Meta (Facebook og Instagram)', 'Google', 'Snapchat eller TikTok', 'Flere kanaler'],
+      icons: { 'Meta (Facebook og Instagram)': 'meta', 'Google': 'google', 'Snapchat eller TikTok': 'snapchat', 'Flere kanaler': 'dots' } },
+    { q: 'Hva bruker dere på annonser i dag?', opts: ['Under 10 000 kr', '10 000 – 30 000 kr', '30 000 – 100 000 kr', 'Over 100 000 kr'] },
+    { q: 'Hvor mange henvendelser gir det deg per måned?', opts: ['0 – 5', '5 – 20', '20 – 50', 'Over 50'] },
+    { q: 'Hvor mange av dem blir kunder?', opts: ['Nesten ingen', 'Rundt 1 av 10', 'Rundt 1 av 4', 'Halvparten eller mer'] },
+  ];
+
+  /* ============ tilfeldig hero-bilde ============ */
+  var HEROES = ['images/funnel/hero.jpg', 'images/funnel/hero2.jpg', 'images/funnel/hero3.jpg'];
+  document.getElementById('heroImg').src = HEROES[Math.floor(Math.random() * HEROES.length)];
+
+  /* ============ haptikk: Android-vibrasjon + iOS switch-tikk ============ */
+  var hpt = document.getElementById('hpt');
+  function haptic() {
+    if (navigator.vibrate) navigator.vibrate(8);
+    // iOS Safari 17.4+: programmatiske klikk på switch gir ikke tikk — derfor er
+    // hvert valg en <label for="hpt">, så selve trykket toggler den. Dette er backup.
+  }
+
+  /* ============ odometer ============ */
+  function odometer(el, value, opts) {
+    opts = opts || {};
+    var lh = opts.lh, delay = opts.delay || 200, italic = opts.italic;
+    var str = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + (opts.suffix || '');
+    el.innerHTML = '';
+    var odo = document.createElement('span');
+    odo.className = 'odo'; odo.style.height = lh + 'px';
+    str.split('').forEach(function (ch, idx) {
+      var col = document.createElement('span');
+      col.className = 'col' + (italic ? ' odo-italic' : '');
+      if (!/\d/.test(ch)) {
+        col.textContent = ch; col.style.lineHeight = lh + 'px';
+        odo.appendChild(col);
+        setTimeout(function () { col.classList.add('in'); }, delay + idx * 90);
+        return;
+      }
+      var strip = document.createElement('span');
+      strip.className = 'strip'; strip.style.lineHeight = lh + 'px';
+      var target = parseInt(ch, 10);
+      for (var d = 0; d <= target; d++) {
+        var s = document.createElement('span'); s.textContent = d; strip.appendChild(s);
+      }
+      col.appendChild(strip); odo.appendChild(col);
+      setTimeout(function () {
+        col.classList.add('in');
+        strip.classList.add('roll');
+        strip.style.transform = 'translateY(-' + target * lh + 'px)';
+      }, delay + idx * 90);
+    });
+    el.appendChild(odo);
+  }
+  odometer(document.getElementById('heroOdo'), 200, { suffix: '%', lh: 44, delay: 350, italic: true });
+
+  /* ============ karusell + progress-morf (B) ============ */
+  var car = document.getElementById('carousel');
+  var ptrack = document.getElementById('ptrack');
+  var pthumb = document.getElementById('pthumb');
+  function updateThumb() {
+    var max = car.scrollWidth - car.clientWidth;
+    var p = max > 0 ? Math.min(Math.max(car.scrollLeft / max, 0), 1) * 2 : 0; // 0..2
+    var i = Math.min(Math.floor(p), 1), f = p - i;
+    var eIn = f * f, eOut = 1 - (1 - f) * (1 - f);
+    var tw = ptrack.clientWidth - 2, segW = tw / 3;
+    var left = (i + eIn) * segW, right = (i + 1 + eOut) * segW;
+    pthumb.style.left = (1 + left) + 'px';
+    pthumb.style.width = (right - left) + 'px';
+  }
+  car.addEventListener('scroll', function () { requestAnimationFrame(updateThumb); });
+  window.addEventListener('resize', updateThumb);
+  // muse-drag på desktop
+  (function () {
+    var down = false, sx = 0, ss = 0;
+    car.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'touch') return;
+      down = true; sx = e.clientX; ss = car.scrollLeft;
+      car.classList.add('dragging'); car.setPointerCapture(e.pointerId);
+    });
+    car.addEventListener('pointermove', function (e) {
+      if (down) car.scrollLeft = ss - (e.clientX - sx);
+    });
+    function up() {
+      if (!down) return;
+      down = false; car.classList.remove('dragging');
+      var w = car.clientWidth;
+      var t = Math.min(Math.max(Math.round(car.scrollLeft / w), 0), 2);
+      car.scrollTo({ left: t * w, behavior: 'smooth' });
+    }
+    car.addEventListener('pointerup', up);
+    car.addEventListener('pointercancel', up);
+  })();
+
+  /* ============ scroll-glid med appens easing ============ */
+  function bezier(x1, y1, x2, y2) {
+    function A(a1, a2) { return 1 - 3 * a2 + 3 * a1; }
+    function B(a1, a2) { return 3 * a2 - 6 * a1; }
+    function C(a1) { return 3 * a1; }
+    function calc(t, a1, a2) { return ((A(a1, a2) * t + B(a1, a2)) * t + C(a1)) * t; }
+    function slope(t, a1, a2) { return 3 * A(a1, a2) * t * t + 2 * B(a1, a2) * t + C(a1); }
+    return function (x) {
+      var t = x;
+      for (var i = 0; i < 5; i++) {
+        var s = slope(t, x1, x2);
+        if (s === 0) break;
+        t -= (calc(t, x1, x2) - x) / s;
+      }
+      return calc(t, y1, y2);
+    };
+  }
+  var easeApp = bezier(0.16, 1, 0.3, 1);
+  var glideId = 0;
+  function glideTo(targetY, dur) {
+    dur = dur || 420;
+    var id = ++glideId;
+    var startY = window.scrollY;
+    var maxY = document.documentElement.scrollHeight - window.innerHeight;
+    targetY = Math.max(0, Math.min(targetY, maxY));
+    if (Math.abs(targetY - startY) < 8) return;
+    var t0 = performance.now();
+    (function tick(now) {
+      if (id !== glideId) return;
+      var t = Math.min((now - t0) / dur, 1);
+      window.scrollTo(0, startY + (targetY - startY) * easeApp(t));
+      if (t < 1) requestAnimationFrame(tick);
+    })(performance.now());
+  }
+
+  /* ============ bygg spørsmålene ============ */
+  var flow = document.getElementById('flow');
+  var step = 0, answers = new Array(STEPS.length).fill(null);
+  var advanceScheduled = false;
+  var blocks = [];
+
+  STEPS.forEach(function (q, i) {
+    var b = document.createElement('div');
+    b.className = 'qblock';
+    var title = '<div class="qtitle"><span>' + q.q + '</span>';
+    if (q.titleIcons) {
+      title += '<span class="qicons">' + q.titleIcons.map(function (n) {
+        return iconSvg(n, 12, '#9a9c94');
+      }).join('') + '</span>';
+    }
+    title += '</div>';
+    var inner = title;
+    if (q.type === 'yesno') {
+      inner += '<div class="yn">' + q.opts.map(function (o) {
+        var ic = o === 'Ja'
+          ? '<span class="ynic"><span class="check"></span></span>'
+          : '<span class="ynic"><span class="cross"><i></i><i></i></span></span>';
+        return '<label for="hpt" class="opt" data-opt="' + o + '">' + ic + '<span class="lbl">' + o + '</span></label>';
+      }).join('') + '</div>';
+    } else {
+      inner += '<div class="opts">' + q.opts.map(function (o) {
+        var ic = q.icons ? '<span class="ico" data-ico="' + q.icons[o] + '">' + iconSvg(q.icons[o], 18, INK) + '</span>' : '';
+        return '<label for="hpt" class="opt" data-opt="' + o + '">' + ic + '<span class="lbl">' + o + '</span>' +
+          '<span class="ck"><span class="check"></span></span></label>';
+      }).join('') + '</div>';
+    }
+    b.innerHTML = inner;
+    flow.appendChild(b);
+    blocks.push(b);
+    b.querySelectorAll('.opt').forEach(function (optEl) {
+      optEl.addEventListener('click', function () { choose(i, optEl.dataset.opt); });
+    });
+  });
+
+  function refreshDist() {
+    blocks.forEach(function (b, i) {
+      b.classList.remove('f1', 'f2', 'f3');
+      if (i > step) b.classList.add('f' + Math.min(i - step, 3));
+    });
+  }
+  refreshDist();
+
+  function markSel(i) {
+    var q = STEPS[i], b = blocks[i];
+    b.querySelectorAll('.opt').forEach(function (o) {
+      var sel = o.dataset.opt === answers[i];
+      o.classList.toggle('sel', sel);
+      var ico = o.querySelector('.ico');
+      if (ico) {
+        var name = ico.dataset.ico;
+        var color = sel ? '#ffffff' : (name === 'dots' ? MUTED : INK);
+        ico.innerHTML = iconSvg(name, 18, color);
+      }
+    });
+  }
+
+  function blockTop(i) {
+    return blocks[i].getBoundingClientRect().top + window.scrollY;
+  }
+
+  function choose(i, opt) {
+    haptic();
+    answers[i] = opt;
+    markSel(i);
+    var b = blocks[i];
+
+    if (i === step) {
+      if (advanceScheduled) return;
+      advanceScheduled = true;
+      setTimeout(function () {
+        advanceScheduled = false;
+        b.classList.add('answered');
+        step = i + 1;
+        refreshDist();
+        if (step < STEPS.length) {
+          // sekvensielt: folden først (220ms), så ETT glid
+          setTimeout(function () {
+            glideTo(blockTop(step) - (step === 1 ? 310 : 150));
+          }, 240);
+        } else {
+          setTimeout(showResult, 500);
+        }
+      }, 150);
+    } else if (b.classList.contains('answered') && STEPS[i].type !== 'yesno') {
+      if (!b.classList.contains('editing')) {
+        // trykk på kompakt rad: fold ut for redigering (kun valgt rad er trykkbar)
+        b.classList.add('editing');
+      } else {
+        // nytt valg gjort i åpen tilstand: fold sammen igjen, uten å gå videre
+        b.classList.remove('editing');
+      }
+    }
+  }
+
+  /* ============ resultat ============ */
+  function showResult() {
+    var view = document.getElementById('view');
+    view.classList.add('out');
+    setTimeout(function () {
+      document.getElementById('quiz').style.display = 'none';
+      document.getElementById('result').style.display = 'block';
+      window.scrollTo(0, 0);
+      document.getElementById('resAnswers').textContent =
+        answers.map(function (a, i) { return (i + 1) + '. ' + a; }).join('\n');
+      odometer(document.getElementById('resOdo'), DEMO_RESULT, { lh: 41, delay: 300 });
+      view.classList.remove('out');
+      if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+    }, 200);
+  }
+
+  document.getElementById('restart').addEventListener('click', function () {
+    var view = document.getElementById('view');
+    view.classList.add('out');
+    setTimeout(function () {
+      answers = new Array(STEPS.length).fill(null);
+      step = 0; advanceScheduled = false;
+      blocks.forEach(function (b, i) { b.classList.remove('answered', 'editing'); markSel(i); });
+      refreshDist();
+      document.getElementById('result').style.display = 'none';
+      document.getElementById('quiz').style.display = 'block';
+      window.scrollTo(0, 0);
+      view.classList.remove('out');
+    }, 200);
+  });
+
+  window.addEventListener('load', updateThumb);
+</script>
+</body>
+</html>

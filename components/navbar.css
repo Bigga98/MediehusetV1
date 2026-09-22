@@ -1,18 +1,8 @@
 /* ── Mediegruppen Navbar — felles stil for alle sider ── */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Mono:wght@400;700&display=swap');
 
-.mg-nav__logo .mg-logo-svg { display: none; }
-.mg-nav__logo::after {
-  content: 'Mediegruppen';
-  font-family: 'DM Serif Display', serif;
-  font-size: 22px;
-  font-weight: 400;
-  color: #222222;
-  letter-spacing: -0.01em;
-}
 
 .mg-nav, .mg-nav.scrolled {
-  background: rgba(248,248,248,0.95) !important;
+  background: rgba(239,238,236,0.95) !important;
   border-bottom: none !important;
 }
 .mg-nav {
@@ -28,7 +18,7 @@
   display: inline-flex !important;
   align-items: center !important;
   padding: 14px 20px !important;
-  font-family: 'Space Mono', monospace !important;
+  font-family: 'Inter', monospace !important;
   font-size: 11px !important;
   font-weight: 400 !important;
   letter-spacing: 0.06em !important;
