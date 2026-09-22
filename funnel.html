@@ -6,15 +6,31 @@
   <title>Mediegruppen – Analyse</title>
   <meta name="description" content="Svar på fem korte spørsmål og se hva annonsene deres faktisk leverer.">
 
-  <!-- Meta Pixel -->
+  <!-- Meta Pixel — stub + kø legges umiddelbart, selve fbevents.js lastes først
+       etter load+idle så den ikke booter på hovedtråden mens man trykker -->
   <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
     fbq('init', '1438440671412379');
     fbq('track', 'PageView');
+    function loadFbPixel() {
+      if (loadFbPixel.done) return; loadFbPixel.done = 1;
+      var t = document.createElement('script');
+      t.async = true; t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      document.head.appendChild(t);
+    }
+  </script>
+
+  <!-- tilfeldig hero velges FØR parsing er ferdig, så nedlastingen starter
+       parallelt med CSS/fonter i stedet for etter at JS nederst har kjørt -->
+  <script>
+    window.__hero = ['hero-blur.jpg', 'hero2-blur.jpg', 'hero3-blur.jpg'][Math.floor(Math.random() * 3)];
+    (function () {
+      var l = document.createElement('link');
+      l.rel = 'preload'; l.as = 'image'; l.href = 'images/funnel/' + window.__hero;
+      document.head.appendChild(l);
+    })();
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +66,7 @@
       padding: 10px 16px 6px;
       min-height: 100dvh;
     }
-    #view { transition: opacity .18s ease-out; }
+    #view { position: relative; transition: opacity .18s ease-out; }
     #view.out { opacity: 0; }
 
     /* ---------- hero-karusell ---------- */
@@ -112,7 +128,19 @@
     }
 
     /* ---------- spørsmål ---------- */
-    .qblock { margin-bottom: 28px; transition: opacity .22s var(--fold), filter .22s var(--fold); }
+    .qblock { position: relative; margin-bottom: 28px; transition: opacity .22s var(--fold), filter .22s var(--fold); }
+    /* FLIP: under folden flyttes blokkene med transform (GPU) i stedet for at
+       layouten regnes om 60 ganger i sekundet. .play legger transform til
+       transition-listen; uten .play settes transform momentant (invert-steget). */
+    .qblock.play { transition: opacity .22s var(--fold), filter .22s var(--fold), transform .22s var(--fold); }
+    .foot.play { transition: transform .22s var(--fold); }
+    /* under klonteateret: ekte rader hopper til slutt-tilstand uten animasjon
+       (kun radene i .opts — klonens rader i .opts-ghost skal animere) */
+    .qblock.flip .opts { visibility: hidden; }
+    .qblock.flip .opts .opt { transition: none !important; }
+    /* klonen av .opts spiller selve folden — absolutt, så dens interne
+       høyde-animasjon aldri reflower dokumentet */
+    .opts-ghost { position: absolute; left: 0; right: 0; }
     /* egne GPU-lag: når folden flytter blurede blokker, composites de i stedet
        for å re-rastreres per frame — det var dette som ga dårlige frames */
     .qblock.f1, .qblock.f2, .qblock.f3 {
@@ -137,6 +165,7 @@
       background: #fff; border-radius: 14px;
       font-size: 16px; font-weight: 500; color: var(--txt);
       cursor: pointer; user-select: none; overflow: hidden;
+      touch-action: manipulation; /* fjerner iOS' double-tap-forsinkelse */
       transition: height .22s var(--fold), margin .22s var(--fold),
                   border-radius .22s var(--fold), background .15s ease, padding .22s var(--fold);
     }
@@ -190,7 +219,13 @@
     .foot p:last-child { margin-bottom: 0; }
 
     /* ---------- resultat ---------- */
+    /* pre-rendres skjult ved load (layout + raster skjer da, ikke i selve
+       kryssfade-øyeblikket). .pre fjernes når resultatet vises. */
     #result { display: none; }
+    #result.pre {
+      display: block; position: absolute; top: 0; left: 0; right: 0;
+      visibility: hidden; pointer-events: none;
+    }
     .r-label { font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 8px; }
     .r-hook {
       font-family: 'Instrument Sans', sans-serif;
@@ -210,7 +245,7 @@
       display: flex; align-items: center; justify-content: center;
       height: 56px; border-radius: 14px; background: var(--ink); color: #fff;
       font-size: 17px; font-weight: 500; cursor: pointer; user-select: none; margin-top: 12px;
-      border: none; width: 100%; font-family: inherit;
+      border: none; width: 100%; font-family: inherit; touch-action: manipulation;
     }
     .btn:active { opacity: .85; }
 
@@ -240,7 +275,7 @@
             </div>
           </div>
           <div class="slide slide-dark">
-            <div class="card"><img class="dash" src="images/funnel/ads-dashboard.png" alt="Kampanjeresultater fra Meta Annonseadministrator"></div>
+            <div class="card"><img class="dash" src="images/funnel/ads-dashboard.webp" alt="Kampanjeresultater fra Meta Annonseadministrator"></div>
           </div>
           <div class="slide slide-dark"><div class="card"></div></div>
         </div>
@@ -248,7 +283,7 @@
         <div id="flow"></div>
       </div>
 
-      <div id="result">
+      <div id="result" class="pre">
         <p class="r-label">Ferdig</p>
         <h1 class="r-hook">Resultatsiden kommer her</h1>
         <div class="r-card">
@@ -297,9 +332,11 @@
     { q: 'Hvor mange av dem blir kunder?', opts: ['Nesten ingen', 'Rundt 1 av 10', 'Rundt 1 av 4', 'Halvparten eller mer'] },
   ];
 
-  /* ============ tilfeldig hero-bilde ============ */
-  var HEROES = ['images/funnel/hero-blur.jpg', 'images/funnel/hero2-blur.jpg', 'images/funnel/hero3-blur.jpg'];
-  document.getElementById('heroImg').src = HEROES[Math.floor(Math.random() * HEROES.length)];
+  /* ============ tilfeldig hero-bilde (valgt + preloadet i <head>) ============ */
+  var HEROES = ['hero-blur.jpg', 'hero2-blur.jpg', 'hero3-blur.jpg'];
+  var heroImg = document.getElementById('heroImg');
+  heroImg.src = 'images/funnel/' + window.__hero;
+  if (heroImg.decode) heroImg.decode().catch(function () {});
 
   /* ============ haptikk: Android-vibrasjon + iOS switch-tikk ============ */
   var hpt = document.getElementById('hpt');
@@ -347,18 +384,24 @@
   var car = document.getElementById('carousel');
   var ptrack = document.getElementById('ptrack');
   var pthumb = document.getElementById('pthumb');
+  // mål caches ved load/resize — updateThumb kjører per frame under sveip og
+  // skal ikke lese scrollWidth/clientWidth (layout-les) hver gang
+  var carMax = 0, segW = 0;
+  function measureCar() {
+    carMax = car.scrollWidth - car.clientWidth;
+    segW = (ptrack.clientWidth - 2) / 3;
+    updateThumb();
+  }
   function updateThumb() {
-    var max = car.scrollWidth - car.clientWidth;
-    var p = max > 0 ? Math.min(Math.max(car.scrollLeft / max, 0), 1) * 2 : 0; // 0..2
+    var p = carMax > 0 ? Math.min(Math.max(car.scrollLeft / carMax, 0), 1) * 2 : 0; // 0..2
     var i = Math.min(Math.floor(p), 1), f = p - i;
     var eIn = f * f, eOut = 1 - (1 - f) * (1 - f);
-    var tw = ptrack.clientWidth - 2, segW = tw / 3;
     var left = (i + eIn) * segW, right = (i + 1 + eOut) * segW;
     pthumb.style.left = (1 + left) + 'px';
     pthumb.style.width = (right - left) + 'px';
   }
   car.addEventListener('scroll', function () { requestAnimationFrame(updateThumb); });
-  window.addEventListener('resize', updateThumb);
+  window.addEventListener('resize', measureCar);
   // muse-drag på desktop
   (function () {
     var down = false, sx = 0, ss = 0;
@@ -478,7 +521,113 @@
   }
 
   function blockTop(i) {
-    return blocks[i].getBoundingClientRect().top + window.scrollY;
+    // offsetTop-kjede: upåvirket av pågående transforms (getBoundingClientRect er ikke det)
+    var el = blocks[i], y = 0;
+    while (el) { y += el.offsetTop; el = el.offsetParent; }
+    return y;
+  }
+
+  /* ============ FLIP-fold ============
+     Layoutendringen settes momentant (én layoutberegning), og alt under
+     blokken stilles tilbake med translateY som glir til null på GPU-en.
+     Selve folde-teatret spilles av en absolutt klon av .opts — dens interne
+     høyde-animasjon kan ikke flytte noe annet i dokumentet. Visuelt identisk
+     med før (samme kurve, samme 220ms), men uten layout per frame. */
+  var stageEl = document.querySelector('.stage');
+  var footEl = document.querySelector('.foot');
+  var foldId = 0;
+
+  function foldFlip(b, i) {
+    var opts = b.querySelector('.opts');
+    step = i + 1;
+    if (!opts) { // ja/nei endrer ikke layout — ingenting å FLIPpe
+      b.classList.add('answered');
+      refreshDist();
+      return;
+    }
+
+    var id = ++foldId;
+
+    // klemme-guard: dokumentet krymper momentant — hold høyden så iOS ikke
+    // klipper scrollposisjonen (samme felle som i appen)
+    stageEl.style.minHeight = '';
+    stageEl.style.minHeight = stageEl.offsetHeight + 'px';
+
+    // klon av radene i åpen tilstand, FØR layouten hopper
+    var ghost = opts.cloneNode(true);
+    ghost.className = 'opts-ghost';
+    ghost.style.top = opts.offsetTop + 'px';
+    ghost.style.pointerEvents = 'none';
+    ghost.setAttribute('aria-hidden', 'true');
+    var gRows = [].slice.call(ghost.querySelectorAll('.opt'));
+    gRows.forEach(function (o, k) {
+      o.style.height = '58px';
+      o.style.marginBottom = (k === gRows.length - 1 ? 0 : 8) + 'px';
+      o.removeAttribute('for');
+      var ck = o.querySelector('.ck');
+      if (ck) ck.style.animation = 'none'; // ikke re-popp haken
+      // haken blir grønn i det folden starter (som i dag — umiddelbart)
+      if (o.classList.contains('sel')) {
+        var chk = o.querySelector('.ck .check');
+        if (chk) chk.style.borderColor = GREEN;
+      }
+    });
+
+    // FIRST: hvor står alt under blokken nå — målt før noen klasser endres
+    var movers = blocks.slice(i + 1); movers.push(footEl);
+    var first = movers.map(function (el) { return el.getBoundingClientRect().top; });
+
+    // layout-hoppet: ekte rader rett i slutt-tilstand uten animasjon
+    // (.flip slår av transitions og skjuler .opts — klonen tar over visuelt)
+    b.classList.add('flip');
+    b.classList.add('answered');
+    refreshDist(); // blur-nivåene skifter — ren opacity/filter, ikke layout
+    b.appendChild(ghost);
+
+    // LAST + INVERT: still alt under tilbake der det sto (uten transition —
+    // transform er ikke i .qblock sin transition-liste før .play legges på)
+    movers.forEach(function (el, k) {
+      var d = first[k] - el.getBoundingClientRect().top;
+      if (d > 0.5) el.style.transform = 'translateY(' + d + 'px) translateZ(0)';
+    });
+
+    // commit de inverterte transformene og klonens starttilstand som
+    // startverdier (tvungen style-flush), så PLAY i samme task — folden
+    // starter på nøyaktig samme frame som layout-hoppet
+    void b.offsetWidth;
+
+    // PLAY: transformene glir til null og klonen folder seg, med nøyaktig
+    // samme .opt-transitions (kurve + 220ms) som før
+    movers.forEach(function (el) {
+      el.classList.add('play');
+      el.style.transform = 'translateZ(0)';
+    });
+    gRows.forEach(function (o) {
+      if (o.classList.contains('sel')) {
+        o.style.height = '44px';
+        o.style.borderRadius = '12px';
+        o.style.marginBottom = '0px';
+        var lbl = o.querySelector('.lbl');
+        if (lbl) lbl.style.fontSize = '15px';
+      } else {
+        o.style.height = '0px';
+        o.style.marginBottom = '0px';
+      }
+    });
+
+    // opprydding når folden er ferdig spilt
+    setTimeout(function () {
+      if (id !== foldId) return;
+      ghost.remove();
+      b.classList.remove('flip');
+      movers.forEach(function (el) {
+        el.classList.remove('play');
+        el.style.transform = '';
+      });
+    }, 450);
+    setTimeout(function () {
+      if (id === foldId) stageEl.style.minHeight = '';
+    }, 1000);
   }
 
   function choose(i, opt) {
@@ -492,9 +641,7 @@
       advanceScheduled = true;
       setTimeout(function () {
         advanceScheduled = false;
-        b.classList.add('answered');
-        step = i + 1;
-        refreshDist();
+        foldFlip(b, i);
         if (step < STEPS.length) {
           // sekvensielt: folden først (220ms), så ETT glid
           setTimeout(function () {
@@ -520,8 +667,12 @@
     var view = document.getElementById('view');
     view.classList.add('out');
     setTimeout(function () {
+      foldId++; // stopp evt. løpende fold-opprydding
+      stageEl.style.minHeight = '';
       document.getElementById('quiz').style.display = 'none';
-      document.getElementById('result').style.display = 'block';
+      var res = document.getElementById('result');
+      res.classList.remove('pre'); // var pre-rendret skjult — layout/raster alt gjort
+      res.style.display = 'block';
       window.scrollTo(0, 0);
       document.getElementById('resAnswers').textContent =
         answers.map(function (a, i) { return (i + 1) + '. ' + a; }).join('\n');
@@ -536,17 +687,41 @@
     view.classList.add('out');
     setTimeout(function () {
       answers = new Array(STEPS.length).fill(null);
-      step = 0; advanceScheduled = false;
-      blocks.forEach(function (b, i) { b.classList.remove('answered', 'editing'); markSel(i); });
+      step = 0; advanceScheduled = false; foldId++;
+      blocks.forEach(function (b, i) {
+        b.classList.remove('answered', 'editing', 'flip', 'play');
+        b.style.transform = '';
+        markSel(i);
+      });
+      [].slice.call(document.querySelectorAll('.opts-ghost')).forEach(function (g) { g.remove(); });
+      footEl.classList.remove('play'); footEl.style.transform = '';
+      stageEl.style.minHeight = '';
       refreshDist();
-      document.getElementById('result').style.display = 'none';
+      var res = document.getElementById('result');
+      res.style.display = ''; res.classList.add('pre');
       document.getElementById('quiz').style.display = 'block';
       window.scrollTo(0, 0);
       view.classList.remove('out');
     }, 200);
   });
 
-  window.addEventListener('load', updateThumb);
+  /* ============ warm-up: gjør siden klar mens den har pusterom ============ */
+  measureCar();
+  window.addEventListener('load', function () {
+    measureCar();
+    var idle = window.requestIdleCallback || function (cb) { setTimeout(cb, 800); };
+    idle(function () {
+      loadFbPixel(); // pixel booter først når hovedtråden har fri
+      var dash = document.querySelector('img.dash');
+      if (dash && dash.decode) dash.decode().catch(function () {}); // slide 2 ferdig dekodet
+      HEROES.forEach(function (h) { // varm cache for neste besøk
+        if (h !== window.__hero) (new Image()).src = 'images/funnel/' + h;
+      });
+      // pre-raster resultat-odometeret (skjult) — byttes ut ved ekte visning
+      odometer(document.getElementById('resOdo'), DEMO_RESULT, { lh: 41, delay: 0 });
+    });
+    setTimeout(loadFbPixel, 3000); // fallback om idle aldri kommer
+  });
 </script>
 </body>
 </html>
