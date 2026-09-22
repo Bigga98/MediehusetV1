@@ -436,6 +436,20 @@
     const email   = form.querySelector('[name="email"]').value || '';
     const company = form.querySelector('[name="company"]').value || '';
     const message = form.querySelector('[name="message"]').value || '';
+    // vakt: honeypot (bots fyller alle felt) — lat som suksess, send ingenting
+    const hp = form.querySelector('[name="fax_nr"]');
+    if (hp && hp.value) {
+      document.getElementById('popupFormView').style.display = 'none';
+      document.getElementById('popupSuccess').style.display = 'block';
+      return;
+    }
+    // minstekrav: ekte navn + gyldig e-post før noe lagres
+    if (name.trim().length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) {
+      submitBtn.innerHTML = 'Fyll inn navn og gyldig e-post';
+      submitBtn.disabled = false;
+      setTimeout(() => { submitBtn.innerHTML = originalText; }, 2600);
+      return;
+    }
     fetch(SUPABASE_URL + '/rest/v1/leads', {
       method: 'POST',
       headers: { 'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
@@ -536,6 +550,7 @@
               <h2 class="popup-right-heading">Send oss en melding</h2>
               <p class="popup-right-sub">Vi tar kontakt innen én arbeidsdag.</p>
               <form class="popup-form" id="popupForm" onsubmit="submitPopupForm(event)">
+                <input type="text" name="fax_nr" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:0;height:0;opacity:0;pointer-events:none">
                 <div class="popup-form-row">
                   <div class="popup-field">
                     <label>Navn</label>

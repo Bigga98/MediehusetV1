@@ -474,6 +474,7 @@
     </div>
 
     <form id="kontaktskjema" novalidate>
+      <input type="text" name="fax_nr" id="hp-kontakt" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:0;height:0;opacity:0;pointer-events:none">
       <div class="form-grid">
 
         <div class="form-field">
@@ -589,13 +590,34 @@
   document.getElementById('kontaktskjema').addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = e.target.querySelector('.btn-submit');
-    btn.textContent = 'Sender…';
-    btn.disabled = true;
 
     const navn    = document.getElementById('navn').value.trim();
     const epost   = document.getElementById('epost').value.trim();
     const bedrift = document.getElementById('bedrift').value.trim();
     const telefon = document.getElementById('telefon').value.trim();
+
+    // vakt: honeypot (bots fyller alle felt) — lat som suksess, send ingenting
+    if (document.getElementById('hp-kontakt').value) {
+      document.getElementById('kontaktskjema').style.display = 'none';
+      document.querySelector('.form-header').style.display = 'none';
+      document.querySelector('.form-divider').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'flex';
+      return;
+    }
+    // minstekrav: navn + gyldig e-post ELLER telefon før noe lagres
+    const epostOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(epost);
+    const tlfOk   = telefon.replace(/\D/g, '').length >= 8;
+    if (navn.length < 2 || (!epostOk && !tlfOk)) {
+      const orig = btn.innerHTML;
+      btn.textContent = 'Fyll inn navn + e-post eller telefon';
+      btn.style.background = 'rgba(255,80,80,0.12)';
+      btn.style.color = '#ff6b6b';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.color = ''; }, 2600);
+      return;
+    }
+
+    btn.textContent = 'Sender…';
+    btn.disabled = true;
     const fullMessage = [
       bedrift  ? 'Bedrift: ' + bedrift   : '',
       telefon  ? 'Tlf: '    + telefon    : '',
