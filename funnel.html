@@ -575,24 +575,57 @@
     stageEl.style.minHeight = '';
     stageEl.style.minHeight = stageEl.offsetHeight + 'px';
 
-    // klon av radene i åpen tilstand, FØR layouten hopper
+    // klon av radene i åpen tilstand, FØR layouten hopper.
+    // Klonen animerer ALDRI layout: hver rad glir med transform (samme
+    // GPU-lane som blokkene under — kan ikke desynce) og boksen lukkes med
+    // clip-path. En indre wrapper glir opp så teksten holder seg sentrert i
+    // den krympende boksen, nøyaktig som flex+overflow gjorde i flyt.
+    var bRect = b.getBoundingClientRect();
+    var oRect = opts.getBoundingClientRect();
     var ghost = opts.cloneNode(true);
     ghost.className = 'opts-ghost';
-    ghost.style.top = opts.offsetTop + 'px';
+    ghost.style.top = (oRect.top - bRect.top).toFixed(2) + 'px'; // brøkposisjon — offsetTop runder og ga 0.5px-hopp
     ghost.style.pointerEvents = 'none';
     ghost.setAttribute('aria-hidden', 'true');
+    var FOLD = '220ms cubic-bezier(0.42, 0, 0.58, 1)'; // = var(--fold)
     var gRows = [].slice.call(ghost.querySelectorAll('.opt'));
+    var anims = [];
+    var acc = 0; // sum kollaps over raden = hvor langt den skal gli opp
     gRows.forEach(function (o, k) {
+      var sel = o.classList.contains('sel');
+      var last = k === gRows.length - 1;
+      // frossen layout på start-geometri
       o.style.height = '58px';
-      o.style.marginBottom = (k === gRows.length - 1 ? 0 : 8) + 'px';
+      o.style.marginBottom = (last ? 0 : 8) + 'px';
       o.removeAttribute('for');
-      var ck = o.querySelector('.ck');
+      // pakk innholdet så det kan gli sentrert inne i boksen
+      var w = document.createElement('div');
+      w.style.cssText = 'display:flex;align-items:center;gap:12px;flex:1 1 auto;min-width:0;';
+      while (o.firstChild) w.appendChild(o.firstChild);
+      o.appendChild(w);
+      var ck = w.querySelector('.ck');
       if (ck) ck.style.animation = 'none'; // ikke re-popp haken
-      // haken blir grønn i det folden starter (som i dag — umiddelbart)
-      if (o.classList.contains('sel')) {
-        var chk = o.querySelector('.ck .check');
+      // haken blir grønn i det folden starter (som før — umiddelbart)
+      if (sel) {
+        var chk = w.querySelector('.ck .check');
         if (chk) chk.style.borderColor = GREEN;
       }
+      // startverdier — committes av style-flushen under
+      var startClip = 'inset(0px 0px 0px 0px round 14px)';
+      o.style.transition = 'none';
+      o.style.transform = 'translateY(0px) translateZ(0)';
+      o.style.clipPath = startClip;
+      o.style.setProperty('-webkit-clip-path', startClip);
+      w.style.transition = 'none';
+      w.style.transform = 'translateY(0px)';
+      anims.push({
+        o: o, w: w, sel: sel,
+        y: -acc,                                   // radens glid = kollapsen over den
+        innerY: sel ? -7 : -29,                    // innholdet følger boksens senter
+        endClip: sel ? 'inset(0px 0px 14px 0px round 12px)'   // 58 -> 44, radius 14 -> 12
+                     : 'inset(0px 0px 58px 0px round 14px)'   // 58 -> 0
+      });
+      acc += (sel ? 14 : 58) + (last ? 0 : 8);
     });
 
     // FIRST: hvor står alt under blokken nå — målt før noen klasser endres
@@ -618,22 +651,25 @@
     // starter på nøyaktig samme frame som layout-hoppet
     void b.offsetWidth;
 
-    // PLAY: transformene glir til null og klonen folder seg, med nøyaktig
-    // samme .opt-transitions (kurve + 220ms) som før
+    // PLAY: alt i samme lane — movers og klonrader glir som transform/clip
+    // med samme kurve og 220ms, committet i samme flush. Frame-paritet
+    // er dermed garantert; tekstene kan ikke lenger overlappe hverandre.
     movers.forEach(function (el) {
       el.classList.add('play');
       el.style.transform = 'translateZ(0)';
     });
-    gRows.forEach(function (o) {
-      if (o.classList.contains('sel')) {
-        o.style.height = '44px';
-        o.style.borderRadius = '12px';
-        o.style.marginBottom = '0px';
-        var lbl = o.querySelector('.lbl');
-        if (lbl) lbl.style.fontSize = '15px';
-      } else {
-        o.style.height = '0px';
-        o.style.marginBottom = '0px';
+    anims.forEach(function (a) {
+      a.o.style.transition = 'transform ' + FOLD + ', clip-path ' + FOLD + ', -webkit-clip-path ' + FOLD +
+        (a.sel ? ', border-radius ' + FOLD : '');
+      a.o.style.transform = 'translateY(' + a.y + 'px) translateZ(0)';
+      a.o.style.clipPath = a.endClip;
+      a.o.style.setProperty('-webkit-clip-path', a.endClip);
+      if (a.sel) a.o.style.borderRadius = '12px'; // bakgrunnens hjørner følger klippet
+      a.w.style.transition = 'transform ' + FOLD;
+      a.w.style.transform = 'translateY(' + a.innerY + 'px)';
+      if (a.sel) {
+        var lbl = a.w.querySelector('.lbl');
+        if (lbl) lbl.style.fontSize = '15px'; // egen .lbl-transition fra CSS, som før
       }
     });
 
