@@ -4750,6 +4750,12 @@
     }
 
     /* ── PRINSIPPER (Figma: Forside (ny) – Prinsipper (tekst)) ── */
+    /* components/mobile.css setter overflow-x: hidden på html og body på mobil.
+       Det gjør body til en egen rulleboks, og da blir ikke WebGL-lerretet
+       (position: sticky) stående: det scrolles bort etter heroen. «clip» kutter
+       like mye sidelengs uten å lage en rulleboks. */
+    html:root, html body { overflow-x: clip !important; }
+
     .mgw {
       position: relative;
       isolation: isolate;
@@ -6314,8 +6320,9 @@
         uniform float u_dark;   // 0 lys side, 1 mørk side
         const vec3 BG = vec3(0.992, 0.988, 0.984);
 
+        // Fargene fra lysbånd A: myk pastell i blått, fersken og rosa
         vec3 spectrum(float t) {
-          return mix(vec3(0.30, 0.35, 0.42), vec3(0.86, 0.88, 0.91), 0.5 + 0.5 * cos(6.2831 * (t + 0.15)));
+          return 0.68 + 0.32 * cos(6.2831 * (t + vec3(0.58, 0.40, 0.20)));
         }
         float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
         mat2 rot(float a) { float c = cos(a), s = sin(a); return mat2(c, -s, s, c); }
@@ -6327,7 +6334,7 @@
           float slope = amp * freq * cos(p.x * freq + t);
           float d = (p.y - y) / sqrt(1.0 + slope * slope);
           float w = width * (0.35 + 0.65 * smoothstep(-1.6, 0.4, p.x)) * (0.6 + 0.4 * sin(p.x * 1.7 + t * 0.7));
-          float k = 0.04 * w;
+          float k = 0.18 * w;  // fargeskjær i kantene, som i A
           vec3 a = vec3(exp(-pow((d - k) / w, 2.0)), exp(-pow(d / w, 2.0)), exp(-pow((d + k) / w, 2.0)));
           float s = max(a.r, max(a.g, a.b));
           return vec4(spectrum(hue + d / w * 0.25) * a / max(s, 1e-4), s);
@@ -6336,21 +6343,31 @@
         void main() {
           vec2 p = (gl_FragCoord.xy - 0.5 * u_res) / u_res.y;
           p += (u_mouse - 0.5) * vec2(u_res.x / u_res.y, 1.0) * 0.06;
-          p.y += u_scroll * 0.35;
+          // Båndene glir med scrollen, men buene står fast (ellers scrolles de ut
+          // av skjermen lenger ned på siden, særlig på mobil der siden er lang)
+          p.y += min(u_scroll, 1.0) * 0.35 * (1.0 - smoothstep(0.0, 1.0, u_morph));
           // Variant G: båndene ligger ute ved kantene (oppe til høyre og nede til
           // venstre), og det som havner midt på skjermen tones nesten ut, så
           // teksten står fritt. Formskiftet bøyer dem til buer langs høyre kant.
           float k = smoothstep(0.0, 1.0, u_morph);
-          vec2 c = vec2(1.0, -0.05);
+          // Halv skjermbredde i samme enhet som p. På smal (stående) mobilskjerm er
+          // den liten, så midtpunktet for buene flyttes inn (ellers havner buene
+          // utenfor skjermen), og midten dempes mindre (ellers forsvinner alt).
+          float halfW = 0.5 * u_res.x / u_res.y;
+          float narrow = 1.0 - smoothstep(0.45, 0.8, halfW);
+          vec2 c = vec2(min(1.0, halfW + 0.3), -0.05);
           vec2 dc = p - c;
-          vec2 q = mix(p, vec2(atan(dc.y, dc.x) * 0.6, length(dc) - 0.55), k);
-          float seam = mix(1.0, smoothstep(3.1416, 2.6, abs(atan(dc.y, dc.x))), smoothstep(0.0, 0.012, k));
-          float calm = mix(0.12, 1.0, smoothstep(0.15, 0.62, length(p * vec2(0.6, 1.0))));
+          // Vinkelen måles slik at skjøten (der den hopper) peker rett mot høyre,
+          // utenfor skjermen. Da er buene hele der de synes, også på mobil.
+          float ang = atan(-dc.y, -dc.x);
+          vec2 q = mix(p, vec2(ang * 0.6, length(dc) - 0.55), k);
+          float seam = mix(1.0, smoothstep(3.1416, 2.6, abs(ang)), smoothstep(0.0, 0.012, k));
+          float calm = mix(mix(0.12, 0.6, narrow), 1.0, smoothstep(0.15, 0.62, length(p * vec2(0.6, 1.0))));
           vec3 col = mix(BG, vec3(0.110, 0.110, 0.106), u_dark);
           vec4 b1 = band(q, mix(-0.32, 0.0, k), mix(0.42, 0.0, k), mix(0.07, 0.025, k), 0.9, 0.11, mix(0.12, 0.07, k), 0.05);
           vec4 b2 = band(q, mix(-0.28, 0.0, k), mix(-0.46, 0.13, k), mix(0.06, 0.02, k), 1.0, 0.09, mix(0.1, 0.045, k), 0.3);
-          col = mix(col, b1.rgb, b1.a * 0.62 * seam * calm);
-          col = mix(col, b2.rgb, b2.a * 0.5 * seam * calm);
+          col = mix(col, b1.rgb, b1.a * 0.5 * seam * calm);
+          col = mix(col, b2.rgb, b2.a * 0.4 * seam * calm);
           col += (hash(gl_FragCoord.xy + fract(u_time)) - 0.5) * 0.012;
           gl_FragColor = vec4(col, 1.0);
         }`;
