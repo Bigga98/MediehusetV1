@@ -4285,13 +4285,6 @@
     }
 
     /* Liten trekant over etiketten (Figma) */
-    .mgh__mark {
-      display: block;
-      width: 15px;
-      height: 14px;
-      margin: 0 auto 15px;
-    }
-
     .mgh__label {
       display: block;
       font-size: 14px;
@@ -4317,11 +4310,12 @@
       color: #28323B;
     }
 
-    /* «klikk» har en fargeovergang i Figma: brun, gråblå og lys mot slutten */
+    /* «klikk» har en fargeovergang i Figma: mørk grå, petrol, stålblå, lys grå og
+       gråblå. Den lyse grå helt til slutt er tatt ut, så ingen lys stripe sveiper over. */
     /* Gradienten er speilet og dobbelt så bred som ordet: i startposisjonen ser
        ordet ut som i Figma, så glir fargene rolig frem og tilbake. */
     .mgh__grad {
-      background: linear-gradient(90deg, #645E52 0%, #948164 18%, #3F5161 50%, #948164 82%, #645E52 100%); /* uten den lyse stripen */
+      background: linear-gradient(90deg, #2F353A 0%, #30728A 11.2%, #405D78 20.5%, #9D9F9F 32.5%, #3F5161 44.6%, #3F5161 55.4%, #9D9F9F 67.5%, #405D78 79.5%, #30728A 88.8%, #2F353A 100%);
       background-size: 200% 100%;
       -webkit-background-clip: text;
       background-clip: text;
@@ -4387,22 +4381,75 @@
     .mgh__btn svg { width: 12px; height: 10px; transition: transform 0.2s ease; }
     .mgh__btn:hover svg { transform: translateX(3px); }
 
-    /* «Start med en gratis nettside»: fylt knapp */
+    /* Knapp + egen pilboks (to flater med 8 px mellomrom). Ved hover flyter de
+       sammen som to vanndråper: flatene ligger i et eget lag med gooey-filter
+       (#mgh-goo, blur + terskel), teksten og pilen ligger skarpt oppå.
+       Testet i 06. KONSEPTER/webgl-test/meny.html (variant 6 «Dråper»). */
     .mgh__link {
+      --mgh-btn: #2F3234;   /* kjølig svart som i Figma, passer til den blågrå tittelen */
+      position: relative;
+      isolation: isolate;
       display: inline-flex;
-      align-items: center;
-      height: 44px;
-      padding: 0 22px;
-      font-size: 15px;
-      font-weight: 500;
-      color: #FFFFFF;
+      gap: 8px;
+      color: #E8F4F6;
       text-decoration: none;
-      background: #111111;
-      border-radius: 12px;
-      transition: background-color 0.2s ease;
     }
 
-    .mgh__link:hover { background: #2A2A28; }
+    .mgh__goo {
+      position: absolute;
+      inset: -12px;
+      z-index: -1;
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      filter: url(#mgh-goo);
+      pointer-events: none;
+    }
+
+    .mgh__blob { display: block; background: var(--mgh-btn); border-radius: 12px; }
+    .mgh__blob:first-child { flex: 1; }
+    .mgh__blob:last-child { width: 52px; }
+
+    /* Bro i sømmen: fyller hakket der de runde hjørnene møtes, så formen blir helt glatt */
+    .mgh__goo::after {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: calc(100% - 12px - 65px - 20px); /* midt i sømmen etter at dråpene har glidd sammen */
+      width: 40px;
+      height: 48px;
+      background: var(--mgh-btn);
+      transform: scaleX(0);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.5s ease;
+    }
+
+    .mgh__link-text,
+    .mgh__link-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+    }
+
+    .mgh__link-text { padding: 0 26px; font-size: 15px; font-weight: 500; }
+    .mgh__link-arrow { width: 52px; }
+    .mgh__link-arrow svg { width: 18px; height: 18px; transition: transform 0.75s cubic-bezier(0.34, 1.45, 0.5, 1); }
+
+    .mgh__blob,
+    .mgh__link-text,
+    .mgh__link-arrow {
+      transition: transform 0.75s cubic-bezier(0.34, 1.45, 0.5, 1), background-color 0.5s ease;
+    }
+
+    .mgh__link:hover .mgh__blob:first-child,
+    .mgh__link:hover .mgh__link-text { transform: translateX(10px); }
+    .mgh__link:hover .mgh__blob:last-child,
+    .mgh__link:hover .mgh__link-arrow { transform: translateX(-28px); }
+    .mgh__link:hover .mgh__goo::after { transform: scaleX(1); transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.12s, background-color 0.5s ease; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mgh__link *, .mgh__goo::after { transition: none !important; }
+    }
 
     .mgh__browser {
       position: relative;
@@ -4452,10 +4499,9 @@
       to   { opacity: 1; transform: none; }
     }
 
-    .mgh__mark, .mgh__label, .mgh__title, .mgh__points, .mgh__actions {
+    .mgh__label, .mgh__title, .mgh__points, .mgh__actions {
       animation: mgh-inn 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
-    .mgh__mark    { animation-delay: 0.05s; }
     .mgh__label   { animation-delay: 0.1s; }
     .mgh__title   { animation-delay: 0.2s; }
     .mgh__points  { animation-delay: 0.35s; }
@@ -4465,7 +4511,7 @@
     @keyframes mgh-strek { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
     @media (prefers-reduced-motion: reduce) {
-      .mgh__mark, .mgh__label, .mgh__title, .mgh__points, .mgh__actions, .mgh__rule, .mgh__browser { animation: none; }
+      .mgh__label, .mgh__title, .mgh__points, .mgh__actions, .mgh__rule, .mgh__browser { animation: none; }
     }
 
     /* ── NY NAV (Figma: samme hero) ── kun forsiden. Overstyrer navbar.css og
@@ -4520,7 +4566,7 @@
 
     html body .mg-nav__cta:hover { background: #000000 !important; color: #FFFFFF !important; }
 
-    /* ── «Meny»: knapp midt i nav-en som åpner en bred, mørk boks med bilder (Figma: Meny åpen, bred med bilder) ── */
+    /* ── «Meny»: knapp midt i nav-en som åpner et lyst panel fra toppen (Figma: Forside (ny) – Toppmeny (åpen)) ── */
     .mgm-btn {
       position: fixed;
       top: 19px;
@@ -4569,124 +4615,116 @@
 
     .mgm-wrap {
       position: fixed;
-      top: 19px;
+      top: 0;
       left: 50%;
       z-index: 1002;
-      width: min(840px, calc(100% - 32px));
+      width: min(502px, calc(100% - 32px));
       translate: -50% 0;
       pointer-events: none;
     }
 
+    /* Lyst panel som henger ned fra toppen (Figma: Forside (ny) – Toppmeny (åpen)) */
     .mgm-panel {
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
       --inout: cubic-bezier(0.76, 0, 0.24, 1);
-      padding: 0 20px 20px;
-      font-family: 'Inter', sans-serif;
       position: relative;
-      color: #F5F5F2;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 36px 16px 20px;
+      font-family: 'Inter', sans-serif;
+      color: #151514;
       visibility: hidden;
+      isolation: isolate;
     }
+    .mgm-panel a { color: inherit; text-decoration: none; }
 
-    .mgm-head {
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 14px;
-      font-weight: 500;
-    }
+    .mgm-head { display: flex; justify-content: center; }
 
     .mgm-close {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
       padding: 0;
-      font: inherit;
+      font: 500 15px/1 'Inter', sans-serif;
       color: inherit;
       background: none;
       border: 0;
       cursor: pointer;
     }
-    .mgm-close .mgm-plus { rotate: 45deg; }
 
-    .mgm-rule {
-      height: 1px;
-      background: rgba(255, 255, 255, 0.14);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s var(--ease);
-    }
-
-    .mgm-cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin: 0;
-      padding: 20px 0;
-      list-style: none;
-    }
-
-    .mgm-card {
-      display: grid;
-      gap: 10px;
-      color: #F5F5F2;
-      text-decoration: none;
-    }
-
-    .mgm-card-img {
+    .mgm-big { margin: 34px 0 0; padding: 0; list-style: none; }
+    .mgm-big a {
       display: block;
-      aspect-ratio: 192 / 127;
-      overflow: hidden;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .mgm-card-img img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .mgm-card-name {
-      display: flex;
-      justify-content: space-between;
+      padding: 10px 0 12px;
       font-family: 'Instrument Sans', sans-serif;
-      font-size: 18px;
+      font-size: 34px;
+      line-height: 38px;
       font-weight: 500;
-      letter-spacing: -0.03em;
-    }
-
-
-
-    .mgm-foot {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
-      font-size: 13px;
-      font-weight: 500;
-      opacity: 0;
+      letter-spacing: -0.02em;
       transition: opacity 0.2s ease;
     }
-    .mgm-foot a { color: #F5F5F2; text-decoration: underline; text-underline-offset: 4px; }
 
-    /* Åpning: variant 3 fra testsiden (06. KONSEPTER/webgl-test/meny.html),
-       «Bredde, så høyde». Bare den tomme mørke flaten (::before) klippes: først
-       en stripe ut til sidene fra knappen, så ned. Toppen toner inn, streken
-       tegnes, og kortene og bunnlinjen glir opp én etter én. Lukking: alt toner
+    .mgm-sub { display: grid; gap: 14px; margin: 64px 0 0; padding: 0; list-style: none; }
+    .mgm-sub a, .mgm-contact strong {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 17px;
+      line-height: 21px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      transition: opacity 0.2s ease;
+    }
+
+    .mgm-contact { margin: 64px 0 0; padding: 0; list-style: none; }
+
+    /* Strekene: som temalisten i seksjon 2 på badesiden. Hover på en rad: streken
+       over og under fylles fra venstre mot høyre, og trekker seg ut mot høyre når
+       musen går videre. */
+    .mgm-big li, .mgm-contact li { position: relative; border-top: 1px solid #D9D9D6; }
+    .mgm-big li:last-child, .mgm-contact li:last-child { border-bottom: 1px solid #D9D9D6; }
+    .mgm-big li::before, .mgm-big li::after,
+    .mgm-contact li::before, .mgm-contact li::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1.5px;
+      background: #151514;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+      pointer-events: none;
+    }
+    .mgm-big li::before, .mgm-contact li::before { top: -1px; }
+    .mgm-big li::after, .mgm-contact li::after { bottom: -1px; z-index: 1; }
+    .mgm-big li:hover::before, .mgm-big li:hover::after,
+    .mgm-contact li:hover::before, .mgm-contact li:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    /* Radene ligger i hvert sitt lag (innglidningen), så raden med hover løftes,
+       ellers dekker neste rad streken under */
+    .mgm-big li:hover, .mgm-contact li:hover { z-index: 1; }
+    .mgm-contact a {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+    }
+    .mgm-contact strong { display: block; font-size: 18px; line-height: 22px; }
+    .mgm-contact small { display: block; margin-top: 2px; font-size: 12px; line-height: 16px; color: #8A8A8A; }
+    .mgm-contact svg { flex: none; width: 12px; height: 12px; margin-top: 5px; }
+
+    .mgm-sub a:hover { opacity: 0.55; }
+
+    /* Åpning: den lyse flaten (::before) klippes ut fra knappen, først en stripe
+       ut til sidene, så ned. Lenkene glir opp én etter én. Lukking: alt toner
        raskt ut. */
     .mgm-panel::before {
       content: "";
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: #151514;
-      border: 1px solid #2A2A28;
-      border-radius: 16px;
+      background: #F9F9F8;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
     }
-    .mgm-panel { isolation: isolate; }
 
     /* Egne lag for menyen og sløret, så nettleseren ikke må tegne resten av den
        store forsiden på nytt mens menyen animeres (testsiden er liten, derfor
@@ -4700,23 +4738,19 @@
 
     html.mgm-open .mgm-panel::before { animation: mgm-bg 0.75s cubic-bezier(0.76, 0, 0.24, 1) both; }
     @keyframes mgm-bg {
-      0%   { clip-path: inset(0 calc(50% - 42px) calc(100% - 34px) calc(50% - 42px) round 12px); }
-      45%  { clip-path: inset(0 0 calc(100% - 48px) 0 round 16px); }
-      100% { clip-path: inset(0 0 0 0 round 16px); }
+      0%   { clip-path: inset(19px calc(50% - 42px) calc(100% - 53px) calc(50% - 42px) round 12px); }
+      45%  { clip-path: inset(0 0 calc(100% - 88px) 0 round 0); }
+      100% { clip-path: inset(0 0 0 0 round 0); }
     }
 
     .mgm-panel [data-m] { opacity: 0; }
-    .mgm-panel .mgm-rule { opacity: 1; transform: scaleX(0); transform-origin: left; }
     html.mgm-open .mgm-head { animation: mgm-fade 0.3s ease 0.3s both; }
-    html.mgm-open .mgm-rule { animation: mgm-draw 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both; }
-    html.mgm-open .mgm-panel [data-m]:not(.mgm-head):not(.mgm-rule) {
+    html.mgm-open .mgm-panel [data-m]:not(.mgm-head) {
       animation: mgm-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) calc(0.4s + var(--i, 0) * 0.045s) both; /* nøyaktig som testsiden */
     }
     html.mgm-closing .mgm-panel [data-m] { opacity: 1; }
-    html.mgm-closing .mgm-panel .mgm-rule { transform: none; }
 
     @keyframes mgm-fade { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes mgm-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
     @keyframes mgm-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
     @media (prefers-reduced-motion: reduce) {
@@ -4727,10 +4761,12 @@
     .mgm-btn { transition: opacity 0.15s ease, transform 0.4s cubic-bezier(0.25, 0, 0, 1); }
     html.mgm-open .mgm-btn { opacity: 0; pointer-events: none; }
 
-    /* Alt rundt menyen mørkner. WebGL-bakgrunnen og «klikk»-gradienten står
-       stille mens menyen er åpen. */
+    /* Alt rundt menyen blurres og mørkner litt. WebGL-bakgrunnen og
+       «klikk»-gradienten står stille mens menyen er åpen. */
     .mgm-veil {
-      background: rgba(21, 21, 20, 0.35);
+      background: rgba(21, 21, 20, 0.2);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
       transition: opacity 0.3s ease;
     }
     html.mgm-open .mgm-veil { opacity: 1; pointer-events: auto; }
@@ -4759,6 +4795,7 @@
     .mgw {
       position: relative;
       isolation: isolate;
+      overflow: clip;   /* lerretet (sticky, margin-bottom -100vh) skal ikke stikke ut over footeren */
       background: #FDFCFB;
     }
 
@@ -4876,7 +4913,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    .mgs__mark { display: block; width: 15px; height: 14px; margin: 0 auto 13px; }
 
     .mgs__label {
       display: block;
@@ -4945,7 +4981,7 @@
       transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease;
     }
     html body .mg-nav__cta { transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease !important; }
-    .mgh__link { transition: background-color 0.5s ease, color 0.5s ease; }
+    .mgh__link { transition: color 0.5s ease; }
 
     html.mg-dark .mgw { background: #1C1C1B; }
     html.mg-dark :is(.mgh__label, .mgh__title, .mgh__points, .mgp__label, .mgp__title, .mgp__list h3, .mgs__label, .mgs__title) { color: #E3E3E3; }
@@ -4956,7 +4992,7 @@
     html.mg-dark .mgs__card { background: #292826; }
     /* «salg» er mørk nederst; på mørk side lysere toner så hele ordet synes */
     html.mg-dark .mgp__grad { background-image: linear-gradient(170deg, #C9B898 0%, #A08B6E 45%, #7A8086 88%); }
-    html.mg-dark .mgh__link { color: #151514; background: #E3E3E3; }
+    html.mg-dark .mgh__link { --mgh-btn: #E3E3E3; color: #151514; }
     html.mg-dark .mgm-btn { color: #E3E3E3; }
     html.mg-dark body .mg-nav__logo.mgh-logo { color: #E3E3E3; }
     html.mg-dark body .mg-nav__cta { color: #E3E3E3 !important; border-color: #E3E3E3 !important; }
@@ -5004,7 +5040,6 @@
 
   <!-- NY HERO -->
   <section class="mgh" aria-labelledby="mgh-tittel">
-    <svg class="mgh__mark" viewBox="0 0 15 14" fill="none" aria-hidden="true"><path d="M8.4151 13.7798C5.82448 11.8835 1.13478 5.53548 0.0434132 2.32548C-0.123435 1.83473 0.209208 1.35818 0.718348 1.26097C4.02756 0.629159 9.75753 -0.000753191 13.8607 -3.53029e-06C14.5277 0.000118233 14.9847 0.65098 14.7658 1.28099C13.4595 5.0414 11.2061 10.3634 9.60212 13.4471C9.36672 13.8996 8.82673 14.0811 8.4151 13.7798Z" fill="url(#mgh-mark-grad)"/><defs><linearGradient id="mgh-mark-grad" x1="3.98131" y1="-3.32726" x2="14.9863" y2="11.7178" gradientUnits="userSpaceOnUse"><stop stop-color="#121010"/><stop offset="0.173077" stop-color="#4E4D4D"/><stop offset="0.75" stop-color="#9F5931"/><stop offset="1" stop-color="#C29B6C"/></linearGradient></defs></svg>
     <span class="mgh__label">Nettsider for norske bedrifter</span>
     <hr class="mgh__rule">
     <h1 class="mgh__title" id="mgh-tittel">Fra digitale <span class="mgh__grad">klikk</span><br>til befaringer</h1>
@@ -5014,7 +5049,18 @@
       <li>Salg</li>
     </ul>
     <div class="mgh__actions">
-      <a href="#" class="mgh__link" onclick="openContactPopup(); return false;">Start med en gratis nettside</a>
+      <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+        <filter id="mgh-goo" x="-20%" y="-50%" width="140%" height="200%" color-interpolation-filters="sRGB">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10" result="goo"/>
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+      </svg>
+      <a href="#" class="mgh__link" onclick="openContactPopup(); return false;">
+        <span class="mgh__goo" aria-hidden="true"><span class="mgh__blob"></span><span class="mgh__blob"></span></span>
+        <span class="mgh__link-text">Utforsk mulighetene for et samarbeid</span>
+        <span class="mgh__link-arrow" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9H14.5M14.5 9L9.5 4M14.5 9L9.5 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
     </div>
     <div class="mgh__browser" aria-hidden="true">
       <img src="images/hero-nettleser-badside.webp" alt="" width="2272" height="1276">
@@ -5050,7 +5096,6 @@
 
   <!-- SLIK FÅR DU BEFARINGER (Figma: Forside (ny) – 2 Slik får du befaringer) -->
   <section class="mgs" aria-labelledby="mgs-tittel">
-    <svg class="mgs__mark" viewBox="0 0 15 14" fill="none" aria-hidden="true"><path d="M8.41523 13.7799C5.8246 11.8835 1.1349 5.53552 0.0435352 2.32552C-0.123313 1.83477 0.20933 1.35822 0.71847 1.26101C4.02768 0.629204 9.75765 -0.000707414 13.8608 4.22461e-05C14.5278 0.00016401 14.9848 0.651026 14.7659 1.28104C13.4596 5.04145 11.2062 10.3635 9.60224 13.4471C9.36684 13.8997 8.82685 14.0812 8.41523 13.7799Z" fill="url(#mgs-mark-grad)"/><defs><linearGradient id="mgs-mark-grad" x1="3.98143" y1="-3.32722" x2="14.9864" y2="11.7178" gradientUnits="userSpaceOnUse"><stop stop-color="#121010"/><stop offset="0.173077" stop-color="#4E4D4D"/><stop offset="0.75" stop-color="#9F5931"/><stop offset="1" stop-color="#C29B6C"/></linearGradient></defs></svg>
     <span class="mgs__label">Slik får du befaringer</span>
     <hr class="mgs__rule">
     <h2 class="mgs__title" id="mgs-tittel">Vi leder de som søker <br>tjensten din, til deg</h2>
@@ -5070,6 +5115,18 @@
   <!-- FOOTER (Figma: Forside (ny) – Footer) -->
   <style>
     .mgf { position: relative; z-index: 1; background: #1C1C1B; color: #E3E3E3; padding: 64px 48px 40px; } /* over WebGL-lerretet i .mgw; mørk, siden seksjonen over er mørk */
+
+    /* Footeren avdekkes bak siden, som på badesiden (hero-kjokken): rammen tar
+       footerens plass i flyten, og clip-path gjør at footeren bare vises gjennom
+       rammen, så siste seksjon glir opp og avdekker den.
+       - Lavere enn vinduet: står fast nederst hele veien.
+       - Høyere enn vinduet: står fast med toppen i toppen av vinduet mens den
+         avdekkes, og scroller vanlig resten av veien (is-scrolled, settes i JS). */
+    .mgf-reveal.is-on { position: relative; height: var(--mgf-h); clip-path: inset(0); }
+    .mgf-reveal.is-on .mgf { position: fixed; top: var(--mgf-top, 0px); left: 0; right: 0; }
+    .mgf-reveal.is-on.is-scrolled .mgf { position: absolute; top: 0; }
+    /* Ingen «strikk» forbi bunnen: den flytter siden men ikke footeren (glipe) */
+    html { overscroll-behavior-y: none; }
     .mgf a { color: inherit; text-decoration: none; transition: opacity 0.2s ease; }
     .mgf a:hover { opacity: 0.55; }
     .mgf__top { display: grid; grid-template-columns: 1fr 1fr; }
@@ -5090,6 +5147,7 @@
       .mgf__legal { margin-top: 48px; }
     }
   </style>
+  <div class="mgf-reveal" id="mgf-reveal">
   <footer class="mgf">
     <div class="mgf__top">
       <ul class="mgf__main">
@@ -5126,6 +5184,31 @@
       </div>
     </div>
   </footer>
+  </div>
+  <script>
+    // Footer: avdekkes bak siden (som på badesiden)
+    (() => {
+      const wrap = document.getElementById('mgf-reveal');
+      const footer = wrap && wrap.querySelector('.mgf');
+      if (!footer) return;
+      let h = 0;
+      // Høy footer: når toppen av rammen når toppen av vinduet, slipper den taket
+      const onScroll = () => {
+        wrap.classList.toggle('is-scrolled', h > window.innerHeight && wrap.getBoundingClientRect().top <= 0);
+      };
+      const update = () => {
+        h = footer.offsetHeight;
+        wrap.style.setProperty('--mgf-h', h + 'px');
+        wrap.style.setProperty('--mgf-top', Math.max(window.innerHeight - h, 0) + 'px');
+        wrap.classList.add('is-on');
+        onScroll();
+      };
+      new ResizeObserver(update).observe(footer);
+      window.addEventListener('resize', update);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      update();
+    })();
+  </script>
 
   <script>
     document.querySelectorAll('.faq-item').forEach(item => {
@@ -5171,20 +5254,26 @@
   <div class="mgm-wrap">
     <nav class="mgm-panel" id="mgm-panel" aria-label="Meny">
       <div class="mgm-head" data-m>
-        <span>Meny</span>
-        <button type="button" class="mgm-close">Lukk <span class="mgm-plus" aria-hidden="true"></span></button>
+        <button type="button" class="mgm-close">Lukk</button>
       </div>
-      <div class="mgm-rule" data-m></div>
-      <ul class="mgm-cards">
-        <li data-m><a class="mgm-card" href="tjenester.html"><span class="mgm-card-img"><img src="images/mockup-macbook-air-betong-tomrer-oslo.webp" alt="" loading="lazy"></span><span class="mgm-card-name">Tjenester</span></a></li>
-        <li data-m><a class="mgm-card" href="bibliotek.html"><span class="mgm-card-img"><img src="images/hero-nettleser-badside.webp" alt="" loading="lazy"></span><span class="mgm-card-name">Arbeid</span></a></li>
-        <li data-m><a class="mgm-card" href="om-oss.html"><span class="mgm-card-img"></span><span class="mgm-card-name">Om oss</span></a></li>
-        <li data-m><a class="mgm-card" href="kontakt.html"><span class="mgm-card-img"></span><span class="mgm-card-name">Kontakt</span></a></li>
+      <ul class="mgm-big">
+        <li data-m><a href="tjenester.html">Nettsider</a></li>
+        <li data-m><a href="#prinsipper">Prinsipper</a></li>
+        <li data-m><a href="tjenester.html">Slik jobber vi</a></li>
+        <li data-m><a href="#" onclick="openPrisPopup(); return false;">Priser</a></li>
+        <li data-m><a href="om-oss.html">Om oss</a></li>
       </ul>
-      <div class="mgm-foot" data-m>
-        <span>Nettsider for norske bedrifter</span>
-        <a href="#" onclick="openContactPopup(); return false;">Få et utkast</a>
-      </div>
+      <ul class="mgm-sub">
+        <li data-m><a href="#" onclick="openContactPopup(); return false;">Bestill en samtale</a></li>
+        <li data-m><a href="bibliotek.html">Kundecaser</a></li>
+        <li data-m><a href="kontakt.html">Kontakt</a></li>
+        <li data-m><a href="vilkår.html">Vilkår</a></li>
+        <li data-m><a href="personvern.html">Personvern</a></li>
+      </ul>
+      <ul class="mgm-contact">
+        <li data-m><a href="mailto:post@mediegruppen.no"><span><strong>post@mediegruppen.no</strong><small>For generelle spørsmål</small></span><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.2"/></svg></a></li>
+        <li data-m><a href="tel:+4748118680"><span><strong>+47 481 18 680</strong><small>Direkte til oss</small></span><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.2"/></svg></a></li>
+      </ul>
     </nav>
   </div>
   </template>
@@ -5252,7 +5341,7 @@
       btn.addEventListener('click', () => setOpen(true));
       document.querySelector('.mgm-close').addEventListener('click', () => { setOpen(false); btn.focus({ preventScroll: true }); });
       veil.addEventListener('click', () => setOpen(false));
-      panel.querySelector('.mgm-foot a').addEventListener('click', () => setOpen(false));
+      panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && open) { setOpen(false); btn.focus({ preventScroll: true }); }
       });
@@ -6299,7 +6388,7 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closePrisPopup(); });
   </script>
   <script>
-    // WebGL-bakgrunn fra heroen og nedover (grå lysbånd -> buer). Tegnes bare
+    // WebGL-bakgrunn fra heroen og nedover (variant G: grå lysbånd -> buer). Tegnes bare
     // mens området er synlig. Uten WebGL står sidene med vanlig lys bakgrunn.
     (function () {
       const wrap = document.querySelector('.mgw');
@@ -6320,9 +6409,9 @@
         uniform float u_dark;   // 0 lys side, 1 mørk side
         const vec3 BG = vec3(0.992, 0.988, 0.984);
 
-        // Fargene fra lysbånd A: myk pastell i blått, fersken og rosa
+        // Variant G fra testsiden: kald grå og stålblå
         vec3 spectrum(float t) {
-          return 0.68 + 0.32 * cos(6.2831 * (t + vec3(0.58, 0.40, 0.20)));
+          return mix(vec3(0.30, 0.35, 0.42), vec3(0.86, 0.88, 0.91), 0.5 + 0.5 * cos(6.2831 * (t + 0.15)));
         }
         float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
         mat2 rot(float a) { float c = cos(a), s = sin(a); return mat2(c, -s, s, c); }
@@ -6334,7 +6423,7 @@
           float slope = amp * freq * cos(p.x * freq + t);
           float d = (p.y - y) / sqrt(1.0 + slope * slope);
           float w = width * (0.35 + 0.65 * smoothstep(-1.6, 0.4, p.x)) * (0.6 + 0.4 * sin(p.x * 1.7 + t * 0.7));
-          float k = 0.18 * w;  // fargeskjær i kantene, som i A
+          float k = 0.04 * w;  // grå: nesten ikke fargeskjær i kantene
           vec3 a = vec3(exp(-pow((d - k) / w, 2.0)), exp(-pow(d / w, 2.0)), exp(-pow((d + k) / w, 2.0)));
           float s = max(a.r, max(a.g, a.b));
           return vec4(spectrum(hue + d / w * 0.25) * a / max(s, 1e-4), s);
@@ -6366,8 +6455,8 @@
           vec3 col = mix(BG, vec3(0.110, 0.110, 0.106), u_dark);
           vec4 b1 = band(q, mix(-0.32, 0.0, k), mix(0.42, 0.0, k), mix(0.07, 0.025, k), 0.9, 0.11, mix(0.12, 0.07, k), 0.05);
           vec4 b2 = band(q, mix(-0.28, 0.0, k), mix(-0.46, 0.13, k), mix(0.06, 0.02, k), 1.0, 0.09, mix(0.1, 0.045, k), 0.3);
-          col = mix(col, b1.rgb, b1.a * 0.5 * seam * calm);
-          col = mix(col, b2.rgb, b2.a * 0.4 * seam * calm);
+          col = mix(col, b1.rgb, b1.a * 0.62 * seam * calm);
+          col = mix(col, b2.rgb, b2.a * 0.5 * seam * calm);
           col += (hash(gl_FragCoord.xy + fract(u_time)) - 0.5) * 0.012;
           gl_FragColor = vec4(col, 1.0);
         }`;
@@ -6392,9 +6481,10 @@
       const uRes = U('u_res'), uTime = U('u_time'), uMouse = U('u_mouse'), uMorph = U('u_morph'), uScroll = U('u_scroll'), uDark = U('u_dark');
       let dark = 0;
 
-      // Lav oppløsning holder: bakgrunnen er myk, og det sparer mye arbeid
+      // Litt lavere oppløsning enn skjermen sparer mye arbeid. 0,75 som på
+      // testsiden, så de skarpe partiene i båndene holder seg skarpe
       const resize = () => {
-        const dpr = Math.min(window.devicePixelRatio || 1, 1.5) * 0.6;
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5) * 0.75;
         canvas.width = Math.max(1, Math.round(canvas.offsetWidth * dpr));
         canvas.height = Math.max(1, Math.round(canvas.offsetHeight * dpr));
         gl.viewport(0, 0, canvas.width, canvas.height);
