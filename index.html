@@ -4764,7 +4764,9 @@
       display: block;
       width: 100%;
       height: 100vh;
+      height: 100lvh;
       margin-bottom: -100vh;
+      margin-bottom: -100lvh;
       pointer-events: none;
     }
 
@@ -4850,10 +4852,13 @@
     }
 
     @media (max-width: 640px) {
-      .mgp { padding: 96px 16px; }
-      .mgp__title { margin-top: 72px; }
-      .mgp__list { grid-template-columns: 1fr; gap: 40px; margin-top: 88px; padding: 0; }
-      .mgp__list h3 { font-size: 26px; line-height: 32px; }
+      .mgp { padding: 72px 16px 56px; }
+      .mgp__title { margin-top: 48px; font-size: 38px; line-height: 1.05; }
+      .mgp__title br { display: none; } /* la tittelen bryte naturlig på smal skjerm */
+      .mgp__list { grid-template-columns: 1fr; gap: 32px; margin-top: 56px; padding: 0; }
+      .mgp__list li { padding-top: 22px; }
+      .mgp__list h3 { font-size: 24px; line-height: 30px; }
+      .mgp__list p { margin-top: 10px; }
     }
 
     /* ── SLIK FÅR DU BEFARINGER (Figma: Forside (ny) – 2 Slik får du befaringer) ── */
@@ -4915,8 +4920,11 @@
     }
 
     @media (max-width: 640px) {
-      .mgs { padding: 96px 16px 64px; }
-      .mgs__intro { font-size: 16px; line-height: 24px; }
+      .mgs { padding: 72px 16px 48px; }
+      .mgs__title { margin-top: 32px; font-size: 38px; line-height: 1.05; }
+      .mgs__title br { display: none; }
+      .mgs__intro { margin-top: 20px; font-size: 16px; line-height: 24px; }
+      .mgs__cards { margin-top: 40px; }
     }
 
     /* ── MØRK SIDE (som på badesiden): når «Slik får du befaringer» når midten av
@@ -5013,7 +5021,7 @@
     <svg class="mgp__mark" viewBox="0 0 15 14" fill="none" aria-hidden="true"><path d="M8.4151 13.78C5.82448 11.8836 1.13478 5.53564 0.0434132 2.32564C-0.123435 1.83489 0.209208 1.35834 0.718348 1.26114C4.02756 0.629326 9.75753 -0.000585344 13.8607 0.000164316C14.5277 0.00028608 14.9847 0.651148 14.7658 1.28116C13.4595 5.04157 11.2061 10.3636 9.60212 13.4472C9.36672 13.8998 8.82673 14.0813 8.4151 13.78Z" fill="url(#mgp-mark-grad)"/><defs><linearGradient id="mgp-mark-grad" x1="3.98131" y1="-3.3271" x2="14.9863" y2="11.7179" gradientUnits="userSpaceOnUse"><stop stop-color="#121010"/><stop offset="0.173077" stop-color="#4E4D4D"/><stop offset="0.75" stop-color="#9BA329"/><stop offset="1" stop-color="#C29B6C"/></linearGradient></defs></svg>
     <span class="mgp__label">Prinsipper</span>
     <hr class="mgp__rule">
-    <h2 class="mgp__title" id="mgp-tittel">Vi måler arbeidet vårt<br>i målte <span class="mgp__grad">salg</span></h2>
+    <h2 class="mgp__title" id="mgp-tittel">Vi måler arbeidet vårt <br>i <span class="mgp__grad">salg</span></h2>
     <ul class="mgp__list">
       <li>
         <h3>Salg før pynt</h3>
@@ -5039,7 +5047,7 @@
     <svg class="mgs__mark" viewBox="0 0 15 14" fill="none" aria-hidden="true"><path d="M8.41523 13.7799C5.8246 11.8835 1.1349 5.53552 0.0435352 2.32552C-0.123313 1.83477 0.20933 1.35822 0.71847 1.26101C4.02768 0.629204 9.75765 -0.000707414 13.8608 4.22461e-05C14.5278 0.00016401 14.9848 0.651026 14.7659 1.28104C13.4596 5.04145 11.2062 10.3635 9.60224 13.4471C9.36684 13.8997 8.82685 14.0812 8.41523 13.7799Z" fill="url(#mgs-mark-grad)"/><defs><linearGradient id="mgs-mark-grad" x1="3.98143" y1="-3.32722" x2="14.9864" y2="11.7178" gradientUnits="userSpaceOnUse"><stop stop-color="#121010"/><stop offset="0.173077" stop-color="#4E4D4D"/><stop offset="0.75" stop-color="#9F5931"/><stop offset="1" stop-color="#C29B6C"/></linearGradient></defs></svg>
     <span class="mgs__label">Slik får du befaringer</span>
     <hr class="mgs__rule">
-    <h2 class="mgs__title" id="mgs-tittel">Vi leder de som søker<br>tjensten din, til deg</h2>
+    <h2 class="mgs__title" id="mgs-tittel">Vi leder de som søker <br>tjensten din, til deg</h2>
     <p class="mgs__intro">Hver dag søker folk etter tjenesten din på nett. Vi lager nettsiden og sørger for at den blir funnet, slik at forespørslene kommer til deg.</p>
     <!-- Tre mørke flater (plassholdere i Figma, innhold kommer) -->
     <div class="mgs__cards" aria-hidden="true">
@@ -5055,7 +5063,7 @@
 
   <!-- FOOTER (Figma: Forside (ny) – Footer) -->
   <style>
-    .mgf { position: relative; z-index: 1; background: #FDFCFB; color: #28323B; padding: 64px 48px 40px; } /* over WebGL-lerretet i .mgw */
+    .mgf { position: relative; z-index: 1; background: #1C1C1B; color: #E3E3E3; padding: 64px 48px 40px; } /* over WebGL-lerretet i .mgw; mørk, siden seksjonen over er mørk */
     .mgf a { color: inherit; text-decoration: none; transition: opacity 0.2s ease; }
     .mgf a:hover { opacity: 0.55; }
     .mgf__top { display: grid; grid-template-columns: 1fr 1fr; }
@@ -5065,7 +5073,7 @@
     .mgf__sub { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
     .mgf__sub a, .mgf__contact a { font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 17px; line-height: 21px; letter-spacing: -0.01em; }
     .mgf__contact { display: flex; flex-wrap: wrap; gap: 8px 28px; }
-    .mgf__legal { margin-top: 72px; display: flex; flex-direction: column; gap: 14px; font-family: 'Inter', sans-serif; font-size: 12px; line-height: 17px; color: #8A8A8A; }
+    .mgf__legal { margin-top: 72px; display: flex; flex-direction: column; gap: 14px; font-family: 'Inter', sans-serif; font-size: 12px; line-height: 17px; color: #A8A5A2; }
     .mgf__legal p { margin: 0; }
     .mgf__bottom { display: flex; flex-wrap: wrap; gap: 4px 22px; }
 
@@ -6374,7 +6382,15 @@
         canvas.height = Math.max(1, Math.round(canvas.offsetHeight * dpr));
         gl.viewport(0, 0, canvas.width, canvas.height);
       };
-      window.addEventListener('resize', resize);
+      // Bare ny størrelse når bredden endres (eller høyden mye): på mobil endres
+      // høyden litt hver gang adresselinjen vises/skjules, og ny størrelse tømmer lerretet
+      let lastW = innerWidth, lastH = innerHeight;
+      window.addEventListener('resize', () => {
+        if (innerWidth !== lastW || Math.abs(innerHeight - lastH) > 160) {
+          lastW = innerWidth; lastH = innerHeight;
+          resize();
+        }
+      });
       resize();
 
       let mx = 0.5, my = 0.5, tx = 0.5, ty = 0.5, morph = 0, visible = false, raf = 0, elapsed = 0, last = performance.now();
