@@ -63,7 +63,7 @@
   <!-- End Meta Pixel Code -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,200,0,0" rel="stylesheet">
   <script>
     if (window.innerWidth > 1024) {
@@ -75,11 +75,6 @@
   </script>
   <link rel="stylesheet" href="brand/tokens.css" />
   <style>
-    /* Seksjon 2 — pre-hide */
-    #s2-badge, #s2-sub, #s2-image, .s2-item { opacity: 0; }
-    .s2-line-wrap { display: block; overflow: hidden; padding-bottom: 0.25em; margin-bottom: -0.25em; }
-    .s2-line-inner { display: block; backface-visibility: hidden; -webkit-backface-visibility: hidden; -webkit-font-smoothing: antialiased; }
-
     /* V2 — FAQ layout: tekst venstre, spørsmål høyre */
     .seksjon-faq {
       padding: 120px 48px !important;
@@ -202,6 +197,36 @@
       align-items: flex-start;
       gap: 12px;
     }
+    .hero-pill-cta {
+      position: relative;
+      display: block;
+      width: 325px;
+      max-width: 100%;
+      height: 38px;
+      border-radius: 34px;
+      background: #2a2723;
+      margin-top: -21px;
+      margin-bottom: 0;
+    }
+    .hero-pill-cta__circle {
+      position: absolute;
+      top: 3px;
+      right: 4px;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background: #f8f5ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-pill-cta:focus-visible {
+      outline: 2px solid #2a2723;
+      outline-offset: 3px;
+    }
+    @media (max-width: 768px) {
+      .hero-pill-cta { margin-top: 0; margin-bottom: 24px; }
+    }
     .hero-cta-box.shimmer-active::after {
       content: '';
       position: absolute;
@@ -244,7 +269,8 @@
     /* V2 — hvit bakgrunn */
     :root { --bg-0: #efeeec; --bg-1: #efeeec; }
     body { background-color: #efeeec !important; }
-    .mg-nav, .mg-nav.scrolled { background: rgba(239,238,236,0.95) !important; border-bottom: none !important; }
+    html .mg-nav, html .mg-nav.scrolled { background: rgba(255,255,255,0.95) !important; border-bottom: none !important; }
+    .hero, .hero__strip { background: #ffffff !important; }
     .mg-nav {
       display: grid !important;
       grid-template-columns: 1fr auto 1fr !important;
@@ -361,30 +387,36 @@
       animation: v2-arrow-exit-enter 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
     .hero__heading {
-      font-family: 'Inter', sans-serif !important;
-      font-weight: 600 !important;
-      color: #262823 !important;
-      text-align: left !important;
+      font-family: 'Space Grotesk', sans-serif !important;
+      font-weight: 500 !important;
+      color: #111111 !important;
+      text-align: center !important;
       line-height: 1.18 !important;
+      letter-spacing: -0.05em !important;
       -webkit-font-smoothing: antialiased !important;
       -moz-osx-font-smoothing: grayscale !important;
       text-rendering: optimizeLegibility !important;
       font-optical-sizing: auto !important;
     }
     .hero {
-      align-items: flex-start !important;
+      align-items: center !important;
       padding-left: var(--grid-margin) !important;
       padding-right: var(--grid-margin) !important;
       overflow: visible !important;
     }
     .hero__text {
-      align-items: flex-start !important;
-      text-align: left !important;
+      align-items: center !important;
+      text-align: center !important;
     }
     .hero__sub {
-      text-align: left !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 20px !important;
+      line-height: 1.2 !important;
+      letter-spacing: -0.05em !important;
+      text-align: center !important;
       font-weight: 400 !important;
-      color: #1a1a1a !important;
+      color: #1b1b18 !important;
+      margin-top: -5px;
     }
   </style>
   <style>
@@ -506,42 +538,35 @@
       margin-bottom: 64px;
     }
 
+    /* --k skalerer hele stripen; mål per boks (--w, --h, --t) er px fra Figma */
     .hero__strip {
+      --k: 1;
       width: calc(100% + 48px);
       margin-left: -24px;
       margin-right: -24px;
-      height: 300px;
+      padding-bottom: calc(110px * var(--k));
       overflow: hidden;
       flex-shrink: 0;
     }
 
     .hero__strip-track {
       display: flex;
-      gap: 4px;
-      height: 100%;
+      align-items: flex-start;
+      gap: 5px;
+      height: calc(392px * var(--k));
       width: max-content;
-      animation: hero-strip-scroll 38s linear infinite;
-      will-change: transform;
-    }
-
-    .hero__strip:hover .hero__strip-track {
-      animation-play-state: paused;
-    }
-
-    @keyframes hero-strip-scroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero__strip-track { animation: none; }
+      margin-left: calc(-194px * var(--k));
     }
 
     .hero__strip-item {
       flex-shrink: 0;
       position: relative;
       overflow: hidden;
-      border-radius: var(--radius-sm);
+      width: calc(var(--w) * 1px * var(--k));
+      height: calc(var(--h) * 1px * var(--k));
+      margin-top: calc(var(--t) * 1px * var(--k));
+      border-radius: 4px;
+      background: #23221f;
       transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       transform-origin: center center;
     }
@@ -550,37 +575,11 @@
       transform: scale(0.92);
     }
 
-    .hero__strip-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 70px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
-      z-index: 1;
-      pointer-events: none;
-    }
-
     .hero__strip-item img {
+      width: 100%;
       height: 100%;
-      width: auto;
+      object-fit: cover;
       display: block;
-      transform: scale(1.25);
-      transform-origin: center 35%;
-    }
-
-    .hero__strip-label {
-      position: absolute;
-      top: 13px;
-      left: 13px;
-      font-family: var(--font-ui);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.88);
-      z-index: 2;
     }
 
 .hero__cta-btn {
@@ -3545,10 +3544,10 @@
       .desktop-break { display: none; }
 
       .hero__strip {
+        --k: 0.6;
         width: calc(100% + 24px);
         margin-left: -12px;
         margin-right: -12px;
-        height: 220px;
       }
 
       .hero__sub {
@@ -4269,1798 +4268,849 @@
   </style>
   <link rel="stylesheet" href="components/navbar.css">
   <link rel="stylesheet" href="components/mobile.css">
-</head>
-<body>
-
-  <!-- HERO -->
-  <section class="hero">
-
-    <!-- 1. Stat -->
-
-
-    <!-- 2. Tekst-gruppe -->
-    <div class="hero__text">
-      <span class="hero-badge" style="display:inline-flex; align-items:center; gap:6px; color:#262823; font-family:'Inter', sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:6px; margin-bottom:4px;">
-        <span class="hero-badge__fill" aria-hidden="true"></span>
-        <span class="hero-badge__text" style="font-family:'Inter',sans-serif; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Webdesign for Norden</span>
-      </span>
-      <h1 class="hero__heading">
-        <span class="hero__line-wrap"><span class="hero__line-inner">Konverteringsoptimaliserte</span></span>
-        <span class="hero__line-wrap"><span class="hero__line-inner">nettsider for nordiske bedrifter</span></span>
-      </h1>
-      <p class="hero__sub">
-        <span class="hero__line-wrap hero__line-wrap--sub"><span class="hero__line-inner">Vi finner budskapet som treffer kundene dine,</span></span>
-        <span class="hero__line-wrap hero__line-wrap--sub"><span class="hero__line-inner">og bygger ferdig nettside på 1–2 uker. Fastpris, ingen overraskelser.</span></span>
-      </p>
-    </div>
-
-    <!-- 3. CTA -->
-    <div class="hero-cta-box" style="display:inline-flex; flex-direction:column; align-items:flex-start; border-radius:12px; padding:24px 280px 24px 18px; gap:12px; margin-bottom:64px;">
-      <span class="hero-cta-box__fill" aria-hidden="true"></span>
-      <div class="hero-cta-box__content">
-        <span style="font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:#262823; letter-spacing:0.06em; text-transform:uppercase;">Se hvordan vi optimaliserer nettsiden din</span>
-        <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-          <a href="#" onclick="openContactPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:#031618; color:#fff; font-family:'Inter',monospace; font-size:14px; font-weight:500; padding:14px 32px; border-radius:6px; text-decoration:none; white-space:nowrap; letter-spacing:0.06em; text-transform:uppercase;">Få et utkast <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M0 8V6H10L5.5 1.5L7 0L14 7L7 14L5.5 12.5L10 8H0Z" fill="white" transform="rotate(-45 7 7)"/></svg></a>
-          <a href="#" onclick="openPrisPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:transparent; color:#262823; font-family:'Inter',monospace; font-size:14px; font-weight:500; padding:13px 28px; border-radius:6px; border:1.5px solid #262823; text-decoration:none; white-space:nowrap; letter-spacing:0.06em; text-transform:uppercase;">Se priser</a>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- Bildestrip — utenfor hero for å unngå overflow-clipping -->
-  <div class="hero__strip">
-      <div class="hero__strip-track">
-        <div class="hero__strip-item">
-          <span class="hero__strip-label">Eiendomsmegling</span>
-          <img src="images/hero-strip-1.jpg" alt="Eiendomsmegling Oslo">
-        </div>
-        <div class="hero__strip-item">
-          <span class="hero__strip-label">Eiendomsdrift</span>
-          <img src="images/hero-strip-2.jpg" alt="Eiendomsdrift">
-        </div>
-        <div class="hero__strip-item">
-          <span class="hero__strip-label">Bygg & anlegg</span>
-          <img src="images/hero-strip-3.jpg" alt="Bygg og anlegg">
-        </div>
-        <div class="hero__strip-item">
-          <span class="hero__strip-label">Entreprenør</span>
-          <img src="images/hero-strip-4.jpg" alt="Entreprenør">
-        </div>
-        <div class="hero__strip-item">
-          <span class="hero__strip-label">Rørlegger</span>
-          <img src="images/hero-strip-5.jpg" alt="Rørlegger">
-        </div>
-        <!-- Duplikater for sømløs løkke -->
-        <div class="hero__strip-item" aria-hidden="true">
-          <span class="hero__strip-label">Eiendomsmegling</span>
-          <img src="images/hero-strip-1.jpg" alt="">
-        </div>
-        <div class="hero__strip-item" aria-hidden="true">
-          <span class="hero__strip-label">Eiendomsdrift</span>
-          <img src="images/hero-strip-2.jpg" alt="">
-        </div>
-        <div class="hero__strip-item" aria-hidden="true">
-          <span class="hero__strip-label">Bygg & anlegg</span>
-          <img src="images/hero-strip-3.jpg" alt="">
-        </div>
-        <div class="hero__strip-item" aria-hidden="true">
-          <span class="hero__strip-label">Entreprenør</span>
-          <img src="images/hero-strip-4.jpg" alt="">
-        </div>
-        <div class="hero__strip-item" aria-hidden="true">
-          <span class="hero__strip-label">Rørlegger</span>
-          <img src="images/hero-strip-5.jpg" alt="">
-        </div>
-      </div>
-    </div>
-
-  <!-- NY SEKSJON V2 -->
-  <section id="s2" style="background: #efeeec; padding: 120px 48px; display:flex; flex-direction:column; align-items:center; text-align:center;">
-    <span id="s2-badge" style="display:inline-flex; align-items:center; background:#e7e5e0; color:#262823; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:6px; margin-bottom:16px;">Alt inkludert</span>
-    <h2 id="s2-heading" style="font-family:'Inter',sans-serif; font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#262823; line-height:1.18; letter-spacing:-0.02em; margin:0 0 24px; max-width:800px; -webkit-font-smoothing:antialiased;">
-      <span class="s2-line-wrap"><span class="s2-line-inner">Vi forenkler prosessen</span></span>
-    </h2>
-    <p id="s2-sub" style="font-family:'Inter', sans-serif; font-size:20px; font-weight:400; color:#1a1a1a; line-height:1.65; max-width:620px; margin:0 0 80px;">Du vet hva du betaler før vi starter. Du trenger ikke å lære deg WordPress, jakte etter en utvikler, eller oppdage at SEO og drift koster ekstra. Vi gjør hele jobben — og fortsetter å gjøre den etter lansering.</p>
-    <div style="width:100%; max-width:1344px; display:grid; grid-template-columns:repeat(12, 1fr); gap:32px; align-items:start;">
-      <div id="s2-image" style="grid-column: 1 / 7; aspect-ratio:5/4; border-radius:0; overflow:hidden;">
-        <img src="iphone-mockup-ferdig.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-      </div>
-      <div style="grid-column: 7 / 13; display:flex; flex-direction:column; text-align:left;">
-
-        <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8;">
-          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">Ny nettside</span> fra bunnen, eller redesign av den du har</p>
-        </div>
-        <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8;">
-          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">Fast pris</span> før vi starter — ingen timepris, ingen bindingstid</p>
-        </div>
-        <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8;">
-          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">Design og struktur</span> tilpasset bransjen og kundene dine</p>
-        </div>
-        <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8;">
-          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">SEO og Google-hastighet</span> bygget inn fra dag én</p>
-        </div>
-        <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8;">
-          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">Drift, vedlikehold og oppdateringer</span> håndtert av oss</p>
-        </div>
-        <div class="s2-item" style="padding:28px 0; border-top:1px solid #d8d8d8; border-bottom:1px solid #d8d8d8;">
-          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:500; color:#262823; margin:0; line-height:1.4; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; background:#262823; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="color:#262823;">Fast kontaktperson</span> — send bilder og tekst, vi publiserer</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- MOCKUP-SEKSJON -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
   <style>
-    .mockup-boks { position: relative; overflow: hidden; aspect-ratio: 4/3; border-radius: 8px; }
-    .mockup-boks img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.5); transform-origin: center center; }
-    .mockup-wrapper { display: flex; flex-direction: column; gap: 14px; }
-    .mockup-boks__tekst { }
-    .mockup-boks__tittel { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 600; color: #262823; margin: 0; }
-    .mockup-boks__sub { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; color: #262823; margin: 4px 0 0; }
-  </style>
-  <section style="background:#efeeec; padding:80px 48px;">
-    <div style="max-width:1344px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start;">
+    /* ── NY HERO (Figma: «Mediegruppen – Hero (sentrert)», MG – Nettside) ──
+       Den gamle heroen og bildestripen er skjult, ikke slettet: animasjonskoden
+       lenger ned leter etter elementene deres. */
+    .hero, .hero__strip { display: none !important; }
 
-      <!-- Boks 1 -->
-      <div class="mockup-wrapper">
-        <div class="mockup-boks">
-          <img src="macbook-mockup-ferdig.jpg">
-        </div>
-        <div class="mockup-boks__tekst">
-          <p class="mockup-boks__tittel">Rørlegger side</p>
-          <p class="mockup-boks__sub">Design tilpasset rørleggerbransjen</p>
-        </div>
-      </div>
-
-      <!-- Boks 2 -->
-      <div class="mockup-wrapper">
-        <div class="mockup-boks">
-          <img src="nccer-mockup.jpg" style="object-position: center 45%;">
-        </div>
-        <div class="mockup-boks__tekst">
-          <p class="mockup-boks__tittel">Teknologiselskap</p>
-          <p class="mockup-boks__sub">Design tilpasset teknologibransjen</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- MØRK SEKSJON -->
-  <section class="mork-seksjon" style="background:#262823; padding:160px 48px; display:flex; justify-content:center;">
-    <div style="width:100%; max-width:1344px; display:flex; flex-direction:column;">
-
-      <!-- Intro over boksene -->
-      <div style="text-align:center; margin-bottom:72px;">
-        <span style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.38); display:block; margin-bottom:16px;">Hva vi leverer</span>
-        <h2 style="font-family:'Inter',sans-serif; font-weight:700; font-size:clamp(28px,3vw,44px); line-height:1.1; letter-spacing:-0.02em; color:#ffffff; margin:0 0 16px; -webkit-font-smoothing:antialiased;">Alt du trenger. Ingenting du ikke trenger.</h2>
-        <p style="font-family:'Inter',sans-serif; font-weight:400; font-size:18px; line-height:1.6; color:rgba(255,255,255,0.55); max-width:540px; margin:0 auto 32px;">Vi gjør hele jobben, fra design og utvikling til SEO og oppfølging etter lansering. Her er hva som er inkludert.</p>
-        <a href="/tjenester" style="display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border:1.5px solid rgba(255,255,255,0.3); border-radius:12px; font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:#ffffff; text-decoration:none; letter-spacing:0.02em;" onmouseover="this.style.borderColor='#e5edd7';this.style.color='#e5edd7'" onmouseout="this.style.borderColor='rgba(255,255,255,0.3)';this.style.color='#ffffff'">Se alle tjenestene <svg width="12" height="10" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
-      </div>
-
-    <div class="mork-rad" style="display:flex;">
-      <!-- Boks 1: kutt kun topp-venstre -->
-      <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px; clip-path: polygon(10px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 10px);">
-        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(10px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 10px);">
-          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Design</span>
-          <h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Gjennomtenkt design</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; margin:0 0 28px; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility;">Struktur og utseende som er bygget rundt kundene dine — ikke en ferdig mal. Vi designer nettsider som ser profesjonelle ut, men som også er laget for å konvertere besøkende til kunder.</p>
-          <div style="display:flex; flex-direction:column; gap:14px;">
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Tilpasset din bransje og dine kunder</span></div>
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Tydelig struktur og klare handlingsknapper</span></div>
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Mobiloptimalisert fra dag én</span></div>
-          </div>
-        </div>
-      </div>
-      <!-- Boks 2: ingen kutt, men vi må matche høyde -->
-      <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0;">
-        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
-          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Konvertering</span>
-          <h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Konverteringsprinsipper fra <span style="color:#e5edd7;">Unbounce & HubSpot</span></h3>
-          <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; margin:0; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility;">Vi bygger nettsider etter de samme prinsippene verdens ledende konverteringseksperter anbefaler — struktur, hierarki og budskap som faktisk får besøkende til å handle.</p>
-        </div>
-      </div>
-      <!-- Boks 3: kutt kun topp-høyre -->
-      <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0; clip-path: polygon(0% 0%, calc(100% - 10px) 0%, 100% 10px, 100% 100%, 0% 100%);">
-        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(0% 0%, calc(100% - 10px) 0%, 100% 10px, 100% 100%, 0% 100%);"></div>
-      </div>
-    </div>
-
-    <!-- Rad 2: limt inntil rad 1 -->
-    <div class="mork-rad" style="display:flex; margin-top:-1px;">
-      <!-- Boks 4: ingen kutt -->
-      <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px;">
-        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;"></div>
-      </div>
-      <!-- Boks 5: midten -->
-      <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0;">
-        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
-          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Ytelse</span>
-<h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Hastighet</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; margin:0; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility;">Vi optimaliserer for PageSpeed og Core Web Vitals slik at nettsiden laster raskt — for brukerne og for Google.</p>
-        </div>
-      </div>
-      <!-- Boks 6: ingen kutt -->
-      <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0;">
-        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
-          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Basishet</span>
-          <h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">SEO-optimalisert</h3>
-          <div style="display:flex; flex-direction:column; gap:14px;">
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Teknisk SEO fra dag én</span></div>
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Lokal synlighet på Google Maps</span></div>
-            <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:#e5edd7; border-radius:50%; flex-shrink:0; display:inline-block;"></span><span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; -webkit-font-smoothing:antialiased;">Strukturert metadata</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Rad 3 -->
-    <div class="mork-rad" style="display:flex; margin-top:-1px;">
-      <!-- Boks 7: kutt bunn-venstre -->
-      <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10px 100%, 0% calc(100% - 10px));">
-        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10px 100%, 0% calc(100% - 10px));">
-          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Service</span>
-          <h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Oppfølging etter lansering</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; margin:0 0 28px; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility;">Vi forsvinner ikke etter at nettsiden er live. Du har en fast kontaktperson som hjelper deg med alt fra tekstendringer til nye sider.</p>
-          <span style="display:inline-flex; align-items:center; gap:6px; color:#e5edd7; font-family:'Inter',sans-serif; font-size:13px; font-weight:500; letter-spacing:0.04em;"><span style="width:6px; height:6px; background:#e5edd7; display:inline-block;"></span>Inkludert i pakken</span>
-        </div>
-      </div>
-      <!-- Boks 8: midten -->
-      <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0;">
-        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start;">
-          <span style="display:inline-flex; background:rgba(249,255,237,0.1); color:#e5edd7; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:16px;">Analyse</span>
-          <h3 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:600; color:#ffffff; margin:0 0 24px; line-height:1.2; -webkit-font-smoothing:antialiased; min-height:80px;">Målbarhet</h3>
-          <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:#ffffff; margin:0; line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility;">Vi setter opp Google Analytics og Search Console slik at du alltid vet hva som fungerer — og hva som kan bli bedre.</p>
-        </div>
-      </div>
-      <!-- Boks 9: kutt bunn-høyre -->
-      <div class="mork-boks-ytre" style="flex:1; background:rgba(255,255,255,0.7); padding:1px 1px 1px 0; clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%);">
-        <div class="mork-boks-inner" style="background:#262823; height:460px; padding:48px 40px; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%);"></div>
-      </div>
-    </div>
-    </div>
-
-  </section>
-
-  <!-- SEKSJON: ÉN PRIS HELE JOBBEN - FJERNET -->
-  <style id="en-pris-hidden" style="display:none">
-  <style>
-    .collage-item {
-      overflow: hidden;
-      border-radius: var(--radius-md);
-    }
-    .collage-item img {
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      will-change: transform;
-    }
-    .collage-item:hover img {
-      transform: scale(1.06);
-    }
-
-    .en-pris {
-      width: 100%;
-      padding: 80px var(--grid-margin);
-      box-sizing: border-box;
-      background: var(--bg-0);
-    }
-    .en-pris__box {
-      width: 100%;
-      background: #ededed;
-      border-radius: var(--radius-lg);
-      padding: 56px var(--grid-margin);
-      display: flex;
-      align-items: center;
-      gap: 64px;
-    }
-    .en-pris__content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-    .en-pris__heading {
-      font-family: var(--font-neue);
-      font-weight: 800;
-      font-size: clamp(28px, 3vw, 42px);
-      line-height: 1.06;
-      letter-spacing: -0.03em;
-      color: var(--color-text-primary);
-      margin: 0;
-    }
-    .en-pris__sub {
-      font-family: var(--font-neue);
-      font-weight: 300;
-      font-size: 19px;
-      line-height: 1.65;
-      color: var(--color-text-primary);
-      margin: 0;
-    }
-    .en-pris__list-group {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .en-pris__list-title {
-      font-family: var(--font-neue);
-      font-weight: 700;
-      font-size: 17px;
-      line-height: 1.2;
-      color: var(--color-text-primary);
-      margin: 0;
-    }
-    .en-pris__list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .en-pris__list li {
-      font-family: var(--font-neue);
-      font-weight: 300;
-      font-size: 17px;
-      line-height: 1.5;
-      color: var(--color-text-primary);
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-    .en-pris__check {
-      margin-top: 1px;
-      width: 26px;
-      height: 26px;
-      border-radius: 7px;
-      background: #e5edd7;
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .en-pris__collage {
-      flex: 0 0 55%;
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-    .en-pris__col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .en-pris {
-        padding: 48px 12px;
-      }
-      .en-pris__box {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 32px 20px;
-        gap: 32px;
-      }
-      .en-pris__collage {
-        display: none;
-      }
-      .en-pris__sub {
-        font-size: 17px;
-      }
-      .en-pris__list li {
-        font-size: 16px;
-      }
-    }
-  </style>
-
-  <section class="en-pris" style="display:none!important">
-    <div class="en-pris__box">
-
-      <div class="en-pris__content">
-        <h2 class="en-pris__heading">Én pris. Hele jobben.</h2>
-        <p class="en-pris__sub">Du vet hva du betaler før vi starter. Du trenger ikke å lære deg WordPress, jakte etter en utvikler, eller oppdage at SEO og drift koster ekstra. Vi gjør hele jobben — og fortsetter å gjøre den etter lansering.</p>
-        <div class="en-pris__list-group">
-          <p class="en-pris__list-title">Det inkluderer:</p>
-          <ul class="en-pris__list">
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ny nettside fra bunnen, eller redesign av den du har</li>
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fast pris før vi starter — ingen timepris, ingen bindingstid</li>
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Design og struktur tilpasset bransjen og kundene dine</li>
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SEO og Google-hastighet bygget inn fra dag én</li>
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Drift, vedlikehold og oppdateringer håndtert av oss</li>
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="#30a46c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fast kontaktperson — send bilder og tekst, vi publiserer</li>
-            <li><span class="en-pris__check"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><polyline points="2.5,6.5 5.2,9.5 10.5,3.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fast kontaktperson — ikke en ticketkø</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="en-pris__collage" style="display:flex; align-items:center; justify-content:center;">
-        <div class="collage-item" style="aspect-ratio:4/5; width:100%; max-width:320px;">
-          <img src="images/mockup-iphone-service.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- OM OSS SEKSJON -->
-  <section id="om-oss" style="background:#efeeec; padding:120px 48px;">
-    <div style="max-width:1344px; margin:0 auto;">
-
-      <!-- Badge øverst -->
-      <span style="display:inline-flex; align-items:center; background:#e8b0bc; color:#262823; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:6px; margin-bottom:32px;">Hvem er vi</span>
-
-      <!-- To-kolonne grid: overskrift venstre, tekst høyre — samme startlinje -->
-      <div style="display:grid; grid-template-columns:repeat(12,1fr); gap:32px; align-items:start;">
-
-        <div style="grid-column:1/8; grid-row:1; display:flex; flex-direction:column; gap:40px; align-items:flex-start;">
-          <h2 style="font-family:'Inter',sans-serif; font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#262823; line-height:1.12; letter-spacing:-0.02em; margin:0; padding:0; -webkit-font-smoothing:antialiased;">Vi bygger nettsider nordiske bedrifter er stolte av.</h2>
-
-        </div>
-
-        <div style="grid-column:9/13; grid-row:1; display:flex; flex-direction:column; gap:20px;">
-          <p style="font-family:'Inter',sans-serif; font-size:20px; font-weight:700; color:#262823; line-height:1.6; margin:0; -webkit-font-smoothing:antialiased;">Mediegruppen er et lite, dedikert team som brenner for å hjelpe nordiske bedrifter å lykkes på nett.</p>
-          <p style="font-family:'Inter',sans-serif; font-size:19px; font-weight:300; color:#262823; line-height:1.7; margin:0;">Vi tror på åpenhet, faste priser og langvarige relasjoner. Hvert prosjekt behandles som om det var vårt eget — fordi resultatet ditt er vårt beste argument overfor neste kunde.</p>
-          <a href="#om-oss" style="display:inline-flex; align-items:center; gap:8px; margin-top:8px; font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:#262823; text-decoration:none; border-bottom:1px solid #262823; padding-bottom:2px; width:fit-content;">Verdier vi står for <span style="font-size:16px;">→</span></a>
-        </div>
-
-      </div>
-
-
-    </div>
-  </section>
-
-
-  <!-- NY GRØNN SEKSJON -->
-  <style>
-    .gronn-seksjon {
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      background-image: url('macbook-mockup-ferdig.jpg');
-      background-size: cover;
-      background-position: 60% 30%;
-      background-repeat: no-repeat;
-      padding: 80px 24px 280px 48px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-      gap: 0;
-    }
-    .gronn-seksjon__heading {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: clamp(28px, 3.5vw, 48px);
-      line-height: 1.18;
-      letter-spacing: -0.02em;
-      color: #ffffff;
-      text-shadow: 0 1px 16px rgba(0,0,0,0.7);
-      max-width: 680px;
-      margin: 0 0 20px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-    }
-    .gronn-seksjon__sub {
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 18px;
-      line-height: 1.6;
-      color: #ffffff;
-      text-shadow: 0 1px 12px rgba(0,0,0,0.6);
-      max-width: 520px;
-      margin: 0 0 32px;
-    }
-    .gronn-seksjon__btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 12px;
-      padding: 14px 28px;
-      background: #ffffff;
-      color: #262823;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      border-radius: 10px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .gronn-seksjon__btn:hover {
-      background: #f0f0f0;
-    }
-  </style>
-  <section class="gronn-seksjon" style="background-image: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 30%, transparent 55%), url('macbook-mockup-ferdig.jpg'); background-size: cover, 140%; background-position: center, 2% 30%; background-repeat: no-repeat;">
-    <span style="display:inline-flex; align-items:center; background:#e7e5e0; color:#262823; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:6px; margin-bottom:14px;">Helt gratis</span>
-    <h2 class="gronn-seksjon__heading">Lurer du på hva du faktisk får?</h2>
-    <p class="gronn-seksjon__sub">Vi setter opp et komplett nettside-utkast tilpasset din bransje — med pris og full oversikt over hva vi leverer. Helt gratis, ingen forpliktelser.</p>
-    <a href="#" class="gronn-seksjon__btn" onclick="openContactPopup(); return false;">Se hvordan vi optimaliserer nettsiden din</a>
-  </section>
-
-  <!-- PORTEFØLJE-SEKSJON - FJERNET -->
-  <style id="portfolio-style-hidden" style="display:none">
-    :root {
-      --p2-pad: 48px;
-      --p2-gap: 24px;
-      --p2-col: calc((100vw - 96px - 264px) / 12);
-      --p2-box-w: calc(var(--p2-col) * 5 + var(--p2-gap) * 4);
-    }
-
-    .p2-section {
-      width: 100%;
-      overflow-x: clip;
-      padding: 120px 0;
+    .mgh {
       background: transparent;
-    }
-
-    .p2-container {
-      width: 100%;
-      padding: 0 var(--p2-pad);
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      column-gap: var(--p2-gap);
-    }
-
-    .p2-intro {
-      grid-column: 3 / 11;
-      margin-bottom: 56px;
+      padding: 147px 32px 41px; /* trekanten står 147 px fra toppen i Figma */
       text-align: center;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .p2-eyebrow {
-      display: inline-flex;
+    /* Liten trekant over etiketten (Figma) */
+    .mgh__mark {
+      display: block;
+      width: 15px;
+      height: 14px;
+      margin: 0 auto 15px;
+    }
+
+    .mgh__label {
+      display: block;
+      font-size: 14px;
+      line-height: 17px;
+      font-weight: 500;
+      color: #111111;
+    }
+
+    .mgh__rule {
+      height: 1px;
+      margin: 14px 0 40px;
+      background: #E5E7EB;
+      border: 0;
+    }
+
+    .mgh__title {
+      margin: 0;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: clamp(44px, 6.1vw, 88px);
+      line-height: 0.91;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: #28323B;
+    }
+
+    /* «klikk» har en fargeovergang i Figma: brun, gråblå og lys mot slutten */
+    /* Gradienten er speilet og dobbelt så bred som ordet: i startposisjonen ser
+       ordet ut som i Figma, så glir fargene rolig frem og tilbake. */
+    .mgh__grad {
+      background: linear-gradient(90deg, #645E52 0%, #948164 18%, #3F5161 50%, #948164 82%, #645E52 100%); /* uten den lyse stripen */
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: mgh-glid 7s ease-in-out infinite alternate;
+    }
+
+    @keyframes mgh-glid {
+      from { background-position: 0% 50%; }
+      to   { background-position: 100% 50%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mgh__grad { animation: none; background-position: 0% 50%; }
+    }
+
+    .mgh__points {
+      display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 8px;
-      font-family: var(--font-neue);
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--color-text-primary);
-      margin-bottom: 12px;
+      gap: 12px 32px;
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #28323B;
     }
 
-    .p2-eyebrow .material-symbols-outlined {
-      font-size: 18px;
-      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+    .mgh__points li + li {
+      padding-left: 32px;
+      border-left: 1px solid #272729;
     }
 
-    .p2-heading {
-      font-family: var(--font-neue);
-      font-size: clamp(32px, 4vw, 56px);
-      font-weight: 400;
-      line-height: 1.07;
-      letter-spacing: -0.03em;
-      color: var(--color-text-primary);
+    .mgh__actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 55px;
     }
 
-    .p2-cta {
+    .mgh__btn {
       display: inline-flex;
       align-items: center;
-      margin-top: 24px;
-      padding: 14px 28px;
-      background: var(--bg-cards);
-      color: var(--color-text-dark);
-      font-family: var(--font-neue);
-      font-size: 17px;
-      font-weight: 300;
-      text-decoration: none;
-      border-radius: var(--radius-sm);
-    }
-
-    .p2-rail-wrap {
-      grid-column: 1 / -1;
-      position: relative;
-    }
-
-    .p2-rail {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--p2-gap);
-    }
-
-    .p2-boks {
-      border-radius: var(--radius-sm);
-      min-height: 580px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      background: var(--bg-2);
-      position: relative;
-    }
-
-    .p2-boks::before {
-      display: none;
-    }
-
-    .p2-boks--peek {
-      -webkit-mask-image: linear-gradient(to right, black 30%, transparent 90%);
-      mask-image: linear-gradient(to right, black 30%, transparent 90%);
-    }
-
-    .p2-boks--peek-left {
-      -webkit-mask-image: linear-gradient(to left, black 30%, transparent 90%);
-      mask-image: linear-gradient(to left, black 30%, transparent 90%);
-    }
-
-    .p2-header {
-      padding: 32px 32px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .p2-text {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .p2-tag {
-      font-family: var(--font-neue);
-      font-size: 11px;
+      gap: 10px;
+      height: 43px;
+      padding: 0 25px;
+      border-radius: 24px;
+      background: #111111;
+      color: #FFFFFF;
+      font-size: 15px;
       font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--color-text-hint);
+      text-decoration: none;
+      transition: background-color 0.2s ease;
     }
 
-    .p2-inner {
+    .mgh__btn:hover { background: #2A2A2A; }
+    .mgh__btn svg { width: 12px; height: 10px; transition: transform 0.2s ease; }
+    .mgh__btn:hover svg { transform: translateX(3px); }
+
+    /* «Start med en gratis nettside»: fylt knapp */
+    .mgh__link {
+      display: inline-flex;
+      align-items: center;
+      height: 44px;
+      padding: 0 22px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #FFFFFF;
+      text-decoration: none;
+      background: #111111;
+      border-radius: 12px;
+      transition: background-color 0.2s ease;
+    }
+
+    .mgh__link:hover { background: #2A2A28; }
+
+    .mgh__browser {
       position: relative;
-      flex: 1;
-      min-height: 0;
-      background: linear-gradient(to bottom, #303b3d 0%, #475659 100%);
-      margin: 12px 12px 0;
-      border-radius: var(--radius-xs);
+      width: min(1136px, 100%);
+      margin: 39px auto 0;
       overflow: hidden;
+      border: 1px solid #E5E7EB;
+      border-radius: 14px;
     }
 
-    .p2-inner img.p2-base {
-      width: 100% !important;
-      height: 100% !important;
-      max-width: none !important;
-      object-fit: cover;
-      display: block;
+    /* Mørkt lag over bildet, som lysner mens man scroller (--shade settes i JS) */
+    .mgh__browser::after {
+      content: "";
       position: absolute;
       inset: 0;
-      transition: opacity var(--transition-slow);
-      will-change: opacity;
+      background: #000000;
+      opacity: calc(var(--shade, 1) * 0.72);
+      pointer-events: none;
     }
 
-    .p2-inner:hover img.p2-base { opacity: 0; }
-
-    .p2-inner img.p2-hover {
+    .mgh__address {
+      z-index: 1;
       position: absolute;
-      top: 22%;
+      top: 10px;
       left: 50%;
-      border-radius: var(--radius-sm);
-      transform: translate3d(-50%, 0, 0) scale(1.08);
-      transform-origin: top center;
-      width: 80% !important;
-      height: auto !important;
-      max-width: none !important;
-      object-fit: contain;
-      object-position: top;
+      width: min(218px, 40%);
+      height: 20px;
+      translate: -50% 0;
+      background: #2B2A2A;
+      border-radius: 4px;
+    }
+
+    .mgh__browser img {
       display: block;
-      opacity: 0;
-      transition: opacity var(--transition-slow), transform var(--transition-slow);
-      will-change: opacity, transform;
+      width: 100%;
+      height: auto;
     }
 
-    .p2-inner:hover img.p2-hover {
-      opacity: 1;
-      transform: translate3d(-50%, 0, 0) scale(1);
+    /* Innlasting: blurrer inn ovenfra og ned, nettleservinduet glir opp til slutt */
+    @keyframes mgh-inn {
+      from { opacity: 0; filter: blur(10px); transform: translateY(12px); }
+      to   { opacity: 1; filter: blur(0); transform: none; }
     }
 
-    .p2-tittel {
-      font-family: var(--font-neue);
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      color: var(--color-text-primary);
-      margin: 0;
+    @keyframes mgh-opp {
+      from { opacity: 0; transform: translateY(60px); }
+      to   { opacity: 1; transform: none; }
     }
 
-    .p2-desc {
-      font-family: var(--font-neue);
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 1.6;
-      color: var(--color-text-primary);
-      margin: 0;
+    .mgh__mark, .mgh__label, .mgh__title, .mgh__points, .mgh__actions {
+      animation: mgh-inn 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .mgh__mark    { animation-delay: 0.05s; }
+    .mgh__label   { animation-delay: 0.1s; }
+    .mgh__title   { animation-delay: 0.2s; }
+    .mgh__points  { animation-delay: 0.35s; }
+    .mgh__actions { animation-delay: 0.45s; }
+    .mgh__rule { transform-origin: center; animation: mgh-strek 1.2s cubic-bezier(0.76, 0, 0.24, 1) 0.1s both; }
+    .mgh__browser { animation: mgh-opp 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both; }
+    @keyframes mgh-strek { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mgh__mark, .mgh__label, .mgh__title, .mgh__points, .mgh__actions, .mgh__rule, .mgh__browser { animation: none; }
     }
 
-    .p2-btn {
-      font-family: var(--font-neue);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--color-text-primary);
-      background: transparent;
-      border: 1px solid rgba(var(--color-text-primary-rgb),0.4);
-      border-radius: var(--radius-sm);
-      padding: 8px 16px;
-      cursor: pointer;
-      text-decoration: none;
+    /* ── NY NAV (Figma: samme hero) ── kun forsiden. Overstyrer navbar.css og
+       stilene lenger opp, derfor «html body» + !important. */
+    html body .mg-nav,
+    html body .mg-nav.scrolled {
+      height: 72px !important;
+      padding: 0 32px !important;
+      /* Alltid gjennomsiktig, så WebGL-bakgrunnen aldri dekkes av en flate bak menyen */
+      background: transparent !important;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+    }
+
+
+    html body .mg-nav__links { display: none !important; } /* lenkene fjernet på forsiden */
+    html body .mg-nav__cta { margin-left: auto !important; }
+
+    html body .mg-nav__links a {
+      padding: 8px 12px !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0 !important;
+      text-transform: none !important;
+      color: #28323B !important;
+      transition: opacity 0.2s ease !important;
+    }
+
+    html body .mg-nav__links a::before { display: none !important; }
+    html body .mg-nav__links a:hover { color: #28323B !important; opacity: 0.6; }
+    html body .mg-nav__links a.active,
+    html body .mg-nav__links:has(a:not(.active):hover) a.active { color: #111111 !important; }
+
+    html body .mg-nav__cta {
+      display: inline-flex !important;
+      align-items: center !important;
+      height: 34px !important;
+      padding: 0 15px !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0 !important;
+      text-transform: none !important;
+      color: #000000 !important;
+      background: transparent !important;
+      border: 1px solid #000000 !important;
+      border-radius: 12px !important;
+    }
+
+    html body .mg-nav__cta:hover { background: #000000 !important; color: #FFFFFF !important; }
+
+    /* ── «Meny»: knapp midt i nav-en som åpner en bred, mørk boks med bilder (Figma: Meny åpen, bred med bilder) ── */
+    .mgm-btn {
+      position: fixed;
+      top: 19px;
+      left: 50%;
+      z-index: 1001;
+      width: 84px;
+      height: 34px;
+      translate: -50% 0;
       display: inline-flex;
-      margin-top: 20px;
       align-items: center;
-      gap: 6px;
-      width: fit-content;
-      margin-top: 4px;
-      transition: background var(--transition-base), border-color var(--transition-base);
-    }
-
-    .p2-btn:hover { background: rgba(var(--color-text-primary-rgb),0.06); }
-
-    .p2-link { position: absolute; inset: 0; z-index: var(--z-base); }
-
-    @media (max-width: 768px) {
-      .p2-section {
-        --p2-pad: 20px;
-        --p2-gap: 16px;
-        --p2-box-w: calc(100vw - 64px);
-        padding: 60px 0;
-      }
-
-      .p2-intro {
-        grid-column: 1 / -1;
-        text-align: center;
-        margin-bottom: 20px;
-      }
-
-      .p2-heading {
-        font-size: clamp(28px, 8vw, 40px);
-      }
-
-      .p2-cta {
-        margin-top: 16px;
-      }
-
-      .p2-rail {
-        grid-template-columns: 1fr;
-      }
-
-      .p2-boks {
-        min-height: 400px;
-        border-radius: var(--radius-sm);
-      }
-
-      .p2-header {
-        padding: 20px 24px 16px;
-        flex: 0 0 auto;
-      }
-
-      .p2-tittel {
-        font-size: 18px;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        hyphens: none;
-      }
-
-      .p2-desc {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        hyphens: none;
-      }
-
-      .p2-inner {
-        flex: none;
-        height: 240px;
-      }
-
-      .p2-inner img.p2-hover {
-        opacity: 1;
-        transform: translate3d(-50%, 0, 0) scale(1);
-        top: 10%;
-      }
-
-      .p2-inner img.p2-base {
-        opacity: 0;
-      }
-    }
-  </style>
-
-  <section class="p2-section" style="display:none!important">
-    <div class="p2-container">
-      <div class="p2-intro">
-        <p class="p2-eyebrow">
-          <span class="material-symbols-outlined">auto_awesome</span>
-          Portefølje
-        </p>
-        <h2 class="p2-heading">Et utvalg konsepter vi har laget for ulike bransjer.</h2>
-        <a href="bibliotek.html" class="p2-cta">Se bransjebibliotek</a>
-      </div>
-
-      <div class="p2-rail-wrap">
-        <div class="p2-rail">
-
-          <div class="p2-boks">
-            <div class="p2-inner">
-              <a href="demo-rorlegger.html" target="_blank" class="p2-link"></a>
-              <img class="p2-base" src="images/mockup-rorlegger.webp" alt="Rørlegger nettside" loading="lazy">
-              <img class="p2-hover" src="images/screencap-konsept-blank.jpg" alt="Hover">
-            </div>
-            <div class="p2-header">
-              <div class="p2-text">
-                <span class="p2-tag">VVS</span>
-                <p class="p2-tittel">Rørlegger nettside</p>
-                <p class="p2-desc">Nettside for rørlegger i Oslo, bygget for å ta imot henvendelser og synlig på Google.</p>
-              </div>
-              <a href="demo-rorlegger.html" target="_blank" class="p2-btn">Se nettside <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
-          </div>
-
-          <div class="p2-boks">
-            <div class="p2-inner">
-              <a href="bibliotek.html" class="p2-link"></a>
-              <img class="p2-base" src="images/macbook-nordbygg.webp" alt="Byggherre nettside" loading="lazy">
-              <img class="p2-hover" src="images/screencap-konsept-nordbygg.jpg" alt="Hover">
-            </div>
-            <div class="p2-header">
-              <div class="p2-text">
-                <span class="p2-tag">Bygg</span>
-                <p class="p2-tittel">Byggherre nettside</p>
-                <p class="p2-desc">Profesjonell profil for et byggefirma, presenterer prosjekter og gjør det enkelt å ta kontakt.</p>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    (function() {
-      const rail = document.querySelector('.p2-rail');
-      if (!rail) return;
-      let isDown = false, startX, scrollLeft;
-      rail.addEventListener('mousedown', e => {
-        isDown = true;
-        startX = e.pageX - rail.offsetLeft;
-        scrollLeft = rail.scrollLeft;
-      });
-      document.addEventListener('mouseup', () => { isDown = false; });
-      rail.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - rail.offsetLeft;
-        rail.scrollLeft = scrollLeft - (x - startX) * 1.5;
-      });
-    })();
-  </script>
-
-  <!-- HVA VI LEVERER -->
-  <section class="hva-vi-leverer" style="display:none;">
-  <div class="hvl__card">
-
-    <div class="hvl__intro">
-      <div class="hvl-eyebrow" data-animate="fade-up">
-        <span style="font-family: 'Material Symbols Outlined'; font-size: 15px; font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' -25, 'opsz' 20; line-height: 1;">deployed_code</span>
-        <span>Tjenester</span>
-      </div>
-      <h2 class="section-heading" data-animate="fade-up">Hva vi leverer</h2>
-
-      <p class="section-text" data-animate="fade-up" data-delay="0.1">
-        Enten du starter fra null eller vil ha et moderne design på det du allerede har,
-        prosessen er den samme: enkel, rask og uten krav til teknisk kunnskap fra din side.
-      </p>
-
-      <a href="#" class="section-btn" data-animate="fade-up" data-delay="0.2" onclick="openContactPopup(); return false;">Få et utkast</a>
-    </div>
-
-    <div class="cards" style="grid-column: 1 / -1;" data-animate="stagger" data-stagger="0.13">
-        <div class="card">
-          <p class="card-label"><span class="card-icon">design_services</span>Design og utvikling</p>
-          <div class="card-title">Ny eller oppdatert nettside</div>
-          <div class="card-desc">Vi bygger en nettside fra bunnen av, eller gir den du allerede har et moderne design. Du bestemmer hva du vil ha – vi tar oss av resten.</div>
-        </div>
-
-        <div class="card">
-          <p class="card-label"><span class="card-icon">price_check</span>Prising</p>
-          <div class="card-title">Fast pris, ingen overraskelser</div>
-          <div class="card-desc">Du vet hva du betaler før vi starter. Ingen timepris, ingen skjulte kostnader og ingen lange bindingstider.</div>
-        </div>
-
-        <div class="card">
-          <p class="card-label"><span class="card-icon">support_agent</span>Support</p>
-          <div class="card-title">Inkl. service etter leveranse</div>
-          <div class="card-desc">Gjennomført et nytt prosjekt? Send oss bilder og tekst – så legger vi det ut for deg. Du trenger ikke gjøre noe teknisk selv.</div>
-        </div>
-      </div>
-
-  </div>
-  </section>
-
-
-  <!-- NY SEKSJON: Design og utvikling — bullet + bilde -->
-  <section class="dou__wrap" style="display:none;">
-    <div class="dou__card">
-
-      <!-- VENSTRE: col 1–6 -->
-      <div class="dou__left" style="grid-column: 1 / 7;">
-        <h2 class="dou__heading">Her er hva du får når du bygger nettside med oss</h2>
-        <ul class="dou__list">
-          <li class="dark-body">Bygget fra bunnen av <span class="dim">– eller modernisert fra der du er nå</span></li>
-          <li class="dark-body">Fast pris før vi starter <span class="dim">– ingen timepris, ingen overraskelser</span></li>
-          <li class="dark-body">Design tilpasset din bransje og dine kunder</li>
-          <li class="dark-body">Du bestemmer innholdet <span class="dim">– vi tar oss av det tekniske</span></li>
-          <li class="dark-body">Service etter leveranse: send bilder og tekst <span class="dim">– vi publiserer</span></li>
-        </ul>
-        <a href="#" class="dou__cta" onclick="openContactPopup(); return false;">Få et utkast</a>
-      </div>
-
-      <!-- HØYRE: col 7–12 -->
-      <div class="dou__right" style="grid-column: 7 / 13;">
-        <div class="dou__img-wrap dou__img-wrap--back">
-          <img src="images/screencap-konsept-nordbygg.jpg" alt="Eksempel nettside Konstrukt" />
-        </div>
-        <div class="dou__img-wrap dou__img-wrap--front">
-          <img src="images/screencap-konsept-blank.jpg" alt="Eksempel nettside Oslo Rørlegger" />
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <style>
-    .dark-body {
-      font-family: var(--font-neue);
-      font-size: var(--type-body);
-      font-weight: var(--fw-light);
-      line-height: var(--lh-list);
-      letter-spacing: var(--ls-list);
-      color: var(--color-text-dark);
-      -webkit-text-stroke: var(--text-stroke-body) var(--color-text-dark);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-      font-optical-sizing: auto;
-    }
-
-    .dou__wrap {
-      width: 100%;
-      padding: 0 24px 80px;
-      box-sizing: border-box;
-    }
-    .dou__card {
-      width: 100%;
-      background: var(--bg-cards);
-      border-radius: var(--radius-lg);
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      column-gap: var(--grid-gutter);
-      overflow: hidden;
-      min-height: 480px;
-    }
-    .dou__left {
-      padding: 80px 0 80px 64px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
       justify-content: center;
-    }
-    .dou__eyebrow {
-      font-family: var(--font-neue);
-      font-size: var(--type-ui);
-      font-weight: var(--fw-regular);
-      letter-spacing: var(--ls-caps);
-      text-transform: uppercase;
-      color: rgba(255,255,255, 0.45);
-      margin: 0;
-    }
-    .dou__heading {
-      font-family: var(--font-neue);
-      font-size: clamp(28px, 3vw, 48px);
-      font-weight: var(--fw-regular);
-      -webkit-text-stroke: var(--text-stroke) var(--color-text-dark);
-      line-height: var(--lh-subhead);
-      letter-spacing: var(--ls-h2);
-      color: var(--color-text-dark);
-      font-optical-sizing: auto;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-      margin: 0;
-    }
-    .dou__list {
-      list-style: none;
+      gap: 8px;
       padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      font: 500 14px/1 'Inter', sans-serif;
+      color: #000000;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
     }
-    .dou__list li {
-      padding-left: 26px;
-      position: relative;
-    }
-    .dou__list li .dim { opacity: 0.5; }
-    .dou__list li::before {
-      content: '';
+
+    /* Følger nav-en når den skjules ved scroll */
+    .mg-nav.nav-hidden ~ .mgm-btn { transform: translateY(-80px); }
+
+    .mgm-plus { position: relative; width: 9px; height: 9px; }
+    .mgm-plus::before,
+    .mgm-plus::after {
+      content: "";
       position: absolute;
       left: 0;
-      top: 3px;
-      width: 16px;
-      height: 16px;
-      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='1' y='1' width='14' height='14' rx='3' fill='none' stroke='%23E7F3F1' stroke-width='1.5'/><polyline points='3.5,8 6.5,11 12.5,5' fill='none' stroke='%23E7F3F1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-      background-size: contain;
-      background-repeat: no-repeat;
+      top: 4px;
+      width: 9px;
+      height: 1px;
+      background: currentColor;
     }
-    .dou__cta {
-      margin-top: 32px;
+    .mgm-plus::after { rotate: 90deg; }
+
+    .mgm-veil {
+      position: fixed;
+      inset: 0;
+      z-index: 1001;
+      background: rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .mgm-wrap {
+      position: fixed;
+      top: 19px;
+      left: 50%;
+      z-index: 1002;
+      width: min(840px, calc(100% - 32px));
+      translate: -50% 0;
+      pointer-events: none;
+    }
+
+    .mgm-panel {
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --inout: cubic-bezier(0.76, 0, 0.24, 1);
+      padding: 0 20px 20px;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      color: #F5F5F2;
+      visibility: hidden;
+    }
+
+    .mgm-head {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .mgm-close {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-family: var(--font-neue);
-      font-size: var(--type-label);
-      font-weight: var(--fw-medium);
-      color: var(--color-text-dark);
-      background: transparent;
-      text-decoration: none;
-      width: fit-content;
-      padding: var(--btn-padding-y) var(--btn-padding-x);
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(255,255,255, 0.35);
-      transition: border-color var(--transition-base), background var(--transition-base);
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      cursor: pointer;
     }
-    .dou__cta:hover {
-      border-color: rgba(255,255,255, 0.7);
-      background: rgba(255,255,255, 0.06);
-    }
-    .dou__right {
-      position: relative;
+    .mgm-close .mgm-plus { rotate: 45deg; }
+
+    .mgm-rule {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.14);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--ease);
     }
 
-    /* Kort-wrapper */
-    .dou__img-wrap {
-      position: absolute;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      box-shadow: var(--shadow-xl);
+    .mgm-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 0;
+      padding: 20px 0;
+      list-style: none;
     }
-    .dou__img-wrap img {
+
+    .mgm-card {
+      display: grid;
+      gap: 10px;
+      color: #F5F5F2;
+      text-decoration: none;
+    }
+
+    .mgm-card-img {
+      display: block;
+      aspect-ratio: 192 / 127;
+      overflow: hidden;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .mgm-card-img img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top;
     }
 
-    /* Blur-overlay: starter 80% ned, progressiv blur ned til bunn */
-    .dou__img-wrap::after {
-      content: '';
+    .mgm-card-name {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+    }
+
+
+
+    .mgm-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .mgm-foot a { color: #F5F5F2; text-decoration: underline; text-underline-offset: 4px; }
+
+    /* Åpning: variant 3 fra testsiden (06. KONSEPTER/webgl-test/meny.html),
+       «Bredde, så høyde». Bare den tomme mørke flaten (::before) klippes: først
+       en stripe ut til sidene fra knappen, så ned. Toppen toner inn, streken
+       tegnes, og kortene og bunnlinjen glir opp én etter én. Lukking: alt toner
+       raskt ut. */
+    .mgm-panel::before {
+      content: "";
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 25%;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 70%);
-      mask-image: linear-gradient(to bottom, transparent 0%, black 70%);
+      inset: 0;
+      z-index: -1;
+      background: #151514;
+      border: 1px solid #2A2A28;
+      border-radius: 16px;
+    }
+    .mgm-panel { isolation: isolate; }
+
+    /* Egne lag for menyen og sløret, så nettleseren ikke må tegne resten av den
+       store forsiden på nytt mens menyen animeres (testsiden er liten, derfor
+       hakket den mindre der) */
+    .mgm-wrap { contain: layout style; transform: translateZ(0); }
+    .mgm-panel::before { will-change: clip-path; }
+    .mgm-veil { will-change: opacity; transform: translateZ(0); }
+    html.mgm-open .mgm-panel,
+    html.mgm-closing .mgm-panel { visibility: visible; }
+    html.mgm-closing .mgm-panel { opacity: 0; transition: opacity 0.22s ease; }
+
+    html.mgm-open .mgm-panel::before { animation: mgm-bg 0.75s cubic-bezier(0.76, 0, 0.24, 1) both; }
+    @keyframes mgm-bg {
+      0%   { clip-path: inset(0 calc(50% - 42px) calc(100% - 34px) calc(50% - 42px) round 12px); }
+      45%  { clip-path: inset(0 0 calc(100% - 48px) 0 round 16px); }
+      100% { clip-path: inset(0 0 0 0 round 16px); }
+    }
+
+    .mgm-panel [data-m] { opacity: 0; }
+    .mgm-panel .mgm-rule { opacity: 1; transform: scaleX(0); transform-origin: left; }
+    html.mgm-open .mgm-head { animation: mgm-fade 0.3s ease 0.3s both; }
+    html.mgm-open .mgm-rule { animation: mgm-draw 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both; }
+    html.mgm-open .mgm-panel [data-m]:not(.mgm-head):not(.mgm-rule) {
+      animation: mgm-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) calc(0.4s + var(--i, 0) * 0.045s) both; /* nøyaktig som testsiden */
+    }
+    html.mgm-closing .mgm-panel [data-m] { opacity: 1; }
+    html.mgm-closing .mgm-panel .mgm-rule { transform: none; }
+
+    @keyframes mgm-fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes mgm-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes mgm-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      html.mgm-open .mgm-panel::before,
+      html.mgm-open .mgm-panel [data-m] { animation-duration: 0.01s !important; animation-delay: 0s !important; }
+    }
+
+    .mgm-btn { transition: opacity 0.15s ease, transform 0.4s cubic-bezier(0.25, 0, 0, 1); }
+    html.mgm-open .mgm-btn { opacity: 0; pointer-events: none; }
+
+    /* Alt rundt menyen mørkner. WebGL-bakgrunnen og «klikk»-gradienten står
+       stille mens menyen er åpen. */
+    .mgm-veil {
+      background: rgba(21, 21, 20, 0.35);
+      transition: opacity 0.3s ease;
+    }
+    html.mgm-open .mgm-veil { opacity: 1; pointer-events: auto; }
+    html.mgm-open .mgm-wrap { pointer-events: auto; }
+
+    /* «klikk»-gradienten står stille mens menyen er åpen */
+    html.mgm-open .mgm__grad, html.mgm-open .mgh__grad { animation-play-state: paused; }
+
+
+    @media (prefers-reduced-motion: reduce) {
+      .mgm-panel, .mgm-panel * { transition-duration: 0.01s !important; transition-delay: 0s !important; }
+    }
+
+    /* Mobil har hamburgermenyen */
+    @media (max-width: 768px) {
+      .mgm-btn, .mgm-veil, .mgm-wrap { display: none; }
+    }
+
+    /* ── PRINSIPPER (Figma: Forside (ny) – Prinsipper (tekst)) ── */
+    .mgw {
+      position: relative;
+      isolation: isolate;
+      background: #FDFCFB;
+    }
+
+    /* Lerretet følger skjermen (sticky) mens man er i seksjon 2–3, som på testsiden */
+    .mgw__gl {
+      position: sticky;
+      top: 0;
+      z-index: -1;
+      display: block;
+      width: 100%;
+      height: 100vh;
+      margin-bottom: -100vh;
       pointer-events: none;
     }
 
-    /* Mørk fade over bluren for å smelte inn i bakgrunnen */
-    .dou__img-wrap::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 28%;
-      background: linear-gradient(to bottom, transparent 0%, rgba(var(--color-text-primary-rgb),0.8) 100%);
-      pointer-events: none;
-      z-index: var(--z-base);
+    .mgp {
+      position: relative;
+      padding: 111px 32px 140px; /* trekanten står 111 px ned i Figma */
+      background: transparent;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Foran-kort: venstre, høyere opp, større */
-    .dou__img-wrap--front {
-      width: 58%;
-      top: 32px;
-      bottom: -40px;
-      left: 5%;
-      z-index: var(--z-base);
+    .mgp__mark {
+      display: block;
+      width: 15px;
+      height: 14px;
+      margin: 0 auto 15px;
     }
 
-    /* Bak-kort: høyre, litt lavere, litt smalere */
-    .dou__img-wrap--back {
-      width: 52%;
-      top: 56px;
-      bottom: -40px;
-      left: 42%;
-      z-index: var(--z-base);
-      opacity: 0.9;
+    /* «salg»: fargeovergang fra Figma (brun øverst, mørk nederst) */
+    .mgp__grad {
+      background: linear-gradient(170deg, #9C8B6E 0%, #7E6A52 45%, #2A2E31 88%); /* dempet brun, mindre oransje */
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .mgp__label {
+      display: block;
+      font-size: 14px;
+      line-height: 17px;
+      font-weight: 500;
+      color: #111111;
+    }
+
+    .mgp__rule {
+      height: 1px;
+      margin: 14px 0 0;
+      background: #CCCCC9;
+      border: 0;
+    }
+
+    .mgp__title {
+      margin: 118px 0 0;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 1;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: #28323B;
+    }
+
+    .mgp__list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 64px;
+      margin: 170px 0 0;
+      padding: 0 16px;
+      list-style: none;
+    }
+
+    .mgp__list li { padding-top: 28px; border-top: 1px solid #CCCCC9; }
+
+    .mgp__list h3 {
+      margin: 0;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 30px;
+      line-height: 36px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: #28323B;
+    }
+
+    .mgp__list p {
+      margin: 16px 0 0;
+      font-size: 16px;
+      line-height: 24px;
+      color: #8A8A8A;
+    }
+
+    @media (max-width: 1100px) {
+      .mgp__list { grid-template-columns: repeat(2, 1fr); gap: 56px 40px; }
+    }
+
+    @media (max-width: 640px) {
+      .mgp { padding: 96px 16px; }
+      .mgp__title { margin-top: 72px; }
+      .mgp__list { grid-template-columns: 1fr; gap: 40px; margin-top: 88px; padding: 0; }
+      .mgp__list h3 { font-size: 26px; line-height: 32px; }
+    }
+
+    /* ── SLIK FÅR DU BEFARINGER (Figma: Forside (ny) – 2 Slik får du befaringer) ── */
+    .mgs {
+      position: relative;
+      padding: 133px 32px 73px; /* trekanten står 133 px ned i Figma */
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .mgs__mark { display: block; width: 15px; height: 14px; margin: 0 auto 13px; }
+
+    .mgs__label {
+      display: block;
+      font-size: 14px;
+      line-height: 17px;
+      font-weight: 500;
+      color: #111111;
+    }
+
+    .mgs__rule { height: 1px; margin: 14px 0 0; background: #E5E7EB; border: 0; }
+
+    .mgs__title {
+      margin: 40px 0 0;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: clamp(40px, 4.45vw, 64px);
+      line-height: 1.0625;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: #28323B;
+    }
+
+    .mgs__intro {
+      max-width: 620px;
+      margin: 28px auto 0;
+      font-size: 18px;
+      line-height: 28px;
+      color: #8A8A8A;
+    }
+
+    .mgs__cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      width: min(1263px, 100%);
+      margin: 58px auto 0;
+    }
+
+    .mgs__card {
+      aspect-ratio: 415 / 572;
+      background: #2B2925;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .mgs__cards { grid-template-columns: 1fr; gap: 12px; }
+      .mgs__card { aspect-ratio: 4 / 3; }
+    }
+
+    @media (max-width: 640px) {
+      .mgs { padding: 96px 16px 64px; }
+      .mgs__intro { font-size: 16px; line-height: 24px; }
+    }
+
+    /* ── MØRK SIDE (som på badesiden): når «Slik får du befaringer» når midten av
+       skjermen, glir hele siden over til mørk. Tilbake til lys når den er
+       35 % ned igjen (ulike grenser, så det ikke blinker ved grensen). ── */
+    .mgw,
+    .mgh__label, .mgh__title, .mgh__points, .mgh__points li,
+    .mgp__label, .mgp__title, .mgp__list h3, .mgp__list p, .mgp__list li,
+    .mgs__label, .mgs__title, .mgs__intro, .mgs__card,
+    .mgh__rule, .mgp__rule, .mgs__rule,
+    .mgm-btn, html body .mg-nav__logo.mgh-logo {
+      transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease;
+    }
+    html body .mg-nav__cta { transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease !important; }
+    .mgh__link { transition: background-color 0.5s ease, color 0.5s ease; }
+
+    html.mg-dark .mgw { background: #1C1C1B; }
+    html.mg-dark :is(.mgh__label, .mgh__title, .mgh__points, .mgp__label, .mgp__title, .mgp__list h3, .mgs__label, .mgs__title) { color: #E3E3E3; }
+    html.mg-dark :is(.mgp__list p, .mgs__intro) { color: #A8A5A2; }
+    html.mg-dark :is(.mgh__rule, .mgp__rule, .mgs__rule) { background: rgba(255, 255, 255, 0.16); }
+    html.mg-dark .mgh__points li + li { border-left-color: rgba(255, 255, 255, 0.4); }
+    html.mg-dark .mgp__list li { border-top-color: rgba(255, 255, 255, 0.16); }
+    html.mg-dark .mgs__card { background: #292826; }
+    /* «salg» er mørk nederst; på mørk side lysere toner så hele ordet synes */
+    html.mg-dark .mgp__grad { background-image: linear-gradient(170deg, #C9B898 0%, #A08B6E 45%, #7A8086 88%); }
+    html.mg-dark .mgh__link { color: #151514; background: #E3E3E3; }
+    html.mg-dark .mgm-btn { color: #E3E3E3; }
+    html.mg-dark body .mg-nav__logo.mgh-logo { color: #E3E3E3; }
+    html.mg-dark body .mg-nav__cta { color: #E3E3E3 !important; border-color: #E3E3E3 !important; }
+    html.mg-dark body .mg-nav__cta:hover { color: #151514 !important; background: #E3E3E3 !important; }
+
+    /* Ny logo: trekant + «mediegruppen» i Poppins (Figma) */
+    html body .mg-nav__logo.mgh-logo {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: #4A4337;
+      text-decoration: none;
+    }
+
+    html body .mg-nav__logo.mgh-logo svg { width: 19px; height: 18px; flex: none; }
+
+    @media (max-width: 768px) {
+      html body .mg-nav, html body .mg-nav.scrolled { height: 60px !important; padding: 0 16px !important; }
+      html body .mg-nav__cta { display: none !important; } /* mobil har menyknappen i stedet */
     }
 
     @media (max-width: 768px) {
-      .dou__wrap {
-        padding: 0 12px 80px;
-      }
-      .dou__card {
-        grid-template-columns: 1fr;
-        border-radius: var(--radius-md);
-      }
-      .dou__left {
-        grid-column: 1 / -1 !important;
-        padding: 48px 32px 32px;
-      }
-      .dou__right {
-        grid-column: 1 / -1 !important;
-        min-height: 320px;
-      }
-      .dou__img-wrap--front {
-        width: 55%;
-        top: 24px;
-        bottom: 0;
-        left: 4%;
-      }
-      .dou__img-wrap--back {
-        width: 50%;
-        top: 44px;
-        bottom: 0;
-        left: 40%;
-      }
+      .mgh { padding: 96px 16px 0; }
+      .mgh__rule { margin-bottom: 28px; }
+      .mgh__points { font-size: 16px; line-height: 20px; gap: 8px 16px; margin-top: 24px; }
+      .mgh__points li + li { padding-left: 16px; }
+      .mgh__actions { gap: 24px; margin-top: 32px; }
+      .mgh { padding-bottom: 24px; }
+      .mgh__browser { margin-top: 32px; border-radius: 10px; }
+      .mgh__address { top: 6px; height: 12px; }
     }
   </style>
+</head>
+<body>
 
+  <!-- Felles WebGL-bakgrunn fra heroen og nedover (variant G fra testsiden):
+       grå lysbånd ute ved kantene i heroen, som bøyes om til buer langs høyre
+       kant når Prinsipper kommer inn. Seksjonene under legges inni denne. -->
+  <div class="mgw">
+  <canvas class="mgw__gl" aria-hidden="true"></canvas>
 
-  <!-- Delt SVG-gradient for inkludert-ikoner -->
-  <svg width="0" height="0" style="position:absolute">
-    <defs>
-      <linearGradient id="grad-icon" x1="0%" y1="50%" x2="100%" y2="50%">
-        <stop offset="0%" stop-color="#3b82f6"/>
-        <stop offset="42%" stop-color="#3b82f6"/>
-        <stop offset="58%" stop-color="#22c55e"/>
-        <stop offset="100%" stop-color="#22c55e"/>
-      </linearGradient>
-    </defs>
-  </svg>
-
-  <!-- SEKSJON NETTSIDE SOM KONVERTERER - FJERNET -->
-  <section class="konv__wrap" style="display:none!important">
-    <div class="konv__inner" style="width:100%; height:auto; overflow:hidden; background:var(--bg-cards); display:flex; align-items:stretch;">
-      <div class="konv__left" style="flex:0 0 55%; padding:128px 64px; display:flex; flex-direction:column; justify-content:flex-start; gap:20px;">
-        <h2 style="font-family:var(--font-neue); font-size:clamp(28px,3vw,48px); font-weight:var(--fw-regular); line-height:var(--lh-subhead); letter-spacing:var(--ls-h2); color:var(--color-text-dark); margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility; font-optical-sizing:auto; -webkit-text-stroke:var(--text-stroke) var(--color-text-dark);">En nettside som faktisk<br>f&#229;r folk til &#229; ta kontakt.</h2>
-        <p class="dark-body" style="margin:0; max-width:480px;">Vi bygger nettsider med tydelig struktur, riktige budskap og klare handlingsknapper &#8212; s&#229; bes&#248;kende blir til kunder.</p>
-        <a href="#" onclick="openContactPopup(); return false;" class="konv__cta" style="margin-top:32px; display:inline-flex; align-items:center; gap:8px; font-family:var(--font-neue); font-size:var(--type-label); font-weight:var(--fw-medium); color:var(--color-text-dark); background:transparent; text-decoration:none; width:fit-content; padding:var(--btn-padding-y) var(--btn-padding-x); border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.4);">Se eksempler</a>
-      </div>
-      <div class="konv__right" style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-        <div class="konv__card-wrap" style="position:relative; z-index: var(--z-raised); width:500px; display:flex; flex-direction:column; align-items:flex-start;">
-          <div class="konv__badge" style="display:flex; align-items:stretch; border-radius:14px; overflow:hidden; box-shadow:var(--shadow-md); margin-bottom:-18px; margin-left:24px; position:relative; z-index: var(--z-raised);">
-            <div style="background:var(--bg-cards); padding:16px 18px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:8px; min-width:64px;">
-              <span class="material-symbols-outlined" style="font-size:26px; color:var(--color-text-dark); font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20;">trending_up</span>
-              <span style="font-family:var(--font-neue); font-size:9px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text-dark);">Resultat</span>
-            </div>
-            <div style="background:var(--color-text-dark); padding:16px 24px; display:flex; align-items:center;">
-              <span style="font-family:var(--font-neue); font-size:17px; font-weight:600; color:var(--color-text-primary); line-height:1.3;">Nettsider som<br>faktisk konverterer</span>
-            </div>
-          </div>
-          <div class="konv__glass" style="border-radius:28px; padding:10px; border:1px solid rgba(255,255,255,0.6); background:rgba(255,255,255,0.12); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:var(--shadow-lg);">
-            <div class="konv__stats-card" style="background:var(--color-white); border-radius:18px; padding:44px 48px; width:500px; display:flex; flex-direction:column; gap:24px;">
-              <p style="font-family:var(--font-neue); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text-hint); margin:0;">Konverteringsrate</p>
-              <div style="display:flex; flex-direction:column; gap:14px;">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-family:var(--font-neue); font-size:15px; color:var(--color-text-hint);">Gjennomsnittlig nettside</span>
-                  <span style="font-family:var(--font-neue); font-size:16px; font-weight:700; color:var(--color-text-primary);">~1%</span>
-                </div>
-                <div style="height:1px; background:var(--bg-0);"></div>
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-family:var(--font-neue); font-size:15px; color:var(--color-text-hint);">Optimalisert nettside</span>
-                  <span style="font-family:var(--font-neue); font-size:16px; font-weight:700; color:var(--color-text-primary);">3&#8211;5%</span>
-                </div>
-                <div style="height:1px; background:var(--bg-0);"></div>
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-family:var(--font-neue); font-size:15px; color:var(--color-text-hint);">Dedikert landingsside</span>
-                  <span style="font-family:var(--font-neue); font-size:16px; font-weight:700; color:var(--color-text-primary);">5%+</span>
-                </div>
-              </div>
-              <div style="border-top:1px solid var(--bg-0); padding-top:14px; display:flex; align-items:center; gap:8px;">
-                <span style="font-family:var(--font-neue); font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-text-hint);">Kilde</span>
-                <span style="height:12px; width:1px; background:var(--color-border-light);"></span>
-                <span style="font-family:var(--font-neue); font-size:11px; font-weight:500; color:var(--color-text-muted); background:var(--bg-0); border:1px solid var(--color-border-light); border-radius:3px; padding:2px 7px;">Unbounce</span>
-                <span style="font-family:var(--font-neue); font-size:11px; font-weight:500; color:var(--color-text-muted); background:var(--bg-0); border:1px solid var(--color-border-light); border-radius:3px; padding:2px 7px;">HubSpot</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <canvas id="shaderCanvasKonv" style="position:absolute; inset:0; width:100%; height:100%;"></canvas>
-        <div style="position:absolute; top:-100%; left:-100%; width:300%; height:300%; background:linear-gradient(to bottom,var(--bg-cards) 0%,var(--bg-cards) 33%,transparent 47%,transparent 57%,var(--bg-cards) 70%,var(--bg-cards) 100%); transform:rotate(-28deg) translate(8%,12%); transform-origin:center;"></div>
-      </div>
+  <!-- NY HERO -->
+  <section class="mgh" aria-labelledby="mgh-tittel">
+    <svg class="mgh__mark" viewBox="0 0 15 14" fill="none" aria-hidden="true"><path d="M8.4151 13.7798C5.82448 11.8835 1.13478 5.53548 0.0434132 2.32548C-0.123435 1.83473 0.209208 1.35818 0.718348 1.26097C4.02756 0.629159 9.75753 -0.000753191 13.8607 -3.53029e-06C14.5277 0.000118233 14.9847 0.65098 14.7658 1.28099C13.4595 5.0414 11.2061 10.3634 9.60212 13.4471C9.36672 13.8996 8.82673 14.0811 8.4151 13.7798Z" fill="url(#mgh-mark-grad)"/><defs><linearGradient id="mgh-mark-grad" x1="3.98131" y1="-3.32726" x2="14.9863" y2="11.7178" gradientUnits="userSpaceOnUse"><stop stop-color="#121010"/><stop offset="0.173077" stop-color="#4E4D4D"/><stop offset="0.75" stop-color="#9F5931"/><stop offset="1" stop-color="#C29B6C"/></linearGradient></defs></svg>
+    <span class="mgh__label">Nettsider for norske bedrifter</span>
+    <hr class="mgh__rule">
+    <h1 class="mgh__title" id="mgh-tittel">Fra digitale <span class="mgh__grad">klikk</span><br>til befaringer</h1>
+    <ul class="mgh__points">
+      <li>Markedsføring</li>
+      <li>Befaringer</li>
+      <li>Salg</li>
+    </ul>
+    <div class="mgh__actions">
+      <a href="#" class="mgh__link" onclick="openContactPopup(); return false;">Start med en gratis nettside</a>
+    </div>
+    <div class="mgh__browser" aria-hidden="true">
+      <img src="images/hero-nettleser-badside.webp" alt="" width="2272" height="1276">
+      <span class="mgh__address"></span>
     </div>
   </section>
 
-  <!-- SEKSJON INKLUDERT I LEVERANSEN - FJERNET -->
-  <section class="seksjon-inkludert" style="display:none!important">
-  <div class="inkludert__card">
-    <div class="falling-overlay">
+  <!-- PRINSIPPER (Figma: Forside (ny) – Prinsipper (tekst)) -->
+  <section class="mgp" id="prinsipper" aria-labelledby="mgp-tittel">
+    <svg class="mgp__mark" viewBox="0 0 15 14" fill="none" aria-hidden="true"><path d="M8.4151 13.78C5.82448 11.8836 1.13478 5.53564 0.0434132 2.32564C-0.123435 1.83489 0.209208 1.35834 0.718348 1.26114C4.02756 0.629326 9.75753 -0.000585344 13.8607 0.000164316C14.5277 0.00028608 14.9847 0.651148 14.7658 1.28116C13.4595 5.04157 11.2061 10.3636 9.60212 13.4472C9.36672 13.8998 8.82673 14.0813 8.4151 13.78Z" fill="url(#mgp-mark-grad)"/><defs><linearGradient id="mgp-mark-grad" x1="3.98131" y1="-3.3271" x2="14.9863" y2="11.7179" gradientUnits="userSpaceOnUse"><stop stop-color="#121010"/><stop offset="0.173077" stop-color="#4E4D4D"/><stop offset="0.75" stop-color="#9BA329"/><stop offset="1" stop-color="#C29B6C"/></linearGradient></defs></svg>
+    <span class="mgp__label">Prinsipper</span>
+    <hr class="mgp__rule">
+    <h2 class="mgp__title" id="mgp-tittel">Vi måler arbeidet vårt<br>i målte <span class="mgp__grad">salg</span></h2>
+    <ul class="mgp__list">
+      <li>
+        <h3>Salg før pynt</h3>
+        <p>Design skal gjøre det lettere å ta kontakt. Det som ikke hjelper kunden din videre, tar vi bort.</p>
+      </li>
+      <li>
+        <h3>Kort vei til kontakt</h3>
+        <p>Telefon, skjema og befaring skal alltid være ett klikk unna, både på mobil og på pc.</p>
+      </li>
+      <li>
+        <h3>Ærlig om resultatene</h3>
+        <p>Vi viser deg hva som faktisk skjer: hvem som ringer, sender skjema og booker befaring.</p>
+      </li>
+      <li>
+        <h3>Vi blir værende</h3>
+        <p>Når siden er ute, følger vi med og justerer. En nettside er ikke ferdig den dagen den publiseres.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- SLIK FÅR DU BEFARINGER (Figma: Forside (ny) – 2 Slik får du befaringer) -->
+  <section class="mgs" aria-labelledby="mgs-tittel">
+    <svg class="mgs__mark" viewBox="0 0 15 14" fill="none" aria-hidden="true"><path d="M8.41523 13.7799C5.8246 11.8835 1.1349 5.53552 0.0435352 2.32552C-0.123313 1.83477 0.20933 1.35822 0.71847 1.26101C4.02768 0.629204 9.75765 -0.000707414 13.8608 4.22461e-05C14.5278 0.00016401 14.9848 0.651026 14.7659 1.28104C13.4596 5.04145 11.2062 10.3635 9.60224 13.4471C9.36684 13.8997 8.82685 14.0812 8.41523 13.7799Z" fill="url(#mgs-mark-grad)"/><defs><linearGradient id="mgs-mark-grad" x1="3.98143" y1="-3.32722" x2="14.9864" y2="11.7178" gradientUnits="userSpaceOnUse"><stop stop-color="#121010"/><stop offset="0.173077" stop-color="#4E4D4D"/><stop offset="0.75" stop-color="#9F5931"/><stop offset="1" stop-color="#C29B6C"/></linearGradient></defs></svg>
+    <span class="mgs__label">Slik får du befaringer</span>
+    <hr class="mgs__rule">
+    <h2 class="mgs__title" id="mgs-tittel">Vi leder de som søker<br>tjensten din, til deg</h2>
+    <p class="mgs__intro">Hver dag søker folk etter tjenesten din på nett. Vi lager nettsiden og sørger for at den blir funnet, slik at forespørslene kommer til deg.</p>
+    <!-- Tre mørke flater (plassholdere i Figma, innhold kommer) -->
+    <div class="mgs__cards" aria-hidden="true">
+      <div class="mgs__card"></div>
+      <div class="mgs__card"></div>
+      <div class="mgs__card"></div>
     </div>
-    <div class="inkludert__left">
-      <h2 class="inkludert__heading" data-animate="fade-up" data-delay="0.08">Alt du trenger på ett sted</h2>
+  </section>
 
-      <div class="inkludert__items" data-animate="stagger" data-stagger="0.1" data-delay="0.15">
-        <div class="inkludert__item">
-          <div class="inkludert__item-header">
-            <span class="inkludert__icon">travel_explore</span>
-            <h3 class="inkludert__item-title">SEO-optimalisering</h3>
-          </div>
-          <p class="inkludert__item-desc dark-body">Nettsiden din bygges for å rangere i Google med riktig struktur, metadata og innhold fra dag én.</p>
-        </div>
-        <div class="inkludert__item">
-          <div class="inkludert__item-header">
-            <span class="inkludert__icon">speed</span>
-            <h3 class="inkludert__item-title">Google-hastighet</h3>
-          </div>
-          <p class="inkludert__item-desc dark-body">Vi optimaliserer for PageSpeed og Core Web Vitals slik at Google rangerer deg høyere og besøkende ikke forlater siden.</p>
-        </div>
-        <div class="inkludert__item">
-          <div class="inkludert__item-header">
-            <span class="inkludert__icon">build</span>
-            <h3 class="inkludert__item-title">Drift og vedlikehold</h3>
-          </div>
-          <p class="inkludert__item-desc dark-body">Vi holder nettsiden oppdatert, sikker og i gang uten at du trenger å løfte en finger. Alt fra oppdateringer til backup håndteres av oss.</p>
-        </div>
-        <div class="inkludert__item">
-          <div class="inkludert__item-header">
-            <span class="inkludert__icon">support_agent</span>
-            <h3 class="inkludert__item-title">Personlig service</h3>
-          </div>
-          <p class="inkludert__item-desc dark-body">Du får en fast kontaktperson, ikke en ticketkø. Vi svarer raskt og hjelper deg med alt fra tekstendringer til større oppdateringer.</p>
-        </div>
-      </div>
-
-      <div class="inkludert__cta-row" data-animate="fade-up" data-delay="0.3">
-        <a href="#" class="dou__cta" onclick="openContactPopup(); return false;">Kontakt oss</a>
-      </div>
-    </div>
-
-    <div class="inkludert__right">
-      <div class="inkludert__illus-frame">
-        <div class="inkludert__illus" style="background:var(--bg-cards); padding:0; position:relative; overflow:hidden; min-height:420px; align-items:center; justify-content:center;">
-          <!-- Orbit diagram scaled to fit -->
-          <div class="inkludert__orbit" style="transform:scale(0.78); transform-origin:center center; width:520px; height:580px; position:relative; flex-shrink:0;">
-
-            <!-- SVG lines -->
-            <svg style="position:absolute;inset:0;width:520px;height:580px;overflow:visible;" viewBox="0 0 520 580" fill="none">
-              <defs>
-                <linearGradient id="ilg-seo"       gradientUnits="userSpaceOnUse" x1="150"   y1="195"   x2="213.7" y2="245.1"><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="var(--color-ui-mid)" stop-opacity="0.85"/></linearGradient>
-                <linearGradient id="ilg-hastighet" gradientUnits="userSpaceOnUse" x1="248"   y1="158"   x2="248"   y2="228"  ><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="var(--color-ui-mid)" stop-opacity="0.85"/></linearGradient>
-                <linearGradient id="ilg-drift"     gradientUnits="userSpaceOnUse" x1="346"   y1="195"   x2="282.3" y2="245.1"><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="var(--color-ui-mid)" stop-opacity="0.85"/></linearGradient>
-                <linearGradient id="ilg-service"   gradientUnits="userSpaceOnUse" x1="150"   y1="348.3" x2="213"   y2="301.1"><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="var(--color-ui-mid)" stop-opacity="0.85"/></linearGradient>
-                <linearGradient id="ilg-domene"    gradientUnits="userSpaceOnUse" x1="248"   y1="367"   x2="248"   y2="319"  ><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="var(--color-ui-mid)" stop-opacity="0.85"/></linearGradient>
-                <linearGradient id="ilg-mobil"     gradientUnits="userSpaceOnUse" x1="346"   y1="348.3" x2="283"   y2="301.1"><stop offset="0" stop-color="white" stop-opacity="0.85"/><stop offset="1" stop-color="var(--color-ui-mid)" stop-opacity="0.85"/></linearGradient>
-              </defs>
-              <path d="M 213.7 245.1 Q 199.4 198.2 150.0 195.0"   stroke="url(#ilg-seo)"       stroke-width="1" stroke-linecap="round"/>
-              <path d="M 248.0 228.0 Q 276.0 193.0 248.0 158.0"   stroke="url(#ilg-hastighet)" stroke-width="1" stroke-linecap="round"/>
-              <path d="M 282.3 245.1 Q 331.7 241.9 346.0 195.0"   stroke="url(#ilg-drift)"     stroke-width="1" stroke-linecap="round"/>
-              <path d="M 213.0 301.1 Q 164.5 302.4 150.0 348.3"   stroke="url(#ilg-service)"   stroke-width="1" stroke-linecap="round"/>
-              <path d="M 248.0 319.0 Q 220.0 343.0 248.0 367.0"   stroke="url(#ilg-domene)"    stroke-width="1" stroke-linecap="round"/>
-              <path d="M 283.0 301.1 Q 297.5 347.0 346.0 348.3"   stroke="url(#ilg-mobil)"     stroke-width="1" stroke-linecap="round"/>
-            </svg>
-
-            <!-- Ellipse -->
-            <div style="position:absolute;left:203px;top:227px;width:90px;height:93px;border-radius:50%;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),rgba(255,255,255,0.45));">
-              <div style="width:100%;height:100%;border-radius:50%;background:#9A9267;"></div>
-            </div>
-
-            <!-- Logo -->
-            <div style="position:absolute;left:212px;top:250px;width:64px;height:48px;">
-              <svg viewBox="0 0 327 246" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="48">
-                <defs>
-                  <linearGradient id="ilg-logo" x1="0" y1="0" x2="0" y2="246" gradientUnits="userSpaceOnUse">
-                    <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
-                    <stop offset="1" stop-color="#E8E0C8" stop-opacity="0.88"/>
-                  </linearGradient>
-                </defs>
-                <path d="M188.447 153.654L126.214 242.532C124.946 244.341 122.452 244.781 120.643 243.514L89.9243 222.005C88.1147 220.738 87.6749 218.244 88.942 216.434L151.401 127.233L88.9406 38.5495C87.6726 36.749 88.0983 34.2623 89.8931 32.9862L120.634 11.1291C122.445 9.84215 124.956 10.2762 126.23 12.0959L188.433 100.996C189.705 102.814 189.254 105.32 187.428 106.581L162.335 123.904C160.041 125.487 160.03 128.873 162.313 130.472L187.464 148.083C189.274 149.35 189.714 151.844 188.447 153.654Z" fill="url(#ilg-logo)"/>
-                <path d="M279.447 153.654L217.214 242.532C215.946 244.341 213.452 244.781 211.643 243.514L180.924 222.005C179.115 220.738 178.675 218.244 179.942 216.434L242.401 127.233L179.941 38.5495C178.673 36.749 179.098 34.2623 180.893 32.9862L211.634 11.1291C213.445 9.84215 215.956 10.2762 217.23 12.0959L279.433 100.996C280.705 102.814 280.254 105.32 278.428 106.581L253.335 123.904C251.041 125.487 251.03 128.873 253.313 130.472L278.464 148.083C280.274 149.35 280.714 151.844 279.447 153.654Z" fill="url(#ilg-logo)"/>
-              </svg>
-            </div>
-
-            <!-- Badges -->
-            <div style="position:absolute;left:40px;top:81px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
-              <div style="border-radius:18px;width:110px;background:rgba(var(--color-ui-dark-rgb),0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
-                <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:var(--color-white);font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">manage_search</span></div>
-                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:var(--color-white);letter-spacing:0.04em;">SEO</span></div>
-              </div>
-            </div>
-            <div style="position:absolute;left:193px;top:40px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
-              <div style="border-radius:18px;width:110px;background:rgba(var(--color-ui-dark-rgb),0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
-                <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:var(--color-white);font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">speed</span></div>
-                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:var(--color-white);letter-spacing:0.04em;">Hastighet</span></div>
-              </div>
-            </div>
-            <div style="position:absolute;left:346px;top:81px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
-              <div style="border-radius:18px;width:110px;background:rgba(var(--color-ui-dark-rgb),0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
-                <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:var(--color-white);font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">build</span></div>
-                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:var(--color-white);letter-spacing:0.04em;">Drift</span></div>
-              </div>
-            </div>
-            <div style="position:absolute;left:40px;top:320px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
-              <div style="border-radius:18px;width:110px;background:rgba(var(--color-ui-dark-rgb),0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
-                <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:var(--color-white);font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">support_agent</span></div>
-                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:var(--color-white);letter-spacing:0.04em;">Service</span></div>
-              </div>
-            </div>
-            <div style="position:absolute;left:193px;top:367px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
-              <div style="border-radius:18px;width:110px;background:rgba(var(--color-ui-dark-rgb),0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
-                <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:var(--color-white);font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">dns</span></div>
-                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:var(--color-white);letter-spacing:0.04em;">Domene</span></div>
-              </div>
-            </div>
-            <div style="position:absolute;left:346px;top:320px;border-radius:19px;padding:1px;background:linear-gradient(to bottom,rgba(255,255,255,0.06),rgba(255,255,255,0.28));box-shadow:var(--shadow-md);">
-              <div style="border-radius:18px;width:110px;background:rgba(var(--color-ui-dark-rgb),0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:7px 7px 10px;display:flex;flex-direction:column;gap:8px;">
-                <div style="background:var(--color-ui-mid);border-radius:12px;padding:18px 14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><span class="material-symbols-outlined" style="font-size:44px;color:var(--color-white);font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">smartphone</span></div>
-                <div style="text-align:center;"><span style="font-family:var(--font-neue);font-size:12px;font-weight:400;color:var(--color-white);letter-spacing:0.04em;">Mobil</span></div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Neste seksjon legges her, inni .mgw, så bakgrunnen fortsetter bak den -->
 
   </div>
-  </section>
 
-  <!-- SEKSJON SERVICE - FJERNET -->
-  <section class="seksjon-service" style="display:none!important">
-  <div class="service__card">
-    <div class="service-grid">
-      <div class="service-left" data-animate="stagger" data-stagger="0.1">
-        <h2 class="service-heading">Behov for å oppdatere nettsiden senere?</h2>
-        <p class="service-lead dark-body">En nettside er aldri helt ferdig. Ting endrer seg, nye tjenester, oppdaterte priser, sesongkampanjer, eller bare en tekst som bør justeres.</p>
-        <div class="service-info-boxes">
-          <div class="service-info-box dark-body">Send oss en melding</div>
-          <div class="service-info-box dark-body">Ingen ekstra kostnader for oppdateringen</div>
-          <div class="service-info-box dark-body">Inkludert i domenehostingen</div>
-        </div>
-      </div>
-      <div class="service-image" data-animate="fade-up" data-delay="0.15">
-        <img src="images/mockup-iphone-service.png" alt="Service mockup" loading="lazy">
-      </div>
-    </div>
-  </div>
-  </section>
-
-  <!-- TOM BOKS-SEKSJON - FJERNET -->
-  <section class="seksjon-tom-boks" style="display:none!important">
-    <div class="tom-boks">
-      <div class="tom-boks__bilde" style="background-image: url('images/mockuuups-macbook-rock-surface.webp'); background-size: cover; background-position: center;"></div>
-      <div class="tom-boks__innhold">
-        <p class="tom-boks__label">Design som konverterer</p>
-        <p class="tom-boks__undertekst">Vi bygger nettsider etter designprinsipper som er utviklet for å gjøre nettbesøkende til kunder — fra struktur og hierarki til knapper og call-to-action.</p>
-      </div>
-    </div>
-    <div class="tom-boks">
-      <div class="tom-boks__bilde" style="background-image: url('images/mockuuups-iphone-concrete.webp'); background-size: cover; background-position: center;"></div>
-      <div class="tom-boks__innhold">
-        <p class="tom-boks__label">Mobilvennlig fra dag én</p>
-        <p class="tom-boks__undertekst">Over halvparten av alle nettbesøk skjer på mobil. Vi bygger nettsider som ser ut og fungerer perfekt på alle skjermstørrelser — uten at du trenger å tenke på det.</p>
-      </div>
-    </div>
-    <div class="tom-boks">
-      <div class="tom-boks__bilde"><svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="display:block;width:100%;height:100%;"><defs><style>.wf-bar{transform-box:fill-box;transform-origin:left center;animation:wfGrow 3s ease-in-out forwards}.wf-r1{animation-delay:.1s}.wf-r2{animation-delay:.22s}.wf-r3{animation-delay:.36s}@keyframes wfGrow{0%,2%{transform:scaleX(0)}70%,100%{transform:scaleX(1)}}</style></defs><rect width="240" height="240" fill="#f0efed" rx="4"/><text id="spd-num" x="120" y="118" font-family="var(--font-neue)" font-size="72" font-weight="500" fill="var(--color-ink)" text-anchor="middle" letter-spacing="-0.04em">6.4s</text><text x="120" y="140" font-family="var(--font-neue)" font-size="11" font-weight="400" fill="#bbb" text-anchor="middle" letter-spacing="0.05em">LASTETID</text><line x1="20" y1="142" x2="220" y2="142" stroke="#dddcda" stroke-width="1"/><rect class="wf-bar wf-r1" x="20" y="154" width="30" height="9" rx="2" fill="var(--color-ink)" opacity="0.75"/><rect class="wf-bar wf-r2" x="24" y="172" width="96" height="9" rx="2" fill="var(--color-ink)" opacity="0.35"/><rect class="wf-bar wf-r3" x="28" y="190" width="152" height="9" rx="2" fill="var(--color-ink)" opacity="0.15"/><line x1="20" y1="212" x2="220" y2="212" stroke="#dddcda" stroke-width="1"/><text x="20" y="226" font-family="var(--font-neue)" font-size="8.5" fill="#ccc">0ms</text><text x="220" y="226" font-family="var(--font-neue)" font-size="8.5" fill="#ccc" text-anchor="end">1000ms</text><script>(function(){var el=document.getElementById('spd-num');if(!el)return;function run(){var cur=64;function tick(){el.textContent=(cur/10).toFixed(1)+'s';if(cur>8){cur--;setTimeout(tick,55);}}tick();}run();})();</script></svg></div>
-      <div class="tom-boks__innhold">
-        <p class="tom-boks__label">Hastighet</p>
-        <p class="tom-boks__undertekst">En treg nettside koster deg kunder. Vi bygger med hastighet i fokus — optimaliserte bilder, ren kode og rask lastetid som også gir deg bedre plassering i Google.</p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- SEKSJON FAQ -->
-  <section class="seksjon-faq">
-
-    <div class="faq-left" data-animate="fade-up">
-      <div class="faq-left__text">
-        <div class="faq-eyebrow">Spørsmål & svar</div>
-        <h2 class="faq-heading">Spørsmålene dine, besvart</h2>
-        <p class="faq-subtext">Raske svar på det vi oftest blir spurt om.</p>
-      </div>
-      <a href="#" class="faq-cta" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Kontakt oss</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
-    </div>
-
-    <div class="faq-list" data-animate="stagger" data-stagger="0.09" data-delay="0.05">
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Hva koster en nettside?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <p class="faq-answer">Vi har faste pakkepriser — du vet nøyaktig hva du betaler før vi starter. Ingen timepris, ingen skjulte kostnader.</p>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Hvor lang tid tar det?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <p class="faq-answer">De fleste nettsider er klare innen 1–2 uker etter at vi har fått innhold og ønsker fra deg.</p>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Trenger jeg gjøre noe selv?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <p class="faq-answer">Du sender oss tekst og bilder — vi tar oss av resten. Ingen teknisk kunnskap nødvendig.</p>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Kan jeg oppdatere siden selv?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <p class="faq-answer">Ja. Vi setter opp nettsiden slik at du enkelt kan endre tekst og bilder uten å røre kode.</p>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>Hva skjer etter levering?</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <p class="faq-answer">Vi følger deg opp, hjelper med oppdateringer og sørger for at siden fungerer som den skal.</p>
-      </div>
-    </div>
-
-  </section>
-
+  <!-- FOOTER (Figma: Forside (ny) – Footer) -->
   <style>
-    .pris-btn {
-      width: 100%;
-      margin-top: auto;
-      padding: 14px;
-      background: transparent;
-      border: 1px solid rgba(0,0,0,0.2);
-      border-radius: 8px;
-      color: #262823;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      letter-spacing: 0.02em;
-      position: relative;
-      overflow: hidden;
-      transition: color 0.3s ease, border-color 0.3s ease;
+    .mgf { position: relative; z-index: 1; background: #FDFCFB; color: #28323B; padding: 64px 48px 40px; } /* over WebGL-lerretet i .mgw */
+    .mgf a { color: inherit; text-decoration: none; transition: opacity 0.2s ease; }
+    .mgf a:hover { opacity: 0.55; }
+    .mgf__top { display: grid; grid-template-columns: 1fr 1fr; }
+    .mgf__main { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+    .mgf__main a { font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 36px; line-height: 36px; letter-spacing: -0.02em; }
+    .mgf__side { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+    .mgf__sub { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .mgf__sub a, .mgf__contact a { font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 17px; line-height: 21px; letter-spacing: -0.01em; }
+    .mgf__contact { display: flex; flex-wrap: wrap; gap: 8px 28px; }
+    .mgf__legal { margin-top: 72px; display: flex; flex-direction: column; gap: 14px; font-family: 'Inter', sans-serif; font-size: 12px; line-height: 17px; color: #8A8A8A; }
+    .mgf__legal p { margin: 0; }
+    .mgf__bottom { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+
+    @media (max-width: 768px) {
+      .mgf { padding: 48px 16px 24px; }
+      .mgf__top { grid-template-columns: 1fr; gap: 40px; }
+      .mgf__main a { font-size: 30px; line-height: 32px; }
+      .mgf__legal { margin-top: 48px; }
     }
-    .pris-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: #262823;
-      transform: translateY(100%);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .pris-btn:hover::before { transform: translateY(0); }
-    .pris-btn:hover { color: #efeeec; border-color: #262823; }
-    .pris-btn span { position: relative; z-index: 1; }
   </style>
-  <!-- NY PRISSEKSJON V2 -->
-  <section id="priser" style="background:#efeeec; padding:120px 48px;">
-    <div style="max-width:1344px; margin:0 auto;">
-      <span style="display:inline-flex; align-items:center; background:#e7e5e0; color:#262823; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:6px; margin-bottom:16px;">Priser</span>
-      <h2 style="font-family:'Inter',sans-serif; font-size:clamp(32px,3.5vw,52px); font-weight:600; color:#262823; line-height:1.12; letter-spacing:-0.02em; margin:0 0 12px; -webkit-font-smoothing:antialiased;">Velg pakken som passer din bedrift</h2>
-      <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:rgba(0,0,0,0.55); margin:0 0 48px; line-height:1.6;">Alle pakker inkluderer gratis designutkast, ingen binding og levering på 1–2 uker.</p>
-    </div>
-    <div style="max-width:1344px; margin:0 auto; display:grid; grid-template-columns:3fr 6fr 3fr; gap:24px; align-items:stretch;">
-
-      <!-- Boks 1: Basis -->
-      <div style="background:#efefef; border-radius:14px; padding:40px 36px; display:flex; flex-direction:column; gap:20px;">
-        <div style="height:28px;"></div>
-        <div>
-          <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:600; color:#262823; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Basis</p>
-          <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.45); margin:0 0 16px;">For deg som trenger en profesjonell nettside raskt og uten komplikasjoner.</p>
-          <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:4px;">
-            <span style="font-family:'Inter',sans-serif; font-size:48px; font-weight:700; color:#262823; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">4 900</span>
-            <span style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(0,0,0,0.4);">kr</span>
-            <span style="font-family:'Inter',sans-serif; font-size:18px; font-weight:300; color:rgba(0,0,0,0.3); text-decoration:line-through; white-space:nowrap;">9 000 kr</span>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
-          <span style="background:#fff083; color:#262823; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; padding:3px 10px; border-radius:4px;">Spar 4 100 kr</span>
-        </div>
-        <ul style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.6); line-height:1.7; list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
-          <li>✓ Inntil 5 sider</li>
-          <li>✓ Mobiloptimalisert design</li>
-          <li>✓ Kontaktskjema og kart</li>
-          <li>✓ SEO-grunnoppsett</li>
-          <li>✓ Hosting inkludert (1 år)</li>
-          <li>✓ Gratis utkast før du bestemmer deg</li>
+  <footer class="mgf">
+    <div class="mgf__top">
+      <ul class="mgf__main">
+        <li><a href="tjenester.html">Nettsider</a></li>
+        <li><a href="#prinsipper">Prinsipper</a></li>
+        <li><a href="tjenester.html">Slik jobber vi</a></li>
+        <li><a href="#" onclick="openPrisPopup(); return false;">Priser</a></li>
+        <li><a href="om-oss.html">Om oss</a></li>
+      </ul>
+      <div class="mgf__side">
+        <ul class="mgf__sub">
+          <li><a href="#" onclick="openContactPopup(); return false;">Bestill en samtale</a></li>
+          <li><a href="#" onclick="openContactPopup(); return false;">Få et gratis utkast</a></li>
+          <li><a href="#">Kundecaser</a></li>
+          <li><a href="vilkår.html">Vilkår</a></li>
+          <li><a href="personvern.html">Personvern</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
-        <button class="pris-btn" onclick="openContactPopup(); return false;" style="margin-top:auto;"><span>Start med Basis</span></button>
-        <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.35); text-align:center; margin:0;">Ingen binding · Svar innen én arbeidsdag</p>
-      </div>
-
-      <!-- Boks 2: Vekst -->
-      <div style="background:#efefef; border-radius:14px; padding:40px 44px; display:flex; flex-direction:column; gap:20px;">
-        <span style="display:inline-flex; width:fit-content; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; color:rgba(0,0,0,0.5); letter-spacing:0.1em; text-transform:uppercase; border:1px solid rgba(0,0,0,0.2); padding:3px 10px; border-radius:4px; height:28px; align-items:center;">Mest valgt</span>
-        <div>
-          <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:600; color:#262823; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Vekst</p>
-          <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.45); margin:0 0 16px;">For bedrifter som vil ha en nettside som faktisk bringer inn kunder.</p>
-          <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:4px;">
-            <span style="font-family:'Inter',sans-serif; font-size:48px; font-weight:700; color:#262823; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">24 900</span>
-            <span style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(0,0,0,0.4);">kr</span>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
+        <div class="mgf__contact">
+          <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a>
+          <a href="tel:+4748118680">+47 481 18 680</a>
         </div>
-        <ul style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.6); line-height:1.7; list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
-          <li>✓ Alt i Basis +</li>
-          <li>✓ Inntil 10 sider</li>
-          <li>✓ Avansert SEO og Google-optimalisering</li>
-          <li>✓ Google My Business-oppsett</li>
-          <li>✓ Hastighetsoptimalisering</li>
-          <li>✓ Prioritert support</li>
-        </ul>
-        <button class="pris-btn" onclick="openContactPopup(); return false;" style="margin-top:auto;"><span>Velg Vekst</span></button>
-        <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.35); text-align:center; margin:0;">Ingen binding · Svar innen én arbeidsdag</p>
-      </div>
-
-      <!-- Boks 3: Skreddersydd -->
-      <div style="background:#efefef; border-radius:14px; padding:40px 36px; display:flex; flex-direction:column; gap:20px;">
-        <div style="height:28px;"></div>
-        <div>
-          <p style="font-family:'Inter',sans-serif; font-size:18px; font-weight:600; color:#262823; margin:0 0 4px; -webkit-font-smoothing:antialiased;">Skreddersydd</p>
-          <p style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.45); margin:0 0 16px;">For ambisiøse bedrifter som vil ha full kontroll og prioritert oppfølging.</p>
-          <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:4px;">
-            <span style="font-family:'Inter',sans-serif; font-size:48px; font-weight:700; color:#262823; line-height:1; -webkit-font-smoothing:antialiased; white-space:nowrap;">78 900</span>
-            <span style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(0,0,0,0.4);">kr</span>
-          </div>
-          <p style="font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:rgba(0,0,0,0.35); margin:0 0 12px;">Engangsbeløp</p>
-        </div>
-        <ul style="font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:rgba(0,0,0,0.6); line-height:1.7; list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
-          <li>✓ Alt i Vekst +</li>
-          <li>✓ Skreddersydd design fra bunnen</li>
-          <li>✓ Nettbutikk eller bookingsystem</li>
-          <li>✓ Månedlig rapportering</li>
-          <li>✓ Dedikert kontaktperson</li>
-          <li>✓ Konverteringsoptimalisering</li>
-        </ul>
-        <button class="pris-btn" onclick="openContactPopup(); return false;" style="margin-top:auto;"><span>Ta en prat</span></button>
-        <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.35); text-align:center; margin:0;">Ingen binding · Svar innen én arbeidsdag</p>
-      </div>
-
-    </div>
-
-    <!-- Gratis utkast-boks -->
-    <div style="max-width:1344px; margin:24px auto 0; background:#e5edd7; border-radius:14px; padding:48px 56px; display:flex; align-items:center; justify-content:space-between; gap:48px;">
-      <div style="flex:1;">
-        <p style="font-family:'Inter',sans-serif; font-size:26px; font-weight:600; color:#262823; margin:0 0 10px; line-height:1.2; -webkit-font-smoothing:antialiased;">Se nettsiden din på 72 timer — gratis</p>
-        <p style="font-family:'Inter',sans-serif; font-size:15px; font-weight:300; color:rgba(0,0,0,0.6); margin:0 0 20px; line-height:1.6;">Vi lager et skreddersydd utkast til din bransje uten kostnad og uten forpliktelse.</p>
-        <div style="display:flex; gap:24px; flex-wrap:wrap;">
-          <span style="font-family:'Inter',sans-serif; font-size:13px; color:rgba(0,0,0,0.65);">✓ Visuell skisse (desktop + mobil)</span>
-          <span style="font-family:'Inter',sans-serif; font-size:13px; color:rgba(0,0,0,0.65);">✓ Forslag til innholdsstruktur</span>
-          <span style="font-family:'Inter',sans-serif; font-size:13px; color:rgba(0,0,0,0.65);">✓ SEO-grunnlag inkludert</span>
-          <span style="font-family:'Inter',sans-serif; font-size:13px; color:rgba(0,0,0,0.65);">✓ Gratis gjennomgang med vårt team</span>
-        </div>
-      </div>
-      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:10px; flex-shrink:0;">
-        <button onclick="openContactPopup(); return false;" style="display:inline-flex; align-items:center; gap:8px; background:#262823; color:#fff; font-family:'Inter',monospace; font-size:12px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; padding:14px 28px; border-radius:8px; border:none; cursor:pointer; white-space:nowrap; transition:background 0.18s;">Ja, jeg vil ha mitt gratis utkast</button>
-        <p style="font-family:'Inter',sans-serif; font-size:11px; color:rgba(0,0,0,0.45); margin:0;">Ingen forpliktelse · Ingen faktura · Verdi: 4 500 kr</p>
       </div>
     </div>
 
-    </div>
-  </section>
-
-  <!-- SEKSJON PRISING - FJERNET -->
-  <section class="seksjon-prising" id="priser" style="display:none!important">
-    <div class="prising-inner">
-
-      <div class="prising-eyebrow">
-        <span style="font-family:'Material Symbols Outlined'; font-size:15px; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 20; line-height:1;">payments</span>
-        <span>Pris</span>
-      </div>
-      <div class="prising-grid">
-
-        <!-- Utkast -->
-        <div class="prising-kort prising-kort--utkast">
-          <h3 class="prising-kort__tittel">Mediegruppen — Utkast</h3>
-          <div class="prising-kort__pris">
-            <span class="prising-kort__belop">0</span>
-          </div>
-          <div class="prising-divider"></div>
-          <ul class="prising-kort__features">
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Gratis designutkast
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Skreddersydd til din bransje
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Ingen binding
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Levert innen 48 timer
-            </li>
-          </ul>
-          <a href="#" class="prising-kort__cta" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Få utkast</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
-        </div>
-
-        <!-- Standardpakke -->
-        <div class="prising-kort prising-kort--standard">
-          <h3 class="prising-kort__tittel">Mediegruppen — Standard</h3>
-          <div class="prising-kort__pris">
-            <span class="prising-kort__belop">14 900</span>
-            <span class="prising-kort__valuta">kr</span>
-          </div>
-          <div class="prising-divider"></div>
-          <ul class="prising-kort__features">
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Inntil 5 sider
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Mobiloptimalisert design
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Kontaktskjema og kart
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Rask hosting inkludert (1 år)
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Grunnleggende SEO-oppsett
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              2 runder med korrektur
-            </li>
-          </ul>
-          <a href="#" class="prising-kort__cta" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Kom i gang</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
-        </div>
-
-        <!-- Vekstpakke -->
-        <div class="prising-kort prising-kort--featured">
-          <div class="prising-kort__badge">Mest valgt</div>
-          <h3 class="prising-kort__tittel">Mediegruppen — Vekst</h3>
-          <div class="prising-kort__pris">
-            <span class="prising-kort__belop">24 900</span>
-            <span class="prising-kort__valuta">kr</span>
-          </div>
-          <div class="prising-divider"></div>
-          <ul class="prising-kort__features">
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Alt i Standardpakke
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Inntil 10 sider
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              6 mnd service-avtale inkludert
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Vi legger ut nye prosjekter for deg
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Avansert SEO og Google-profil
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Ubegrensede korrektur-runder
-            </li>
-          </ul>
-          <a href="#" class="prising-kort__cta" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Kom i gang</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
-        </div>
-
-        <!-- Enterprise -->
-        <div class="prising-kort prising-kort--enterprise">
-          <h3 class="prising-kort__tittel">Mediegruppen — Enterprise</h3>
-          <div class="prising-kort__pris">
-            <span class="prising-kort__belop">78 900</span>
-            <span class="prising-kort__valuta">kr</span>
-          </div>
-          <div class="prising-divider"></div>
-          <ul class="prising-kort__features">
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Alt i Vekstpakke
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              A/B-testing for høyere konvertering
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              Vi optimaliserer til du selger mer
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              3 år gratis hosting inkludert
-            </li>
-            <li>
-              <span class="prising-kort__check"><svg viewBox="0 0 14 14"><polyline points="2,7 5.5,11 12,3"/></svg></span>
-              3 år service-avtale inkludert
-            </li>
-          </ul>
-          <a href="#" class="prising-kort__cta" onclick="openContactPopup(); return false;"><span class="btn-al"><svg width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></span><span class="btn-text">Kom i gang</span><svg class="btn-ar" width="18" height="12" viewBox="0 0 356 246" fill="none"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg></a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-
-    <!-- Footer CTA -->
-    <div class="footer-kontakt-wrap" style="display:none!important">
-      <a href="#" class="footer-kontakt-btn" onclick="openContactPopup(); return false;">
-        <span class="fkb-arrow-left">
-          <svg width="52" height="36" viewBox="0 0 356 246" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg>
-        </span>
-        <span class="footer-kontakt-btn-text">Kontakt oss</span>
-        <span class="fkb-arrow-right">
-          <svg width="52" height="36" viewBox="0 0 356 246" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M308.947 153.654L246.714 242.532C245.446 244.341 242.952 244.781 241.143 243.514L210.424 222.005C208.615 220.738 208.175 218.244 209.442 216.434L271.901 127.233L209.441 38.5495C208.173 36.749 208.598 34.2623 210.393 32.9862L241.134 11.1291C242.945 9.84215 245.456 10.2762 246.73 12.0959L308.933 100.996C310.205 102.814 309.754 105.32 307.928 106.581L282.835 123.904C280.541 125.487 280.53 128.873 282.813 130.472L307.964 148.083C309.774 149.35 310.214 151.844 308.947 153.654Z" fill="currentColor"/><path d="M264.279 129.358L253.698 143.858C252.945 144.89 251.745 145.5 250.467 145.5H4C1.79086 145.5 0 143.709 0 141.5V112.5C0 110.291 1.79087 108.5 4 108.5H250.467C251.745 108.5 252.945 109.11 253.698 110.142L264.279 124.642C265.305 126.047 265.305 127.953 264.279 129.358Z" fill="currentColor"/></svg>
-        </span>
-      </a>
-    </div>
-
-    <!-- Footer kolonner -->
-    <div class="footer-body">
-
-      <div class="footer-brand">
-        <div class="footer-brand__wordmark">Mediegruppen</div>
-        <p class="footer-brand__tagline">Vi bygger nettsider for håndverksbedrifter som vil vokse. Fast pris, rask levering, ingen teknisk kunnskap nødvendig.</p>
-        <div class="footer-brand__social">
-          <!-- Facebook -->
-          <a href="https://www.facebook.com/profile.php?id=61586380595362" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-col__label">Delsider</div>
-        <ul class="footer-col__list">
-          <li><a href="om-oss.html"><span class="f-arrow-wrap"><span class="f-arrow"><svg width="14" height="12" viewBox="0 0 200 168" fill="none"><path d="M95.2359 20.8157L116.002 0L200 84.197L116.395 168L95.5983 147.154L143.333 99.304L0.022111 99.4702L0 68.6292L143.311 69.0055L95.2359 20.8157Z"/></svg></span></span><span class="f-text">Om oss</span></a></li>
-          <li><a href="tjenester.html"><span class="f-arrow-wrap"><span class="f-arrow"><svg width="14" height="12" viewBox="0 0 200 168" fill="none"><path d="M95.2359 20.8157L116.002 0L200 84.197L116.395 168L95.5983 147.154L143.333 99.304L0.022111 99.4702L0 68.6292L143.311 69.0055L95.2359 20.8157Z"/></svg></span></span><span class="f-text">Tjenester</span></a></li>
-
-          <li><a href="vilkår.html"><span class="f-arrow-wrap"><span class="f-arrow"><svg width="14" height="12" viewBox="0 0 200 168" fill="none"><path d="M95.2359 20.8157L116.002 0L200 84.197L116.395 168L95.5983 147.154L143.333 99.304L0.022111 99.4702L0 68.6292L143.311 69.0055L95.2359 20.8157Z"/></svg></span></span><span class="f-text">Vilkår</span></a></li>
-          <li><a href="personvern.html"><span class="f-arrow-wrap"><span class="f-arrow"><svg width="14" height="12" viewBox="0 0 200 168" fill="none"><path d="M95.2359 20.8157L116.002 0L200 84.197L116.395 168L95.5983 147.154L143.333 99.304L0.022111 99.4702L0 68.6292L143.311 69.0055L95.2359 20.8157Z"/></svg></span></span><span class="f-text">Personvern</span></a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-col__label">Kontakt</div>
-        <ul class="footer-col__list">
-          <li><a href="mailto:post@mediegruppen.no"><span class="f-arrow-wrap"><span class="f-arrow"><svg width="14" height="12" viewBox="0 0 200 168" fill="none"><path d="M95.2359 20.8157L116.002 0L200 84.197L116.395 168L95.5983 147.154L143.333 99.304L0.022111 99.4702L0 68.6292L143.311 69.0055L95.2359 20.8157Z"/></svg></span></span><span class="f-text">post@mediegruppen.no</span></a></li>
-          <li><a href="tel:+4748118680"><span class="f-arrow-wrap"><span class="f-arrow"><svg width="14" height="12" viewBox="0 0 200 168" fill="none"><path d="M95.2359 20.8157L116.002 0L200 84.197L116.395 168L95.5983 147.154L143.333 99.304L0.022111 99.4702L0 68.6292L143.311 69.0055L95.2359 20.8157Z"/></svg></span></span><span class="f-text">+47 481 18 680</span></a></li>
-          <li><a href="#" onclick="openContactPopup(); return false;"><span class="f-arrow-wrap"><span class="f-arrow"><svg width="14" height="12" viewBox="0 0 200 168" fill="none"><path d="M95.2359 20.8157L116.002 0L200 84.197L116.395 168L95.5983 147.154L143.333 99.304L0.022111 99.4702L0 68.6292L143.311 69.0055L95.2359 20.8157Z"/></svg></span></span><span class="f-text">Bestill en samtale</span></a></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <!-- Bunnlinje -->
-    <div class="footer-bottom">
-      <span class="footer-bottom__copy">© 2025 Mediegruppen AS. Alle rettigheter forbeholdt.</span>
-      <div class="footer-bottom__links">
+    <div class="mgf__legal">
+      <p>Mediegruppen lager nettsider for norske håndverks- og servicebedrifter. Alle priser på denne siden oppgis eks. mva. med mindre annet står. Informasjonen er generell og er ikke et bindende tilbud – endelig pris, omfang og leveringstid avtales skriftlig før vi starter. Resultater fra tidligere kunder er ingen garanti for hva en ny nettside vil gi.</p>
+      <div class="mgf__bottom">
+        <span>© 2026 Mediegruppen AS</span>
+        <span>Alle rettigheter forbeholdt</span>
         <a href="personvern.html">Personvern</a>
-        <a href="personvern.html#cookies">Cookies</a>
         <a href="vilkår.html">Vilkår</a>
+        <a href="personvern.html#cookies">Cookies</a>
       </div>
     </div>
-
   </footer>
 
   <script>
@@ -6086,6 +5136,140 @@
   </script>
 
   <script src="components/navbar.js?v=2"></script>
+  <script>
+    // Forsiden: nav-knappen heter «Få et utkast», og logoen er den nye fra Figma
+    (() => {
+      const cta = document.querySelector('.mg-nav__cta');
+      if (cta) cta.textContent = 'Få et utkast';
+      const old = document.querySelector('.mg-nav__logo');
+      if (old) {
+        // Ny kopi uten den gamle hover-animasjonen (den leter etter det gamle logobildet)
+        const logo = old.cloneNode(false);
+        old.replaceWith(logo);
+        logo.classList.add('mgh-logo');
+        logo.innerHTML = '<svg viewBox="0 0 19 18" fill="none" aria-hidden="true"><path d="M10.9171 17.7263C7.57499 15.3234 1.49297 7.23626 0.05861 3.1328C-0.160674 2.50546 0.260582 1.89084 0.912257 1.76064C5.14796 0.914379 12.4872 0.0440429 17.7478 5.56984e-05C18.6028 -0.00709316 19.1959 0.822345 18.9222 1.63245C17.2885 6.46783 14.4579 13.3157 12.4353 17.2866C12.1385 17.8695 11.4481 18.108 10.9171 17.7263Z" fill="url(#mgh-logo-grad)"/><defs><linearGradient id="mgh-logo-grad" x1="18.9634" y1="0.784941" x2="5.30201" y2="11.7064" gradientUnits="userSpaceOnUse"><stop stop-color="#1B1B1B"/><stop offset="0.144231" stop-color="#4E4D4D"/><stop offset="0.610577" stop-color="#9F5931"/><stop offset="1" stop-color="#C29B6C"/></linearGradient></defs></svg>mediegruppen';
+      }
+    })();
+  </script>
+  <template id="mgm-mal">
+  <button type="button" class="mgm-btn" aria-expanded="false" aria-controls="mgm-panel">Meny <span class="mgm-plus" aria-hidden="true"></span></button>
+  <div class="mgm-veil" aria-hidden="true"></div>
+  <div class="mgm-wrap">
+    <nav class="mgm-panel" id="mgm-panel" aria-label="Meny">
+      <div class="mgm-head" data-m>
+        <span>Meny</span>
+        <button type="button" class="mgm-close">Lukk <span class="mgm-plus" aria-hidden="true"></span></button>
+      </div>
+      <div class="mgm-rule" data-m></div>
+      <ul class="mgm-cards">
+        <li data-m><a class="mgm-card" href="tjenester.html"><span class="mgm-card-img"><img src="images/mockup-macbook-air-betong-tomrer-oslo.webp" alt="" loading="lazy"></span><span class="mgm-card-name">Tjenester</span></a></li>
+        <li data-m><a class="mgm-card" href="bibliotek.html"><span class="mgm-card-img"><img src="images/hero-nettleser-badside.webp" alt="" loading="lazy"></span><span class="mgm-card-name">Arbeid</span></a></li>
+        <li data-m><a class="mgm-card" href="om-oss.html"><span class="mgm-card-img"></span><span class="mgm-card-name">Om oss</span></a></li>
+        <li data-m><a class="mgm-card" href="kontakt.html"><span class="mgm-card-img"></span><span class="mgm-card-name">Kontakt</span></a></li>
+      </ul>
+      <div class="mgm-foot" data-m>
+        <span>Nettsider for norske bedrifter</span>
+        <a href="#" onclick="openContactPopup(); return false;">Få et utkast</a>
+      </div>
+    </nav>
+  </div>
+  </template>
+  <script>
+    // «Meny»: legges rett etter nav-en, så knappen kan følge nav-en når den skjules.
+    // Som menyen på badesiden åpner den seg når musen kommer nær knappen (eller
+    // ved klikk/tastatur). Selve bevegelsen er CSS-overganger.
+    (function () {
+      const nav = document.querySelector('.mg-nav');
+      const tpl = document.getElementById('mgm-mal');
+      if (!nav || !tpl) return;
+      nav.after(tpl.content.cloneNode(true));
+      const root = document.documentElement;
+      const btn = document.querySelector('.mgm-btn');
+      const wrap = document.querySelector('.mgm-wrap');
+      const panel = document.getElementById('mgm-panel');
+      const veil = document.querySelector('.mgm-veil');
+      const items = panel.querySelectorAll('[data-m]');
+      const focusables = panel.querySelectorAll('a, button');
+
+
+      const small = matchMedia('(max-width: 768px)');
+      const NEAR = 60, LEAVE = 32;
+      let open = false, armed = false, closeTimer = 0;
+      items.forEach((el, i) => el.style.setProperty('--i', i));
+
+      const dist = (x, y, r) => Math.hypot(
+        Math.max(r.left - x, 0, x - r.right),
+        Math.max(r.top - y, 0, y - r.bottom)
+      );
+
+      const setOpen = (value) => {
+        if (open === value) return;
+        open = value;
+        root.classList.toggle('mgm-open', value);
+        // Lukking: en kort uttoning før boksen skjules
+        clearTimeout(closeTimer);
+        root.classList.toggle('mgm-closing', !value);
+        if (!value) closeTimer = setTimeout(() => root.classList.remove('mgm-closing'), 240);
+        btn.setAttribute('aria-expanded', String(value));
+        panel.setAttribute('aria-hidden', String(!value));
+        focusables.forEach((el) => { el.tabIndex = value ? 0 : -1; });
+        if (!value) armed = false;
+      };
+
+      // Musen nær knappen åpner; godt utenfor boksen lukker
+      document.addEventListener('pointermove', (e) => {
+        if (e.pointerType !== 'mouse' || small.matches) return;
+        if (document.querySelector('.popup-overlay.active, .popup-overlay.open')) return;
+        if (open) {
+          if (dist(e.clientX, e.clientY, wrap.getBoundingClientRect()) <= LEAVE) return;
+          if (panel.contains(document.activeElement)) return;
+          setOpen(false);
+          return;
+        }
+        if (nav.classList.contains('nav-hidden')) { armed = true; return; }
+        const d = dist(e.clientX, e.clientY, btn.getBoundingClientRect());
+        if (d > NEAR) armed = true;
+        else if (armed || d === 0) setOpen(true);
+      }, { passive: true });
+
+      root.addEventListener('mouseleave', () => {
+        if (!panel.contains(document.activeElement)) setOpen(false);
+      });
+      btn.addEventListener('click', () => setOpen(true));
+      document.querySelector('.mgm-close').addEventListener('click', () => { setOpen(false); btn.focus({ preventScroll: true }); });
+      veil.addEventListener('click', () => setOpen(false));
+      panel.querySelector('.mgm-foot a').addEventListener('click', () => setOpen(false));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && open) { setOpen(false); btn.focus({ preventScroll: true }); }
+      });
+      panel.addEventListener('focusout', (e) => {
+        if (!panel.contains(e.relatedTarget) && e.relatedTarget !== btn) setOpen(false);
+      });
+
+      focusables.forEach((el) => { el.tabIndex = -1; });
+      panel.setAttribute('aria-hidden', 'true');
+    })();
+  </script>
+  <script>
+    // Hero: det mørke laget på nettleservinduet lysner fra full styrke (øverst på
+    // siden) til helt borte når toppen av vinduet er 20 % fra toppen av skjermen
+    (() => {
+      const win = document.querySelector('.mgh__browser');
+      if (!win) return;
+      let ticking = false;
+      const update = () => {
+        const vh = window.innerHeight;
+        const docTop = win.getBoundingClientRect().top + window.scrollY;
+        const end = Math.max(docTop - vh * 0.2, 1);
+        const p = Math.min(Math.max(window.scrollY / end, 0), 1);
+        win.style.setProperty('--shade', (1 - p).toFixed(3));
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
   <script>
   /* V2 — nav-item hover-animasjon (løft-stil) */
   (function initNavAnim() {
@@ -6208,87 +5392,6 @@
 
       gsap.to(el, { ...TO, duration, ease, delay, scrollTrigger: st });
     });
-  })();
-  </script>
-
-  <!-- ── V2 SEKSJON 2 ANIMATION ──────────────────────────────────────────────
-       ScrollTrigger — starter når seksjonen er 75% inn i viewport.
-       Rekkefølge: badge → overskrift → undertekst / bilde parallelt → punkter stagger
-  ──────────────────────────────────────────────────────────────────────── -->
-  <script>
-  (function () {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-        window.matchMedia('(max-width: 768px)').matches) {
-      document.querySelectorAll('#s2-badge,#s2-sub,#s2-image,.s2-item,.s2-line-inner')
-        .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
-      return;
-    }
-
-    const badge    = document.querySelector('#s2-badge');
-    const lineInner = document.querySelector('.s2-line-inner');
-    const lineWrap  = document.querySelector('.s2-line-wrap');
-    const sub      = document.querySelector('#s2-sub');
-    const image    = document.querySelector('#s2-image');
-    const items    = document.querySelectorAll('.s2-item');
-
-    /* Pre-set linje under masken */
-    gsap.set(lineInner, { y: '108%', opacity: 0, force3D: true });
-
-    /* Sett overflow:hidden på wrap under animasjon */
-    if (lineWrap) lineWrap.style.overflow = 'hidden';
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#s2',
-        start: 'top 75%',
-        once: true
-      }
-    });
-
-    /* Badge */
-    tl.fromTo(badge,
-      { opacity: 0, y: 8, force3D: true },
-      { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out', force3D: true,
-        onComplete: () => gsap.set(badge, { clearProps: 'transform,will-change' }) },
-      0
-    );
-
-    /* Overskrift line-reveal */
-    tl.fromTo(lineInner,
-      { y: '108%', opacity: 0, force3D: true },
-      { y: 0, opacity: 1, duration: 0.9, ease: 'power4.out', force3D: true,
-        onComplete: () => {
-          gsap.set(lineInner, { clearProps: 'transform,opacity,will-change' });
-          if (lineWrap) lineWrap.style.overflow = 'visible';
-        }
-      }, 0.12
-    );
-
-    /* Undertekst */
-    tl.fromTo(sub,
-      { opacity: 0, y: 12, force3D: true },
-      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', force3D: true,
-        onComplete: () => gsap.set(sub, { clearProps: 'transform,will-change' }) },
-      0.35
-    );
-
-    /* Bilde */
-    tl.fromTo(image,
-      { opacity: 0, y: 20, force3D: true },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', force3D: true,
-        onComplete: () => gsap.set(image, { clearProps: 'transform,will-change' }) },
-      0.2
-    );
-
-    /* Punktliste — stagger */
-    tl.fromTo(items,
-      { opacity: 0, y: 12, force3D: true },
-      { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.08, force3D: true,
-        onComplete: () => gsap.set(items, { clearProps: 'transform,will-change' }) },
-      0.4
-    );
-
   })();
   </script>
 
@@ -6430,6 +5533,16 @@
         0.98
       );
       tl.call(() => ctaBox.classList.add('shimmer-active'), [], 1.32);
+    }
+
+    const pillCta = document.querySelector('.hero-pill-cta');
+    if (pillCta) {
+      tl.fromTo(pillCta,
+        { opacity: 0, y: 12, force3D: true },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', force3D: true,
+          onComplete: () => gsap.set(pillCta, { clearProps: 'transform,opacity' }) },
+        0.6
+      );
     }
 
     /* Bildestrip */
@@ -7170,6 +6283,165 @@
       document.body.style.overflow = '';
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closePrisPopup(); });
+  </script>
+  <script>
+    // WebGL-bakgrunn fra heroen og nedover (grå lysbånd -> buer). Tegnes bare
+    // mens området er synlig. Uten WebGL står sidene med vanlig lys bakgrunn.
+    (function () {
+      const wrap = document.querySelector('.mgw');
+      const section = document.querySelector('.mgp');
+      const canvas = wrap && wrap.querySelector('.mgw__gl');
+      if (!canvas) return;
+      const gl = canvas.getContext('webgl', { antialias: false });
+      if (!gl) return;
+
+      const vs = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+      const fs = `
+        precision highp float;
+        uniform vec2 u_res;
+        uniform float u_time;
+        uniform vec2 u_mouse;
+        uniform float u_morph;
+        uniform float u_scroll;
+        uniform float u_dark;   // 0 lys side, 1 mørk side
+        const vec3 BG = vec3(0.992, 0.988, 0.984);
+
+        vec3 spectrum(float t) {
+          return mix(vec3(0.30, 0.35, 0.42), vec3(0.86, 0.88, 0.91), 0.5 + 0.5 * cos(6.2831 * (t + 0.15)));
+        }
+        float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+        mat2 rot(float a) { float c = cos(a), s = sin(a); return mat2(c, -s, s, c); }
+
+        vec4 band(vec2 p, float angle, float offset, float amp, float freq, float speed, float width, float hue) {
+          p = rot(angle) * p;
+          float t = u_time * speed;
+          float y = offset + amp * sin(p.x * freq + t) + amp * 0.5 * sin(p.x * freq * 2.3 - t * 1.3);
+          float slope = amp * freq * cos(p.x * freq + t);
+          float d = (p.y - y) / sqrt(1.0 + slope * slope);
+          float w = width * (0.35 + 0.65 * smoothstep(-1.6, 0.4, p.x)) * (0.6 + 0.4 * sin(p.x * 1.7 + t * 0.7));
+          float k = 0.04 * w;
+          vec3 a = vec3(exp(-pow((d - k) / w, 2.0)), exp(-pow(d / w, 2.0)), exp(-pow((d + k) / w, 2.0)));
+          float s = max(a.r, max(a.g, a.b));
+          return vec4(spectrum(hue + d / w * 0.25) * a / max(s, 1e-4), s);
+        }
+
+        void main() {
+          vec2 p = (gl_FragCoord.xy - 0.5 * u_res) / u_res.y;
+          p += (u_mouse - 0.5) * vec2(u_res.x / u_res.y, 1.0) * 0.06;
+          p.y += u_scroll * 0.35;
+          // Variant G: båndene ligger ute ved kantene (oppe til høyre og nede til
+          // venstre), og det som havner midt på skjermen tones nesten ut, så
+          // teksten står fritt. Formskiftet bøyer dem til buer langs høyre kant.
+          float k = smoothstep(0.0, 1.0, u_morph);
+          vec2 c = vec2(1.0, -0.05);
+          vec2 dc = p - c;
+          vec2 q = mix(p, vec2(atan(dc.y, dc.x) * 0.6, length(dc) - 0.55), k);
+          float seam = mix(1.0, smoothstep(3.1416, 2.6, abs(atan(dc.y, dc.x))), smoothstep(0.0, 0.012, k));
+          float calm = mix(0.12, 1.0, smoothstep(0.15, 0.62, length(p * vec2(0.6, 1.0))));
+          vec3 col = mix(BG, vec3(0.110, 0.110, 0.106), u_dark);
+          vec4 b1 = band(q, mix(-0.32, 0.0, k), mix(0.42, 0.0, k), mix(0.07, 0.025, k), 0.9, 0.11, mix(0.12, 0.07, k), 0.05);
+          vec4 b2 = band(q, mix(-0.28, 0.0, k), mix(-0.46, 0.13, k), mix(0.06, 0.02, k), 1.0, 0.09, mix(0.1, 0.045, k), 0.3);
+          col = mix(col, b1.rgb, b1.a * 0.62 * seam * calm);
+          col = mix(col, b2.rgb, b2.a * 0.5 * seam * calm);
+          col += (hash(gl_FragCoord.xy + fract(u_time)) - 0.5) * 0.012;
+          gl_FragColor = vec4(col, 1.0);
+        }`;
+
+      const sh = (type, src) => {
+        const o = gl.createShader(type);
+        gl.shaderSource(o, src);
+        gl.compileShader(o);
+        if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o));
+        return o;
+      };
+      const prog = gl.createProgram();
+      gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+      gl.enableVertexAttribArray(0);
+      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+      const U = (n) => gl.getUniformLocation(prog, n);
+      const uRes = U('u_res'), uTime = U('u_time'), uMouse = U('u_mouse'), uMorph = U('u_morph'), uScroll = U('u_scroll'), uDark = U('u_dark');
+      let dark = 0;
+
+      // Lav oppløsning holder: bakgrunnen er myk, og det sparer mye arbeid
+      const resize = () => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5) * 0.6;
+        canvas.width = Math.max(1, Math.round(canvas.offsetWidth * dpr));
+        canvas.height = Math.max(1, Math.round(canvas.offsetHeight * dpr));
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      };
+      window.addEventListener('resize', resize);
+      resize();
+
+      let mx = 0.5, my = 0.5, tx = 0.5, ty = 0.5, morph = 0, visible = false, raf = 0, elapsed = 0, last = performance.now();
+      window.addEventListener('pointermove', (e) => { tx = e.clientX / innerWidth; ty = 1 - e.clientY / innerHeight; }, { passive: true });
+
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const start = performance.now();
+      const frame = (now) => {
+        // Står stille mens menyen er åpen (siden bak er blurret)
+        const dt = Math.min((now - last) / 1000, 0.05);
+        last = now;
+        if (document.documentElement.classList.contains('mgm-open')) { raf = 0; return; }
+        elapsed += dt;  // tiden går bare når bakgrunnen vises, så den ikke hopper etterpå
+        mx += (tx - mx) * 0.04;
+        my += (ty - my) * 0.04;
+        // Som på testsiden: formen skifter mens Prinsipper scrolles inn, fra
+        // toppen av seksjonen er nederst på skjermen til den er 30 % ned
+        const top = section.getBoundingClientRect().top;
+        const target = Math.min(Math.max((innerHeight - top) / (innerHeight * 0.7), 0), 1);
+        // Båndene glir litt med scrollen, i samme fart som på testsiden: målt i
+        // piksler scrollet (ikke andel av seksjonen, som ble altfor raskt når
+        // seksjonen bare er litt høyere enn skjermen). 0,35 per ca. 1700 px.
+        const w = wrap.getBoundingClientRect();
+        gl.uniform1f(uScroll, Math.max(-w.top, 0) / 1700);
+        morph += (target - morph) * 0.06;
+        gl.uniform2f(uRes, canvas.width, canvas.height);
+        gl.uniform1f(uTime, reduce ? 4 : elapsed);
+        gl.uniform2f(uMouse, mx, my);
+        gl.uniform1f(uMorph, morph);
+        // Følger den mørke siden mykt (ca. like lang tid som fargeovergangen i CSS)
+        const darkTarget = document.documentElement.classList.contains('mg-dark') ? 1 : 0;
+        dark += (darkTarget - dark) * Math.min(dt * 6, 1);
+        gl.uniform1f(uDark, dark);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+        raf = visible ? requestAnimationFrame(frame) : 0;
+      };
+
+      new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible && !raf) { last = performance.now(); raf = requestAnimationFrame(frame); }
+      }).observe(wrap);
+
+      // Start tegningen igjen når menyen lukkes
+      new MutationObserver(() => {
+        if (visible && !raf && !document.documentElement.classList.contains('mgm-open')) {
+          last = performance.now();
+          raf = requestAnimationFrame(frame);
+        }
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    })();
+  </script>
+  <script>
+    // Mørk side når toppen av «Slik får du befaringer» passerer midten av skjermen
+    (function () {
+      const sec = document.querySelector('.mgs');
+      if (!sec) return;
+      const root = document.documentElement;
+      const update = () => {
+        const top = sec.getBoundingClientRect().top;
+        const vh = window.innerHeight;
+        if (!root.classList.contains('mg-dark') && top < vh * 0.5) root.classList.add('mg-dark');
+        else if (root.classList.contains('mg-dark') && top > vh * 0.65) root.classList.remove('mg-dark');
+      };
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
   </script>
 </body>
 </html>
