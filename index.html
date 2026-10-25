@@ -5100,9 +5100,26 @@
       text-decoration: none;
       border-top: 1px solid rgba(255, 255, 255, 0.16);
       border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-      transition: opacity 0.2s ease;
     }
-    .mgk__direct a:hover { opacity: 0.6; }
+    /* Strekene som i menyen: over og under fylles fra venstre ved hover, og trekker
+       seg ut mot høyre når musen går videre. Lyse, siden seksjonen er mørk. */
+    .mgk__direct a { position: relative; }
+    .mgk__direct a::before, .mgk__direct a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1.5px;
+      background: #E3E3E3;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+      pointer-events: none;
+    }
+    .mgk__direct a::before { top: -1px; }
+    .mgk__direct a::after { bottom: -1px; }
+    .mgk__direct a:hover::before, .mgk__direct a:hover::after { transform: scaleX(1); transform-origin: left; }
+    @media (hover: none) { .mgk__direct a:hover::before, .mgk__direct a:hover::after { transform: scaleX(0); } }
     .mgk__direct small { display: block; font-size: 12px; line-height: 16px; color: #A8A5A2; }
     .mgk__direct strong { display: block; margin-top: 2px; font-family: 'Instrument Sans', sans-serif; font-size: 21px; line-height: 26px; font-weight: 500; letter-spacing: -0.02em; }
     .mgk__direct svg { width: 13px; height: 13px; flex: none; }
@@ -6624,7 +6641,7 @@
       });
       resize();
 
-      let mx = 0.5, my = 0.5, tx = 0.5, ty = 0.5, morph = 0, visible = false, raf = 0, elapsed = 0, last = performance.now();
+      let mx = 0.5, my = 0.5, tx = 0.5, ty = 0.5, morph = opts.morph(), visible = false, raf = 0, elapsed = 0, last = performance.now();
       window.addEventListener('pointermove', (e) => { tx = e.clientX / innerWidth; ty = 1 - e.clientY / innerHeight; }, { passive: true });
 
       const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -6690,11 +6707,12 @@
       const phone = matchMedia('(max-width: 768px)').matches;
       if (mainCanvas) bands(mainCanvas, phone ? wrap : document.body, {
         morph: () => {
+          if (phone) return 1;  // mobil: bare buene langs høyre side, ingen formskifte
           if (!section) return 0;
           const top = section.getBoundingClientRect().top;
           return Math.min(Math.max((innerHeight - top) / (innerHeight * 0.7), 0), 1);
         },
-        scroll: () => Math.max(-wrap.getBoundingClientRect().top, 0) / 1700,
+        scroll: () => phone ? 0 : Math.max(-wrap.getBoundingClientRect().top, 0) / 1700,
         dark: () => document.documentElement.classList.contains('mg-dark') ? 1 : 0,
         split: () => footWrap ? footWrap.getBoundingClientRect().top : Infinity,
         // Mobil: pause når mindre enn 30 % av skjermen viser innholdet over footeren
