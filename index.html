@@ -6066,10 +6066,10 @@
     html.mgkp-open #cookie-banner { visibility: hidden !important; }
 
     /* Mobil: egen fullskjermvisning. Fast topplinje med stor lukkeknapp, Ring/E-post
-       som knapper, kort skjema, og Send festet nederst over tastaturet. Høyden
-       følger det synlige vinduet (--mgkp-h settes i JS når tastaturet åpnes). */
+       som knapper, og et kort skjema med Send rett under feltene, så knappen ligger
+       over tastaturet uten at noe må flyttes på når det åpnes. */
     @media (max-width: 768px) {
-      .mgkp.popup-overlay { padding: 0; align-items: stretch; bottom: auto; height: var(--mgkp-h, 100dvh); top: var(--mgkp-top, 0px); }
+      .mgkp.popup-overlay { padding: 0; align-items: stretch; }
       .mgkp__veil { display: none; }
       .mgkp__card {
         display: flex; flex-direction: column; width: 100%; height: 100%; max-height: none;
@@ -6082,7 +6082,7 @@
       .mgkp__rule { display: none; }
       .mgkp__title { margin-top: 24px; font-size: 30px; line-height: 1.1; text-align: left; }
       .mgkp__intro { margin: 8px 0 0; font-size: 15px; line-height: 22px; text-align: left; }
-      .mgkp .mgk__inner { flex: 1; display: flex; flex-direction: column; margin-top: 20px; }
+      .mgkp .mgk__inner { margin-top: 20px; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
 
       /* Ring / E-post som to knapper side om side */
       .mgkp .mgk__direct { grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -6094,7 +6094,7 @@
       .mgkp .mgk__or { justify-content: flex-start; margin: 20px 0 12px; }
       .mgkp .mgk__or::before { display: none; }
 
-      .mgkp .mgk__form { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+      .mgkp .mgk__form { display: flex; flex-direction: column; gap: 10px; }
       .mgkp .mgk__row { grid-template-columns: 1fr; gap: 10px; }
       .mgkp .mgk__form input { height: 52px; }
       .mgkp .mgk__form textarea { display: none; height: 88px; resize: none; }
@@ -6102,15 +6102,9 @@
       .mgkp__more { display: block; align-self: flex-start; padding: 6px 0; font: 500 14px/20px 'Inter', sans-serif; color: #A8A5A2; background: none; border: 0; cursor: pointer; }
       .mgkp.is-more .mgkp__more { display: none; }
 
-      /* Send festet nederst */
-      .mgkp .mgk__send {
-        position: sticky; bottom: 0; flex-direction: column; align-items: stretch; gap: 8px;
-        margin: auto -16px 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-        background: #1C1C1B; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
-      }
+      .mgkp .mgk__send { flex-direction: column; align-items: stretch; gap: 8px; margin-top: 6px; text-align: center; }
       .mgkp .mgk__send button { height: 52px; }
       .mgkp .mgk__note { font-size: 12px; line-height: 16px; }
-      .mgkp .mgk__done { margin: auto 0; }
     }
   </style>
   <div class="popup-overlay mgkp" id="kontaktPopup" role="dialog" aria-modal="true" aria-labelledby="mgkp-tittel">
@@ -6147,24 +6141,13 @@
     </div>
   </div>
   <script>
-    // Mobil: meldingsfeltet vises først når man ber om det, og popupen følger det
-    // synlige vinduet så Send-knappen ligger over tastaturet.
+    // Mobil: meldingsfeltet vises først når man ber om det
     (function () {
       var pop = document.getElementById('kontaktPopup');
       pop.querySelector('.mgkp__more').addEventListener('click', function () {
         pop.classList.add('is-more');
         pop.querySelector('textarea').focus();
       });
-      var vv = window.visualViewport;
-      if (!vv) return;
-      var fit = function () {
-        if (!pop.classList.contains('open')) return;
-        pop.style.setProperty('--mgkp-h', vv.height + 'px');
-        pop.style.setProperty('--mgkp-top', vv.offsetTop + 'px');
-      };
-      vv.addEventListener('resize', fit);
-      vv.addEventListener('scroll', fit);
-      window._mgkpFit = fit;
     })();
   </script>
 
@@ -6215,20 +6198,37 @@
       window._initPopupSlider = initPopupSlider;
     })();
 
+    // På mobil låses siden bak med position: fixed, ellers scroller iOS siden
+    // under popupen når tastaturet åpnes, og den hopper når popupen lukkes.
+    var _mgkpY = null;
     function openContactPopup() {
-      document.getElementById('kontaktPopup').classList.add('open');
+      var pop = document.getElementById('kontaktPopup');
+      if (pop.classList.contains('open')) return;
+      pop.classList.add('open');
       document.documentElement.classList.add('mgkp-open');
-      if (window._mgkpFit) window._mgkpFit();
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
-      if (window._initPopupSlider) window._initPopupSlider();
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        _mgkpY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top = -_mgkpY + 'px';
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+      }
     }
 
     function closeContactPopup() {
-      document.getElementById('kontaktPopup').classList.remove('open');
+      var pop = document.getElementById('kontaktPopup');
+      if (!pop.classList.contains('open')) return;
+      pop.classList.remove('open');
       document.documentElement.classList.remove('mgkp-open');
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
+      if (_mgkpY !== null) {
+        document.body.style.position = document.body.style.top = document.body.style.left = document.body.style.right = '';
+        window.scrollTo({ top: _mgkpY, behavior: 'instant' });
+        _mgkpY = null;
+      }
     }
 
     function initPortoKortWidth() {
