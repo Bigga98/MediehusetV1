@@ -5186,6 +5186,17 @@
     }
     html body .mg-nav__cta { transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease !important; }
     .mgh__link { transition: color 0.5s ease; }
+    /* Mobil: raskere overgang, så siden ikke henger etter når den blir mørk */
+    @media (max-width: 768px) {
+      .mgw,
+      .mgh__label, .mgh__title, .mgh__points, .mgh__points li,
+      .mgp__label, .mgp__title, .mgp__list h3, .mgp__list p, .mgp__list li,
+      .mgs__label, .mgs__title, .mgs__intro, .mgs__card,
+      .mgt__label, .mgt__title, .mgt__intro, .mgt__intro strong, .mgt__list h3, .mgt__list p, .mgt__list li, .mgt__badge,
+      .mgh__rule, .mgp__rule, .mgs__rule, .mgt__rule,
+      .mgm-btn, html body .mg-nav__logo.mgh-logo, .mgh__link { transition-duration: 0.3s; }
+      html body .mg-nav__cta { transition-duration: 0.3s !important; }
+    }
 
     html.mg-dark .mgw { background: #1C1C1B; }
     html.mg-dark :is(.mgh__label, .mgh__title, .mgh__points, .mgp__label, .mgp__title, .mgp__list h3, .mgs__label, .mgs__title) { color: #E3E3E3; }
@@ -6719,7 +6730,8 @@
         // Mobil: hopp over annethvert bilde (ca. 30 i sekundet)
         if (phone && now - last < 30) { raf = visible ? requestAnimationFrame(frame) : 0; return; }
         // Står stille mens menyen er åpen (siden bak er blurret)
-        const dt = Math.min((now - last) / 1000, 0.05);
+        const rawDt = (now - last) / 1000;
+        const dt = Math.min(rawDt, 0.05);
         last = now;
         if (document.documentElement.classList.contains('mgm-open')) { raf = 0; return; }
         if (opts.active && !opts.active()) { raf = 0; return; }  // på pause (mobil, ved footeren)
@@ -6738,9 +6750,11 @@
         gl.uniform1f(uTime, reduce ? 4 : elapsed);
         gl.uniform2f(uMouse, mx, my);
         gl.uniform1f(uMorph, morph);
-        // Følger den mørke siden mykt (ca. like lang tid som fargeovergangen i CSS)
+        // Følger den mørke siden mykt (ca. like lang tid som fargeovergangen i CSS).
+        // Regnet på faktisk tid (ikke den avkortede dt), så overgangen ikke blir
+        // seig på mobil når det tegnes få bilder i sekundet
         const darkTarget = opts.dark();
-        dark += (darkTarget - dark) * Math.min(dt * 6, 1);
+        dark += (darkTarget - dark) * (1 - Math.exp(-rawDt * (phone ? 10 : 7)));
         gl.uniform1f(uDark, dark);
         // Skillestrek: footerens overkant (px fra toppen av vinduet) regnet om til
         // lerretspiksler nedenfra. Ingen footer i synsfeltet gir et tall under 0.
