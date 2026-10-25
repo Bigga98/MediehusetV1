@@ -6069,7 +6069,10 @@
        som knapper, og et kort skjema med Send rett under feltene, så knappen ligger
        over tastaturet uten at noe må flyttes på når det åpnes. */
     @media (max-width: 768px) {
-      .mgkp.popup-overlay { padding: 0; align-items: stretch; }
+      .mgkp.popup-overlay { padding: 0; align-items: stretch; background: #1C1C1B; }
+      /* Når tastaturet åpnes, skyver iOS bildet opp og viser sidens bakgrunn i
+         stripen over tastaturet. Den skal være mørk som popupen, ikke hvit. */
+      html.mgkp-open, html.mgkp-open body { background: #1C1C1B !important; }
       .mgkp__veil { display: none; }
       .mgkp__card {
         display: flex; flex-direction: column; width: 100%; height: 100%; max-height: none;
