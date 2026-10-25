@@ -6076,17 +6076,17 @@
     /* Cookie-banneret skal ikke ligge over skjemaet */
     html.mgkp-open #cookie-banner { visibility: hidden !important; }
 
-    /* Mobil: egen fullskjermvisning. Fast topplinje med stor lukkeknapp, Ring/E-post
-       som knapper, og et kort skjema med Send rett under feltene, så knappen ligger
-       over tastaturet uten at noe må flyttes på når det åpnes. */
+    /* Mobil: popupen blir en vanlig side i stedet for et fast lag. Resten av siden
+       skjules mens den er åpen (html.mgkp-page, settes i JS). Da håndterer telefonen
+       tastaturet som på et hvilket som helst skjema: ingen glipe over tastaturet
+       og ingenting som hopper. Topplinjen med lukkeknappen står fast øverst. */
     @media (max-width: 768px) {
-      .mgkp.popup-overlay { padding: 0; align-items: stretch; background: #1C1C1B; }
-      /* Når tastaturet åpnes, skyver iOS bildet opp og viser sidens bakgrunn i
-         stripen over tastaturet. Den skal være mørk som popupen, ikke hvit. */
-      html.mgkp-open, html.mgkp-open body { background: #1C1C1B !important; }
+      html.mgkp-page body > *:not(#kontaktPopup) { display: none !important; }
+      html.mgkp-page, html.mgkp-page body { background: #1C1C1B !important; }
+      html.mgkp-page .mgkp.popup-overlay { position: relative; inset: auto; display: block; min-height: 100dvh; padding: 0; background: #1C1C1B; }
       .mgkp__veil { display: none; }
       .mgkp__card {
-        display: flex; flex-direction: column; width: 100%; height: 100%; max-height: none;
+        width: 100%; min-height: 100dvh; max-height: none; overflow: visible;
         padding: 0 16px; border: 0; border-radius: 0; box-shadow: none;
         transform: translateY(24px); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       }
@@ -6212,8 +6212,7 @@
       window._initPopupSlider = initPopupSlider;
     })();
 
-    // På mobil låses siden bak med position: fixed, ellers scroller iOS siden
-    // under popupen når tastaturet åpnes, og den hopper når popupen lukkes.
+    // På mobil huskes scrollposisjonen, så man kommer tilbake samme sted etter lukking
     var _mgkpY = null;
     function openContactPopup() {
       var pop = document.getElementById('kontaktPopup');
@@ -6223,11 +6222,12 @@
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
       if (window.matchMedia('(max-width: 768px)').matches) {
+        // Mobil: popupen vises som egen side (se CSS for .mgkp), siden scroller vanlig
         _mgkpY = window.scrollY;
-        document.body.style.position = 'fixed';
-        document.body.style.top = -_mgkpY + 'px';
-        document.body.style.left = '0';
-        document.body.style.right = '0';
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        document.documentElement.classList.add('mgkp-page');
+        window.scrollTo({ top: 0, behavior: 'instant' });
       }
     }
 
@@ -6239,7 +6239,7 @@
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
       if (_mgkpY !== null) {
-        document.body.style.position = document.body.style.top = document.body.style.left = document.body.style.right = '';
+        document.documentElement.classList.remove('mgkp-page');
         window.scrollTo({ top: _mgkpY, behavior: 'instant' });
         _mgkpY = null;
       }
