@@ -5138,12 +5138,12 @@
       border: 1px solid #D0C8C8;
       border-radius: 12px;
       outline: none;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .mgk__form input { height: 56px; }
     .mgk__form textarea { height: 96px; padding-top: 17px; resize: vertical; border-color: #D0D0D0; }
     .mgk__form ::placeholder { color: #8E8C89; }
-    .mgk__form input:focus, .mgk__form textarea:focus { border-color: #FFFFFF; }
+    .mgk__form input:focus, .mgk__form textarea:focus { border-color: #E3E3E3; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14); } /* Figma: Felt i fokus, variant C */
     .mgk__send { display: flex; align-items: center; gap: 20px; margin-top: 12px; }
     .mgk__send button {
       height: 52px;
@@ -5254,9 +5254,9 @@
       inset: 0;
       z-index: 2147483000;
       pointer-events: none;
-      background: url('images/noise.png') repeat;
-      background-size: 128px 128px; /* bildet er 256 px, vist i 128: fine korn (variant «Finere» fra testsiden) */
-      opacity: 0.05;
+      background: url('images/noise-balansert.png') repeat;
+      background-size: 128px 128px; /* variant «Balansert, svak» fra testsiden: lyse og mørke korn veier hverandre opp, så bakgrunnen ikke blir grå */
+      opacity: 0.4;
       transform: translateZ(0);
     }
     /* Mobil: alt venstrestilt (Figma: Mobil – Forside, venstrestilt) */
@@ -6036,72 +6036,72 @@
   })();
   </script>
 
-  <!-- KONTAKT POPUP -->
-  <div class="popup-overlay" id="kontaktPopup">
-    <div class="popup-backdrop" onclick="closeContactPopup()"></div>
-    <div class="popup-card">
+  <!-- KONTAKT POPUP (Figma: Forside (ny) – Skjema (popup)), samme innhold som skjemaseksjonen -->
+  <style>
+    .mgkp { padding: 20px; font-family: 'Inter', sans-serif; color: #E3E3E3; -webkit-font-smoothing: antialiased; }
+    .mgkp__veil { position: absolute; inset: 0; background: rgba(21, 21, 20, 0.45); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+    .mgkp__card {
+      position: relative; width: min(760px, 100%); max-height: calc(100dvh - 40px); overflow-y: auto; overscroll-behavior: contain;
+      padding: 28px 40px 40px; background: #1C1C1B; border: 1px solid #2A2A28; border-radius: 16px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+      transform: translateY(16px); transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .popup-overlay.open .mgkp__card { transform: none; }
+    .mgkp__head { display: flex; align-items: center; justify-content: space-between; font-size: 14px; line-height: 17px; font-weight: 500; }
+    .mgkp__close { display: inline-flex; align-items: center; gap: 8px; padding: 0; font: inherit; color: inherit; background: none; border: 0; cursor: pointer; transition: opacity 0.2s ease; }
+    .mgkp__close:hover { opacity: 0.6; }
+    .mgkp__close svg { width: 10px; height: 10px; }
+    .mgkp__rule { height: 1px; margin: 14px 0 0; background: rgba(255, 255, 255, 0.16); border: 0; }
+    .mgkp__title { margin: 40px 0 0; text-align: center; font-family: 'Instrument Sans', sans-serif; font-size: 52px; line-height: 1.06; font-weight: 500; letter-spacing: -0.03em; color: #E3E3E3; }
+    .mgkp__intro { max-width: 640px; margin: 16px auto 0; text-align: center; font-size: 18px; line-height: 27px; color: #A8A5A2; }
+    .mgkp__intro strong { font-weight: 400; color: #E3E3E3; }
+    .mgkp .mgk__inner { width: 100%; margin-top: 32px; }
+    .mgkp .mgk__or { margin: 24px 0; }
+    .mgkp .mgk__done { color: #E3E3E3; }
+    .mgkp.is-sent .mgk__form, .mgkp.is-sent .mgk__or { display: none; }
+    .mgkp.is-sent .mgk__done { display: block; }
 
-      <!-- Venstre panel -->
-      <div class="popup-left">
-        <div class="popup-slide" id="popup-slide-0"><img src="images/kontakt-slide-1.jpeg" alt=""></div>
-        <div class="popup-slide" id="popup-slide-1"><img src="images/kontakt-slide-2.jpeg" alt=""></div>
-        <div class="popup-slide" id="popup-slide-2"><img src="images/kontakt-slide-3.jpeg" alt=""></div>
+    /* Mobil: arket glir opp fra bunnen */
+    @media (max-width: 768px) {
+      .mgkp.popup-overlay { align-items: flex-end; padding: 0; }
+      .mgkp__card { width: 100%; max-height: 92dvh; padding: 20px 16px calc(24px + env(safe-area-inset-bottom)); border-radius: 16px 16px 0 0; border-bottom: 0; transform: translateY(40px); }
+      .mgkp__title { margin-top: 28px; font-size: 34px; text-align: left; }
+      .mgkp__intro { margin-top: 12px; font-size: 16px; line-height: 24px; text-align: left; }
+      .mgkp .mgk__inner { margin-top: 24px; }
+      .mgkp .mgk__direct strong { font-size: 19px; line-height: 24px; }
+      .mgkp .mgk__or { justify-content: flex-start; margin: 20px 0; }
+      .mgkp .mgk__or::before { display: none; }
+    }
+  </style>
+  <div class="popup-overlay mgkp" id="kontaktPopup" role="dialog" aria-modal="true" aria-labelledby="mgkp-tittel">
+    <div class="mgkp__veil" onclick="closeContactPopup()"></div>
+    <div class="mgkp__card">
+      <div class="mgkp__head">
+        <span>Kontakt</span>
+        <button class="mgkp__close" type="button" onclick="closeContactPopup()">Lukk <svg viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.2"/></svg></button>
       </div>
-
-      <!-- Høyre panel -->
-      <div class="popup-right">
-        <button class="popup-close" onclick="closeContactPopup()">&times;</button>
-
-        <div id="popupFormView">
-          <h2 class="popup-right-heading">Send oss en melding</h2>
-          <form class="popup-form" id="popupForm" onsubmit="submitPopupForm(event)">
-            <input type="text" name="fax_nr" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:0;height:0;opacity:0;pointer-events:none">
-            <div class="popup-form-row">
-              <div class="popup-field">
-                <label>Navn</label>
-                <input class="popup-input" type="text" name="name" placeholder="Ola Nordmann" required />
-              </div>
-              <div class="popup-field">
-                <label>E-post</label>
-                <input class="popup-input" type="email" name="email" placeholder="ola@bedrift.no" required />
-              </div>
-            </div>
-            <div class="popup-form-row">
-              <div class="popup-field">
-                <label>Bedrift / Nettside</label>
-                <input class="popup-input" type="text" name="company" placeholder="Bedrift AS" />
-              </div>
-              <div class="popup-field">
-                <label>Telefon</label>
-                <input class="popup-input" type="tel" name="phone" placeholder="+47 000 00 000" />
-              </div>
-            </div>
-            <div class="popup-field">
-              <label>Melding</label>
-              <textarea class="popup-textarea" name="message" placeholder="Hva kan vi hjelpe med?"></textarea>
-            </div>
-            <button class="popup-submit" type="submit">Gratis Utkast <svg viewBox="0 0 15 15" fill="none" width="13" height="13"><path d="M2 7.5h11M8.5 3l4.5 4.5L8.5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          </form>
-          <div class="popup-contact-links">
-            <a href="tel:+4748118680" class="popup-contact-link">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              +47 481 18 680
-            </a>
-            <a href="mailto:post@mediegruppen.no" class="popup-contact-link">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-              post@mediegruppen.no
-            </a>
-          </div>
+      <hr class="mgkp__rule">
+      <h2 class="mgkp__title" id="mgkp-tittel">La oss ta en prat</h2>
+      <p class="mgkp__intro"><strong>Fortell kort hva dere tilbyr og hvor dere jobber,</strong> så tar vi kontakt og ser på hvordan oppsettet kan se ut for deres tjenester.</p>
+      <div class="mgk__inner">
+        <div class="mgk__direct">
+          <a href="tel:+4748118680"><span><small>Ring oss</small><strong>+47 481 18 680</strong></span><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.2"/></svg></a>
+          <a href="mailto:post@mediegruppen.no"><span><small>Send e-post</small><strong>post@mediegruppen.no</strong></span><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.2"/></svg></a>
         </div>
-
-        <div class="popup-success" id="popupSuccess">
-          <div class="popup-success-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-white)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        <p class="mgk__or">eller send oss en melding</p>
+        <form class="mgk__form" id="mgkpForm" novalidate>
+          <input type="text" name="fax_nr" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:0;height:0;opacity:0;pointer-events:none">
+          <div class="mgk__row">
+            <input type="text" name="name" placeholder="Navn" autocomplete="name" aria-label="Navn" required>
+            <input type="tel" name="phone" placeholder="Telefon" autocomplete="tel" aria-label="Telefon" required>
           </div>
-          <h3>Sendt!</h3>
-          <p>Vi tar kontakt innen én arbeidsdag.</p>
-        </div>
-
+          <textarea name="message" placeholder="Hva slags tjenester tilbyr dere? (valgfritt)" aria-label="Hva slags tjenester tilbyr dere? (valgfritt)"></textarea>
+          <div class="mgk__send">
+            <button type="submit">Send</button>
+            <span class="mgk__note">Vi bruker opplysningene bare til å kontakte deg.</span>
+          </div>
+        </form>
+        <p class="mgk__done" role="status">Takk! Vi tar kontakt så snart vi kan.</p>
       </div>
     </div>
   </div>
@@ -6346,10 +6346,11 @@
 
     // Skjemaseksjonen nederst: navn og telefon er påkrevd. Sendes til samme sted
     // som kontaktskjemaet (Supabase-leads + FormSubmit-e-post).
-    (function () {
-      var form = document.getElementById('mgkForm');
+    ['mgkForm', 'mgkpForm'].forEach(function (id) {
+      var form = document.getElementById(id);
       if (!form) return;
-      var section = form.closest('.mgk');
+      var section = form.closest('.mgk, .mgkp');
+      var source = id === 'mgkpForm' ? 'nettside-popup' : 'nettside-skjema';
       var btn = form.querySelector('button[type="submit"]');
       var note = form.querySelector('.mgk__note');
       var noteText = note.textContent;
@@ -6372,7 +6373,7 @@
         fetch(SUPABASE_URL + '/rest/v1/leads', {
           method: 'POST',
           headers: { 'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
-          body: JSON.stringify({ name: name, email: '', website: '', message: full, service_type: 'Kontakt', source: 'nettside-skjema' })
+          body: JSON.stringify({ name: name, email: '', website: '', message: full, service_type: 'Kontakt', source: source })
         });
         var data = new FormData();
         data.append('name', name);
@@ -6384,7 +6385,7 @@
           .then(function (r) { if (r.ok) section.classList.add('is-sent'); else showError('Noe gikk galt. Prøv igjen, eller ring oss.'); })
           .catch(function () { showError('Noe gikk galt. Prøv igjen, eller ring oss.'); });
       });
-    })();
+    });
 
     // Koble CTA-knapper til popup
     document.querySelectorAll('.cta-btn, .section-btn, .bransjer-demo-btn, .prising-kort__cta, .footer-cta__btn, .faq-cta').forEach(function(el) {
