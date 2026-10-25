@@ -271,9 +271,23 @@
       .mgm-panel, .mgm-panel * { transition-duration: 0.01s !important; transition-delay: 0s !important; }
     }
 
-    /* Mobil har hamburgermenyen */
+    /* Mobil: samme lyse menypanel som på pc, «Meny» oppe til høyre i stedet for
+       den gamle hamburgermenyen fra navbar.js */
     @media (max-width: 768px) {
-      .mgm-btn, .mgm-veil, .mgm-wrap { display: none; }
+      html body .mg-nav__hamburger, html body .mg-nav__drawer { display: none !important; }
+      .mgm-btn { top: 13px; left: auto; right: 8px; translate: none; }
+      .mgm-wrap { width: calc(100% - 16px); top: 0; }
+      html.mgm-open .mgm-veil, html.mgm-open .mgm-wrap { z-index: 2147482000; } /* over cookie-banneret */
+      .mgm-panel { max-height: 100svh; padding: 26px 16px 20px; }
+      .mgm-big { margin-top: 24px; }
+      .mgm-big a { padding: 9px 0 11px; font-size: 30px; line-height: 34px; }
+      .mgm-sub { gap: 12px; margin-top: 40px; }
+      .mgm-contact { margin-top: 40px; }
+      @keyframes mgm-bg {
+        0%   { clip-path: inset(13px 8px calc(100% - 47px) calc(100% - 92px) round 12px); }
+        45%  { clip-path: inset(0 0 calc(100% - 72px) 0 round 0); }
+        100% { clip-path: inset(0 0 0 0 round 0); }
+      }
     }
 
     /* ── TJENESTER (Figma: Forside (ny) – Tjenester (liste)) ──

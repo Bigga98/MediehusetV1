@@ -4783,9 +4783,23 @@
       .mgm-panel, .mgm-panel * { transition-duration: 0.01s !important; transition-delay: 0s !important; }
     }
 
-    /* Mobil har hamburgermenyen */
+    /* Mobil: samme lyse menypanel som på pc, «Meny» oppe til høyre i stedet for
+       den gamle hamburgermenyen fra navbar.js */
     @media (max-width: 768px) {
-      .mgm-btn, .mgm-veil, .mgm-wrap { display: none; }
+      html body .mg-nav__hamburger, html body .mg-nav__drawer { display: none !important; }
+      .mgm-btn { top: 13px; left: auto; right: 8px; translate: none; }
+      .mgm-wrap { width: calc(100% - 16px); top: 0; }
+      html.mgm-open .mgm-veil, html.mgm-open .mgm-wrap { z-index: 2147482000; } /* over cookie-banneret */
+      .mgm-panel { max-height: 100svh; padding: 26px 16px 20px; }
+      .mgm-big { margin-top: 24px; }
+      .mgm-big a { padding: 9px 0 11px; font-size: 30px; line-height: 34px; }
+      .mgm-sub { gap: 12px; margin-top: 40px; }
+      .mgm-contact { margin-top: 40px; }
+      @keyframes mgm-bg {
+        0%   { clip-path: inset(13px 8px calc(100% - 47px) calc(100% - 92px) round 12px); }
+        45%  { clip-path: inset(0 0 calc(100% - 72px) 0 round 0); }
+        100% { clip-path: inset(0 0 0 0 round 0); }
+      }
     }
 
     /* ── TJENESTER (Figma: Forside (ny) – Tjenester (liste)) ──
@@ -5225,6 +5239,16 @@
       opacity: 0.05;
       transform: translateZ(0);
     }
+    /* Innlasting ved scroll: «Blur inn» fra testsiden (scroll-animasjoner.html),
+       på 2× fart. Bruker animation (ikke transition), så fargeovergangen til den
+       mørke siden ikke påvirkes. Klassene settes i JS, så uten JS vises alt. */
+    .mg-in-wait { opacity: 0; }
+    .mg-in { animation: mg-blur-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--d, 0) * 0.04s) both; }
+    @keyframes mg-blur-in {
+      from { opacity: 0; filter: blur(12px); transform: translateY(10px); }
+      to   { opacity: 1; filter: none; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { .mg-in-wait { opacity: 1; } .mg-in { animation: none; } }
   </style>
 </head>
 <body>
@@ -6671,6 +6695,35 @@
       window.addEventListener('scroll', update, { passive: true });
       window.addEventListener('resize', update);
       update();
+    })();
+  </script>
+  <script>
+    // Innlasting ved scroll («Blur inn», 2×): elementene i hver seksjon kommer inn
+    // etter hverandre når de er 12 % inn i skjermen. Én gang per element.
+    (function () {
+      if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const groups = {
+        '.mgt': '.mgt__label, .mgt__rule, .mgt__title, .mgt__intro, .mgt__list li',
+        '.mgs': '.mgs__label, .mgs__rule, .mgs__title, .mgs__intro, .mgs__card',
+        '.mgk': '.mgk__label, .mgk__rule, .mgk__title, .mgk__intro, .mgk__direct a, .mgk__or, .mgk__row, .mgk__form textarea, .mgk__send',
+      };
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          e.target.classList.remove('mg-in-wait');
+          e.target.classList.add('mg-in');
+          io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px' });
+      Object.entries(groups).forEach(([sec, sel]) => {
+        const root = document.querySelector(sec);
+        if (!root) return;
+        root.querySelectorAll(sel).forEach((el, i) => {
+          el.style.setProperty('--d', i);
+          el.classList.add('mg-in-wait');
+          io.observe(el);
+        });
+      });
     })();
   </script>
 </body>
