@@ -156,6 +156,7 @@
         uniform float u_morph;
         uniform float u_scroll;
         uniform float u_dark;   // 0 lys side, 1 mørk side
+        uniform float u_grain;  // korn i shaderen (0 på mobil)
         uniform vec3 u_colA;    // fargen i den skarpe kanten
         uniform vec3 u_colB;    // fargen mot den myke siden
         const vec3 BG = vec3(0.992, 0.988, 0.984);
@@ -246,7 +247,7 @@
           vec3 col = mix(BG, vec3(0.110, 0.110, 0.106), u_dark);
           vec4 rib = twistRibbon(q, c0, v1, v2, gap, s0);
           col = mix(col, rib.rgb, rib.a * 0.8 * seam);
-          col += (hash(gl_FragCoord.xy + fract(u_time)) - 0.5) * 0.012;
+          col += (hash(gl_FragCoord.xy + fract(u_time)) - 0.5) * 0.012 * u_grain;  // av på mobil (støylaget dekker)
           gl_FragColor = vec4(col, 1.0);
         }`;
   const FS_BUER = `
@@ -257,6 +258,7 @@
         uniform float u_morph;
         uniform float u_scroll;
         uniform float u_dark;   // 0 lys side, 1 mørk side
+        uniform float u_grain;  // korn i shaderen (0 på mobil)
         uniform vec3 u_colA;    // mørk ende av fargeskalaen
         uniform vec3 u_colB;    // lys ende av fargeskalaen
         uniform float u_amt;    // styrke
@@ -310,7 +312,7 @@
           vec4 b2 = band(q, mix(-0.28, 0.0, k), mix(-0.46, 0.13, k), mix(0.06, 0.02, k), 1.0, 0.09, mix(0.1, 0.045, k), 0.3);
           col = mix(col, b1.rgb, b1.a * 0.62 * u_amt * seam * calm);
           col = mix(col, b2.rgb, b2.a * 0.5 * u_amt * seam * calm);
-          col += (hash(gl_FragCoord.xy + fract(u_time)) - 0.5) * 0.012;
+          col += (hash(gl_FragCoord.xy + fract(u_time)) - 0.5) * 0.012 * u_grain;  // av på mobil (støylaget dekker)
           gl_FragColor = vec4(col, 1.0);
         }`;
   const VS = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
@@ -336,9 +338,12 @@
     gl.uniform1f(U('u_morph'), kind === 'buer' ? 1 : 0);
     gl.uniform1f(U('u_scroll'), 0);
     gl.uniform1f(U('u_dark'), 0);
+    // Mobil: halv oppløsning, 30 bilder i sekundet og uten korn i shaderen
+    const phone = matchMedia('(max-width: 768px)').matches;
+    gl.uniform1f(U('u_grain'), phone ? 0 : 1);
     const uRes = U('u_res'), uTime = U('u_time'), uMouse = U('u_mouse');
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5) * 0.75;
+      const dpr = phone ? 0.5 : Math.min(window.devicePixelRatio || 1, 1.5) * 0.75;
       canvas.width = Math.max(1, Math.round(canvas.offsetWidth * dpr));
       canvas.height = Math.max(1, Math.round(canvas.offsetHeight * dpr));
       gl.viewport(0, 0, canvas.width, canvas.height);
@@ -350,6 +355,7 @@
     window.addEventListener('pointermove', (e) => { tx = e.clientX / innerWidth; ty = 1 - e.clientY / innerHeight; }, { passive: true });
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const frame = (now) => {
+      if (phone && now - last < 30) { raf = visible ? requestAnimationFrame(frame) : 0; return; }
       const dt = Math.min((now - last) / 1000, 0.05); last = now;
       if (document.documentElement.classList.contains('mgm-open')) { raf = 0; return; }
       elapsed += dt; mx += (tx - mx) * 0.04; my += (ty - my) * 0.04;

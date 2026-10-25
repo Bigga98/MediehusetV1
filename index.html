@@ -4795,11 +4795,14 @@
       .mgm-big a { padding: 9px 0 11px; font-size: 30px; line-height: 34px; }
       .mgm-sub { gap: 12px; margin-top: 40px; }
       .mgm-contact { margin-top: 40px; }
-      @keyframes mgm-bg {
-        0%   { clip-path: inset(13px 8px calc(100% - 47px) calc(100% - 92px) round 12px); }
-        45%  { clip-path: inset(0 0 calc(100% - 72px) 0 round 0); }
-        100% { clip-path: inset(0 0 0 0 round 0); }
-      }
+      /* Lettere på telefon: panelet glir bare ned fra toppen (transform), ingen
+         clip-path som først åpner i bredden. Flytting av et ferdig lag er billig. */
+      .mgm-panel::before { will-change: auto; }
+      html.mgm-open .mgm-panel::before { animation: none; }
+      html.mgm-open .mgm-panel { animation: mgm-drop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; will-change: transform; }
+      @keyframes mgm-drop { from { transform: translateY(-100%); } to { transform: none; } }
+      html.mgm-open .mgm-head { animation-delay: 0.15s; }
+      html.mgm-open .mgm-panel [data-m]:not(.mgm-head) { animation-delay: calc(0.2s + var(--i, 0) * 0.03s); }
     }
 
     /* ── TJENESTER (Figma: Forside (ny) – Tjenester (liste)) ──
@@ -5239,6 +5242,18 @@
       opacity: 0.05;
       transform: translateZ(0);
     }
+    /* Mobil: alt venstrestilt (Figma: Mobil – Forside, venstrestilt) */
+    @media (max-width: 768px) {
+      .mgh, .mgs, .mgk, .mgt__label, .mgs__label, .mgk__label { text-align: left; }
+      .mgh__label { text-align: left; }
+      .mgh__points { justify-content: flex-start; }
+      .mgh__actions { justify-content: flex-start; }
+      .mgs__intro, .mgk__intro { margin-left: 0; margin-right: 0; }
+      .mgk__or { justify-content: flex-start; }
+      .mgk__or::before { display: none; }
+      .mgk__send { text-align: left; }
+    }
+
     /* Innlasting ved scroll: «Blur inn» fra testsiden (scroll-animasjoner.html),
        på 2× fart. Bruker animation (ikke transition), så fargeovergangen til den
        mørke siden ikke påvirkes. Klassene settes i JS, så uten JS vises alt. */
@@ -6509,6 +6524,7 @@
         uniform float u_morph;
         uniform float u_scroll;
         uniform float u_dark;   // 0 lys side, 1 mørk side
+        uniform float u_grain;  // korn i shaderen (0 på mobil)
         uniform float u_split;  // footerens overkant, i lerretspiksler nedenfra: alltid lyst under den
         const vec3 BG = vec3(0.992, 0.988, 0.984);
 
@@ -6561,7 +6577,7 @@
           vec4 b2 = band(q, mix(-0.28, 0.0, k), mix(-0.46, 0.13, k), mix(0.06, 0.02, k), 1.0, 0.09, mix(0.1, 0.045, k), 0.3);
           col = mix(col, b1.rgb, b1.a * 0.62 * seam * calm);
           col = mix(col, b2.rgb, b2.a * 0.5 * seam * calm);
-          col += (hash(gl_FragCoord.xy + fract(u_time)) - 0.5) * 0.012;
+          col += (hash(gl_FragCoord.xy + fract(u_time)) - 0.5) * 0.012 * u_grain;  // av på mobil (støylaget dekker)
           gl_FragColor = vec4(col, 1.0);
         }`;
 
@@ -6583,12 +6599,16 @@
       gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
       const U = (n) => gl.getUniformLocation(prog, n);
       const uRes = U('u_res'), uTime = U('u_time'), uMouse = U('u_mouse'), uMorph = U('u_morph'), uScroll = U('u_scroll'), uDark = U('u_dark'), uSplit = U('u_split');
+      // Mobil: halv oppløsning, 30 bilder i sekundet og uten korn i shaderen.
+      // Bakgrunnen er myk, så forskjellen synes knapt, men arbeidet blir mye mindre.
+      const phone = matchMedia('(max-width: 768px)').matches;
+      gl.uniform1f(U('u_grain'), phone ? 0 : 1);
       let dark = 0;
 
       // Litt lavere oppløsning enn skjermen sparer mye arbeid. 0,75 som på
       // testsiden, så de skarpe partiene i båndene holder seg skarpe
       const resize = () => {
-        const dpr = Math.min(window.devicePixelRatio || 1, 1.5) * 0.75;
+        const dpr = phone ? 0.5 : Math.min(window.devicePixelRatio || 1, 1.5) * 0.75;
         canvas.width = Math.max(1, Math.round(canvas.offsetWidth * dpr));
         canvas.height = Math.max(1, Math.round(canvas.offsetHeight * dpr));
         gl.viewport(0, 0, canvas.width, canvas.height);
@@ -6610,6 +6630,8 @@
       const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const start = performance.now();
       const frame = (now) => {
+        // Mobil: hopp over annethvert bilde (ca. 30 i sekundet)
+        if (phone && now - last < 30) { raf = visible ? requestAnimationFrame(frame) : 0; return; }
         // Står stille mens menyen er åpen (siden bak er blurret)
         const dt = Math.min((now - last) / 1000, 0.05);
         last = now;
@@ -6699,7 +6721,7 @@
   </script>
   <script>
     // Innlasting ved scroll («Blur inn», 2×): elementene i hver seksjon kommer inn
-    // etter hverandre når de er 12 % inn i skjermen. Én gang per element.
+    // etter hverandre så snart de dukker opp nederst på skjermen. Én gang per element.
     (function () {
       if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const groups = {
@@ -6714,7 +6736,7 @@
           e.target.classList.add('mg-in');
           io.unobserve(e.target);
         });
-      }, { rootMargin: '0px 0px -12% 0px' });
+      }, { rootMargin: '0px 0px 4% 0px' });
       Object.entries(groups).forEach(([sec, sel]) => {
         const root = document.querySelector(sec);
         if (!root) return;

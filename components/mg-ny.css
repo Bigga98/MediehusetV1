@@ -283,11 +283,14 @@
       .mgm-big a { padding: 9px 0 11px; font-size: 30px; line-height: 34px; }
       .mgm-sub { gap: 12px; margin-top: 40px; }
       .mgm-contact { margin-top: 40px; }
-      @keyframes mgm-bg {
-        0%   { clip-path: inset(13px 8px calc(100% - 47px) calc(100% - 92px) round 12px); }
-        45%  { clip-path: inset(0 0 calc(100% - 72px) 0 round 0); }
-        100% { clip-path: inset(0 0 0 0 round 0); }
-      }
+      /* Lettere på telefon: panelet glir bare ned fra toppen (transform), ingen
+         clip-path som først åpner i bredden. Flytting av et ferdig lag er billig. */
+      .mgm-panel::before { will-change: auto; }
+      html.mgm-open .mgm-panel::before { animation: none; }
+      html.mgm-open .mgm-panel { animation: mgm-drop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; will-change: transform; }
+      @keyframes mgm-drop { from { transform: translateY(-100%); } to { transform: none; } }
+      html.mgm-open .mgm-head { animation-delay: 0.15s; }
+      html.mgm-open .mgm-panel [data-m]:not(.mgm-head) { animation-delay: calc(0.2s + var(--i, 0) * 0.03s); }
     }
 
     /* ── TJENESTER (Figma: Forside (ny) – Tjenester (liste)) ──
@@ -624,6 +627,7 @@
       .mgx-read__aside { position: static; }
     }
     @media (max-width: 768px) {
+      .mgx-label { text-align: left; } /* mobil: venstrestilt */
       .mgx-hero { padding: 96px 16px 64px; min-height: 0; }
       .mgx-hero__title { padding-top: 48px; font-size: 44px; }
       .mgx-intro { font-size: 19px; line-height: 28px; }
