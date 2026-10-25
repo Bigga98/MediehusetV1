@@ -16,9 +16,7 @@
 
   const links = [
     { label: 'Hjem',           href: root + 'index.html' },
-    { label: 'Tjenester',      href: root + 'tjenester.html' },
-    { label: 'Om oss',         href: root + 'om-oss.html' },
-    // { label: 'Nettside-demoer', href: root + 'bibliotek.html' },
+    { label: 'Kundecaser',     href: root + 'bibliotek.html' },
   ];
 
   const current = location.pathname;
@@ -391,7 +389,6 @@
     }
   }, { passive: true });
 
-  window.addEventListener('resize', () => updateNavBg(window.scrollY));
 
   // Directional underline — strek vokser fra den siden musen entrer fra
   linkWrap.querySelectorAll('a:not(.meta)').forEach(link => {

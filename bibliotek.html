@@ -33,352 +33,137 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="brand/tokens.css" />
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { overflow-y: scroll; }
-    body {
-      font-family: var(--font-ui);
-      background: var(--bg-0);
-      min-height: 100vh;
-      padding-top: 72px;
-    }
-
-    .bl-header {
-      position: sticky;
-      top: 0;
-      z-index: var(--z-raised);
-      padding: 18px 196px;
-      background: var(--bg-0);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-      display: flex;
-      align-items: center;
-    }
-
-    .bl-close {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: var(--font-ui);
-      font-size: var(--type-label);
-      font-weight: 500;
-      color: var(--color-dark);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 0;
-      letter-spacing: 0.01em;
-      transition: opacity var(--transition-fast);
-      text-decoration: none;
-    }
-
-    .bl-close:hover { opacity: 0.55; }
-
-    .bl-close svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .bl-content {
-      padding: 64px 196px 96px;
-    }
-
-    .bl-heading {
-      font-family: var(--font-heading);
-      font-weight: 400;
-      font-style: italic;
-      font-size: 48px;
-      color: var(--color-ink);
-      line-height: 57.6px;
-      letter-spacing: 0;
-      text-align: center;
-      margin-bottom: var(--space-xl);
-    }
-
-    .bl-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 40px;
-    }
-
-    .bl-tab {
-      padding: 6px 14px;
-      border-radius: 4px;
-      border: none;
-      background: var(--bg-2);
-      font-family: var(--font-ui);
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 20px;
-      letter-spacing: 0;
-      color: var(--color-dark);
-      cursor: pointer;
-      transition: background var(--transition-fast), color var(--transition-fast);
-    }
-
-    .bl-tab:hover { background: var(--bg-2); }
-
-    .bl-tab.active {
-      background: var(--color-dark);
-      color: var(--color-white);
-    }
-
-    .bl-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 36px;
-    }
-
-    .bl-card {
-      background: var(--bg-2);
-      border-radius: 8px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      min-height: 600px;
-      position: relative;
-      border-top: 2px solid rgba(var(--color-text-primary-rgb),0.55);
-      border-left: 2px solid rgba(var(--color-text-primary-rgb),0.35);
-      border-right: 2px solid rgba(var(--color-text-primary-rgb),0.35);
-      border-bottom: 2px solid rgba(var(--color-text-primary-rgb),0.2);
-    }
-
-    .bl-card.hidden { display: none; }
-
-    .bl-card__meta {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .bl-card__tag {
-      font-family: var(--font-ui);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-text-hint);
-    }
-
-    .bl-card__title {
-      font-family: var(--font-heading);
-      font-size: 26px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: var(--color-ink);
-      line-height: 1.15;
-    }
-
-    .bl-card__desc {
-      font-family: var(--font-ui);
-      font-size: 13px;
-      color: var(--color-text-muted);
-      line-height: 1.6;
-      max-width: 420px;
-    }
-
-    .bl-card__btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 4px;
-      font-family: var(--font-ui);
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--color-ink);
-      background: none;
-      border: 1px solid rgba(0,0,0,0.18);
-      border-radius: 4px;
-      padding: 6px 12px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background var(--transition-fast), border-color var(--transition-fast);
-      align-self: flex-start;
-    }
-
-    .bl-card__btn:hover {
-      background: rgba(0,0,0,0.06);
-      border-color: rgba(0,0,0,0.3);
-    }
-
-    .bl-card__btn svg {
-      width: 11px;
-      height: 11px;
-      fill: currentColor;
-      flex-shrink: 0;
-    }
-
-    .bl-card__image {
-      flex: 1;
-      border-radius: 4px;
-      background-color: var(--color-border-light);
-      background-size: cover;
-      background-position: center top;
-      min-height: 380px;
-      overflow: hidden;
-    }
-
-    .bl-card__image--screenshot {
-      background-size: 100% auto;
-      background-position: top center;
-    }
-
-    @media (max-width: 768px) {
-      body { overflow-x: hidden; }
-
-      .bl-header {
-        padding: 14px 20px;
-      }
-
-      .bl-content {
-        padding: 36px 20px 64px;
-      }
-
-      .bl-heading {
-        font-size: 32px;
-        line-height: 1.15;
-        margin-bottom: 28px;
-        text-align: left;
-      }
-
-      .bl-tabs {
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 28px;
-      }
-
-      .bl-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .bl-card {
-        min-height: auto;
-        padding: 20px;
-        gap: 16px;
-      }
-
-      .bl-card__image {
-        min-height: 280px;
-      }
-
-      .bl-card__image--screenshot {
-        min-height: 380px;
-      }
-
-      .bl-card__title {
-        font-size: 22px;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="components/navbar.css">
   <link rel="stylesheet" href="components/mobile.css">
+  <link rel="stylesheet" href="components/mg-ny.css">
+  <style>
+    .mgx-hero { min-height: 62vh; }
+    .bl-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+    .bl-tab { height: 38px; padding: 0 16px; font: 500 14px/1 'Inter', sans-serif; color: #28323B; background: transparent; border: 1px solid #CCCCC9; border-radius: 12px; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
+    .bl-tab:hover { border-color: #28323B; }
+    .bl-tab.is-on { color: #E8F4F6; background: #2F3234; border-color: #2F3234; }
+    .bl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 64px 32px; margin-top: 48px; }
+    .bl-card[hidden] { display: none; }
+    .bl-card__media { display: block; overflow: hidden; background: #EFEEEB; }
+    .bl-card__img { display: block; aspect-ratio: 16 / 10; background: #EFEEEB center / cover no-repeat; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+    .bl-card__media:hover .bl-card__img { transform: scale(1.03); }
+    .bl-card__tag { display: block; margin-top: 20px; font-size: 13px; font-weight: 500; color: #8A8F93; }
+    .bl-card__title { margin: 8px 0 0; font-family: 'Instrument Sans', sans-serif; font-size: 30px; line-height: 36px; font-weight: 500; letter-spacing: -0.03em; color: #28323B; }
+    .bl-card__desc { max-width: 520px; margin: 10px 0 0; font-size: 17px; line-height: 26px; color: #5F666B; }
+    .bl-card .mgx-link { margin-top: 18px; }
+    @media (max-width: 768px) { .bl-grid { grid-template-columns: 1fr; gap: 48px; } }
+  </style>
 </head>
 <body>
-
+  <div class="mg-noise" aria-hidden="true"></div>
   <script src="components/navbar.js?v=2"></script>
 
-  <div class="bl-header">
-    <a href="index.html" class="bl-close">
-      <svg viewBox="0 0 16 16"><polyline points="10,3 5,8 10,13"/></svg>
-      Tilbake
-    </a>
-  </div>
-
-  <div class="bl-content">
-    <h1 class="bl-heading">Se demoer fra forskjellige bransjer</h1>
-
-    <div class="bl-tabs">
-      <button class="bl-tab active" data-filter="alle">Alle</button>
-      <button class="bl-tab" data-filter="snekker">Snekker</button>
-      <button class="bl-tab" data-filter="rorlegger">Rørlegger</button>
-      <button class="bl-tab" data-filter="handverk">Andre håndverker tjenester</button>
-    </div>
-
-    <div class="bl-grid">
-
-      <div class="bl-card" data-bransje="snekker">
-        <div class="bl-card__meta">
-          <span class="bl-card__tag">Byggmester — Konsept</span>
+  <main class="mgx-main">
+    <section class="mgx-hero">
+      <canvas class="mgx-hero__gl" data-gl="kryss" data-a="0.62,0.70,0.82" data-b="1.0,0.92,0.82" aria-hidden="true"></canvas>
+      <span class="mgx-label">Kundecaser</span>
+      <hr class="mgx-rule">
+      <h1 class="mgx-hero__title">Se demoer fra<br>forskjellige bransjer</h1>
+      
+      
+    </section>
+    <section class="mgx" style="padding-top: 40px">
+      <div class="bl-tabs"><button class="bl-tab is-on" type="button" data-filter="alle">Alle</button><button class="bl-tab" type="button" data-filter="snekker">Snekker</button><button class="bl-tab" type="button" data-filter="rorlegger">Rørlegger</button><button class="bl-tab" type="button" data-filter="handverk">Andre håndverker tjenester</button></div>
+      <div class="bl-grid">
+        <article class="bl-card" data-bransje="snekker">
+          <a class="bl-card__media" href="#"  aria-label="Se Konstrukt AS"><span class="bl-card__img" style="background-image: url('images/screencap-konsept-nordbygg.jpg')"></span></a>
+          <span class="bl-card__tag">Byggmester · Konsept</span>
           <h3 class="bl-card__title">Konstrukt AS</h3>
-          <p class="bl-card__desc">Et eksempel på hvordan en nettside for et byggmesterfirma kan se ut — tydelig struktur, tjenesteoversikt og kontaktflyt.</p>
-          <a href="#" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
-        </div>
-        <div class="bl-card__image" style="background-image: url('images/screencap-konsept-nordbygg.jpg');"></div>
-      </div>
-
-      <div class="bl-card" data-bransje="snekker">
-        <div class="bl-card__meta">
-          <span class="bl-card__tag">Snekker / Tømmermann — Konsept</span>
+          <p class="bl-card__desc">Et eksempel på hvordan en nettside for et byggmesterfirma kan se ut, tydelig struktur, tjenesteoversikt og kontaktflyt.</p>
+          <a class="mgx-link" href="#" >Se siden <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.2"/></svg></a>
+        </article>
+        <article class="bl-card" data-bransje="snekker">
+          <a class="bl-card__media" href="#"  aria-label="Se Berge Tre & Bygg"><span class="bl-card__img" style="background-image: url('images/demo-rorlegger-1.webp')"></span></a>
+          <span class="bl-card__tag">Snekker / Tømmermann · Konsept</span>
           <h3 class="bl-card__title">Berge Tre & Bygg</h3>
           <p class="bl-card__desc">Et eksempel på hvordan en nettside for et snekker- og tømmerfirma kan presentere tjenester, tilbygg og rehabiliteringsprosjekter.</p>
-          <a href="#" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
-        </div>
-        <div class="bl-card__image" style="background-image: url('images/demo-rorlegger-1.webp');"></div>
-      </div>
-
-      <div class="bl-card" data-bransje="rorlegger">
-        <div class="bl-card__meta">
-          <span class="bl-card__tag">Rørlegger — Konsept</span>
+          <a class="mgx-link" href="#" >Se siden <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.2"/></svg></a>
+        </article>
+        <article class="bl-card" data-bransje="rorlegger">
+          <a class="bl-card__media" href="demo-rorlegger.html" target="_blank" aria-label="Se Oslo Rørlegger"><span class="bl-card__img" style="background-image: url('images/mockup-rorlegger.webp')"></span></a>
+          <span class="bl-card__tag">Rørlegger · Konsept</span>
           <h3 class="bl-card__title">Oslo Rørlegger</h3>
-          <p class="bl-card__desc">Et eksempel på hvordan en rørlegger i Oslo kan presentere seg på nett — med tjenesteoversikt, kundeanmeldelser og enkel kontaktflyt.</p>
-          <a href="demo-rorlegger.html" target="_blank" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
-        </div>
-        <div class="bl-card__image" style="background-image: url('images/mockup-rorlegger.webp');"></div>
-      </div>
-
-      <div class="bl-card" data-bransje="handverk">
-        <div class="bl-card__meta">
-          <span class="bl-card__tag">Blikkenslager — Konsept</span>
+          <p class="bl-card__desc">Et eksempel på hvordan en rørlegger i Oslo kan presentere seg på nett, med tjenesteoversikt, kundeanmeldelser og enkel kontaktflyt.</p>
+          <a class="mgx-link" href="demo-rorlegger.html" target="_blank">Se siden <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.2"/></svg></a>
+        </article>
+        <article class="bl-card" data-bransje="handverk">
+          <a class="bl-card__media" href="#"  aria-label="Se Blikkenslagerverksted"><span class="bl-card__img" style="background-image: url('images/demo-blikkenslager-1.webp')"></span></a>
+          <span class="bl-card__tag">Blikkenslager · Konsept</span>
           <h3 class="bl-card__title">Blikkenslagerverksted</h3>
-          <p class="bl-card__desc">Et eksempel på hvordan en blikkenslager kan presentere seg på nett — med tydelig fokus på tak, beslag og kontaktmuligheter.</p>
-          <a href="#" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
-        </div>
-        <div class="bl-card__image bl-card__image--screenshot" style="background-image: url('images/demo-blikkenslager-1.webp');"></div>
-      </div>
-
-      <div class="bl-card" data-bransje="rorlegger">
-        <div class="bl-card__meta">
-          <span class="bl-card__tag">Rørlegger — Konsept</span>
+          <p class="bl-card__desc">Et eksempel på hvordan en blikkenslager kan presentere seg på nett, med tydelig fokus på tak, beslag og kontaktmuligheter.</p>
+          <a class="mgx-link" href="#" >Se siden <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.2"/></svg></a>
+        </article>
+        <article class="bl-card" data-bransje="rorlegger">
+          <a class="bl-card__media" href="#"  aria-label="Se Strand Rør & Bad"><span class="bl-card__img"></span></a>
+          <span class="bl-card__tag">Rørlegger · Konsept</span>
           <h3 class="bl-card__title">Strand Rør & Bad</h3>
-          <p class="bl-card__desc">Et eksempel på en nettside for en rørleggerbedrift med fokus på bad — tjenestepresentasjon, prosjekter og enkel booking.</p>
-          <a href="#" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
-        </div>
-        <div class="bl-card__image"></div>
-      </div>
-
-      <div class="bl-card" data-bransje="handverk">
-        <div class="bl-card__meta">
-          <span class="bl-card__tag">Elektriker — Konsept</span>
+          <p class="bl-card__desc">Et eksempel på en nettside for en rørleggerbedrift med fokus på bad, tjenestepresentasjon, prosjekter og enkel booking.</p>
+          <a class="mgx-link" href="#" >Se siden <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.2"/></svg></a>
+        </article>
+        <article class="bl-card" data-bransje="handverk">
+          <a class="bl-card__media" href="#"  aria-label="Se Moen Elektro"><span class="bl-card__img"></span></a>
+          <span class="bl-card__tag">Elektriker · Konsept</span>
           <h3 class="bl-card__title">Moen Elektro</h3>
-          <p class="bl-card__desc">Et eksempel på en nettside for en elektrikerbedrift — enkel struktur som gjør det lett for nye kunder å finne frem og ta kontakt.</p>
-          <a href="#" class="bl-card__btn">Se siden <svg viewBox="0 0 341 312"><path d="M0.000473052 166.524L0.354026 124.451L259.155 122.329L146.725 9.89949L195.515 -8.22544e-06L340.826 145.31L174.656 311.481L162.989 262.337L258.802 166.524H0.000473052"/></svg></a>
-        </div>
-        <div class="bl-card__image"></div>
+          <p class="bl-card__desc">Et eksempel på en nettside for en elektrikerbedrift, enkel struktur som gjør det lett for nye kunder å finne frem og ta kontakt.</p>
+          <a class="mgx-link" href="#" >Se siden <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.2"/></svg></a>
+        </article>
       </div>
-
-    </div>
-  </div>
-
-  <script>
-    document.querySelectorAll('.bl-tab').forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        document.querySelectorAll('.bl-tab').forEach(function(t) { t.classList.remove('active'); });
-        tab.classList.add('active');
-        var filter = tab.dataset.filter;
-        document.querySelectorAll('.bl-card').forEach(function(card) {
-          card.classList.toggle('hidden', filter !== 'alle' && card.dataset.bransje !== filter);
+    </section>
+    <script>
+      document.querySelectorAll('.bl-tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          document.querySelectorAll('.bl-tab').forEach(function (t) { t.classList.toggle('is-on', t === tab); });
+          var f = tab.dataset.filter;
+          document.querySelectorAll('.bl-card').forEach(function (card) {
+            card.hidden = f !== 'alle' && card.dataset.bransje !== f;
+          });
         });
       });
-    });
-  </script>
+    </script>
+  </main>
 
+  <div class="mgf-reveal" id="mgf-reveal">
+  <footer class="mgf">
+    <div class="mgf__top">
+      <ul class="mgf__main">
+        <li><a href="index.html#tjenester">Nettsider</a></li>
+        <li><a href="index.html#slik-jobber-vi">Slik jobber vi</a></li>
+        <li><a href="index.html#kontakt-skjema">Kontakt</a></li>
+      </ul>
+      <div class="mgf__side">
+        <ul class="mgf__sub">
+          <li><a href="#" onclick="openContactPopup(); return false;">Bestill en samtale</a></li>
+          <li><a href="bibliotek.html">Kundecaser</a></li>
+          <li><a href="vilkår.html">Vilkår</a></li>
+          <li><a href="personvern.html">Personvern</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+        <div class="mgf__contact">
+          <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a>
+          <a href="tel:+4748118680">+47 481 18 680</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mgf__legal">
+      <p>Mediegruppen lager nettsider for norske håndverks- og servicebedrifter. Alle priser på denne siden oppgis eks. mva. med mindre annet står. Informasjonen er generell og er ikke et bindende tilbud – endelig pris, omfang og leveringstid avtales skriftlig før vi starter. Resultater fra tidligere kunder er ingen garanti for hva en ny nettside vil gi.</p>
+      <div class="mgf__bottom">
+        <span>© 2026 Mediegruppen AS</span>
+        <span>Alle rettigheter forbeholdt</span>
+        <a href="personvern.html">Personvern</a>
+        <a href="vilkår.html">Vilkår</a>
+        <a href="personvern.html#cookies">Cookies</a>
+      </div>
+    </div>
+  </footer>
+  </div>
+
+  <script src="components/mg-ny.js"></script>
 </body>
 </html>

@@ -31,453 +31,47 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; -webkit-font-smoothing: antialiased; }
-    a { text-decoration: none; }
-
-    /* ── NAVBAR ── */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 72px;
-      background-color: transparent;
-      display: flex;
-      align-items: center;
-      padding: 0 80px;
-      z-index: var(--z-sticky);
-      transition: background var(--transition-slow), border-bottom var(--transition-slow), transform var(--transition-spring);
-    }
-
-    .navbar.scrolled {
-      background: rgba(var(--bg-0-rgb),0.97);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .navbar.hide-nav {
-      transform: translateY(-100%);
-    }
-
-    .navbar.scrolled .logo { color: var(--color-ui-dark); }
-    .navbar.scrolled .nav-links a { color: rgba(var(--color-ui-dark-rgb),0.50); }
-    .navbar.scrolled .nav-links a::after { background: rgba(var(--color-ui-dark-rgb),0.40); }
-    .navbar.scrolled .nav-links a:hover { color: rgba(var(--color-ui-dark-rgb),0.90); }
-    .navbar.scrolled .nav-links a[aria-current="page"] { color: rgba(var(--color-ui-dark-rgb),0.90); }
-    .navbar.scrolled .nav-links a[aria-current="page"]::after { background: rgba(var(--color-ui-dark-rgb),0.30); }
-    .navbar.scrolled .cta { background: var(--color-ui-dark); color: var(--color-white); }
-    .navbar.scrolled .cta:hover { background: rgba(var(--color-ui-dark-rgb),0.82); }
-
-    .navbar .logo {
-      font-family: 'Instrument Sans', sans-serif;
-      font-weight: 500;
-      font-size: 15px;
-      letter-spacing: 0.06em;
-      color: var(--color-white);
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .navbar .logo-flip {
-      width: 22px;
-      height: 22px;
-      perspective: 300px;
-      flex-shrink: 0;
-    }
-
-    .navbar .logo-flip-inner {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform var(--transition-reveal);
-    }
-
-    .navbar .logo:hover .logo-flip-inner {
-      transform: rotateY(180deg);
-    }
-
-    .navbar .logo-flip-front,
-    .navbar .logo-flip-back {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    .navbar .logo-flip-back {
-      transform: rotateY(180deg);
-    }
-
-    .navbar .nav-links {
-      display: flex;
-      gap: 40px;
-      margin: 0 auto;
-      list-style: none;
-      padding: 0;
-    }
-
-    .navbar .nav-links a {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 14px;
-      color: rgba(255,255,255,0.55);
-      position: relative;
-      padding-bottom: 2px;
-      transition: color var(--transition-base);
-      --underline-origin: left;
-    }
-
-    .navbar .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: rgba(255,255,255,0.50);
-      transform: scaleX(0);
-      transform-origin: var(--underline-origin) center;
-      transition: transform var(--transition-base);
-    }
-
-    .navbar .nav-links a:hover { color: rgba(255,255,255,0.92); }
-    .navbar .nav-links a:hover::after { transform: scaleX(1); }
-
-    .navbar .nav-links a[aria-current="page"] { color: rgba(255,255,255,0.92); }
-    .navbar .nav-links a[aria-current="page"]::after {
-      transform: scaleX(1);
-      background: rgba(255,255,255,0.35);
-    }
-
-    .navbar .cta {
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 13px;
-      letter-spacing: 0.01em;
-      color: var(--color-ui-dark);
-      background: var(--color-white);
-      border: none;
-      border-radius: var(--radius-full);
-      padding: 10px 22px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background var(--transition-base), opacity var(--transition-base);
-    }
-
-    .navbar .cta:hover { background: rgba(255,255,255,0.88); }
-
-    /* ── PAGE HERO ── */
-    .page-hero {
-      position: relative;
-      width: 100%;
-      min-width: 1440px;
-      height: 540px;
-      background-color: var(--color-ui-dark);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 80px 88px;
-      overflow: hidden;
-    }
-
-    .page-hero__eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: rgba(255,255,255,0.35);
-      text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-
-    .page-hero__heading {
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 88px;
-      line-height: 0.97;
-      letter-spacing: -3px;
-      color: var(--color-white);
-      max-width: 940px;
-    }
-
-    .page-hero__body {
-      font-family: 'Inter', sans-serif;
-      font-weight: 100;
-      font-size: 17px;
-      line-height: 26px;
-      color: rgba(255,255,255,0.50);
-      max-width: 500px;
-      margin-top: 24px;
-    }
-
-    .page-hero__rule {
-      position: absolute;
-      bottom: 0;
-      left: 80px;
-      right: 80px;
-      height: 1px;
-      background: rgba(255,255,255,0.07);
-    }
-
-    /* ── PERSONVERN INNHOLD ── */
-    .pv {
-      width: 100%;
-      min-width: 1440px;
-      background: var(--bg-2);
-      padding: 80px 80px 100px;
-    }
-
-    .pv__inner {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .pv__updated {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      color: rgba(var(--color-ink-rgb),0.4);
-      margin-bottom: 48px;
-    }
-
-    .pv__section {
-      margin-bottom: 48px;
-    }
-
-    .pv__number {
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      color: rgba(var(--color-ink-rgb),0.3);
-      margin-bottom: 10px;
-    }
-
-    .pv__heading {
-      font-family: 'Inter', sans-serif;
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--color-ui-dark);
-      margin-bottom: 16px;
-    }
-
-    .pv__body {
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 1.7;
-      color: var(--color-text-muted);
-    }
-
-    .pv__body p + p { margin-top: 12px; }
-
-    .pv__body ul {
-      margin: 12px 0 0 20px;
-      padding: 0;
-    }
-
-    .pv__body ul li {
-      margin-bottom: 8px;
-      line-height: 1.65;
-    }
-
-    .pv__body strong {
-      font-weight: 500;
-      color: var(--color-ui-dark);
-    }
-
-    .pv__body a {
-      color: var(--color-ui-dark);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    .pv__body a:hover { color: var(--color-text-muted); }
-
-    /* ── FOOTER ── */
-    .footer {
-      background: var(--color-ui-dark);
-      width: 100%;
-    }
-
-    .footer__inner {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 64px 80px 40px;
-      display: grid;
-      grid-template-columns: 1fr auto auto auto;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .footer__brand {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .footer__logo {
-      font-family: 'Inter', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--color-white);
-      text-decoration: none;
-    }
-
-    .footer__tagline {
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.45);
-      line-height: 1.6;
-      max-width: 280px;
-    }
-
-    .footer__col-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      margin: 0 0 16px;
-    }
-
-    .footer__links {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer__links a {
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
-      transition: color var(--transition-fast);
-    }
-
-    .footer__links a:hover { color: var(--color-white); }
-
-    .footer__bottom {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 24px 80px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer__copy {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.3);
-    }
-
-    .footer__legal {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer__legal a {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.3);
-      text-decoration: none;
-      transition: color var(--transition-fast);
-    }
-
-    .footer__legal a:hover { color: rgba(255,255,255,0.6); }
-
-    @media (max-width: 768px) {
-      body { overflow-x: hidden; }
-
-      .navbar { padding: 0 20px; }
-      .navbar .nav-links { display: none; }
-
-      .page-hero {
-        min-width: 0;
-        height: auto;
-        padding: 100px 20px 48px;
-      }
-      .page-hero__heading {
-        font-size: 44px;
-        letter-spacing: -1.5px;
-      }
-      .page-hero__body { max-width: 100%; }
-      .page-hero__rule { left: 20px; right: 20px; }
-
-      .pv {
-        min-width: 0;
-        padding: 48px 20px 64px;
-      }
-
-      .footer__inner {
-        grid-template-columns: 1fr;
-        padding: 40px 20px 24px;
-        gap: 28px;
-      }
-      .footer__bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 20px 20px;
-      }
-      .footer__legal { flex-direction: column; gap: 10px; }
-    }
-
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="brand/tokens.css" />
   <link rel="stylesheet" href="components/navbar.css">
   <link rel="stylesheet" href="components/mobile.css">
+  <link rel="stylesheet" href="components/mg-ny.css">
+  <style>
+    .mgx-hero { min-height: 58vh; }
+    .mgx-toc ul { margin: 0; padding: 0; list-style: none; }
+    .mgx-toc li { border-top: 1px solid #CCCCC9; }
+    .mgx-toc li:last-child { border-bottom: 1px solid #CCCCC9; }
+    .mgx-toc a { display: block; padding: 12px 0; font-family: 'Instrument Sans', sans-serif; font-size: 18px; line-height: 24px; letter-spacing: -0.01em; color: #28323B; text-decoration: none; transition: opacity 0.2s ease; }
+    .mgx-toc a:hover { opacity: 0.55; }
+    .mgx-read__body h3 { scroll-margin-top: 32px; }
+    .mgx-read__body h3:first-child { margin-top: 0; }
+    .mgx-read__body .mgx-num { margin-right: 10px; font-family: 'Inter', sans-serif; font-size: 14px; color: #8A8F93; letter-spacing: 0; vertical-align: middle; }
+    @media (max-width: 1000px) { .mgx-toc { display: none; } }
+  </style>
 </head>
 <body>
+  <div class="mg-noise" aria-hidden="true"></div>
+  <script src="components/navbar.js?v=2"></script>
 
-  <!-- ── PAGE HERO ── -->
-  <section class="page-hero">
-
-    <div id="navbar"></div>
-
-    <p class="page-hero__eyebrow">Personvern — Mediegruppen</p>
-    <h1 class="page-hero__heading">Personvern<br>og vilkar.</h1>
-    <p class="page-hero__body">Hvordan vi behandler dine opplysninger og vilkarene for bruk av vare tjenester.</p>
-    <div class="page-hero__rule"></div>
-
-  </section>
-
-
-  <!-- ── PERSONVERN ── -->
-  <section class="pv">
-    <div class="pv__inner">
-
-      <p class="pv__updated">Sist oppdatert: 15. januar 2025</p>
-
-      <div class="pv__section">
-        <p class="pv__number">01</p>
-        <h2 class="pv__heading">Hvem vi er</h2>
-        <div class="pv__body">
+  <main class="mgx-main">
+    <section class="mgx-hero">
+      <canvas class="mgx-hero__gl" data-gl="baand" data-amt="0.85" aria-hidden="true"></canvas>
+      <span class="mgx-label">Mediegruppen</span>
+      <hr class="mgx-rule">
+      <h1 class="mgx-hero__title">Personvern</h1>
+      <p class="mgx-intro"><strong>Hvordan vi behandler dine opplysninger og vilkårene for bruk av våre tjenester.</strong></p>
+      
+    </section>
+    <section class="mgx" style="padding-top: 40px">
+      <span class="mgx-label">Sist oppdatert: 15. januar 2025</span>
+      <hr class="mgx-rule">
+      <div class="mgx-read">
+        <nav class="mgx-read__aside mgx-toc" aria-label="Innhold"><ul><li><a href="#del-01">01 Hvem vi er</a></li><li><a href="#del-02">02 Hvilke data vi samler inn</a></li><li><a href="#del-03">03 Hvorfor vi samler inn data</a></li><li><a href="#del-04">04 Hvordan data lagres og beskyttes</a></li><li><a href="#del-05">05 Tredjeparts tjenester</a></li><li><a href="#del-06">06 Dine rettigheter</a></li><li><a href="#del-07">07 Informasjonskapsler (cookies)</a></li><li><a href="#del-08">08 Kontakt oss</a></li><li><a href="#del-09">09 Endringer i personvernerklæringen</a></li></ul></nav>
+        <div class="mgx-read__body">
+          <h3 id="del-01"><span class="mgx-num">01</span> Hvem vi er</h3>
           <p>Mediegruppen er et webdesignbyrå basert i Oslo. Vi hjelper bedrifter med å få moderne nettsider som driver vekst og resultater.</p>
           <p>Kontaktinformasjon:<br>E-post: <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a></p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">02</p>
-        <h2 class="pv__heading">Hvilke data vi samler inn</h2>
-        <div class="pv__body">
+          <h3 id="del-02"><span class="mgx-num">02</span> Hvilke data vi samler inn</h3>
           <p>Når du fyller ut kontaktskjemaet på nettsiden vår, samler vi inn følgende opplysninger:</p>
           <ul>
             <li><strong>Nettside-URL:</strong> Adressen til din eksisterende nettside (hvis aktuelt)</li>
@@ -486,13 +80,7 @@
             <li><strong>Melding:</strong> Valgfritt felt der du kan beskrive dine ønsker</li>
             <li><strong>Bedriftsnavn og tjenester:</strong> For nye nettsider, informasjon om din bedrift</li>
           </ul>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">03</p>
-        <h2 class="pv__heading">Hvorfor vi samler inn data</h2>
-        <div class="pv__body">
+          <h3 id="del-03"><span class="mgx-num">03</span> Hvorfor vi samler inn data</h3>
           <p>Vi samler kun inn data som er nødvendig for å:</p>
           <ul>
             <li>Lage et skreddersydd designforslag til deg</li>
@@ -501,13 +89,7 @@
             <li>Forbedre våre tjenester basert på tilbakemeldinger</li>
           </ul>
           <p>Vi bruker aldri dine opplysninger til markedsføring, nyhetsbrev eller spam. Du vil kun motta kommunikasjon relatert til din forespørsel.</p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">04</p>
-        <h2 class="pv__heading">Hvordan data lagres og beskyttes</h2>
-        <div class="pv__body">
+          <h3 id="del-04"><span class="mgx-num">04</span> Hvordan data lagres og beskyttes</h3>
           <p>Dine opplysninger behandles konfidensielt og lagres sikkert:</p>
           <ul>
             <li>Skjemadata sendes via kryptert forbindelse (HTTPS)</li>
@@ -515,26 +97,14 @@
             <li>Data slettes automatisk etter prosjektet er avsluttet, med mindre du ber om noe annet</li>
             <li>Kun autoriserte personer hos Mediegruppen har tilgang til dine opplysninger</li>
           </ul>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">05</p>
-        <h2 class="pv__heading">Tredjeparts tjenester</h2>
-        <div class="pv__body">
+          <h3 id="del-05"><span class="mgx-num">05</span> Tredjeparts tjenester</h3>
           <p>Vi bruker FormSubmit.co for å håndtere skjemainnsendinger. FormSubmit er en sikker tjeneste som:</p>
           <ul>
             <li>Videresender skjemadata til vår e-post</li>
             <li>Ikke lagrer personopplysninger permanent</li>
             <li>Bruker kryptert overføring av data</li>
           </ul>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">06</p>
-        <h2 class="pv__heading">Dine rettigheter</h2>
-        <div class="pv__body">
+          <h3 id="del-06"><span class="mgx-num">06</span> Dine rettigheter</h3>
           <p>I henhold til personvernlovgivningen (GDPR) har du følgende rettigheter:</p>
           <ul>
             <li><strong>Rett til innsyn:</strong> Du kan be om å få vite hvilke opplysninger vi har lagret om deg</li>
@@ -543,42 +113,54 @@
             <li><strong>Rett til dataportabilitet:</strong> Du kan be om å få utlevert dine data i et lesbart format</li>
           </ul>
           <p>For å utøve disse rettighetene, kontakt oss på <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a>.</p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">07</p>
-        <h2 class="pv__heading" id="cookies">Informasjonskapsler (cookies)</h2>
-        <div class="pv__body">
+          <span id="del-07"></span><h3 id="cookies"><span class="mgx-num">07</span> Informasjonskapsler (cookies)</h3>
           <p>Denne nettsiden bruker ingen informasjonskapsler for sporing eller analyse. Vi samler ikke inn data om din nettleseratferd utover det du selv oppgir i skjemaet.</p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">08</p>
-        <h2 class="pv__heading">Kontakt oss</h2>
-        <div class="pv__body">
+          <h3 id="del-08"><span class="mgx-num">08</span> Kontakt oss</h3>
           <p>Har du spørsmål om hvordan vi behandler dine personopplysninger? Ta gjerne kontakt:</p>
           <p>Mediegruppen<br>E-post: <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a><br>Lokasjon: Oslo, Norge</p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">09</p>
-        <h2 class="pv__heading">Endringer i personvernerklæringen</h2>
-        <div class="pv__body">
+          <h3 id="del-09"><span class="mgx-num">09</span> Endringer i personvernerklæringen</h3>
           <p>Vi kan oppdatere denne personvernerklæringen fra tid til annen. Eventuelle endringer vil bli publisert på denne siden med oppdatert dato øverst. Vi anbefaler at du jevnlig sjekker denne siden for å holde deg informert om hvordan vi beskytter dine opplysninger.</p>
         </div>
       </div>
+    </section>
+  </main>
 
+  <div class="mgf-reveal" id="mgf-reveal">
+  <footer class="mgf">
+    <div class="mgf__top">
+      <ul class="mgf__main">
+        <li><a href="index.html#tjenester">Nettsider</a></li>
+        <li><a href="index.html#slik-jobber-vi">Slik jobber vi</a></li>
+        <li><a href="index.html#kontakt-skjema">Kontakt</a></li>
+      </ul>
+      <div class="mgf__side">
+        <ul class="mgf__sub">
+          <li><a href="#" onclick="openContactPopup(); return false;">Bestill en samtale</a></li>
+          <li><a href="bibliotek.html">Kundecaser</a></li>
+          <li><a href="vilkår.html">Vilkår</a></li>
+          <li><a href="personvern.html">Personvern</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+        <div class="mgf__contact">
+          <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a>
+          <a href="tel:+4748118680">+47 481 18 680</a>
+        </div>
+      </div>
     </div>
-  </section>
 
+    <div class="mgf__legal">
+      <p>Mediegruppen lager nettsider for norske håndverks- og servicebedrifter. Alle priser på denne siden oppgis eks. mva. med mindre annet står. Informasjonen er generell og er ikke et bindende tilbud – endelig pris, omfang og leveringstid avtales skriftlig før vi starter. Resultater fra tidligere kunder er ingen garanti for hva en ny nettside vil gi.</p>
+      <div class="mgf__bottom">
+        <span>© 2026 Mediegruppen AS</span>
+        <span>Alle rettigheter forbeholdt</span>
+        <a href="personvern.html">Personvern</a>
+        <a href="vilkår.html">Vilkår</a>
+        <a href="personvern.html#cookies">Cookies</a>
+      </div>
+    </div>
+  </footer>
+  </div>
 
-  <!-- ── FOOTER ── -->
-  <div id="footer"></div>
-
-
-  <script src="components/navbar.js?v=2"></script>
+  <script src="components/mg-ny.js"></script>
 </body>
 </html>

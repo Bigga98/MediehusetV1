@@ -31,454 +31,48 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; -webkit-font-smoothing: antialiased; }
-    a { text-decoration: none; }
-
-    /* ── NAVBAR ── */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 72px;
-      background-color: transparent;
-      display: flex;
-      align-items: center;
-      padding: 0 80px;
-      z-index: var(--z-sticky);
-      transition: background var(--transition-slow), border-bottom var(--transition-slow), transform var(--transition-spring);
-    }
-
-    .navbar.scrolled {
-      background: rgba(var(--bg-0-rgb),0.97);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .navbar.hide-nav {
-      transform: translateY(-100%);
-    }
-
-    .navbar.scrolled .logo { color: var(--color-ui-dark); }
-    .navbar.scrolled .nav-links a { color: rgba(var(--color-ui-dark-rgb),0.50); }
-    .navbar.scrolled .nav-links a::after { background: rgba(var(--color-ui-dark-rgb),0.40); }
-    .navbar.scrolled .nav-links a:hover { color: rgba(var(--color-ui-dark-rgb),0.90); }
-    .navbar.scrolled .nav-links a[aria-current="page"] { color: rgba(var(--color-ui-dark-rgb),0.90); }
-    .navbar.scrolled .nav-links a[aria-current="page"]::after { background: rgba(var(--color-ui-dark-rgb),0.30); }
-    .navbar.scrolled .cta { background: var(--color-ui-dark); color: var(--color-white); }
-    .navbar.scrolled .cta:hover { background: rgba(var(--color-ui-dark-rgb),0.82); }
-
-    .navbar .logo {
-      font-family: 'Instrument Sans', sans-serif;
-      font-weight: 500;
-      font-size: 15px;
-      letter-spacing: 0.06em;
-      color: var(--color-white);
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .navbar .logo-flip {
-      width: 22px;
-      height: 22px;
-      perspective: 300px;
-      flex-shrink: 0;
-    }
-
-    .navbar .logo-flip-inner {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform var(--transition-reveal);
-    }
-
-    .navbar .logo:hover .logo-flip-inner {
-      transform: rotateY(180deg);
-    }
-
-    .navbar .logo-flip-front,
-    .navbar .logo-flip-back {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    .navbar .logo-flip-back {
-      transform: rotateY(180deg);
-    }
-
-    .navbar .nav-links {
-      display: flex;
-      gap: 40px;
-      margin: 0 auto;
-      list-style: none;
-      padding: 0;
-    }
-
-    .navbar .nav-links a {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 14px;
-      color: rgba(255,255,255,0.55);
-      position: relative;
-      padding-bottom: 2px;
-      transition: color var(--transition-base);
-      --underline-origin: left;
-    }
-
-    .navbar .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: rgba(255,255,255,0.50);
-      transform: scaleX(0);
-      transform-origin: var(--underline-origin) center;
-      transition: transform var(--transition-base);
-    }
-
-    .navbar .nav-links a:hover { color: rgba(255,255,255,0.92); }
-    .navbar .nav-links a:hover::after { transform: scaleX(1); }
-
-    .navbar .nav-links a[aria-current="page"] { color: rgba(255,255,255,0.92); }
-    .navbar .nav-links a[aria-current="page"]::after {
-      transform: scaleX(1);
-      background: rgba(255,255,255,0.35);
-    }
-
-    .navbar .cta {
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 13px;
-      letter-spacing: 0.01em;
-      color: var(--color-ui-dark);
-      background: var(--color-white);
-      border: none;
-      border-radius: var(--radius-full);
-      padding: 10px 22px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background var(--transition-base), opacity var(--transition-base);
-    }
-
-    .navbar .cta:hover { background: rgba(255,255,255,0.88); }
-
-    /* ── PAGE HERO ── */
-    .page-hero {
-      position: relative;
-      width: 100%;
-      min-width: 1440px;
-      height: 540px;
-      background-color: var(--color-ui-dark);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 80px 88px;
-      overflow: hidden;
-    }
-
-    .page-hero__eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: rgba(255,255,255,0.35);
-      text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-
-    .page-hero__heading {
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 88px;
-      line-height: 0.97;
-      letter-spacing: -3px;
-      color: var(--color-white);
-      max-width: 940px;
-    }
-
-    .page-hero__body {
-      font-family: 'Inter', sans-serif;
-      font-weight: 100;
-      font-size: 17px;
-      line-height: 26px;
-      color: rgba(255,255,255,0.50);
-      max-width: 500px;
-      margin-top: 24px;
-    }
-
-    .page-hero__rule {
-      position: absolute;
-      bottom: 0;
-      left: 80px;
-      right: 80px;
-      height: 1px;
-      background: rgba(255,255,255,0.07);
-    }
-
-    /* ── INNHOLD ── */
-    .pv {
-      width: 100%;
-      min-width: 1440px;
-      background: var(--bg-2);
-      padding: 80px 80px 100px;
-    }
-
-    .pv__inner {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .pv__updated {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      color: rgba(var(--color-ink-rgb),0.4);
-      margin-bottom: 48px;
-    }
-
-    .pv__section {
-      margin-bottom: 48px;
-    }
-
-    .pv__number {
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      color: rgba(var(--color-ink-rgb),0.3);
-      margin-bottom: 10px;
-    }
-
-    .pv__heading {
-      font-family: 'Inter', sans-serif;
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--color-ui-dark);
-      margin-bottom: 16px;
-    }
-
-    .pv__body {
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 1.7;
-      color: var(--color-text-muted);
-    }
-
-    .pv__body p + p { margin-top: 12px; }
-
-    .pv__body ul {
-      margin: 12px 0 0 20px;
-      padding: 0;
-    }
-
-    .pv__body ul li {
-      margin-bottom: 8px;
-      line-height: 1.65;
-    }
-
-    .pv__body strong {
-      font-weight: 500;
-      color: var(--color-ui-dark);
-    }
-
-    .pv__body a {
-      color: var(--color-ui-dark);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    .pv__body a:hover { color: var(--color-text-muted); }
-
-    /* ── FOOTER ── */
-    .footer {
-      background: var(--color-ui-dark);
-      width: 100%;
-    }
-
-    .footer__inner {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 64px 80px 40px;
-      display: grid;
-      grid-template-columns: 1fr auto auto auto;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .footer__brand {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .footer__logo {
-      font-family: 'Inter', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--color-white);
-      text-decoration: none;
-    }
-
-    .footer__tagline {
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.45);
-      line-height: 1.6;
-      max-width: 280px;
-    }
-
-    .footer__col-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      margin: 0 0 16px;
-    }
-
-    .footer__links {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer__links a {
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
-      transition: color var(--transition-fast);
-    }
-
-    .footer__links a:hover { color: var(--color-white); }
-
-    .footer__bottom {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 24px 80px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer__copy {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.3);
-    }
-
-    .footer__legal {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer__legal a {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.3);
-      text-decoration: none;
-      transition: color var(--transition-fast);
-    }
-
-    .footer__legal a:hover { color: rgba(255,255,255,0.6); }
-
-    @media (max-width: 768px) {
-      body { overflow-x: hidden; }
-
-      .navbar { padding: 0 20px; }
-      .navbar .nav-links { display: none; }
-
-      .page-hero {
-        min-width: 0;
-        height: auto;
-        padding: 100px 20px 48px;
-      }
-      .page-hero__heading {
-        font-size: 44px;
-        letter-spacing: -1.5px;
-      }
-      .page-hero__body { max-width: 100%; }
-      .page-hero__rule { left: 20px; right: 20px; }
-
-      .pv {
-        min-width: 0;
-        padding: 48px 20px 64px;
-      }
-
-      .footer__inner {
-        grid-template-columns: 1fr;
-        padding: 40px 20px 24px;
-        gap: 28px;
-      }
-      .footer__bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 20px 20px;
-      }
-      .footer__legal { flex-direction: column; gap: 10px; }
-    }
-
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="brand/tokens.css" />
   <link rel="stylesheet" href="components/navbar.css">
   <link rel="stylesheet" href="components/mobile.css">
+  <link rel="stylesheet" href="components/mg-ny.css">
+  <style>
+    .mgx-hero { min-height: 58vh; }
+    .mgx-toc ul { margin: 0; padding: 0; list-style: none; }
+    .mgx-toc li { border-top: 1px solid #CCCCC9; }
+    .mgx-toc li:last-child { border-bottom: 1px solid #CCCCC9; }
+    .mgx-toc a { display: block; padding: 12px 0; font-family: 'Instrument Sans', sans-serif; font-size: 18px; line-height: 24px; letter-spacing: -0.01em; color: #28323B; text-decoration: none; transition: opacity 0.2s ease; }
+    .mgx-toc a:hover { opacity: 0.55; }
+    .mgx-read__body h3 { scroll-margin-top: 32px; }
+    .mgx-read__body h3:first-child { margin-top: 0; }
+    .mgx-read__body .mgx-num { margin-right: 10px; font-family: 'Inter', sans-serif; font-size: 14px; color: #8A8F93; letter-spacing: 0; vertical-align: middle; }
+    @media (max-width: 1000px) { .mgx-toc { display: none; } }
+  </style>
 </head>
 <body>
+  <div class="mg-noise" aria-hidden="true"></div>
+  <script src="components/navbar.js?v=2"></script>
 
-  <!-- ── PAGE HERO ── -->
-  <section class="page-hero">
-
-    <div id="navbar"></div>
-
-    <p class="page-hero__eyebrow">Vilkår — Mediegruppen</p>
-    <h1 class="page-hero__heading">Tjenestevilkår.</h1>
-    <p class="page-hero__body">Vilkår for bruk av Mediegruppenens webtjenester og abonnementsløsninger.</p>
-    <div class="page-hero__rule"></div>
-
-  </section>
-
-
-  <!-- ── INNHOLD ── -->
-  <section class="pv">
-    <div class="pv__inner">
-
-      <p class="pv__updated">Sist oppdatert: 9. april 2026</p>
-
-      <div class="pv__section">
-        <p class="pv__number">01</p>
-        <h2 class="pv__heading">Om Mediegruppen</h2>
-        <div class="pv__body">
+  <main class="mgx-main">
+    <section class="mgx-hero">
+      <canvas class="mgx-hero__gl" data-gl="buer" data-amt="0.85" aria-hidden="true"></canvas>
+      <span class="mgx-label">Mediegruppen</span>
+      <hr class="mgx-rule">
+      <h1 class="mgx-hero__title">Tjenestevilkår</h1>
+      <p class="mgx-intro"><strong>Vilkår for bruk av Mediegruppens webtjenester og abonnementsløsninger.</strong></p>
+      
+    </section>
+    <section class="mgx" style="padding-top: 40px">
+      <span class="mgx-label">Sist oppdatert: 9. april 2026</span>
+      <hr class="mgx-rule">
+      <div class="mgx-read">
+        <nav class="mgx-read__aside mgx-toc" aria-label="Innhold"><ul><li><a href="#del-01">01 Om Mediegruppen</a></li><li><a href="#del-02">02 Hva tjenesten inkluderer</a></li><li><a href="#del-03">03 Priser og betaling</a></li><li><a href="#del-04">04 Oppsigelse og ingen bindingstid</a></li><li><a href="#del-05">05 Eierskap til nettside og innhold</a></li><li><a href="#del-06">06 Kundens ansvar</a></li><li><a href="#del-07">07 Ansvarsbegrensning</a></li><li><a href="#del-08">08 Endringer i vilkårene</a></li><li><a href="#del-09">09 Lovvalg og tvisteløsning</a></li><li><a href="#del-10">10 Kontakt</a></li></ul></nav>
+        <div class="mgx-read__body">
+          <h3 id="del-01"><span class="mgx-num">01</span> Om Mediegruppen</h3>
           <p>Mediegruppen er et webdesignbyrå basert i Oslo som tilbyr nettside-design, utvikling og løpende vedlikehold for små og mellomstore bedrifter.</p>
           <p>E-post: <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a><br>
           Telefon: <a href="tel:+4748118680">+47 481 18 680</a></p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">02</p>
-        <h2 class="pv__heading">Hva tjenesten inkluderer</h2>
-        <div class="pv__body">
+          <h3 id="del-02"><span class="mgx-num">02</span> Hva tjenesten inkluderer</h3>
           <p>En avtale med Mediegruppen inkluderer design, utvikling og drift av én nettside. Følgende er inkludert i abonnementet:</p>
           <ul>
             <li>Skreddersydd nettside-design og utvikling</li>
@@ -489,13 +83,7 @@
             <li>SSL-sertifikat og sikkerhetsmessig vedlikehold</li>
           </ul>
           <p>Større endringer i design eller struktur faktureres etter medgått tid og avtales særskilt.</p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">03</p>
-        <h2 class="pv__heading">Priser og betaling</h2>
-        <div class="pv__body">
+          <h3 id="del-03"><span class="mgx-num">03</span> Priser og betaling</h3>
           <p>Priser fremgår av tilbud eller avtaledokument sendt kunden. Fakturering skjer månedlig, med betalingsfrist på 14 dager fra fakturadato.</p>
           <p>Ved forsinket betaling forbeholder Mediegruppen seg retten til å:</p>
           <ul>
@@ -503,13 +91,7 @@
             <li>Sette nettsiden i vedlikeholdsmodus inntil betaling er mottatt</li>
           </ul>
           <p>Alle priser er oppgitt ekskl. mva. med mindre annet er avtalt.</p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">04</p>
-        <h2 class="pv__heading">Oppsigelse og ingen bindingstid</h2>
-        <div class="pv__body">
+          <h3 id="del-04"><span class="mgx-num">04</span> Oppsigelse og ingen bindingstid</h3>
           <p>Avtalen løper månedlig uten bindingstid. Begge parter kan si opp avtalen med <strong>én måneds skriftlig varsel</strong>, gjeldende fra første dag i påfølgende måned.</p>
           <p>Oppsigelse sendes til <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a>. Vi bekrefter mottatt oppsigelse innen én arbeidsdag.</p>
           <p>Ved oppsigelse:</p>
@@ -518,22 +100,10 @@
             <li>Kunden får utlevert kildekode og innhold etter ønske</li>
             <li>Hosting og domene kan overføres til kunden mot evt. direkte kostnad fra leverandør</li>
           </ul>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">05</p>
-        <h2 class="pv__heading">Eierskap til nettside og innhold</h2>
-        <div class="pv__body">
+          <h3 id="del-05"><span class="mgx-num">05</span> Eierskap til nettside og innhold</h3>
           <p>Kunden eier alt innhold de selv leverer — tekster, bilder og logoer. Etter fullbetaling overføres også eierskap til det ferdige designet og kildekoden til kunden.</p>
           <p>Mediegruppen forbeholder seg retten til å vise nettsiden som referanseprosjekt i markedsføring, med mindre kunden skriftlig ber om noe annet.</p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">06</p>
-        <h2 class="pv__heading">Kundens ansvar</h2>
-        <div class="pv__body">
+          <h3 id="del-06"><span class="mgx-num">06</span> Kundens ansvar</h3>
           <p>Kunden er ansvarlig for:</p>
           <ul>
             <li>At innhold som leveres til Mediegruppen ikke krenker tredjeparts rettigheter</li>
@@ -541,53 +111,59 @@
             <li>Å gi tilbakemelding innen rimelig tid slik at prosjektet kan gjennomføres</li>
           </ul>
           <p>Vesentlig forsinkelse på grunn av manglende tilbakemelding fra kunden kan medføre justeringer i leveringstid.</p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">07</p>
-        <h2 class="pv__heading">Ansvarsbegrensning</h2>
-        <div class="pv__body">
+          <h3 id="del-07"><span class="mgx-num">07</span> Ansvarsbegrensning</h3>
           <p>Mediegruppen er ikke ansvarlig for indirekte tap, tapte inntekter eller følgeskader som følge av nedetid, tekniske feil hos tredjeparts leverandører (hosting, domene, betalingsløsning e.l.) eller force majeure.</p>
           <p>Mediegruppenens samlede ansvar overfor kunden er begrenset til beløpet kunden har betalt de siste tre månedene før krav fremsettes.</p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">08</p>
-        <h2 class="pv__heading">Endringer i vilkårene</h2>
-        <div class="pv__body">
+          <h3 id="del-08"><span class="mgx-num">08</span> Endringer i vilkårene</h3>
           <p>Mediegruppen kan oppdatere disse vilkårene ved behov. Vesentlige endringer varsles kunden på e-post med minst 30 dagers frist. Fortsatt bruk av tjenesten etter varslet endringsdato regnes som aksept av nye vilkår.</p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">09</p>
-        <h2 class="pv__heading">Lovvalg og tvisteløsning</h2>
-        <div class="pv__body">
+          <h3 id="del-09"><span class="mgx-num">09</span> Lovvalg og tvisteløsning</h3>
           <p>Avtalen er underlagt norsk rett. Eventuelle tvister søkes løst i minnelighet. Dersom partene ikke oppnår enighet, behandles saken ved Oslo tingrett som verneting.</p>
-        </div>
-      </div>
-
-      <div class="pv__section">
-        <p class="pv__number">10</p>
-        <h2 class="pv__heading">Kontakt</h2>
-        <div class="pv__body">
+          <h3 id="del-10"><span class="mgx-num">10</span> Kontakt</h3>
           <p>Spørsmål om vilkårene kan rettes til:</p>
           <p>Mediegruppen<br>
           E-post: <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a><br>
           Telefon: <a href="tel:+4748118680">+47 481 18 680</a></p>
         </div>
       </div>
+    </section>
+  </main>
 
+  <div class="mgf-reveal" id="mgf-reveal">
+  <footer class="mgf">
+    <div class="mgf__top">
+      <ul class="mgf__main">
+        <li><a href="index.html#tjenester">Nettsider</a></li>
+        <li><a href="index.html#slik-jobber-vi">Slik jobber vi</a></li>
+        <li><a href="index.html#kontakt-skjema">Kontakt</a></li>
+      </ul>
+      <div class="mgf__side">
+        <ul class="mgf__sub">
+          <li><a href="#" onclick="openContactPopup(); return false;">Bestill en samtale</a></li>
+          <li><a href="bibliotek.html">Kundecaser</a></li>
+          <li><a href="vilkår.html">Vilkår</a></li>
+          <li><a href="personvern.html">Personvern</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+        <div class="mgf__contact">
+          <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a>
+          <a href="tel:+4748118680">+47 481 18 680</a>
+        </div>
+      </div>
     </div>
-  </section>
 
+    <div class="mgf__legal">
+      <p>Mediegruppen lager nettsider for norske håndverks- og servicebedrifter. Alle priser på denne siden oppgis eks. mva. med mindre annet står. Informasjonen er generell og er ikke et bindende tilbud – endelig pris, omfang og leveringstid avtales skriftlig før vi starter. Resultater fra tidligere kunder er ingen garanti for hva en ny nettside vil gi.</p>
+      <div class="mgf__bottom">
+        <span>© 2026 Mediegruppen AS</span>
+        <span>Alle rettigheter forbeholdt</span>
+        <a href="personvern.html">Personvern</a>
+        <a href="vilkår.html">Vilkår</a>
+        <a href="personvern.html#cookies">Cookies</a>
+      </div>
+    </div>
+  </footer>
+  </div>
 
-  <!-- ── FOOTER ── -->
-  <div id="footer"></div>
-
-
-  <script src="components/navbar.js?v=2"></script>
+  <script src="components/mg-ny.js"></script>
 </body>
 </html>
