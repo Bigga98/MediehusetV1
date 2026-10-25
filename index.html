@@ -5336,6 +5336,8 @@
   <!-- FOOTER (Figma: Forside (ny) – Footer) -->
   <style>
     .mgf { position: relative; z-index: 1; background: transparent; color: #28323B; padding: 64px 48px 40px; } /* gjennomsiktig over WebGL-lerretet i .mgw, som tegnes lyst fra footerens overkant og ned (skillestrek mot den mørke siden) */
+    /* Mobil: footeren får egen lys flate i stedet for WebGL bak (sparer ytelse) */
+    @media (max-width: 768px) { .mgf { background: #FDFCFB; } }
 
     /* Footeren avdekkes bak siden, som på badesiden (hero-kjokken): rammen tar
        footerens plass i flyten, og clip-path gjør at footeren bare vises gjennom
@@ -6588,6 +6590,7 @@
         const dt = Math.min((now - last) / 1000, 0.05);
         last = now;
         if (document.documentElement.classList.contains('mgm-open')) { raf = 0; return; }
+        if (opts.active && !opts.active()) { raf = 0; return; }  // på pause (mobil, ved footeren)
         elapsed += dt;  // tiden går bare når bakgrunnen vises, så den ikke hopper etterpå
         mx += (tx - mx) * 0.04;
         my += (ty - my) * 0.04;
@@ -6620,6 +6623,11 @@
         if (visible && !raf) { last = performance.now(); raf = requestAnimationFrame(frame); }
       }).observe(watch);
 
+      // Start igjen når den ikke lenger er på pause
+      if (opts.active) window.addEventListener('scroll', () => {
+        if (visible && !raf && opts.active()) { last = performance.now(); raf = requestAnimationFrame(frame); }
+      }, { passive: true });
+
       // Start tegningen igjen når menyen lukkes
       new MutationObserver(() => {
         if (visible && !raf && !document.documentElement.classList.contains('mgm-open')) {
@@ -6632,7 +6640,9 @@
       // Hovedområdet: bånd i heroen som bøyes til buer når Tjenester scrolles inn
       const mainCanvas = wrap && wrap.querySelector('.mgw__gl');
       const footWrap = document.getElementById('mgf-reveal');
-      if (mainCanvas) bands(mainCanvas, document.body, {
+      // Mobil: tegn bare mens hovedområdet synes, ikke bak footeren (ytelse)
+      const phone = matchMedia('(max-width: 768px)').matches;
+      if (mainCanvas) bands(mainCanvas, phone ? wrap : document.body, {
         morph: () => {
           if (!section) return 0;
           const top = section.getBoundingClientRect().top;
@@ -6641,6 +6651,8 @@
         scroll: () => Math.max(-wrap.getBoundingClientRect().top, 0) / 1700,
         dark: () => document.documentElement.classList.contains('mg-dark') ? 1 : 0,
         split: () => footWrap ? footWrap.getBoundingClientRect().top : Infinity,
+        // Mobil: pause når mindre enn 30 % av skjermen viser innholdet over footeren
+        active: phone ? () => wrap.getBoundingClientRect().bottom > innerHeight * 0.3 : null,
       });
     })();
   </script>
