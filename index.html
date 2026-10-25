@@ -6061,16 +6061,56 @@
     .mgkp.is-sent .mgk__form, .mgkp.is-sent .mgk__or { display: none; }
     .mgkp.is-sent .mgk__done { display: block; }
 
-    /* Mobil: arket glir opp fra bunnen */
+    .mgkp__more { display: none; }
+    /* Cookie-banneret skal ikke ligge over skjemaet */
+    html.mgkp-open #cookie-banner { visibility: hidden !important; }
+
+    /* Mobil: egen fullskjermvisning. Fast topplinje med stor lukkeknapp, Ring/E-post
+       som knapper, kort skjema, og Send festet nederst over tastaturet. Høyden
+       følger det synlige vinduet (--mgkp-h settes i JS når tastaturet åpnes). */
     @media (max-width: 768px) {
-      .mgkp.popup-overlay { align-items: flex-end; padding: 0; }
-      .mgkp__card { width: 100%; max-height: 92dvh; padding: 20px 16px calc(24px + env(safe-area-inset-bottom)); border-radius: 16px 16px 0 0; border-bottom: 0; transform: translateY(40px); }
-      .mgkp__title { margin-top: 28px; font-size: 34px; text-align: left; }
-      .mgkp__intro { margin-top: 12px; font-size: 16px; line-height: 24px; text-align: left; }
-      .mgkp .mgk__inner { margin-top: 24px; }
-      .mgkp .mgk__direct strong { font-size: 19px; line-height: 24px; }
-      .mgkp .mgk__or { justify-content: flex-start; margin: 20px 0; }
+      .mgkp.popup-overlay { padding: 0; align-items: stretch; bottom: auto; height: var(--mgkp-h, 100dvh); top: var(--mgkp-top, 0px); }
+      .mgkp__veil { display: none; }
+      .mgkp__card {
+        display: flex; flex-direction: column; width: 100%; height: 100%; max-height: none;
+        padding: 0 16px; border: 0; border-radius: 0; box-shadow: none;
+        transform: translateY(24px); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .mgkp__head { position: sticky; top: 0; z-index: 1; height: 56px; margin: 0 -16px; padding: 0 4px 0 16px; background: #1C1C1B; border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
+      .mgkp__close { width: 48px; height: 48px; justify-content: center; font-size: 0; }
+      .mgkp__close svg { width: 16px; height: 16px; }
+      .mgkp__rule { display: none; }
+      .mgkp__title { margin-top: 24px; font-size: 30px; line-height: 1.1; text-align: left; }
+      .mgkp__intro { margin: 8px 0 0; font-size: 15px; line-height: 22px; text-align: left; }
+      .mgkp .mgk__inner { flex: 1; display: flex; flex-direction: column; margin-top: 20px; }
+
+      /* Ring / E-post som to knapper side om side */
+      .mgkp .mgk__direct { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .mgkp .mgk__direct a { justify-content: center; gap: 8px; height: 48px; padding: 0; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 12px; }
+      .mgkp .mgk__direct a + a { border-top: 1px solid rgba(255, 255, 255, 0.22); }
+      .mgkp .mgk__direct a::before, .mgkp .mgk__direct a::after { display: none; }
+      .mgkp .mgk__direct strong { display: none; }
+      .mgkp .mgk__direct small { font-size: 15px; line-height: 1; font-weight: 500; color: #E3E3E3; }
+      .mgkp .mgk__or { justify-content: flex-start; margin: 20px 0 12px; }
       .mgkp .mgk__or::before { display: none; }
+
+      .mgkp .mgk__form { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+      .mgkp .mgk__row { grid-template-columns: 1fr; gap: 10px; }
+      .mgkp .mgk__form input { height: 52px; }
+      .mgkp .mgk__form textarea { display: none; height: 88px; resize: none; }
+      .mgkp.is-more .mgk__form textarea { display: block; }
+      .mgkp__more { display: block; align-self: flex-start; padding: 6px 0; font: 500 14px/20px 'Inter', sans-serif; color: #A8A5A2; background: none; border: 0; cursor: pointer; }
+      .mgkp.is-more .mgkp__more { display: none; }
+
+      /* Send festet nederst */
+      .mgkp .mgk__send {
+        position: sticky; bottom: 0; flex-direction: column; align-items: stretch; gap: 8px;
+        margin: auto -16px 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+        background: #1C1C1B; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
+      }
+      .mgkp .mgk__send button { height: 52px; }
+      .mgkp .mgk__note { font-size: 12px; line-height: 16px; }
+      .mgkp .mgk__done { margin: auto 0; }
     }
   </style>
   <div class="popup-overlay mgkp" id="kontaktPopup" role="dialog" aria-modal="true" aria-labelledby="mgkp-tittel">
@@ -6095,6 +6135,7 @@
             <input type="text" name="name" placeholder="Navn" autocomplete="name" aria-label="Navn" required>
             <input type="tel" name="phone" placeholder="Telefon" autocomplete="tel" aria-label="Telefon" required>
           </div>
+          <button class="mgkp__more" type="button">+ Legg til en melding</button>
           <textarea name="message" placeholder="Hva slags tjenester tilbyr dere? (valgfritt)" aria-label="Hva slags tjenester tilbyr dere? (valgfritt)"></textarea>
           <div class="mgk__send">
             <button type="submit">Send</button>
@@ -6105,6 +6146,27 @@
       </div>
     </div>
   </div>
+  <script>
+    // Mobil: meldingsfeltet vises først når man ber om det, og popupen følger det
+    // synlige vinduet så Send-knappen ligger over tastaturet.
+    (function () {
+      var pop = document.getElementById('kontaktPopup');
+      pop.querySelector('.mgkp__more').addEventListener('click', function () {
+        pop.classList.add('is-more');
+        pop.querySelector('textarea').focus();
+      });
+      var vv = window.visualViewport;
+      if (!vv) return;
+      var fit = function () {
+        if (!pop.classList.contains('open')) return;
+        pop.style.setProperty('--mgkp-h', vv.height + 'px');
+        pop.style.setProperty('--mgkp-top', vv.offsetTop + 'px');
+      };
+      vv.addEventListener('resize', fit);
+      vv.addEventListener('scroll', fit);
+      window._mgkpFit = fit;
+    })();
+  </script>
 
   <script>
     /* ── Popup bildeslider ── */
@@ -6155,6 +6217,8 @@
 
     function openContactPopup() {
       document.getElementById('kontaktPopup').classList.add('open');
+      document.documentElement.classList.add('mgkp-open');
+      if (window._mgkpFit) window._mgkpFit();
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
       if (window._initPopupSlider) window._initPopupSlider();
@@ -6162,6 +6226,7 @@
 
     function closeContactPopup() {
       document.getElementById('kontaktPopup').classList.remove('open');
+      document.documentElement.classList.remove('mgkp-open');
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     }
