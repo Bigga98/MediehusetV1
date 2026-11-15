@@ -1,0 +1,94 @@
+/* Annonse-skjema «utkast» (Figma: Variant C2 – Mobil (ryddig skjema) + desktop C2).
+   Brukes av skjema-video.html, skjema-karusell.html, skjema-annonse-19.html og skjema-annonse-21.html.
+   Sidene lages fra én mal, så endringer i oppsett gjøres her og i malen – ikke i hver fil. */
+:root {
+  --u-bg: #1C1C1B; --u-surf: #252523; --u-light: #E3E3E3; --u-dim: #6F6C69;
+  --u-txt: #CFCCC8; --u-lab: #A8A5A2; --u-note: #8F8C89; --u-blue: #296ADA; --u-green: #30A46C;
+}
+html, body { background: var(--u-bg); color: var(--u-light); }
+.sk-logo { color: var(--u-light); }
+
+.ut { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); align-items: start; gap: 72px; width: 100%; max-width: 1280px; margin: 0 auto; padding: 24px 32px 64px; }
+
+/* Video: 9:16-utsnitt av iPad-videoen, står fast mens skjemaet scrolles på desktop */
+.ut-media { position: sticky; top: 24px; margin: 0; justify-self: center; width: min(100%, 460px); aspect-ratio: 1080 / 1520; max-height: calc(100vh - 120px); border-radius: 12px; overflow: hidden; background: #000; }
+.ut-media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.ut-form { width: 100%; padding-top: 8px; }
+.ut .sk-label { justify-content: flex-start; color: var(--u-note); }
+.ut .sk-rule { background: rgba(227, 227, 227, .14); }
+
+.ut-title { margin-top: 24px; font-family: 'Instrument Sans', sans-serif; font-weight: 400; font-size: clamp(36px, 3.4vw, 46px); line-height: .98; letter-spacing: -0.045em; }
+.ut-title span { display: block; color: var(--u-dim); }
+.ut-title span + span { color: var(--u-light); }
+.ut-text { margin-top: 16px; font-size: 17px; line-height: 26px; color: var(--u-txt); }
+
+.ut-points { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 10px; }
+.ut-points li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--u-light); }
+.ut-points i { flex: none; width: 22px; height: 22px; border-radius: 50%; background: rgba(48, 164, 108, .16); display: grid; place-items: center; }
+.ut-points i::after { content: ""; width: 8px; height: 4px; border-left: 1.6px solid var(--u-green); border-bottom: 1.6px solid var(--u-green); transform: translateY(-1px) rotate(-45deg); }
+
+/* Spørsmål */
+.ut-q { border: 0; margin: 32px 0 0; padding: 0; min-width: 0; }
+.ut-q legend { padding: 0; font-size: 15px; font-weight: 500; color: var(--u-light); }
+.ut-opts { display: grid; gap: 8px; margin-top: 10px; }
+.ut-opts--row { grid-template-columns: 1fr 1fr; }
+.ut-opt { position: relative; display: block; }
+.ut-opt input { position: absolute; opacity: 0; pointer-events: none; }
+.ut-opt span { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 52px; padding: 0 16px 0 18px; font-size: 15px; color: #D4D4D1; background: var(--u-surf); border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: border-color .2s ease, background-color .2s ease; }
+.ut-opt span:hover { border-color: rgba(255, 255, 255, .12); }
+.ut-opt i { flex: none; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .28); display: grid; place-items: center; transition: background-color .2s ease, border-color .2s ease; }
+.ut-opt input:checked + span { color: #fff; border-color: var(--u-blue); background: rgba(41, 106, 218, .14); }
+.ut-opt input:checked + span i { background: var(--u-blue); border-color: var(--u-blue); }
+.ut-opt input:checked + span i::after { content: ""; width: 8px; height: 4px; border-left: 1.6px solid #fff; border-bottom: 1.6px solid #fff; transform: translateY(-1px) rotate(-45deg); }
+.ut-opt input:focus-visible + span { box-shadow: 0 0 0 3px rgba(41, 106, 218, .35); }
+
+/* Felt: etikett over, mørk flate uten kant, blå kant når aktivt */
+.ut-fields { display: grid; gap: 14px; margin-top: 32px; }
+.ut-field { display: block; }
+.ut-field > span { display: block; margin-bottom: 6px; font-size: 13px; color: var(--u-lab); }
+.ut-field input[type="text"], .ut-field input[type="email"], .ut-tel { width: 100%; height: 52px; padding: 0 18px; font: 400 16px/20px 'Inter', sans-serif; color: var(--u-light); background: var(--u-surf); border: 1.5px solid transparent; border-radius: 12px; outline: none; transition: border-color .2s ease, background-color .2s ease; }
+.ut-field input::placeholder { color: var(--u-note); }
+.ut-field input[type="text"]:focus, .ut-field input[type="email"]:focus, .ut-tel:focus-within { border-color: var(--u-blue); background: rgba(41, 106, 218, .08); }
+.ut-tel { display: flex; align-items: center; gap: 12px; }
+.ut-tel b { font-weight: 400; color: var(--u-note); }
+.ut-tel input { flex: 1; min-width: 0; height: 100%; font: inherit; color: inherit; background: none; border: 0; outline: none; }
+
+/* Autofyll: Chrome/Safari farger feltet lyseblått – behold mørk flate og lys tekst */
+.ut-field { color-scheme: dark; }
+.ut-field input:-webkit-autofill,
+.ut-field input:-webkit-autofill:hover,
+.ut-field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--u-light); caret-color: var(--u-light);
+  -webkit-box-shadow: 0 0 0 1000px var(--u-surf) inset; box-shadow: 0 0 0 1000px var(--u-surf) inset;
+  transition: background-color 9999s ease-out 0s;
+}
+.ut-field input:autofill { -webkit-text-fill-color: var(--u-light); box-shadow: 0 0 0 1000px var(--u-surf) inset; }
+
+/* Brønnøysund-forslag på mørk flate */
+.ut .sk-org__list { background: #2A2A28; border-color: rgba(255, 255, 255, .08); box-shadow: 0 12px 30px rgba(0, 0, 0, .35); }
+.ut .sk-org__list button { color: var(--u-light); }
+.ut .sk-org__list button small { color: var(--u-note); }
+.ut .sk-org__list button:hover, .ut .sk-org__list button:focus { background: #33332F; }
+
+.ut-btn { width: 100%; height: 52px; margin-top: 24px; font: 500 15px/1 'Inter', sans-serif; color: #fff; background: var(--u-blue); border: 0; border-radius: 12px; cursor: pointer; transition: filter .2s ease; }
+.ut-btn:hover { filter: brightness(1.1); }
+.ut-btn:disabled { opacity: .7; cursor: default; }
+.ut-note { margin-top: 12px; text-align: center; font-size: 13px; color: var(--u-lab); }
+.ut .sk-error { margin-top: 8px; color: #E0826F; }
+
+.ut-done { display: none; }
+.is-sent .ut-ask { display: none; }
+.is-sent .ut-done { display: block; }
+.ut-call { margin-top: 24px; font-size: 14px; color: var(--u-lab); }
+.ut-call a { color: var(--u-light); }
+
+.sk-foot { color: var(--u-dim); }
+.sk-foot a:hover { color: var(--u-light); }
+
+@media (max-width: 1000px) {
+  .ut { grid-template-columns: 1fr; gap: 32px; padding: 4px 20px 48px; }
+  .ut-media { position: static; width: auto; max-height: none; margin: 0 -12px; border-radius: 8px; }
+  .ut-form { padding-top: 0; }
+  .ut-title { font-size: 36px; }
+}
