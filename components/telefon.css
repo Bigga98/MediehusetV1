@@ -130,3 +130,21 @@
 .mgtl__footer hr { margin: 36px 0 16px; border: 0; height: 1px; background: rgba(255,255,255,0.12); }
 .mgtl__footer small { font: 400 13px/1 Inter, Helvetica, Arial, sans-serif; color: #8F8C89; }
 .mgtl [hidden] { display: none !important; }
+
+/* ---------- Mørke seksjoner (variant C) ---------- */
+.mgtl__s--d .mgtl__h { color: #E3E3E3; }
+.mgtl__s--d .mgtl__p { color: #A8A5A2; }
+.mgtl__s--d .mgtl__prikker span { background: #E3E3E3; }
+.mgtl__s--d .mgtl__fliser { background: #252523; }
+.mgtl__s--d .mgtl__flis { background: #33312F; color: #E3E3E3; }
+.mgtl__s--d .mgtl__kort { background: #252523; }
+
+.mgtl__hero.mgtl__mork { background: var(--d); }
+.mgtl__mork .mgtl__eyebrow { color: #A8A5A2; }
+.mgtl__mork .mgtl__eyebrow svg { fill: #6F6C69; }
+.mgtl__mork .mgtl__tittel { color: #E3E3E3; }
+.mgtl__hero.mgtl__mork .mgtl__p { color: #A8A5A2; }
+.mgtl__mork .mgtl__mail a { background: #E3E3E3; color: #111111; }
+.mgtl__mork .mgtl__ask { border-color: rgba(227,227,227,0.4); color: #E3E3E3; }
+.mgtl__mork .mgtl__note { color: #A8A5A2; }
+.mgtl__mork .mgtl__kort { background: #252523; }
