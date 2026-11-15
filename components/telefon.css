@@ -55,8 +55,8 @@
 .mgtl__tittel { margin: 20px 0 0; font-weight: 400; font-size: 36px; line-height: 34px; letter-spacing: -1.89px; color: #312C26; }
 .mgtl__tittel span { display: block; }
 
-.mgtl__hero .mgtl__p { margin-top: 20px; line-height: 26px; color: #201C14; }
-.mgtl__mail { display: flex; height: 52px; margin-top: 28px; border-radius: 6px; overflow: hidden; }
+.mgtl__hero .mgtl__p { margin-top: 16px; line-height: 26px; color: #201C14; }
+.mgtl__mail { display: flex; height: 52px; margin-top: 24px; border-radius: 6px; overflow: hidden; }
 .mgtl__mail a { flex: 1; display: flex; align-items: center; justify-content: center; background: #171412; color: #FFFFFF; font: 500 15px/1 Inter, Helvetica, Arial, sans-serif; }
 .mgtl__mail button { border: 0; padding: 0 24px; background: #343230; color: #E7E7E7; font: 400 15px/1 Inter, Helvetica, Arial, sans-serif; letter-spacing: -0.04em; cursor: pointer; }
 .mgtl__ask {
@@ -66,7 +66,7 @@
 .mgtl__ask svg { width: 16px; height: 16px; }
 .mgtl__note { display: flex; align-items: center; gap: 8px; margin: 14px 0 0; font: 400 14px/1.3 Inter, Helvetica, Arial, sans-serif; color: #73736E; }
 .mgtl__note svg { width: 16px; height: 16px; flex: none; }
-.mgtl__hero .mgtl__kort { margin-top: 28px; aspect-ratio: 358 / 402; }
+.mgtl__hero .mgtl__kort { margin-top: 24px; aspect-ratio: 358 / 402; }
 
 /* ---------- Karusell (Estetikk) ---------- */
 .mgtl__karusell {
@@ -93,8 +93,8 @@
 .mgtl__flis img { width: 36px; height: 36px; }
 
 /* ---------- Priser ---------- */
-.mgtl__priser { text-align: center; }
-.mgtl__priskort { margin-top: 28px; padding: 12px 20px 24px; border-radius: 6px; background: #FFFFFF; }
+.mgtl__priser { text-align: left; }
+.mgtl__priskort { margin-top: 24px; padding: 20px 20px 24px; border-radius: 6px; background: #FFFFFF; }
 .mgtl__korttittel { margin: 0; font-weight: 400; font-size: 24px; line-height: 28px; letter-spacing: -0.03em; color: #111111; }
 .mgtl__priskort .mgtl__p { margin-top: 12px; }
 .mgtl__belop { display: flex; justify-content: center; align-items: flex-start; gap: 14px; margin-top: 28px; }
@@ -123,7 +123,7 @@
 .mgtl__rad:active { opacity: .6; }
 
 /* ---------- Footer ---------- */
-.mgtl__footer { padding: 48px 16px 40px; background: var(--d); border-top: 1px solid rgba(255,255,255,0.12); }
+.mgtl__footer { padding: 48px 16px 48px; background: var(--d); border-top: 1px solid rgba(255,255,255,0.12); }
 .mgtl__logo { display: block; width: 155px; height: 20px; color: #E3E3E3; }
 .mgtl__footer p { margin: 12px 0 0; font: 400 14px/20px Inter, Helvetica, Arial, sans-serif; color: #A8A5A2; }
 .mgtl__lenker { list-style: none; margin: 36px 0 0; padding: 0; display: grid; gap: 10px; }
@@ -152,3 +152,6 @@
 
 .mgtl__liste i svg { width: 12px; height: 12px; }
 .mgtl__btn svg { width: 16px; height: 16px; margin-left: 8px; }
+
+/* Priskortet: venstrestilt som resten av siden, beløpene står fortsatt midt i */
+.mgtl__belop { justify-content: center; text-align: center; }
