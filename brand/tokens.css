@@ -3,6 +3,10 @@
    Spacing system: 6pt base scale
 ───────────────────────────────────────────── */
 
+/* Gråtone-glatting på hele siden (tynnere, skarpere tekst på macOS) */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+
+
 :root {
 
   /* SPACING
