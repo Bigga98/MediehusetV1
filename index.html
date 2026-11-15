@@ -18,12 +18,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
   <title>Mediegruppen — Nettsider som gir deg flere kunder</title>
-  <meta name="description" content="Vi bygger profesjonelle nettsider for små og mellomstore bedrifter i Norge. Fast pris, rask levering og synlig på Google. Få et gratis utkast i dag." />
+  <meta name="description" content="Mediegruppen lager nettsider og annonser for håndverksbedrifter, og følger opp henvendelsene fra første klikk til befaring og signerte oppdrag." />
   <link rel="canonical" href="https://mediegruppen.no/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mediegruppen.no/" />
   <meta property="og:title" content="Mediegruppen — Nettsider som gir deg flere kunder" />
-  <meta property="og:description" content="Vi bygger profesjonelle nettsider for små og mellomstore bedrifter i Norge. Fast pris, rask levering og synlig på Google." />
+  <meta property="og:description" content="Mediegruppen lager nettsider og annonser for håndverksbedrifter, og følger opp henvendelsene fra første klikk til befaring og signerte oppdrag." />
   <meta property="og:image" content="https://mediegruppen.no/images/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json">
@@ -5664,7 +5664,7 @@
       .mgt__intro, .mgs__intro, .mgk__intro { font-size: 19px; }
     }
   </style>
-  <link rel="stylesheet" href="components/telefon.css?v=1">
+  <link rel="stylesheet" href="components/telefon.css?v=2">
 </head>
 <body>
   <!-- TELEFONVERSJON (≤ 600px). Figma: «Telefonside – fargevarianter» → Variant B,
@@ -5679,7 +5679,7 @@
         <button type="button" data-mgtl-copy="post@mediegruppen.no">Kopier</button>
       </div>
       <a href="#" class="mgtl__ask" onclick="openContactPopup(); return false;">Send direkte forespørsel<svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9H14.5M14.5 9L9.5 4M14.5 9L9.5 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <p class="mgtl__note"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#40AD14"/><path d="M4.6 8.2l2.2 2.2 4.6-4.8" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Start med et kostnadsfritt prosjekt-utkast</p>
+      <p class="mgtl__note"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#40AD14"/><path d="M4.6 8.2l2.2 2.2 4.6-4.8" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Uforpliktende første samtale.</p>
       <div class="mgtl__kort"><img src="images/telefon/hero-bilde.webp" alt="Nettside vist på en bærbar PC" width="1074" height="1206" loading="lazy"></div>
     </section>
 
@@ -5707,7 +5707,8 @@
     <section class="mgtl__s">
       <h2 class="mgtl__h">Bedre oppsett, billigere befaringer</h2>
       <p class="mgtl__p" style="color:#73736E">Jo bedre nettsiden er satt opp, jo mindre koster hver befaring fra kampanjene.</p>
-      <div class="mgtl__plass mgtl__media"><strong>X %</strong><span>[Legg inn eget tall her, f.eks. «Hos en av våre kunder gikk kostnaden per befaring ned X % etter ny landingsside.»]</span></div>
+      <!-- Skjult til det finnes et ekte tall (aldri oppdiktet): fjern hidden og bytt ut teksten -->
+      <div class="mgtl__plass mgtl__media" hidden><strong>X %</strong><span>[Legg inn eget tall her, f.eks. «Hos en av våre kunder gikk kostnaden per befaring ned X % etter ny landingsside.»]</span></div>
       <div class="mgtl__btns">
         <button type="button" class="mgtl__btn" onclick="openContactPopup()">Send forespørsel</button>
         <a href="tel:+4748118680" class="mgtl__btn mgtl__btn--hvit">Ring oss</a>
@@ -5749,7 +5750,7 @@
           <li><i aria-hidden="true">✓</i>Tilpasset mobil, nettbrett og PC</li>
           <li><i aria-hidden="true">✓</i>Garanti: er du ikke fornøyd med utkastet, betaler du ingenting</li>
         </ul>
-        <button type="button" class="mgtl__btn" onclick="openContactPopup()">Start med et kostandsfritt utkast →</button>
+        <button type="button" class="mgtl__btn" onclick="openContactPopup()">Ta kontakt →</button>
       </div>
     </section>
 
@@ -5797,6 +5798,18 @@
         dots.forEach((d, n) => d.classList.toggle('on', n === i));
       }, { passive: true });
 
+      // Menyen og andre lenker til PC-seksjoner: på mobil gå til tilsvarende seksjon i telefonsiden
+      const MAP = { '#tjenester': '#mgtl-nettsider', '#slik-jobber-vi': '#mgtl-slik', '#kontakt-skjema': '#mgtl-kontakt', '#hva-vi-leverer': '#mgtl-nettsider', '#eksempel': '#mgtl-slik' };
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a[href^="#"]');
+        if (!a || !mq.matches || !MAP[a.getAttribute('href')]) return;
+        const mal = document.querySelector(MAP[a.getAttribute('href')]);
+        if (!mal) return;
+        e.preventDefault(); e.stopPropagation();
+        document.querySelector('.mgm-close')?.click();
+        setTimeout(() => mal.scrollIntoView({ behavior: 'smooth', block: 'start' }), 350);
+      }, true);
+
       root.querySelectorAll('[data-mgtl-copy]').forEach((b) => b.addEventListener('click', async () => {
         try { await navigator.clipboard.writeText(b.dataset.mgtlCopy); b.textContent = 'Kopiert'; setTimeout(() => (b.textContent = 'Kopier'), 2000); }
         catch (e) { location.href = 'mailto:' + b.dataset.mgtlCopy; }
@@ -5827,8 +5840,8 @@
       <p class="mgx__lead">Vi lager nettsiden, kjører annonsene og følger opp henvendelsene, slik at kundereisen henger sammen fra første klikk til befaring og salg.</p>
       <div class="mgx__actions">
         <div class="mgx__mail">
-          <a href="mailto:info@mediegruppen.no" class="mgx__mail-adr">info@mediegruppen.no</a>
-          <button type="button" class="mgx__mail-copy" data-copy="info@mediegruppen.no"><span class="mgx__copy-a">Kopier</span><span class="mgx__copy-b" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>Kopiert</span></button>
+          <a href="mailto:post@mediegruppen.no" class="mgx__mail-adr">post@mediegruppen.no</a>
+          <button type="button" class="mgx__mail-copy" data-copy="post@mediegruppen.no"><span class="mgx__copy-a">Kopier</span><span class="mgx__copy-b" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>Kopiert</span></button>
           <span class="mgx__mail-live" role="status" aria-live="polite"></span>
         </div>
         <a href="#" class="mgx__ask" onclick="openContactPopup(); return false;">Send direkte forespørsel<svg class="mgx__ask-arrow" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9H14.5M14.5 9L9.5 4M14.5 9L9.5 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -5876,11 +5889,11 @@
       </li>
       <li>
         <h3>Meta og Google annonser</h3>
-        <p>Hastighet, innhold og oppsett som <br>gjør at du blir funnet.</p>
+        <p>Kampanjer rettet mot tjenestene <br>og områdene dere jobber i.</p>
       </li>
       <li>
         <h3>Salgstrakt og booking av befaringer</h3>
-        <p>Vi lager salgstrakter i takt med annonsene og tester ut <br>strategier for....</p>
+        <p>Vi lager salgstrakter i takt med annonsene og tester ut <br>hva som gir flest befaringer.</p>
       </li>
     </ul>
   </section>
@@ -6051,8 +6064,7 @@
       <div class="mgf__side">
         <ul class="mgf__sub">
           <li><a href="#" onclick="openContactPopup(); return false;">Bestill en samtale</a></li>
-          <li><a href="#" onclick="openContactPopup(); return false;">Få et gratis utkast</a></li>
-          <li><a href="#">Kundecaser</a></li>
+          <li><a href="bibliotek.html">Kundecaser</a></li>
           <li><a href="vilkår.html">Vilkår</a></li>
           <li><a href="personvern.html">Personvern</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
@@ -6131,10 +6143,10 @@
 
   <script src="components/navbar.js?v=2"></script>
   <script>
-    // Forsiden: nav-knappen heter «Få et utkast», og logoen er den nye fra Figma
+    // Forsiden: nav-knappen heter «Ta kontakt», og logoen er den nye fra Figma
     (() => {
       const cta = document.querySelector('.mg-nav__cta');
-      if (cta) cta.textContent = 'Få et utkast';
+      if (cta) cta.textContent = 'Ta kontakt';
       const old = document.querySelector('.mg-nav__logo');
       if (old) {
         // Ny kopi uten den gamle hover-animasjonen (den leter etter det gamle logobildet)
@@ -7211,7 +7223,15 @@
       const sec = document.querySelector('.mgt');
       if (!sec) return;
       const root = document.documentElement;
+      const mob = matchMedia('(max-width: 600px)');
+      const morke = document.querySelectorAll('.mgtl__slutt, .mgtl__footer');
       const update = () => {
+        if (mob.matches) {
+          // Telefonsiden: logo og meny blir lyse bare når de ligger over en mørk seksjon
+          const over = [...morke].some((el) => { const r = el.getBoundingClientRect(); return r.top < 40 && r.bottom > 20; });
+          root.classList.toggle('mg-dark', over);
+          return;
+        }
         const top = sec.getBoundingClientRect().top;
         const vh = window.innerHeight;
         if (!root.classList.contains('mg-dark') && top < vh * 0.5) root.classList.add('mg-dark');

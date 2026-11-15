@@ -129,3 +129,4 @@
 .mgtl__lenker a { font-weight: 400; font-size: 22px; line-height: 28px; color: #E3E3E3; }
 .mgtl__footer hr { margin: 36px 0 16px; border: 0; height: 1px; background: rgba(255,255,255,0.12); }
 .mgtl__footer small { font: 400 13px/1 Inter, Helvetica, Arial, sans-serif; color: #8F8C89; }
+.mgtl [hidden] { display: none !important; }
