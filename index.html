@@ -5664,7 +5664,7 @@
       .mgt__intro, .mgs__intro, .mgk__intro { font-size: 19px; }
     }
   </style>
-  <link rel="stylesheet" href="components/telefon.css?v=2">
+  <link rel="stylesheet" href="components/telefon.css?v=3">
 </head>
 <body>
   <!-- TELEFONVERSJON (≤ 600px). Figma: «Telefonside – fargevarianter» → Variant B,
@@ -5701,7 +5701,7 @@
       <h2 class="mgtl__h">Mer data til annonsekanalene</h2>
       <p class="mgtl__p" style="color:#000000">Kjører dere allerede annonser gjennom Meta, Google eller andre kanaler? Annonsekanalene trives med god data fra landingssiden deres. Jo bedre data de får, jo riktigere målgruppe treffer kampanjene.</p>
       <p class="mgtl__p" style="color:#000000">Vi sørger for at trafikken fra kampanjene havner på skjemaer og landingssider som er satt opp riktig. Da vet annonsekanalen hvem som faktisk ble kunder, og kan finne flere som ligner.</p>
-      <div class="mgtl__kort mgtl__media" style="aspect-ratio:358/400"><video data-src="images/telefon/data-video.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <div class="mgtl__kort mgtl__media" style="aspect-ratio:358/400"><video data-src="images/telefon/data-video.mp4" poster="images/telefon/data-video-poster.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
     </section>
 
     <section class="mgtl__s">
@@ -5780,13 +5780,24 @@
       const root = document.getElementById('mgtl');
       const mq = matchMedia('(max-width: 600px)');
       const vids = root.querySelectorAll('video[data-src]');
+      // iPhone: videoen må være dempet som egenskap (ikke bare attributt), ha src og load() før play()
+      const synlig = new Set();
+      const spill = (v) => { v.muted = true; const p = v.play(); if (p) p.catch(() => {}); };
       const start = () => {
         if (!mq.matches) return;
+        vids.forEach((v) => {
+          v.muted = true; v.defaultMuted = true; v.playsInline = true;
+          v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+          v.preload = 'auto'; v.src = v.dataset.src; v.load();
+        });
         const io = new IntersectionObserver((es) => es.forEach((e) => {
           const v = e.target;
-          if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else if (v.src) v.pause();
-        }), { rootMargin: '200px 0px' });
-        vids.forEach((v) => io.observe(v));
+          if (e.isIntersecting) { synlig.add(v); spill(v); } else { synlig.delete(v); v.pause(); }
+        }), { rootMargin: '100px 0px' });
+        vids.forEach((v) => { io.observe(v); v.addEventListener('canplay', () => { if (synlig.has(v)) spill(v); }); });
+        // Hvis nettleseren stoppet autoavspilling (f.eks. strømsparing): prøv igjen ved første berøring
+        const igjen = () => synlig.forEach(spill);
+        ['touchstart', 'click'].forEach((t) => document.addEventListener(t, igjen, { passive: true }));
         mq.removeEventListener('change', start);
       };
       start(); mq.addEventListener('change', start);
