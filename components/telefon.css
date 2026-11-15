@@ -27,9 +27,9 @@
 .mgtl__s--d { background: var(--d); }
 .mgtl__s--bilde { background: #E9A15E url('../images/telefon/bg-2.webp') center / cover no-repeat; }
 
-/* Tekst: overskrift 34/34 −4 %. Brødtekst 20/26 −1 % (luftigere enn Figma for lesbarhet) */
+/* Tekst: overskrift 34/34 −4 %. Brødtekst 20/26, bokstaver −2 %, ordmellomrom +5 % */
 .mgtl__h { margin: 0; font-weight: 400; font-size: 34px; line-height: 34px; letter-spacing: -0.04em; color: #111111; }
-.mgtl__p { margin: 0; font-weight: 400; font-size: 20px; line-height: 26px; letter-spacing: -0.01em; word-spacing: 0; color: #2E230C; }
+.mgtl__p { margin: 0; font-weight: 400; font-size: 20px; line-height: 26px; letter-spacing: -0.02em; word-spacing: 0.05em; color: #2E230C; }
 .mgtl__p + .mgtl__p { margin-top: 12px; }
 .mgtl__h + .mgtl__p { margin-top: 16px; }
 .mgtl__media { margin-top: 24px; }
@@ -118,7 +118,8 @@
 .mgtl__rad { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
 .mgtl__rad small { display: block; font: 500 12px/16px 'IBM Plex Sans', Inter, sans-serif; letter-spacing: 0.08em; color: #8F8C89; }
 .mgtl__rad strong { display: block; margin-top: 8px; font-weight: 400; font-size: 24px; line-height: 28px; letter-spacing: -0.02em; color: #E3E3E3; }
-.mgtl__rad > span { font: 400 20px/1 Inter, sans-serif; color: #8F8C89; }
+.mgtl__rad > span { display: flex; color: #8F8C89; }
+.mgtl__rad > span svg { width: 14px; height: 14px; }
 .mgtl__rad:active { opacity: .6; }
 
 /* ---------- Footer ---------- */
@@ -148,3 +149,6 @@
 .mgtl__mork .mgtl__ask { border-color: rgba(227,227,227,0.4); color: #E3E3E3; }
 .mgtl__mork .mgtl__note { color: #A8A5A2; }
 .mgtl__mork .mgtl__kort { background: #252523; }
+
+.mgtl__liste i svg { width: 12px; height: 12px; }
+.mgtl__btn svg { width: 16px; height: 16px; margin-left: 8px; }
