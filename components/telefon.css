@@ -27,9 +27,9 @@
 .mgtl__s--d { background: var(--d); }
 .mgtl__s--bilde { background: #E9A15E url('../images/telefon/bg-2.webp') center / cover no-repeat; }
 
-/* Tekst (Figma: overskrift 34/34 −4 %, brødtekst 20/24 −3 %, mellomrom −8 %) */
+/* Tekst: overskrift 34/34 −4 %. Brødtekst 20/26 −1 % (luftigere enn Figma for lesbarhet) */
 .mgtl__h { margin: 0; font-weight: 400; font-size: 34px; line-height: 34px; letter-spacing: -0.04em; color: #111111; }
-.mgtl__p { margin: 0; font-weight: 400; font-size: 20px; line-height: 24px; letter-spacing: -0.03em; word-spacing: -0.08em; color: #2E230C; }
+.mgtl__p { margin: 0; font-weight: 400; font-size: 20px; line-height: 26px; letter-spacing: -0.01em; word-spacing: 0; color: #2E230C; }
 .mgtl__p + .mgtl__p { margin-top: 12px; }
 .mgtl__h + .mgtl__p { margin-top: 16px; }
 .mgtl__media { margin-top: 24px; }
@@ -133,7 +133,7 @@
 
 /* ---------- Mørke seksjoner (variant C) ---------- */
 .mgtl__s--d .mgtl__h { color: #E3E3E3; }
-.mgtl__s--d .mgtl__p { color: #A8A5A2; }
+.mgtl__s--d .mgtl__p { color: #C9C6C2; }
 .mgtl__s--d .mgtl__prikker span { background: #E3E3E3; }
 .mgtl__s--d .mgtl__fliser { background: #252523; }
 .mgtl__s--d .mgtl__flis { background: #33312F; color: #E3E3E3; }
@@ -143,7 +143,7 @@
 .mgtl__mork .mgtl__eyebrow { color: #A8A5A2; }
 .mgtl__mork .mgtl__eyebrow svg { fill: #6F6C69; }
 .mgtl__mork .mgtl__tittel { color: #E3E3E3; }
-.mgtl__hero.mgtl__mork .mgtl__p { color: #A8A5A2; }
+.mgtl__hero.mgtl__mork .mgtl__p { color: #C9C6C2; }
 .mgtl__mork .mgtl__mail a { background: #E3E3E3; color: #111111; }
 .mgtl__mork .mgtl__ask { border-color: rgba(227,227,227,0.4); color: #E3E3E3; }
 .mgtl__mork .mgtl__note { color: #A8A5A2; }
