@@ -12,7 +12,7 @@
 }
 
 .mgtl {
-  --l: #FDFCFB; --g: #EFEEEC; --d: #1C1C1B;
+  --l: #F9F6F1; --g: #F3F1EE; --d: #1C1C1B; /* varm lys (Figma variant E) */
   font-family: 'Instrument Sans', Helvetica, Arial, sans-serif;
   color: #111111;
   -webkit-font-smoothing: antialiased;
