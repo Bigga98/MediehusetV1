@@ -27,9 +27,9 @@
 .mgtl__s--d { background: var(--d); }
 .mgtl__s--bilde { background: #E9A15E url('../images/telefon/bg-2.webp') center / cover no-repeat; }
 
-/* Tekst: overskrift 34/34 −4 %. Brødtekst 20/26, bokstaver −2 %, ordmellomrom +5 % */
+/* Tekst: overskrift 34/34 −4 %. Brødtekst 20/25, bokstaver −3 %, ordmellomrom +5 % */
 .mgtl__h { margin: 0; font-weight: 400; font-size: 34px; line-height: 34px; letter-spacing: -0.04em; color: #111111; }
-.mgtl__p { margin: 0; font-weight: 400; font-size: 20px; line-height: 26px; letter-spacing: -0.02em; word-spacing: 0.05em; color: #2E230C; }
+.mgtl__p { margin: 0; font-weight: 400; font-size: 20px; line-height: 25px; letter-spacing: -0.03em; word-spacing: 0.05em; color: #2E230C; }
 .mgtl__p + .mgtl__p { margin-top: 12px; }
 .mgtl__h + .mgtl__p { margin-top: 16px; }
 .mgtl__media { margin-top: 24px; }
@@ -55,7 +55,7 @@
 .mgtl__tittel { margin: 20px 0 0; font-weight: 400; font-size: 36px; line-height: 34px; letter-spacing: -1.89px; color: #312C26; }
 .mgtl__tittel span { display: block; }
 
-.mgtl__hero .mgtl__p { margin-top: 16px; line-height: 26px; color: #201C14; }
+.mgtl__hero .mgtl__p { margin-top: 16px; line-height: 25px; color: #201C14; }
 .mgtl__mail { display: flex; height: 52px; margin-top: 24px; border-radius: 6px; overflow: hidden; }
 .mgtl__mail a { flex: 1; display: flex; align-items: center; justify-content: center; background: #171412; color: #FFFFFF; font: 500 15px/1 Inter, Helvetica, Arial, sans-serif; }
 .mgtl__mail button { border: 0; padding: 0 24px; background: #343230; color: #E7E7E7; font: 400 15px/1 Inter, Helvetica, Arial, sans-serif; letter-spacing: -0.04em; cursor: pointer; }
