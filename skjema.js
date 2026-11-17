@@ -99,25 +99,32 @@
       if (reject) lines.push('UTFALL: Avslag – har ikke kapasitet nå');
       var message = lines.join('\n');
       btn.disabled = true; var t = btn.textContent; btn.textContent = 'Sender...';
-      fetch(SUPABASE_URL + '/rest/v1/leads', {
-        method: 'POST',
-        headers: { 'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
-        body: JSON.stringify({ name: name || firma, email: email, website: form.nettside ? form.nettside.value.trim() : '', message: message, service_type: opts.service, source: opts.source + (ad ? '-a' + ad : '') })
-      });
+      // Takk-siden og Lead vises så snart henvendelsen er lagret (Supabase svarer på ~1 sek).
+      // E-posten via FormSubmit går i bakgrunnen – den kan bruke over et minutt.
+      // Feiler lagringen, venter vi på e-posten i stedet, så henvendelsen ikke går tapt.
+      var done = false;
+      var success = function () {
+        if (done) return; done = true;
+        if (window.fbq && !reject) fbq('track', 'Lead', { content_name: opts.label, ad: ad || '' });
+        if (opts.onSent) opts.onSent(form);
+        document.body.classList.add('is-sent');
+        if (reject) document.body.classList.add('is-reject');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+      var fail = function () { btn.disabled = false; btn.textContent = t; err.textContent = 'Noe gikk galt. Prøv igjen, eller ring oss på 481 18 680.'; };
       var data = new FormData();
       data.append('name', name || firma); if (email) data.append('email', email); if (phone) data.append('phone', phone); data.append('message', message);
       data.append('_subject', (reject ? 'Avslag fra ' : 'Ny lead fra ') + opts.label + ': ' + (firma || name));
       data.append('_captcha', 'false');
-      fetch('https://formsubmit.co/ajax/birbra.bb@gmail.com', { method: 'POST', body: data })
-        .then(function (r) {
-          if (!r.ok) throw new Error();
-          if (window.fbq && !reject) fbq('track', 'Lead', { content_name: opts.label, ad: ad || '' });
-          if (opts.onSent) opts.onSent(form);
-          document.body.classList.add('is-sent');
-          if (reject) document.body.classList.add('is-reject');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        })
-        .catch(function () { btn.disabled = false; btn.textContent = t; err.textContent = 'Noe gikk galt. Prøv igjen, eller ring oss på 481 18 680.'; });
+      var mail = fetch('https://formsubmit.co/ajax/birbra.bb@gmail.com', { method: 'POST', body: data, keepalive: true })
+        .then(function (r) { if (!r.ok) throw new Error(); });
+      fetch(SUPABASE_URL + '/rest/v1/leads', {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ name: name || firma, email: email, website: form.nettside ? form.nettside.value.trim() : '', message: message, service_type: opts.service, source: opts.source + (ad ? '-a' + ad : '') })
+      })
+        .then(function (r) { if (!r.ok) throw new Error(); success(); })
+        .catch(function () { mail.then(success).catch(fail); });
     });
   };
   document.querySelectorAll('[data-cal]').forEach(function (a) { a.href = CAL_URL; });

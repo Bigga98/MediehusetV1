@@ -7077,20 +7077,28 @@
         btn.disabled = true;
         btn.textContent = 'Sender...';
         var full = 'Telefon: ' + phone + (message ? '\n' + message : '');
-        fetch(SUPABASE_URL + '/rest/v1/leads', {
-          method: 'POST',
-          headers: { 'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
-          body: JSON.stringify({ name: name, email: '', website: '', message: full, service_type: 'Kontakt', source: source })
-        });
+        // Takk og Lead så snart henvendelsen er lagret; e-posten (FormSubmit, kan bruke over et minutt) går i bakgrunnen.
+        var done = false;
+        var success = function () {
+          if (done) return; done = true;
+          if (window.fbq) fbq('track', 'Lead', { content_name: id === 'mgkpForm' ? 'Forsiden – popup' : 'Forsiden – skjema nederst' });
+          section.classList.add('is-sent');
+        };
         var data = new FormData();
         data.append('name', name);
         data.append('phone', phone);
         data.append('message', full);
         data.append('_subject', 'Ny henvendelse fra skjemaet: ' + name);
         data.append('_captcha', 'false');
-        fetch('https://formsubmit.co/ajax/birbra.bb@gmail.com', { method: 'POST', body: data })
-          .then(function (r) { if (r.ok) section.classList.add('is-sent'); else showError('Noe gikk galt. Prøv igjen, eller ring oss.'); })
-          .catch(function () { showError('Noe gikk galt. Prøv igjen, eller ring oss.'); });
+        var mail = fetch('https://formsubmit.co/ajax/birbra.bb@gmail.com', { method: 'POST', body: data, keepalive: true })
+          .then(function (r) { if (!r.ok) throw new Error(); });
+        fetch(SUPABASE_URL + '/rest/v1/leads', {
+          method: 'POST',
+          headers: { 'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+          body: JSON.stringify({ name: name, email: '', website: '', message: full, service_type: 'Kontakt', source: source })
+        })
+          .then(function (r) { if (!r.ok) throw new Error(); success(); })
+          .catch(function () { mail.then(success).catch(function () { showError('Noe gikk galt. Prøv igjen, eller ring oss.'); }); });
       });
     });
 
