@@ -105,7 +105,7 @@
       var done = false;
       var success = function () {
         if (done) return; done = true;
-        if (window.fbq && !reject) fbq('track', 'Lead', { content_name: opts.label, ad: ad || '' });
+        if (!reject) { if (window.mgLead) mgLead({ content_name: opts.label, ad: ad || '', email: email, phone: phone }); else if (window.fbq) fbq('track', 'Lead', { content_name: opts.label, ad: ad || '' }); }
         if (opts.onSent) opts.onSent(form);
         document.body.classList.add('is-sent');
         if (reject) document.body.classList.add('is-reject');

@@ -646,7 +646,7 @@
       btn.style.color = '#ff6b6b';
       btn.disabled = false;
     } else {
-      if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+      if (window.mgLead) mgLead({ content_name: 'Kontaktsiden', email: epost, phone: telefon }); else if (typeof fbq !== 'undefined') fbq('track', 'Lead');
       document.getElementById('kontaktskjema').style.display = 'none';
       document.querySelector('.form-header').style.display = 'none';
       document.querySelector('.form-divider').style.display = 'none';
@@ -656,5 +656,6 @@
   });
 </script>
 
+<script src="components/meta-lead.js?v=1"></script>
 </body>
 </html>
