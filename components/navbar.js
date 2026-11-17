@@ -283,7 +283,7 @@
   const logo = document.createElement('a');
   logo.className = 'mg-nav__logo';
   logo.href = root + 'index.html';
-  logo.innerHTML = `<img class="mg-logo-svg" src="${root}images/mediegruppen-logo.svg" alt="Mediegruppen">`;
+  logo.innerHTML = `<img class="mg-logo-svg" src="${root}images/mediegruppen-logo-f1.svg" alt="Mediegruppen">`;
 
   logo.addEventListener('mouseenter', function () {
     const svg = logo.querySelector('.mg-logo-svg');
