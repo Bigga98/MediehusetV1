@@ -6,21 +6,9 @@
   <title>Mediegruppen – Analyse</title>
   <meta name="description" content="Svar på fem korte spørsmål og se hva annonsene deres faktisk leverer.">
 
-  <!-- Meta Pixel — stub + kø legges umiddelbart, selve fbevents.js lastes først
-       etter load+idle så den ikke booter på hovedtråden mens man trykker -->
-  <script>
-    !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window);
-    fbq('init', '1438440671412379');
-    fbq('track', 'PageView');
-    function loadFbPixel() {
-      if (loadFbPixel.done) return; loadFbPixel.done = 1;
-      var t = document.createElement('script');
-      t.async = true; t.src = 'https://connect.facebook.net/en_US/fbevents.js';
-      document.head.appendChild(t);
-    }
-  </script>
+  <!-- Meta-pikselen lastes først etter samtykke (components/samtykke.js) -->
+  <script src="components/samtykke.js?v=3"></script>
+  <script>function loadFbPixel() {}</script>
 
   <!-- tilfeldig hero velges FØR parsing er ferdig, så nedlastingen starter
        parallelt med CSS/fonter i stedet for etter at JS nederst har kjørt -->

@@ -11,23 +11,7 @@
   <meta property="og:url" content="https://mediegruppen.no/personvern.html" />
   <meta property="og:title" content="Personvern — Mediegruppen" />
   <meta property="og:description" content="Personvernerklæring for Mediegruppen — behandling av personopplysninger i henhold til GDPR." />
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1438440671412379');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1438440671412379&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
+  <script src="components/samtykke.js?v=3"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet" />
@@ -63,58 +47,63 @@
       
     </section>
     <section class="mgx" style="padding-top: 40px">
-      <span class="mgx-label">Sist oppdatert: 15. januar 2025</span>
+      <span class="mgx-label">Sist oppdatert: 17. november 2026</span>
       <hr class="mgx-rule">
       <div class="mgx-read">
-        <nav class="mgx-read__aside mgx-toc" aria-label="Innhold"><ul><li><a href="#del-01">01 Hvem vi er</a></li><li><a href="#del-02">02 Hvilke data vi samler inn</a></li><li><a href="#del-03">03 Hvorfor vi samler inn data</a></li><li><a href="#del-04">04 Hvordan data lagres og beskyttes</a></li><li><a href="#del-05">05 Tredjeparts tjenester</a></li><li><a href="#del-06">06 Dine rettigheter</a></li><li><a href="#del-07">07 Informasjonskapsler (cookies)</a></li><li><a href="#del-08">08 Kontakt oss</a></li><li><a href="#del-09">09 Endringer i personvernerklæringen</a></li></ul></nav>
+        <nav class="mgx-read__aside mgx-toc" aria-label="Innhold"><ul><li><a href="#del-01">01 Hvem vi er</a></li><li><a href="#del-02">02 Hvilke opplysninger vi samler inn</a></li><li><a href="#del-03">03 Hvorfor, og grunnlaget</a></li><li><a href="#del-04">04 Lagring og sletting</a></li><li><a href="#del-05">05 Tjenester vi bruker</a></li><li><a href="#del-06">06 Dine rettigheter</a></li><li><a href="#del-07">07 Informasjonskapsler (cookies)</a></li><li><a href="#del-08">08 Kontakt oss</a></li><li><a href="#del-09">09 Endringer i personvernerklæringen</a></li></ul></nav>
         <div class="mgx-read__body">
           <h3 id="del-01"><span class="mgx-num">01</span> Hvem vi er</h3>
           <p>Mediegruppen er et webdesignbyrå basert i Oslo. Vi hjelper bedrifter med å få moderne nettsider som driver vekst og resultater.</p>
           <p>Kontaktinformasjon:<br>E-post: <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a></p>
-          <h3 id="del-02"><span class="mgx-num">02</span> Hvilke data vi samler inn</h3>
-          <p>Når du fyller ut kontaktskjemaet på nettsiden vår, samler vi inn følgende opplysninger:</p>
+          <h3 id="del-02"><span class="mgx-num">02</span> Hvilke opplysninger vi samler inn</h3>
+          <p>Når du sender inn et skjema på nettsiden vår, får vi opplysningene du selv fyller inn. Hvilke felt det er, varierer litt fra skjema til skjema:</p>
           <ul>
-            <li><strong>Nettside-URL:</strong> Adressen til din eksisterende nettside (hvis aktuelt)</li>
-            <li><strong>E-postadresse:</strong> For å kunne kontakte deg med designforslag</li>
-            <li><strong>Telefonnummer:</strong> Valgfritt felt for enklere kommunikasjon</li>
-            <li><strong>Melding:</strong> Valgfritt felt der du kan beskrive dine ønsker</li>
-            <li><strong>Bedriftsnavn og tjenester:</strong> For nye nettsider, informasjon om din bedrift</li>
+            <li><strong>Bedriftsnavn og organisasjonsnummer:</strong> Når du skriver bedriftsnavnet, slår vi det opp i Enhetsregisteret (Brønnøysundregistrene) og legger ved organisasjonsnummeret.</li>
+            <li><strong>Navn, telefonnummer og e-postadresse:</strong> Så vi kan kontakte deg.</li>
+            <li><strong>Svar og melding:</strong> For eksempel når dere ønsker ny nettside, og hva dere tilbyr.</li>
+            <li><strong>Hvilken annonse du kom fra:</strong> Et annonsenummer i lenken, så vi ser hvilke annonser som gir henvendelser.</li>
           </ul>
-          <h3 id="del-03"><span class="mgx-num">03</span> Hvorfor vi samler inn data</h3>
-          <p>Vi samler kun inn data som er nødvendig for å:</p>
+          <p>Har du godtatt informasjonskapsler, registrerer vi også at du besøkte siden og om du sendte et skjema (se punkt 07).</p>
+          <h3 id="del-03"><span class="mgx-num">03</span> Hvorfor vi bruker opplysningene, og grunnlaget</h3>
           <ul>
-            <li>Lage et skreddersydd designforslag til deg</li>
-            <li>Kontakte deg med forslaget via e-post</li>
-            <li>Følge opp henvendelsen din ved behov</li>
-            <li>Forbedre våre tjenester basert på tilbakemeldinger</li>
+            <li><strong>Svare på henvendelsen din:</strong> Kontakte deg, følge opp og gi tilbud. Grunnlaget er vår berettigede interesse i å svare på henvendelser vi får (GDPR art. 6 nr. 1 f).</li>
+            <li><strong>Måle annonsene våre:</strong> Se hvilke annonser som gir henvendelser, og la Meta vise annonsene til flere som ligner. Dette skjer bare hvis du har godtatt informasjonskapsler (samtykke, GDPR art. 6 nr. 1 a).</li>
           </ul>
-          <p>Vi bruker aldri dine opplysninger til markedsføring, nyhetsbrev eller spam. Du vil kun motta kommunikasjon relatert til din forespørsel.</p>
-          <h3 id="del-04"><span class="mgx-num">04</span> Hvordan data lagres og beskyttes</h3>
-          <p>Dine opplysninger behandles konfidensielt og lagres sikkert:</p>
+          <p>Vi selger ikke opplysningene dine, og vi sender ikke nyhetsbrev uten at du har bedt om det.</p>
+          <h3 id="del-04"><span class="mgx-num">04</span> Lagring og sletting</h3>
           <ul>
-            <li>Skjemadata sendes via kryptert forbindelse (HTTPS)</li>
-            <li>Vi lagrer kun data så lenge det er nødvendig for å behandle din henvendelse</li>
-            <li>Data slettes automatisk etter prosjektet er avsluttet, med mindre du ber om noe annet</li>
-            <li>Kun autoriserte personer hos Mediegruppen har tilgang til dine opplysninger</li>
+            <li>Alt sendes over kryptert forbindelse (HTTPS).</li>
+            <li>Henvendelser lagres i vår database hos Supabase, på servere i EU (Irland).</li>
+            <li>Vi beholder henvendelser så lenge det trengs for å følge dem opp, og sletter dem senest 12 måneder etter siste kontakt. Blir du kunde, gjelder avtalen vår.</li>
+            <li>Bare de som jobber i Mediegruppen, har tilgang.</li>
           </ul>
-          <h3 id="del-05"><span class="mgx-num">05</span> Tredjeparts tjenester</h3>
-          <p>Vi bruker FormSubmit.co for å håndtere skjemainnsendinger. FormSubmit er en sikker tjeneste som:</p>
+          <h3 id="del-05"><span class="mgx-num">05</span> Tjenester vi bruker</h3>
           <ul>
-            <li>Videresender skjemadata til vår e-post</li>
-            <li>Ikke lagrer personopplysninger permanent</li>
-            <li>Bruker kryptert overføring av data</li>
+            <li><strong>Supabase</strong> lagrer henvendelsene (EU).</li>
+            <li><strong>FormSubmit</strong> sender henvendelsen videre til e-posten vår. Tjenesten ligger i USA.</li>
+            <li><strong>Brønnøysundregistrene</strong> brukes til å slå opp bedriftsnavn. Bare navnet du skriver, sendes dit.</li>
+            <li><strong>Meta (Facebook og Instagram)</strong> får vite at en side ble besøkt og at et skjema ble sendt, bare hvis du har godtatt informasjonskapsler. Da sendes også e-post og telefonnummer, men kryptert (hashet), slik at Meta bare kan bruke dem til å koble henvendelsen til en annonse, ikke lese dem. Meta kan overføre data til USA.</li>
+            <li><strong>Google Analytics</strong> brukes til besøksstatistikk på forsiden, bare hvis du har godtatt informasjonskapsler.</li>
           </ul>
+          <p>Overføring til USA skjer med grunnlag i EUs rammeverk for personvern mellom EU og USA (Data Privacy Framework) eller EUs standardkontrakter.</p>
           <h3 id="del-06"><span class="mgx-num">06</span> Dine rettigheter</h3>
-          <p>I henhold til personvernlovgivningen (GDPR) har du følgende rettigheter:</p>
+          <p>Etter personvernreglene (GDPR) kan du:</p>
           <ul>
-            <li><strong>Rett til innsyn:</strong> Du kan be om å få vite hvilke opplysninger vi har lagret om deg</li>
-            <li><strong>Rett til retting:</strong> Du kan be om at feilaktige opplysninger blir korrigert</li>
-            <li><strong>Rett til sletting:</strong> Du kan be om at alle dine opplysninger blir slettet</li>
-            <li><strong>Rett til dataportabilitet:</strong> Du kan be om å få utlevert dine data i et lesbart format</li>
+            <li><strong>Få innsyn</strong> i hvilke opplysninger vi har om deg</li>
+            <li><strong>Få rettet</strong> feil</li>
+            <li><strong>Få slettet</strong> opplysningene dine</li>
+            <li><strong>Protestere</strong> mot at vi bruker dem, eller få dem utlevert i et lesbart format</li>
+            <li><strong>Trekke tilbake samtykket</strong> til informasjonskapsler når som helst (se punkt 07)</li>
           </ul>
-          <p>For å utøve disse rettighetene, kontakt oss på <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a>.</p>
+          <p>Send en e-post til <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a>. Du kan også klage til Datatilsynet (datatilsynet.no).</p>
           <span id="del-07"></span><h3 id="cookies"><span class="mgx-num">07</span> Informasjonskapsler (cookies)</h3>
-          <p>Denne nettsiden bruker ingen informasjonskapsler for sporing eller analyse. Vi samler ikke inn data om din nettleseratferd utover det du selv oppgir i skjemaet.</p>
+          <p>Første gang du besøker siden, spør vi om du godtar informasjonskapsler. Trykker du «Avvis», setter vi ingen informasjonskapsler for måling eller annonser.</p>
+          <p>Trykker du «Godta», bruker vi:</p>
+          <ul>
+            <li><strong>Meta-pikselen (_fbp, _fbc):</strong> Måler hvilke annonser som gir besøk og henvendelser. Varer opptil 90 dager.</li>
+            <li><strong>Google Analytics (_ga):</strong> Besøksstatistikk på forsiden. Varer opptil 2 år.</li>
+          </ul>
+          <p>Valget ditt lagres i nettleseren din (mg_cookie_consent), så vi slipper å spørre på nytt. Vil du endre valget, kan du <a href="#" onclick="try{localStorage.removeItem('mg_cookie_consent')}catch(e){};location.reload();return false;">nullstille det her</a>, så får du spørsmålet igjen.</p>
           <h3 id="del-08"><span class="mgx-num">08</span> Kontakt oss</h3>
           <p>Har du spørsmål om hvordan vi behandler dine personopplysninger? Ta gjerne kontakt:</p>
           <p>Mediegruppen<br>E-post: <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a><br>Lokasjon: Oslo, Norge</p>

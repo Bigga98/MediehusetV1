@@ -44,23 +44,7 @@
   }
   </script>
   <link rel="icon" href="/favicon.ico?v=3" sizes="48x48"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3"><link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3"><link rel="manifest" href="/site.webmanifest">
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1438440671412379');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1438440671412379&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
+  <script src="components/samtykke.js?v=3"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@500&family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&family=Space+Grotesk:wght@500&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" rel="stylesheet">
@@ -5664,22 +5648,22 @@
       .mgt__intro, .mgs__intro, .mgk__intro { font-size: 19px; }
     }
   </style>
-  <link rel="stylesheet" href="components/telefon.css?v=10">
+  <link rel="stylesheet" href="components/telefon.css?v=20">
 </head>
 <body>
-  <!-- TELEFONVERSJON (≤ 600px). Lys hero, mørke «Mer enn bare nettsider» og Estetikk (variant C),
-       lys nederste del som variant B, mørk Kontakt og footer. Stil i components/telefon.css. -->
+  <!-- TELEFONVERSJON (≤ 600px). Figma «Telefonside – fargevarianter» → Variant C – Mørk gjennomgående:
+       alt mørkt (#1C1C1B), unntatt «Bedre oppsett» og «Priser» (#EFEEEC). Stil i components/telefon.css. -->
   <main class="mgtl" id="mgtl">
-    <section class="mgtl__hero" aria-labelledby="mgtl-tittel">
+    <section class="mgtl__hero mgtl__mork" aria-labelledby="mgtl-tittel">
       <p class="mgtl__eyebrow"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4.30373 8.43732C5.49226 7.73261 7.76491 5.20813 8.36578 3.8784C8.45764 3.67511 8.33494 3.45715 8.12088 3.39436C6.72955 2.98623 4.30117 2.47835 2.54345 2.30821C2.25774 2.28056 2.03493 2.54038 2.10251 2.81935C2.5059 4.48447 3.25008 6.8579 3.80908 8.24546C3.89109 8.44912 4.1149 8.54927 4.30373 8.43732Z"/><path d="M4.30373 9.21307C5.49226 9.91778 7.76491 12.4423 8.36578 13.772C8.45764 13.9753 8.33494 14.1932 8.12088 14.256C6.72955 14.6642 4.30117 15.172 2.54345 15.3422C2.25774 15.3698 2.03493 15.11 2.10251 14.831C2.5059 13.1659 3.25008 10.7925 3.80908 9.40493C3.89109 9.20127 4.1149 9.10112 4.30373 9.21307Z"/><path d="M13.6963 9.21307C12.5077 9.91778 10.2351 12.4423 9.63422 13.772C9.54236 13.9753 9.66506 14.1932 9.87912 14.256C11.2704 14.6642 13.6988 15.172 15.4566 15.3422C15.7423 15.3698 15.9651 15.11 15.8975 14.831C15.4941 13.1659 14.7499 10.7925 14.1909 9.40493C14.1089 9.20127 13.8851 9.10112 13.6963 9.21307Z"/><path d="M13.6963 8.43732C12.5077 7.73261 10.2351 5.20813 9.63422 3.8784C9.54236 3.67511 9.66506 3.45715 9.87912 3.39436C11.2704 2.98623 13.6988 2.47835 15.4566 2.30821C15.7423 2.28056 15.9651 2.54038 15.8975 2.81935C15.4941 4.48447 14.7499 6.8579 14.1909 8.24546C14.1089 8.44912 13.8851 8.54927 13.6963 8.43732Z"/></svg>Webdesign og Annonser</p>
-      <h1 class="mgtl__tittel" id="mgtl-tittel"><span>Fra første klikk</span><span>til befaring</span><span>og signerte oppdrag.</span></h1>
-      <p class="mgtl__p">Vi lager nettsiden, kjører annonsene og følger opp henvendelsene, slik at kundereisen henger sammen fra første klikk til befaring og salg.</p>
-      <div class="mgtl__mail">
-        <a href="mailto:post@mediegruppen.no">post@mediegruppen.no</a>
-        <button type="button" data-mgtl-copy="post@mediegruppen.no">Kopier</button>
-      </div>
-      <a href="#" class="mgtl__ask" onclick="openContactPopup(); return false;">Send direkte forespørsel<svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 9H14.5M14.5 9L9.5 4M14.5 9L9.5 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <h1 class="mgtl__tittel" id="mgtl-tittel"><span>Fra første klikk</span><span class="mgtl__ink">til befaring</span><span>og signerte oppdrag.</span></h1>
+      <p class="mgtl__p">Vi lager nettsiden, kjører annonsene og følger opp henvendelsene.</p>
+      <a href="skjema-annonse-19.html" class="mgtl__cta">Få et gratis utkast<svg class="mgtl__cta-pil" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1.5 8H13" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter" stroke-miterlimit="10"/></svg></a>
       <p class="mgtl__note"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#40AD14"/><path d="M4.6 8.2l2.2 2.2 4.6-4.8" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Uforpliktende første samtale.</p>
+      <div class="mgtl__kontaktinfo">
+        <a href="mailto:post@mediegruppen.no"><small>E-post</small>post@mediegruppen.no</a>
+        <a href="tel:+4748118680"><small>Telefon</small>481 18 680</a>
+      </div>
       <div class="mgtl__kort"><img src="images/telefon/hero-bilde.webp" alt="Nettside vist på en bærbar PC" width="1074" height="1206" loading="lazy"></div>
     </section>
 
@@ -5697,14 +5681,14 @@
       <div class="mgtl__prikker" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </section>
 
-    <section class="mgtl__s mgtl__s--g">
+    <section class="mgtl__s mgtl__s--d">
       <h2 class="mgtl__h">Mer data til annonsekanalene</h2>
       <p class="mgtl__p">Kjører dere allerede annonser gjennom Meta, Google eller andre kanaler? Annonsekanalene trives med god data fra landingssiden deres. Jo bedre data de får, jo riktigere målgruppe treffer kampanjene.</p>
       <p class="mgtl__p">Vi sørger for at trafikken fra kampanjene havner på skjemaer og landingssider som er satt opp riktig. Da vet annonsekanalen hvem som faktisk ble kunder, og kan finne flere som ligner.</p>
       <div class="mgtl__kort mgtl__media" style="aspect-ratio:358/400"><video data-src="images/telefon/data-video.mp4" poster="images/telefon/data-video-poster.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div>
     </section>
 
-    <section class="mgtl__s">
+    <section class="mgtl__s mgtl__s--c">
       <h2 class="mgtl__h">Bedre oppsett, billigere befaringer</h2>
       <p class="mgtl__p">Jo bedre nettsiden er satt opp, jo mindre koster hver befaring fra kampanjene.</p>
       <!-- Skjult til det finnes et ekte tall (aldri oppdiktet): fjern hidden og bytt ut teksten -->
@@ -5715,13 +5699,13 @@
       </div>
     </section>
 
-    <section class="mgtl__s mgtl__s--g">
+    <section class="mgtl__s mgtl__s--d">
       <h2 class="mgtl__h">Annonser</h2>
       <p class="mgtl__p">Sliter dere med å lage gode annonser, eller har dere rett og slett ikke tid? Vi lager hele kampanjen, lanserer den og følger den opp. Vi tar kun honorar når dere har stått på døren hos en ekte kunde. Får dere ikke befaringer, betaler dere ikke.</p>
       <div class="mgtl__kort mgtl__media" style="aspect-ratio:358/332;background:transparent"><img src="images/telefon/kort-5.webp" alt="Eksempler på annonser" width="1074" height="996" loading="lazy"></div>
     </section>
 
-    <section class="mgtl__s">
+    <section class="mgtl__s mgtl__s--d">
       <h2 class="mgtl__h">Nødvendige integrasjoner</h2>
       <p class="mgtl__p">Ønsker dere at kunder skal kunne booke befaring direkte på nettsiden, eller at henvendelser havner rett i systemet dere allerede bruker? Vi setter opp det som trengs, enten det er booking, kalender, CRM eller betaling. Målet er at dere bruker mindre tid på å svare på e-post og mer tid på jobben.</p>
       <div class="mgtl__fliser mgtl__media">
@@ -5732,15 +5716,15 @@
       </div>
     </section>
 
-    <section class="mgtl__s mgtl__s--g mgtl__priser">
+    <section class="mgtl__s mgtl__s--c mgtl__priser">
       <h2 class="mgtl__h">Tydelige priser</h2>
       <div class="mgtl__priskort">
         <h3 class="mgtl__korttittel">Nettsiden Inkluderer Alt</h3>
-        <p class="mgtl__p">Vi tar ingen oppstartskostnad. Design, utvikling og lansering av nettsiden er inkludert, og du betaler bare 629 kr i måneden så lenge du har den.</p>
+        <p class="mgtl__p">Vi tar ingen oppstartskostnad. Design, utvikling og lansering av nettsiden er inkludert, og du betaler bare 729 kr i måneden så lenge du har den.</p>
         <div class="mgtl__belop">
           <div><strong>Kr 0</strong><span class="mgtl__etikett">I OPPSTART</span></div>
           <span aria-hidden="true">+</span>
-          <div><strong>Kr 629</strong><span class="mgtl__etikett mgtl__etikett--mono">I MÅNEDEN</span></div>
+          <div><strong>Kr 729</strong><span class="mgtl__etikett mgtl__etikett--mono">I MÅNEDEN</span></div>
         </div>
         <div class="mgtl__skille"></div>
         <span class="mgtl__etikett">DETTE FØLGER MED</span>
@@ -6703,7 +6687,7 @@
 
     .mgkp__more { display: none; }
     /* Cookie-banneret skal ikke ligge over skjemaet */
-    html.mgkp-open #cookie-banner { visibility: hidden !important; }
+    html.mgkp-open #cookie-banner, html.mgkp-open #mg-samtykke { visibility: hidden !important; }
 
     /* Mobil: popupen blir en vanlig side i stedet for et fast lag. Resten av siden
        skjules mens den er åpen (html.mgkp-page, settes i JS). Da håndterer telefonen
@@ -7124,35 +7108,7 @@
     });
   </script>
 
-  <!-- Cookie-banner -->
-  <div id="cookie-banner" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index: var(--z-top);width:calc(100% - 48px);max-width:680px;background:var(--color-white);border-radius:0;box-shadow:0 8px 40px rgba(0,0,0,0.14),0 0 0 1px rgba(0,0,0,0.07);padding:20px 24px;font-family:var(--font-ui);font-size:0.875rem;line-height:1.5;color:var(--color-ink);">
-    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;">
-      <p style="flex:1;min-width:200px;margin:0;color:var(--color-text-muted);">Vi bruker informasjonskapsler for å analysere trafikken vår og forbedre nettstedet. <a href="personvern.html" style="color:var(--color-ink);text-decoration:underline;font-weight:500;">Les mer</a>.</p>
-      <div style="display:flex;gap:8px;flex-shrink:0;">
-        <button id="cookie-reject" style="background:transparent;border:1px solid rgba(0,0,0,0.18);color:var(--color-text-muted);padding:9px 16px;border-radius:var(--radius-xs);cursor:pointer;font-size:0.8125rem;font-family:inherit;">Avvis unødvendige</button>
-        <button id="cookie-accept" style="background:var(--color-ui-dark);border:none;color:var(--color-white);padding:9px 20px;border-radius:var(--radius-xs);cursor:pointer;font-size:0.8125rem;font-weight:500;font-family:inherit;letter-spacing:0.01em;">Godta alle</button>
-      </div>
-    </div>
-  </div>
-  <script>
-    (function() {
-      var consent = localStorage.getItem('mg_cookie_consent');
-      if (consent === 'granted') {
-        gtag('consent', 'update', { analytics_storage: 'granted' });
-      } else if (!consent) {
-        document.getElementById('cookie-banner').style.display = 'block';
-      }
-      document.getElementById('cookie-accept').addEventListener('click', function() {
-        localStorage.setItem('mg_cookie_consent', 'granted');
-        gtag('consent', 'update', { analytics_storage: 'granted' });
-        document.getElementById('cookie-banner').style.display = 'none';
-      });
-      document.getElementById('cookie-reject').addEventListener('click', function() {
-        localStorage.setItem('mg_cookie_consent', 'denied');
-        document.getElementById('cookie-banner').style.display = 'none';
-      });
-    })();
-  </script>
+  <!-- Cookie-banner: components/samtykke.js (felles for alle sider) -->
 
 
   <script>

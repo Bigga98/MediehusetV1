@@ -15,6 +15,8 @@
 
   window.mgLead = function (d) {
     d = d || {};
+    // Ingenting sendes til Meta (verken piksel eller server) uten samtykke til informasjonskapsler
+    if (!(window.mgConsent && window.mgConsent.granted())) return;
     var params = new URLSearchParams(location.search);
     var id = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
     var custom = { content_name: d.content_name || '' };

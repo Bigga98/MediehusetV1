@@ -155,3 +155,38 @@
 
 /* Priskortet: venstrestilt som resten av siden, beløpene står fortsatt midt i */
 .mgtl__belop { justify-content: center; text-align: center; }
+
+/* ---------- Variant C – Mørk gjennomgående (Figma «Telefonside – fargevarianter», nov 2026) ----------
+   Mørke seksjoner #1C1C1B, kort #252523, overskrift #E3E3E3, brødtekst #A8A5A2.
+   «Bedre oppsett» og «Priser» er lyse (#EFEEEC) som i Figma. */
+@media (max-width: 600px) { html, body { background: #1C1C1B; } }
+.mgtl__s--c { background: #EFEEEC; }
+.mgtl__s--d .mgtl__p, .mgtl__hero.mgtl__mork .mgtl__p { color: #A8A5A2; }
+.mgtl__mork .mgtl__eyebrow { color: #C9C7C3; }
+.mgtl__mork .mgtl__eyebrow svg { fill: #C9C7C3; }
+.mgtl__mork .mgtl__ask { border-color: #33312F; color: #E3E3E3; }
+.mgtl__mork .mgtl__mail button { background: #E3E3E3; color: #111111; }
+.mgtl__s--c .mgtl__p { color: #73736E; }
+.mgtl__s--c .mgtl__btn { background: #E3E3E3; border-color: #E3E3E3; color: #111111; }
+.mgtl__s--c .mgtl__btn--hvit { background: #171412; border-color: rgba(227,227,227,0.4); color: #E3E3E3; }
+.mgtl__s--c.mgtl__priser .mgtl__p { color: #2E230C; }
+.mgtl__s--c.mgtl__priser .mgtl__btn { background: #171412; border-color: #171412; color: #FFF5F5; }
+
+/* Hero-knapper: «Få et gratis utkast» + kontaktinformasjon (nov 2026) */
+.mgtl__cta {
+  display: flex; align-items: center; justify-content: space-between; height: 52px; margin-top: 24px; padding: 0 20px;
+  border-radius: 6px; background: #E3E3E3; color: #111111; font: 500 15px/1 Inter, Helvetica, Arial, sans-serif;
+}
+.mgtl__cta-pil { width: 16px; height: 16px; flex: none; transition: transform .25s cubic-bezier(.16,1,.3,1); }
+.mgtl__cta:active .mgtl__cta-pil { transform: translateX(3px); }
+.mgtl__cta:active { opacity: .8; }
+.mgtl__kontaktinfo { display: grid; grid-template-columns: 1fr auto; gap: 24px; margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.12); }
+.mgtl__kontaktinfo a { display: flex; flex-direction: column; gap: 6px; font: 400 16px/20px Inter, Helvetica, Arial, sans-serif; letter-spacing: -0.01em; color: #E3E3E3; }
+.mgtl__kontaktinfo small { font: 500 12px/16px 'IBM Plex Sans', Inter, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: #8F8C89; }
+.mgtl__cta + .mgtl__note { margin-top: 12px; }
+.mgtl__note + .mgtl__kontaktinfo { margin-top: 28px; }
+
+/* Hero-tittel i to toner som PC-forsiden: grå rammelinjer, lys midtlinje. Kortere, mindre brødtekst. */
+.mgtl__mork .mgtl__tittel { font-size: min(40px, 10.2vw); line-height: 1; letter-spacing: -0.045em; color: #6F6C69; }
+.mgtl__mork .mgtl__tittel .mgtl__ink { color: #E3E3E3; }
+.mgtl__hero.mgtl__mork .mgtl__p { margin-top: 20px; font-size: 18px; line-height: 26px; letter-spacing: -0.02em; color: #A8A5A2; }
