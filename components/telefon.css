@@ -190,3 +190,15 @@
 .mgtl__mork .mgtl__tittel { font-size: min(40px, 10.2vw); line-height: 1; letter-spacing: -0.045em; color: #6F6C69; }
 .mgtl__mork .mgtl__tittel .mgtl__ink { color: #E3E3E3; }
 .mgtl__hero.mgtl__mork .mgtl__p { margin-top: 20px; font-size: 18px; line-height: 26px; letter-spacing: -0.02em; color: #A8A5A2; }
+
+/* Ofte stilte spørsmål: linjer mellom radene, skarp pil som snur når raden er åpen. */
+.mgtl__faq { padding-top: 56px; border-top: 1px solid rgba(17,17,17,0.08); }
+.mgtl__faq-liste { margin-top: 28px; border-bottom: 1px solid #D9D8D4; }
+.mgtl__faq-rad { border-top: 1px solid #D9D8D4; }
+.mgtl__faq-rad summary { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding: 22px 0; list-style: none; cursor: pointer; font: 500 17px/23px Inter, Helvetica, Arial, sans-serif; letter-spacing: -0.02em; color: #111111; -webkit-tap-highlight-color: transparent; }
+.mgtl__faq-rad summary::-webkit-details-marker { display: none; }
+.mgtl__faq-rad summary svg { width: 18px; height: 18px; flex: none; margin-top: 2px; transition: transform .25s cubic-bezier(.16,1,.3,1); }
+.mgtl__faq-rad[open] summary svg { transform: rotate(180deg); }
+.mgtl__faq-rad summary:focus-visible { outline: 2px solid #296ADA; outline-offset: 4px; }
+.mgtl__faq-rad p { margin: -8px 0 0; padding: 0 38px 22px 0; font: 400 16px/24px Inter, Helvetica, Arial, sans-serif; color: #73736E; }
+@media (prefers-reduced-motion: reduce) { .mgtl__faq-rad summary svg { transition: none; } }
