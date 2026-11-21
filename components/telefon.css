@@ -229,3 +229,12 @@
 .mgtl__hero--v2 .mgtl__tittel { font-size: 38px; }
 .mgtl__hero--v2 .mgtl__ingress { margin-top: 96px; }
 .mgtl__hero--v2 .mgtl__kort { margin-top: 24px; }
+
+/* Telefon: «Meny»-knappen blir en hamburgermeny (tre streker). Teksten «Meny» skjules visuelt, men leses fortsatt opp. */
+@media (max-width: 600px) {
+  .mgm-btn { width: 40px; height: 40px; padding: 0; gap: 0; justify-content: center; font-size: 0; border-radius: 6px; top: 10px; }
+  .mgm-btn .mgm-plus { width: 18px; height: 12px; background: linear-gradient(currentColor, currentColor) center / 100% 1.5px no-repeat; }
+  .mgm-btn .mgm-plus::before, .mgm-btn .mgm-plus::after { left: 0; width: 18px; height: 1.5px; rotate: none; }
+  .mgm-btn .mgm-plus::before { top: 0; }
+  .mgm-btn .mgm-plus::after { top: auto; bottom: 0; }
+}
