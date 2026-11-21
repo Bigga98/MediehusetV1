@@ -263,3 +263,15 @@
 .mgtl__hero--v2 .mgtl__hrad + .mgtl__hrad { margin-top: 2px; }
 .mgtl__hero--v2 .mgtl__kopier { border: 0; border-radius: 3px; }
 .mgtl__hero--v2 .mgtl__kort { width: calc(100% + 22px); margin: 12px -11px 0; border-radius: 3px; aspect-ratio: 381 / 414; }
+
+/* Hero v4 (Figma 21. nov): tittel i Medium med ensfarget grå andre linje, undertekst rett under tittelen,
+   hake foran knappeteksten, knapp med små hjørner. Hamburgermenyen er mørk (ikke hvit) med lyse streker. */
+.mgtl__hero--v2 { padding-top: 164px; }
+.mgtl__hero--v2 .mgtl__tittel { font-weight: 500; }
+.mgtl__hero--v2 .mgtl__grad { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: #9C9690; padding-bottom: 0; margin-bottom: 0; }
+.mgtl__undertekst { margin: 16px 0 0; font: 600 15px/18px 'Instrument Sans', Inter, Helvetica, Arial, sans-serif; letter-spacing: -0.03em; color: #A19F9C; }
+.mgtl__hero--v2 .mgtl__ingress { margin-top: 89px; }
+.mgtl__hero--v2 .mgtl__hknapp:not(.mgtl__hknapp--kant) { border-radius: 3px; }
+@media (max-width: 600px) {
+  .mgm-btn, html.mg-dark body .mgm-btn { background-color: rgba(255,255,255,0.06); color: #E3E3E3; border-radius: 3px; }
+}
