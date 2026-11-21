@@ -238,3 +238,28 @@
   .mgm-btn .mgm-plus::before { top: 0; }
   .mgm-btn .mgm-plus::after { top: auto; bottom: 0; }
 }
+
+/* Hero: telefon og e-post som rader (etikett + verdi) med linje mellom og en «Kopier»-knapp til høyre. */
+.mgtl__hkontakt { margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.12); }
+.mgtl__hrad { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
+.mgtl__hrad a { min-width: 0; font: 400 16px/20px Inter, Helvetica, Arial, sans-serif; letter-spacing: -0.01em; color: #E3E3E3; -webkit-tap-highlight-color: transparent; }
+.mgtl__hrad small { display: block; margin-bottom: 4px; font: 500 11px/14px 'IBM Plex Sans', Inter, sans-serif; letter-spacing: 0.08em; color: #8F8C89; }
+.mgtl__kopier { display: flex; align-items: center; gap: 6px; flex: none; height: 30px; padding: 0 12px 0 10px; border: 1px solid rgba(255,255,255,0.14); border-radius: 15px; background: rgba(255,255,255,0.06); color: #C9C6C2; font: 500 13px/13px Inter, Helvetica, Arial, sans-serif; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color .2s ease, color .2s ease; }
+.mgtl__kopier svg { width: 16px; height: 16px; color: #8F8C89; }
+.mgtl__kopier.er-kopiert { background: rgba(64,173,20,0.16); border-color: rgba(64,173,20,0.4); color: #E3E3E3; }
+.mgtl__kopier:focus-visible, .mgtl__hrad a:focus-visible { outline: 2px solid #296ADA; outline-offset: 3px; }
+
+/* Hero v3 (Figma 21. nov, kveld): to-linjers tittel med varm gradient, mer luft over ingressen, knapp med hake og spiss pil,
+   telefon/e-post uten etiketter og linjer, kopier-knapp med små hjørner, bredere bilde. */
+.mgtl__hero--v2 { padding-top: 125px; }
+.mgtl__hero--v2 .mgtl__grad { background-image: linear-gradient(90deg, #7A7671 0%, #A98B6D 50%, #483624 100%); }
+.mgtl__hero--v2 .mgtl__ingress { margin-top: 196px; line-height: 18px; }
+.mgtl__hero--v2 .mgtl__ingress + .mgtl__hknapp { margin-top: 10px; }
+.mgtl__hero--v2 .mgtl__hknapp { justify-content: flex-start; gap: 8px; }
+.mgtl__hknapp-hake { width: 16px; height: 16px; flex: none; }
+.mgtl__hknapp-pil { width: 16px; height: 16px; flex: none; margin-left: auto; }
+.mgtl__hero--v2 .mgtl__hkontakt { margin-top: 10px; border-top: 0; }
+.mgtl__hero--v2 .mgtl__hrad { padding: 4px 0; border-bottom: 0; }
+.mgtl__hero--v2 .mgtl__hrad + .mgtl__hrad { margin-top: 2px; }
+.mgtl__hero--v2 .mgtl__kopier { border: 0; border-radius: 3px; }
+.mgtl__hero--v2 .mgtl__kort { width: calc(100% + 22px); margin: 12px -11px 0; border-radius: 3px; aspect-ratio: 381 / 414; }
