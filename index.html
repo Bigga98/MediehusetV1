@@ -5648,23 +5648,19 @@
       .mgt__intro, .mgs__intro, .mgk__intro { font-size: 19px; }
     }
   </style>
-  <link rel="stylesheet" href="components/telefon.css?v=21">
+  <link rel="stylesheet" href="components/telefon.css?v=23">
 </head>
 <body>
   <!-- TELEFONVERSJON (≤ 600px). Figma «Telefonside – fargevarianter» → Variant C – Mørk gjennomgående:
        alt mørkt (#1C1C1B), unntatt «Bedre oppsett» og «Priser» (#EFEEEC). Stil i components/telefon.css. -->
   <main class="mgtl" id="mgtl">
-    <section class="mgtl__hero mgtl__mork" aria-labelledby="mgtl-tittel">
-      <p class="mgtl__eyebrow"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4.30373 8.43732C5.49226 7.73261 7.76491 5.20813 8.36578 3.8784C8.45764 3.67511 8.33494 3.45715 8.12088 3.39436C6.72955 2.98623 4.30117 2.47835 2.54345 2.30821C2.25774 2.28056 2.03493 2.54038 2.10251 2.81935C2.5059 4.48447 3.25008 6.8579 3.80908 8.24546C3.89109 8.44912 4.1149 8.54927 4.30373 8.43732Z"/><path d="M4.30373 9.21307C5.49226 9.91778 7.76491 12.4423 8.36578 13.772C8.45764 13.9753 8.33494 14.1932 8.12088 14.256C6.72955 14.6642 4.30117 15.172 2.54345 15.3422C2.25774 15.3698 2.03493 15.11 2.10251 14.831C2.5059 13.1659 3.25008 10.7925 3.80908 9.40493C3.89109 9.20127 4.1149 9.10112 4.30373 9.21307Z"/><path d="M13.6963 9.21307C12.5077 9.91778 10.2351 12.4423 9.63422 13.772C9.54236 13.9753 9.66506 14.1932 9.87912 14.256C11.2704 14.6642 13.6988 15.172 15.4566 15.3422C15.7423 15.3698 15.9651 15.11 15.8975 14.831C15.4941 13.1659 14.7499 10.7925 14.1909 9.40493C14.1089 9.20127 13.8851 9.10112 13.6963 9.21307Z"/><path d="M13.6963 8.43732C12.5077 7.73261 10.2351 5.20813 9.63422 3.8784C9.54236 3.67511 9.66506 3.45715 9.87912 3.39436C11.2704 2.98623 13.6988 2.47835 15.4566 2.30821C15.7423 2.28056 15.9651 2.54038 15.8975 2.81935C15.4941 4.48447 14.7499 6.8579 14.1909 8.24546C14.1089 8.44912 13.8851 8.54927 13.6963 8.43732Z"/></svg>Webdesign og Annonser</p>
-      <h1 class="mgtl__tittel" id="mgtl-tittel"><span>Fra første klikk</span><span class="mgtl__ink">til befaring</span><span>og signerte oppdrag.</span></h1>
-      <p class="mgtl__p">Vi lager nettsiden, kjører annonsene og følger opp henvendelsene.</p>
-      <a href="skjema-annonse-19.html" class="mgtl__cta">Få et gratis utkast<svg class="mgtl__cta-pil" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1.5 8H13" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter" stroke-miterlimit="10"/></svg></a>
-      <p class="mgtl__note"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#40AD14"/><path d="M4.6 8.2l2.2 2.2 4.6-4.8" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Uforpliktende første samtale.</p>
-      <div class="mgtl__kontaktinfo">
-        <a href="mailto:post@mediegruppen.no"><small>E-post</small>post@mediegruppen.no</a>
-        <a href="tel:+4748118680"><small>Telefon</small>481 18 680</a>
-      </div>
-      <div class="mgtl__kort"><img src="images/telefon/hero-bilde.webp" alt="Nettside vist på en bærbar PC" width="1074" height="1206" loading="lazy"></div>
+    <section class="mgtl__hero mgtl__mork mgtl__hero--v2" aria-labelledby="mgtl-tittel">
+      <h1 class="mgtl__tittel" id="mgtl-tittel"><span class="mgtl__ink">Nettsider</span><span class="mgtl__grad">Bygd for å få flere</span><span class="mgtl__grad">Befaringer &amp; Oppdrag.</span></h1>
+      <p class="mgtl__ingress"><strong>Ingen forpliktelser</strong><span>10 punkter på hvordan vi ville endret nettsiden din.</span></p>
+      <a href="skjema-annonse-19.html" class="mgtl__hknapp">Kostnadsfri nettside-gjennomgang</a>
+      <button type="button" class="mgtl__hknapp mgtl__hknapp--kant" onclick="openContactPopup()">Ta direkte kontakt<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9.8M12.8 8L8.3 3.6M12.8 8l-4.5 4.4" stroke="currentColor" stroke-width="1.33"/></svg></button>
+      <p class="mgtl__note"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#40AD14"/><path d="M4.6 8.2l2.2 2.2 4.6-4.8" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Kostnadsfritt prosjekt-utkast</p>
+      <div class="mgtl__kort"><img src="images/telefon/hero-bilde-v2.webp" alt="Nettside vist på en bærbar PC" width="1074" height="1242" loading="eager"></div>
     </section>
 
     <section class="mgtl__s mgtl__s--d" id="mgtl-nettsider">

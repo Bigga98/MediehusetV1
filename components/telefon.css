@@ -202,3 +202,30 @@
 .mgtl__faq-rad summary:focus-visible { outline: 2px solid #296ADA; outline-offset: 4px; }
 .mgtl__faq-rad p { margin: -8px 0 0; padding: 0 38px 22px 0; font: 400 16px/24px Inter, Helvetica, Arial, sans-serif; color: #73736E; }
 @media (prefers-reduced-motion: reduce) { .mgtl__faq-rad summary svg { transition: none; } }
+
+/* Hero v2 (Figma «0 · Hero (vanlig, fra nettsiden)», nov 2026): tittel med lys første linje og gradient på resten,
+   ingress i to toner, to knapper i pilleform (avatarer i den lyse), hake og bildekort. */
+.mgtl__hero--v2 { padding: 106px 16px 40px; }
+.mgtl__hero--v2 .mgtl__tittel { margin: 0; font-weight: 400; font-size: 36px; line-height: 32px; letter-spacing: -1.89px; color: #E3E3E3; }
+.mgtl__hero--v2 .mgtl__tittel .mgtl__ink { color: #E3E3E3; }
+.mgtl__hero--v2 .mgtl__grad { width: fit-content; background: linear-gradient(90deg, #736E6A, #C2B9B0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mgtl__ingress { margin: 124px 0 0; font: 600 15px/16px 'Instrument Sans', Inter, Helvetica, Arial, sans-serif; letter-spacing: -0.03em; }
+.mgtl__ingress strong { display: block; font-weight: 600; color: #E3E3E3; }
+.mgtl__ingress span { display: block; color: #A19F9C; }
+.mgtl__hknapp { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 48px; margin-top: 8px; padding: 0 20px; border: 0; border-radius: 24px; background: #E3E3E3; color: #111111; font: 500 15px/15px Inter, Helvetica, Arial, sans-serif; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.mgtl__hknapp + .mgtl__hknapp { margin-top: 6px; }
+.mgtl__hknapp--kant { padding-right: 21px; border: 1px solid #9B958F; background: transparent; color: #E3E3E3; }
+.mgtl__hknapp--kant svg { width: 16px; height: 16px; flex: none; color: #9B958F; }
+.mgtl__avatarer { position: relative; width: 38px; height: 29px; flex: none; margin-right: 2px; }
+.mgtl__avatarer img, .mgtl__avatarer i { position: absolute; top: 0; width: 29px; height: 29px; border-radius: 50%; box-shadow: 0 0 0 0.5px #727272; }
+.mgtl__avatarer img { left: 0; z-index: 1; object-fit: cover; }
+.mgtl__avatarer i { left: 9px; background: #7A7777; }
+.mgtl__hknapp:focus-visible { outline: 2px solid #296ADA; outline-offset: 2px; }
+.mgtl__hero--v2 .mgtl__note { gap: 4px; margin-top: 16px; font-size: 14px; color: #A8A5A2; }
+.mgtl__hero--v2 .mgtl__kort { margin-top: 32px; aspect-ratio: 358 / 414; }
+.mgtl__hero--v2 .mgtl__grad { padding-bottom: 8px; margin-bottom: -8px; }
+
+/* Hero v2, justert etter Figma 21. nov: større tittel, tettere luft til ingressen, bildet nærmere knappene, kortere bunn. */
+.mgtl__hero--v2 .mgtl__tittel { font-size: 38px; }
+.mgtl__hero--v2 .mgtl__ingress { margin-top: 96px; }
+.mgtl__hero--v2 .mgtl__kort { margin-top: 24px; }
