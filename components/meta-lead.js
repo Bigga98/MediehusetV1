@@ -15,6 +15,8 @@
 
   window.mgLead = function (d) {
     d = d || {};
+    // Google Analytics: én hendelse per innsendt skjema (Consent Mode avgjør hva Google lagrer)
+    if (window.gtag) gtag('event', 'generate_lead', { form_name: d.content_name || '', annonse: d.ad || '', side: location.pathname });
     // Ingenting sendes til Meta (verken piksel eller server) uten samtykke til informasjonskapsler
     if (!(window.mgConsent && window.mgConsent.granted())) return;
     var params = new URLSearchParams(location.search);
