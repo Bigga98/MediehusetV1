@@ -282,3 +282,11 @@
   .mgm-btn .mgm-plus { display: none; }
   .mgm-btn:active { color: #E3E3E3; }
 }
+
+/* «Kontakt oss» nederst, i samme stil som heroen (Figma 22. nov): tittel 38 px, telefon og e-post med «Kopier». */
+.mgtl__slutt--v2 { padding: 72px 16px 72px; }
+.mgtl__slutt--v2 .mgtl__h { font-size: 38px; line-height: 32px; font-weight: 500; letter-spacing: -1.89px; color: #E3E3E3; }
+.mgtl__slutt--v2 .mgtl__hkontakt { margin-top: 0; border-top: 0; }
+.mgtl__slutt--v2 .mgtl__hrad { padding: 4px 0; border-bottom: 0; }
+.mgtl__slutt--v2 .mgtl__hrad + .mgtl__hrad { margin-top: 2px; }
+.mgtl__slutt--v2 .mgtl__kopier { border: 0; border-radius: 3px; }
