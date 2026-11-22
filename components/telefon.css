@@ -290,3 +290,30 @@
 .mgtl__slutt--v2 .mgtl__hrad { padding: 4px 0; border-bottom: 0; }
 .mgtl__slutt--v2 .mgtl__hrad + .mgtl__hrad { margin-top: 2px; }
 .mgtl__slutt--v2 .mgtl__kopier { border: 0; border-radius: 3px; }
+
+/* Telefonmeny (Figma 22. nov): hel skjerm, mørk, uten animasjon. Panelet fra mg-ny.js skjules på telefon. */
+.mgtl-meny, .mgtl-meny[hidden] { display: none; }
+@media (max-width: 600px) {
+  .mgm-wrap, .mgm-veil { display: none !important; }
+  html.mgtl-meny-apen, html.mgtl-meny-apen body { overflow: hidden; }
+  .mgtl-meny:not([hidden]) { position: fixed; inset: 0; z-index: 100000; display: flex; flex-direction: column; padding: 0 16px 32px; background: #1C1C1B; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .mgtl-meny__top { display: flex; align-items: center; justify-content: space-between; height: 60px; flex: none; }
+  .mgtl-meny a { text-decoration: none; }
+  .mgtl-meny__logo { display: flex; color: #E3E3E3; }
+  .mgtl-meny__logo svg { width: 155px; height: 20px; }
+  .mgtl-meny__lukk { height: 40px; padding: 0; border: 0; background: none; color: #9A9A9A; font: 600 15px/18px 'Instrument Sans', Inter, Helvetica, Arial, sans-serif; letter-spacing: -0.03em; cursor: pointer; }
+  .mgtl-meny__lukk:active { color: #E3E3E3; }
+  .mgtl-meny__tittel { margin: 87px 0 0; font: 500 30px/30px 'Instrument Sans', Inter, Helvetica, Arial, sans-serif; letter-spacing: -1.4px; color: #E3E3E3; }
+  .mgtl-meny__tekst { margin: 11px 0 0; font: 600 15px/18px 'Instrument Sans', Inter, Helvetica, Arial, sans-serif; letter-spacing: -0.03em; color: #A19F9C; }
+  .mgtl-meny__knapp { display: flex; align-items: center; gap: 8px; height: 48px; margin-top: 24px; padding: 0 20px; border-radius: 6px; background: #2E2E2E; color: #FFFFFF; font: 500 15px/15px Inter, Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+  .mgtl-meny__knapp svg { width: 16px; height: 16px; flex: none; }
+  .mgtl-meny__knapp svg:last-child { margin-left: auto; }
+  .mgtl-meny__etikett { margin: 50px 0 0; font: 600 16px/20px Inter, Helvetica, Arial, sans-serif; letter-spacing: -0.01em; color: #A19F9C; }
+  .mgtl-meny__kontakt { margin-top: 6px; border-top: 0; }
+  .mgtl-meny__kontakt .mgtl__hrad { padding: 4px 0; border-bottom: 0; }
+  .mgtl-meny__kontakt .mgtl__hrad + .mgtl__hrad { margin-top: 2px; }
+  .mgtl-meny__kontakt .mgtl__kopier { border: 0; border-radius: 3px; }
+  .mgtl-meny__bunn { display: flex; gap: 20px; margin-top: auto; padding-top: 40px; }
+  .mgtl-meny__bunn a { font: 400 13px/16px Inter, Helvetica, Arial, sans-serif; color: #73706B; }
+  .mgtl-meny__lukk:focus-visible, .mgtl-meny a:focus-visible { outline: 2px solid #296ADA; outline-offset: 3px; }
+}
